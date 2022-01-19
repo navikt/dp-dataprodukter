@@ -20,8 +20,7 @@ jobs:
       - name: Configuration-cache
         uses: actions/cache@v2
         with:
-          path: |
-            ./gradle/configuration-cache
+          path: .gradle/configuration-cache
           key: ${{ runner.os }}-${{ hashFiles('**/gradle*') }}
 
       - run: ./gradlew --configuration-cache build installDist
