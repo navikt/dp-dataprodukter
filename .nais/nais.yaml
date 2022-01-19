@@ -9,3 +9,5 @@ spec:
   image: {{image}}
   kafka:
     pool: {{kafka.pool}}
+  secureLogs:
+    enabled: true
