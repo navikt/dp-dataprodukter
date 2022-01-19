@@ -18,7 +18,7 @@ jobs:
 
       - uses: gradle/gradle-build-action@v2
         with:
-          arguments: build installDist -i
+          arguments: build installDist
 
       - name: Set up Docker Buildx
         id: buildx
