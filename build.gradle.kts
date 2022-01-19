@@ -6,9 +6,6 @@ plugins {
     id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
 }
 
-group = "no.nav.dagpenger.data.inntekt"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
     maven("https://packages.confluent.io/maven")
@@ -35,5 +32,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("no.nav.dagpenger.data.inntekt.MainKt")
 }

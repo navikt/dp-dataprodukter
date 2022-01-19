@@ -17,7 +17,7 @@ jobs:
           java-version: 17
           cache: gradle
 
-      - run: ./gradlew build
+      - run: ./gradlew build installDist
 
       - name: Set up Docker Buildx
         id: buildx
