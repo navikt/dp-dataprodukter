@@ -7,6 +7,7 @@ import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
+import java.time.Duration
 import java.util.Properties
 
 private val aivenKafka: AivenConfig = AivenConfig.default
@@ -25,7 +26,7 @@ fun main() {
         createProducer<String, Dagpengegrunnlag>(aivenKafka.producerConfig(avroProducerConfig))
 
     RapidApplication.create(env).apply {
-        InntektRiver(this, dagpengegrunnlagProducer, GGrunnbeløp())
+        InntektRiver(this, dagpengegrunnlagProducer, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
     }.start()
 }
 
