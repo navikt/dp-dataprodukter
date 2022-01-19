@@ -17,13 +17,7 @@ jobs:
           java-version: 17
           cache: gradle
 
-      - name: Configuration-cache
-        uses: actions/cache@v2
-        with:
-          path: .gradle/configuration-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/gradle*') }}
-
-      - run: ./gradlew --configuration-cache build installDist
+      - run: ./gradlew --console verbose build installDist
 
       - name: Set up Docker Buildx
         id: buildx
