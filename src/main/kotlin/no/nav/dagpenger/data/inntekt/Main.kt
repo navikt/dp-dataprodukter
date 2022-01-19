@@ -15,8 +15,8 @@ private val avroProducerConfig = Properties().apply {
         KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
         requireNotNull(System.getenv("KAFKA_SCHEMA_REGISTRY")) { "Expected KAFKA_SCHEMA_REGISTRY" }
     )
-    put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::javaClass)
-    put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::javaClass)
+    put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+    put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
 }
 
 fun main() {
