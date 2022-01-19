@@ -11,3 +11,10 @@ spec:
     pool: {{kafka.pool}}
   secureLogs:
     enabled: true
+  env:
+    - name: KAFKA_CONSUMER_GROUP_ID
+      value: dp-data-inntekt-v1
+    - name: KAFKA_RAPID_TOPIC
+      value: teamdagpenger.rapid.v1
+    - name: KAFKA_RESET_POLICY
+      value: earliest
