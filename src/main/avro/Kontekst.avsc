@@ -1,0 +1,8 @@
+{
+  "namespace": "no.nav.dagpenger.data.inntekt",
+  "name": "Kontekst",
+  "type": "enum",
+  "symbols": [
+    "Automatisering"
+  ]
+}

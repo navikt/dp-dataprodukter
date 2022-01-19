@@ -1,0 +1,29 @@
+{
+  "namespace": "no.nav.dagpenger.data.inntekt",
+  "name": "Dagpengegrunnlag",
+  "type": "record",
+  "fields": [
+    {
+      "name": "beregningsdato",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "kontekst",
+      "type": "Kontekst"
+    },
+    {
+      "name": "grunnlag",
+      "type": {
+        "type": "array",
+        "items": "Grunnlag"
+      }
+    },
+    {
+      "name": "gjeldendeGrunnbeloep",
+      "type": "double"
+    }
+  ]
+}

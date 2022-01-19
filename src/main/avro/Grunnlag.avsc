@@ -1,0 +1,15 @@
+{
+  "namespace": "no.nav.dagpenger.data.inntekt",
+  "name": "Grunnlag",
+  "type": "record",
+  "fields": [
+    {
+      "name": "type",
+      "type": "Grunnlagsperiode"
+    },
+    {
+      "name": "verdi",
+      "type": "double"
+    }
+  ]
+}
