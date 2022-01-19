@@ -18,10 +18,10 @@ jobs:
           cache: gradle
 
       - run: |
+          ./gradlew -i build installDist
           ls -lah ~/.gradle
           ls -lah ~/.gradle/caches
           ls -lah ~/.gradle/caches/build-cache-1
-          ./gradlew -i build installDist
 
       - name: Set up Docker Buildx
         id: buildx
