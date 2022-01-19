@@ -15,10 +15,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: gradle
 
-      - uses: burrunan/gradle-cache-action@v1
-
-      - run: ./gradlew -i build installDist
+      - run: |
+          ls -lah ~/.gradle/caches
+          ./gradlew -i build installDist
+          ls -lah ~/.gradle/caches
+          ls -lah ~/.gradle/caches/build-cache-1
 
       - name: Set up Docker Buildx
         id: buildx
@@ -50,7 +53,7 @@ jobs:
 
   deploy-dev:
     name: Deploy to dev
-    needs: [build]
+    needs: [ build ]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
