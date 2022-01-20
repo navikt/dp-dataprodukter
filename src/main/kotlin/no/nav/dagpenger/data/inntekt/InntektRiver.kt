@@ -3,6 +3,7 @@ package no.nav.dagpenger.data.inntekt
 import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
+import no.nav.helse.rapids_rivers.MessageProblems
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDate
@@ -22,6 +23,10 @@ internal class InntektRiver(
             validate { it.requireAll("@behov", listOf("InntektSiste12Mnd", "InntektSiste3År")) }
             validate { it.requireKey("@løsning", "Virkningstidspunkt") }
         }.register(this)
+    }
+
+    override fun onError(problems: MessageProblems, context: MessageContext) {
+        logger.info { "Problems: $problems" }
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
