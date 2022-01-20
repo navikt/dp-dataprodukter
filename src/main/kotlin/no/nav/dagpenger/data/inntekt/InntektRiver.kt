@@ -9,6 +9,8 @@ import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDate
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
+import org.apache.kafka.clients.producer.RecordMetadata
+import java.util.concurrent.Future
 
 private val logger = KotlinLogging.logger { }
 
@@ -23,10 +25,6 @@ internal class InntektRiver(
             validate { it.requireAll("@behov", listOf("InntektSiste12Mnd", "InntektSiste3År")) }
             validate { it.requireKey("@løsning", "Virkningstidspunkt") }
         }.register(this)
-    }
-
-    override fun onError(problems: MessageProblems, context: MessageContext) {
-        logger.info { "Problems: $problems" }
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
