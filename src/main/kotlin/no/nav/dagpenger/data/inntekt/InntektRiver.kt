@@ -29,6 +29,10 @@ internal class InntektRiver(
         logger.info { "Problems: $problems" }
     }
 
+    override fun onSevere(error: MessageProblems.MessageException, context: MessageContext) {
+        logger.info { "FOLE GALE: $error" }
+    }
+
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val grunnlag12mnd = packet["@løsning"]["InntektSiste12Mnd"].asDouble()
         val grunnlag36mnd = packet["@løsning"]["InntektSiste3År"].asDouble()
