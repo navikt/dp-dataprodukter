@@ -43,7 +43,7 @@ internal class InntektRiver(
         }.build().also { grunnlag ->
             logger.info { "Sender ut $grunnlag" }
 
-            dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.dp-data-inntekt", grunnlag))
+            dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
         }
 
         // Gjør lesing av topic treg med vilje

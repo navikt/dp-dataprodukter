@@ -1,7 +1,7 @@
 apiVersion: "kafka.nais.io/v1"
 kind: "Topic"
 metadata:
-  name: dp-data-inntekt
+  name: data-inntekt-v1
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
