@@ -3,14 +3,11 @@ package no.nav.dagpenger.data.inntekt
 import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
-import no.nav.helse.rapids_rivers.MessageProblems
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDate
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.clients.producer.RecordMetadata
-import java.util.concurrent.Future
 
 private val logger = KotlinLogging.logger { }
 
@@ -45,7 +42,6 @@ internal class InntektRiver(
 
             dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
         }
-
         // Gjør lesing av topic treg med vilje
         Thread.sleep(3000)
     }
