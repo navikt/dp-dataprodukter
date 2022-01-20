@@ -3,7 +3,6 @@ package no.nav.dagpenger.data.inntekt
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
 import io.netty.util.internal.ThreadExecutorMap.apply
-import mu.KotlinLogging
 import no.nav.dagpenger.data.inntekt.grunnbeløp.GGrunnbeløp
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -28,7 +27,6 @@ private val avroProducerConfig = Properties().apply {
     put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
     put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
 }
-private val logger = KotlinLogging.logger { }
 
 fun main() {
     val env = System.getenv()
@@ -38,8 +36,7 @@ fun main() {
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-
-        FakeInntektProducer(rapidsConnection, dagpengegrunnlagProducer)
+        // FakeInntektProducer(rapidsConnection, dagpengegrunnlagProducer)
         InntektRiver(rapidsConnection, dagpengegrunnlagProducer, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
     }.start()
 }
