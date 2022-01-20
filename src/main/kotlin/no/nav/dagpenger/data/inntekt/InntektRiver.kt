@@ -47,5 +47,8 @@ internal class InntektRiver(
 
             dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.dp-data-inntekt", grunnlag))
         }
+
+        // Gjør lesing av topic treg med vilje
+        Thread.sleep(3000)
     }
 }
