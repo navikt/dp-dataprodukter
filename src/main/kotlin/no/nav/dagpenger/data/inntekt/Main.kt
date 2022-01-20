@@ -6,15 +6,11 @@ import io.netty.util.internal.ThreadExecutorMap.apply
 import mu.KotlinLogging
 import no.nav.dagpenger.data.inntekt.grunnbeløp.GGrunnbeløp
 import no.nav.helse.rapids_rivers.RapidApplication
-import no.nav.helse.rapids_rivers.RapidsConnection
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
-import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringSerializer
 import java.time.Duration
-import java.time.LocalDate
 import java.util.Properties
-import kotlin.concurrent.fixedRateTimer
 
 private val aivenKafka: AivenConfig = AivenConfig.default
 private val avroProducerConfig = Properties().apply {
@@ -39,29 +35,11 @@ fun main() {
     val dagpengegrunnlagProducer by lazy {
         createProducer<String, Dagpengegrunnlag>(aivenKafka.producerConfig(avroProducerConfig))
     }
-    /*val fake = fixedRateTimer(name = "foo", period = 5000) {
-        Dagpengegrunnlag.newBuilder().apply {
-            beregningsdato = LocalDate.now()
-            gjeldendeGrunnbeloep = 123.0
-            grunnlag = listOf(
-                Grunnlag(Grunnlagsperiode.Siste12mnd, 345000.0),
-                Grunnlag(Grunnlagsperiode.Siste36mnd, 656000.0)
-            )
-            kontekst = Kontekst.Automatisering
-        }.build().also { grunnlag ->
-            logger.info { "Sender ut $grunnlag" }
-
-            dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
-        }
-    }*/
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-        /*rapidsConnection.register(object : RapidsConnection.StatusListener {
-            override fun onShutdown(rapidsConnection: RapidsConnection) {
-                fake.cancel()
-            }
-        })*/
+
+        FakeInntektProducer(rapidsConnection, dagpengegrunnlagProducer)
         InntektRiver(rapidsConnection, dagpengegrunnlagProducer, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
     }.start()
 }
