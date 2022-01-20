@@ -39,7 +39,7 @@ fun main() {
     val dagpengegrunnlagProducer by lazy {
         createProducer<String, Dagpengegrunnlag>(aivenKafka.producerConfig(avroProducerConfig))
     }
-    val fake = fixedRateTimer(name = "foo", period = 5000) {
+    /*val fake = fixedRateTimer(name = "foo", period = 5000) {
         Dagpengegrunnlag.newBuilder().apply {
             beregningsdato = LocalDate.now()
             gjeldendeGrunnbeloep = 123.0
@@ -53,15 +53,15 @@ fun main() {
 
             dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
         }
-    }
+    }*/
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-        rapidsConnection.register(object : RapidsConnection.StatusListener {
+        /*rapidsConnection.register(object : RapidsConnection.StatusListener {
             override fun onShutdown(rapidsConnection: RapidsConnection) {
                 fake.cancel()
             }
-        })
+        })*/
         InntektRiver(rapidsConnection, dagpengegrunnlagProducer, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
     }.start()
 }
