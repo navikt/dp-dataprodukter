@@ -13,7 +13,7 @@ spec:
     enabled: true
   env:
     - name: KAFKA_CONSUMER_GROUP_ID
-      value: dp-data-inntekt-v1
+      value: dp-data-inntekt-v2
     - name: KAFKA_RAPID_TOPIC
       value: teamdagpenger.rapid.v1
     - name: KAFKA_RESET_POLICY
