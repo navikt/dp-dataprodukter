@@ -21,3 +21,6 @@ spec:
     - team: teamdagpenger
       application: dp-kafka-connect
       access: read
+    - team: teamdagpenger
+      application: dp-data-admin
+      access: readwrite
