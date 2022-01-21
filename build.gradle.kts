@@ -19,6 +19,7 @@ dependencies {
     implementation("org.apache.avro:avro:1.11.0")
     implementation("io.confluent:kafka-avro-serializer:5.3.0")
     implementation("io.github.microutils:kotlin-logging:2.1.21")
+    implementation("io.getunleash:unleash-client-java:5.0.3")
 
     testImplementation("io.mockk:mockk:1.12.2")
 }

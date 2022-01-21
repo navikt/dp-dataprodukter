@@ -16,6 +16,7 @@ internal class FakeInntektProducer(
     private val dagpengegrunnlagProducer: KafkaProducer<String, Dagpengegrunnlag>,
 ) : RapidsConnection.StatusListener {
     private val fake: Timer = fixedRateTimer(name = "fake-inntekt-producer", period = 5000) {
+        if (!skalLageFalskeData()) return@fixedRateTimer
         val siste12Mnd = nextDouble(0.0, 500000.0)
         val siste36Mnd = nextDouble(siste12Mnd, 999999.0)
 
