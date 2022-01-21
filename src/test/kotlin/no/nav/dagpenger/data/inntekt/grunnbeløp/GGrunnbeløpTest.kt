@@ -1,6 +1,5 @@
 package no.nav.dagpenger.data.inntekt.grunnbeløp
 
-import no.nav.dagpenger.data.inntekt.grunnbeløp.GGrunnbeløp
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
