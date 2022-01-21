@@ -5,10 +5,10 @@ import io.getunleash.util.UnleashConfig
 
 private val unleash = DefaultUnleash(
     UnleashConfig.builder()
-        .appName(System.getenv("NAIS_APP_NAME"))
-        .instanceId(System.getenv("HOSTNAME"))
-        .environment(System.getenv("NAIS_CLUSTER_NAME"))
-        .unleashAPI(System.getenv("https://unleash.nais.io/"))
+        .appName(requireNotNull(System.getenv("NAIS_APP_NAME")) { "Expected NAIS_APP_NAME" })
+        .instanceId(requireNotNull(System.getenv("HOSTNAME")) { "Expected HOSTNAME" })
+        .environment(requireNotNull(System.getenv("NAIS_CLUSTER_NAME")) { "Expected NAIS_CLUSTER_NAME" })
+        .unleashAPI("https://unleash.nais.io/")
         // .customHttpHeader("Authorization", "API token")
         .build()
 )
