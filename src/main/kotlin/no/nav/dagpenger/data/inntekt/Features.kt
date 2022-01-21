@@ -8,7 +8,7 @@ private val unleash = DefaultUnleash(
         .appName(requireNotNull(System.getenv("NAIS_APP_NAME")) { "Expected NAIS_APP_NAME" })
         .instanceId(requireNotNull(System.getenv("HOSTNAME")) { "Expected HOSTNAME" })
         .environment(requireNotNull(System.getenv("NAIS_CLUSTER_NAME")) { "Expected NAIS_CLUSTER_NAME" })
-        .unleashAPI("https://unleash.nais.io/")
+        .unleashAPI("https://unleash.nais.io/api/")
         // .customHttpHeader("Authorization", "API token")
         .build()
 )
