@@ -3,19 +3,18 @@ package no.nav.dagpenger.data.inntekt
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
-import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 
 internal class InntektsMonitorTest {
-    private val producer = mockk<KafkaProducer<String, Dagpengegrunnlag>>(relaxed = true)
+    private val dataTopic = mockk<DataTopic>(relaxed = true)
     private val rapid by lazy {
         TestRapid().apply {
             InntektRiver(
                 rapidsConnection = this,
-                dagpengegrunnlagProducer = producer,
+                dataTopic = dataTopic,
                 grunnbeløp = object : Grunnbeløp {
                     override fun gjeldendeGrunnbeløp(fom: LocalDate) = 5.5
                 }
@@ -33,7 +32,7 @@ internal class InntektsMonitorTest {
         rapid.sendTestMessage(behovJSON)
 
         verify {
-            producer.send(any())
+            dataTopic.publiser(any())
         }
     }
 }

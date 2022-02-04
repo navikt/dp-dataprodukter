@@ -18,3 +18,5 @@ spec:
       value: teamdagpenger.rapid.v1
     - name: KAFKA_RESET_POLICY
       value: earliest
+    - name: KAFKA_PRODUKT_TOPIC
+      value: teamdagpenger.data-inntekt-v1

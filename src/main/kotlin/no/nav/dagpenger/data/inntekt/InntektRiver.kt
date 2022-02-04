@@ -6,15 +6,13 @@ import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDate
-import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerRecord
 
 private val logger = KotlinLogging.logger { }
 
 internal class InntektRiver(
     rapidsConnection: RapidsConnection,
-    private val dagpengegrunnlagProducer: KafkaProducer<String, Dagpengegrunnlag>,
-    private val grunnbeløp: Grunnbeløp
+    private val dataTopic: DataTopic,
+    private val grunnbeløp: Grunnbeløp,
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -40,9 +38,7 @@ internal class InntektRiver(
         }.build().also { grunnlag ->
             logger.info { "Sender ut $grunnlag" }
 
-            dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
+            dataTopic.publiser(grunnlag)
         }
-        // Gjør lesing av topic treg med vilje
-        Thread.sleep(3000)
     }
 }

@@ -2,8 +2,6 @@ package no.nav.dagpenger.data.inntekt
 
 import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.RapidsConnection
-import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerRecord
 import java.time.LocalDate
 import java.util.Timer
 import kotlin.concurrent.fixedRateTimer
@@ -13,9 +11,13 @@ private val logger = KotlinLogging.logger { }
 
 internal class FakeInntektProducer(
     rapidsConnection: RapidsConnection,
-    private val dagpengegrunnlagProducer: KafkaProducer<String, Dagpengegrunnlag>,
+    private val dataTopic: DataTopic
 ) : RapidsConnection.StatusListener {
-    private val fake: Timer = fixedRateTimer(name = "fake-inntekt-producer", period = 5000) {
+    init {
+        rapidsConnection.register(this)
+    }
+
+    private val dataGenerator: Timer = fixedRateTimer(name = "fake-inntekt-producer", period = 5000) {
         if (!skalLageFalskeData()) return@fixedRateTimer
         val siste12Mnd = nextDouble(0.0, 500000.0)
         val siste36Mnd = nextDouble(siste12Mnd, 999999.0)
@@ -31,15 +33,11 @@ internal class FakeInntektProducer(
         }.build().also { grunnlag ->
             logger.info { "Sender ut $grunnlag" }
 
-            dagpengegrunnlagProducer.send(ProducerRecord("teamdagpenger.data-inntekt-v1", grunnlag))
+            dataTopic.publiser(grunnlag)
         }
     }
 
-    init {
-        rapidsConnection.register(this)
-    }
-
     override fun onShutdown(rapidsConnection: RapidsConnection) {
-        fake.cancel()
+        dataGenerator.cancel()
     }
 }

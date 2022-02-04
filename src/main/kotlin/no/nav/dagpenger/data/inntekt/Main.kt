@@ -2,7 +2,6 @@ package no.nav.dagpenger.data.inntekt
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
-import io.netty.util.internal.ThreadExecutorMap.apply
 import no.nav.dagpenger.data.inntekt.grunnbeløp.GGrunnbeløp
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -30,14 +29,14 @@ private val avroProducerConfig = Properties().apply {
 
 fun main() {
     val env = System.getenv()
-    val dagpengegrunnlagProducer by lazy {
-        createProducer<String, Dagpengegrunnlag>(aivenKafka.producerConfig(avroProducerConfig))
+    val dataTopic by lazy {
+        DataTopic(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
     }
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-        FakeInntektProducer(rapidsConnection, dagpengegrunnlagProducer)
-        InntektRiver(rapidsConnection, dagpengegrunnlagProducer, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
+        FakeInntektProducer(rapidsConnection, dataTopic)
+        InntektRiver(rapidsConnection, dataTopic, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
     }.start()
 }
 
