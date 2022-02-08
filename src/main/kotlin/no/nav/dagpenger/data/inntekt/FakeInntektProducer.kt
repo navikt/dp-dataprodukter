@@ -22,18 +22,21 @@ internal class FakeInntektProducer(
         val siste12Mnd = nextDouble(0.0, 500000.0)
         val siste36Mnd = nextDouble(siste12Mnd, 999999.0)
 
-        Dagpengegrunnlag.newBuilder().apply {
-            beregningsdato = LocalDate.now()
-            gjeldendeGrunnbeloep = listOf(106399.0, 101351.0, 99858.0).random()
-            grunnlag = listOf(
-                Grunnlag(Grunnlagsperiode.Siste12mnd, siste12Mnd),
-                Grunnlag(Grunnlagsperiode.Siste36mnd, siste36Mnd)
-            )
-            kontekst = Kontekst.Automatisering
-        }.build().also { grunnlag ->
-            logger.info { "Sender ut $grunnlag" }
+        mapOf(
+            Grunnlagsperiode.Siste12mnd to siste12Mnd,
+            Grunnlagsperiode.Siste36mnd to siste36Mnd
+        ).forEach { (grunnlagsperiode, beregnetGrunnlag) ->
+            Dagpengegrunnlag.newBuilder().apply {
+                beregningsdato = LocalDate.now()
+                gjeldendeGrunnbeloep = listOf(106399.0, 101351.0, 99858.0).random()
+                type = grunnlagsperiode
+                verdi = beregnetGrunnlag
+                kontekst = Kontekst.Automatisering
+            }.build().also { grunnlag ->
+                logger.info { "Sender ut $grunnlag" }
 
-            dataTopic.publiser(grunnlag)
+                dataTopic.publiser(grunnlag)
+            }
         }
     }
 

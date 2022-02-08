@@ -11,15 +11,23 @@
       }
     },
     {
+      "name": "id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
       "name": "kontekst",
       "type": "Kontekst"
     },
     {
-      "name": "grunnlag",
-      "type": {
-        "type": "array",
-        "items": "Grunnlag"
-      }
+      "name": "type",
+      "type": "Grunnlagsperiode"
+    },
+    {
+      "name": "verdi",
+      "type": "double"
     },
     {
       "name": "gjeldendeGrunnbeloep",

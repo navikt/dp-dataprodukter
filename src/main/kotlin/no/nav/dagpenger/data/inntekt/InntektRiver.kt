@@ -6,6 +6,7 @@ import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDate
+import java.util.UUID
 
 private val logger = KotlinLogging.logger { }
 
@@ -26,19 +27,24 @@ internal class InntektRiver(
         val grunnlag12mnd = packet["@løsning"]["InntektSiste12Mnd"].asDouble()
         val grunnlag36mnd = packet["@løsning"]["InntektSiste3År"].asDouble()
         val virkingstidspunkt = packet["Virkningstidspunkt"].asLocalDate()
+        val beregningsId = UUID.randomUUID().toString()
 
-        Dagpengegrunnlag.newBuilder().apply {
-            beregningsdato = virkingstidspunkt
-            gjeldendeGrunnbeloep = grunnbeløp.gjeldendeGrunnbeløp(virkingstidspunkt)
-            grunnlag = listOf(
-                Grunnlag(Grunnlagsperiode.Siste12mnd, grunnlag12mnd),
-                Grunnlag(Grunnlagsperiode.Siste36mnd, grunnlag36mnd)
-            )
-            kontekst = Kontekst.Automatisering
-        }.build().also { grunnlag ->
-            logger.info { "Sender ut $grunnlag" }
+        mapOf(
+            Grunnlagsperiode.Siste12mnd to grunnlag12mnd,
+            Grunnlagsperiode.Siste36mnd to grunnlag36mnd
+        ).forEach { (grunnlagsperiode, beregnetGrunnlag) ->
+            Dagpengegrunnlag.newBuilder().apply {
+                beregningsdato = virkingstidspunkt
+                id = beregningsId
+                type = grunnlagsperiode
+                verdi = beregnetGrunnlag
+                kontekst = Kontekst.Automatisering
+                gjeldendeGrunnbeloep = grunnbeløp.gjeldendeGrunnbeløp(virkingstidspunkt)
+            }.build().also { grunnlag ->
+                logger.info { "Sender ut $grunnlag" }
 
-            dataTopic.publiser(grunnlag)
+                dataTopic.publiser(grunnlag)
+            }
         }
     }
 }
