@@ -1,2 +1,4 @@
 kafka:
   pool: nav-dev
+data:
+  topic: data-inntekt-v2

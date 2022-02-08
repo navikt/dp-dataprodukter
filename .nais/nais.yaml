@@ -6,9 +6,9 @@ metadata:
   labels:
     team: teamdagpenger
 spec:
-  image: {{image}}
+  image: {{ image }}
   kafka:
-    pool: {{kafka.pool}}
+    pool: {{ kafka.pool }}
   secureLogs:
     enabled: true
   env:
@@ -19,4 +19,4 @@ spec:
     - name: KAFKA_RESET_POLICY
       value: earliest
     - name: KAFKA_PRODUKT_TOPIC
-      value: teamdagpenger.data-inntekt-v2
+      value: teamdagpenger.{{ data.topic }}
