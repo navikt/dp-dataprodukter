@@ -1,6 +1,5 @@
-package no.nav.dagpenger.data.inntekt.utils
+package no.nav.dagpenger.data.innlop.utils
 
-import no.nav.dagpenger.data.inntekt.utils.TemporalCollection
 import org.junit.jupiter.api.Assertions.assertSame
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

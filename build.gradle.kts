@@ -34,5 +34,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("no.nav.dagpenger.data.inntekt.MainKt")
+    mainClass.set("no.nav.dagpenger.data.innlop.MainKt")
 }

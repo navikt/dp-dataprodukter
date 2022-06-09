@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: dp-data-inntekt
+  name: dp-data-innlop
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
@@ -13,9 +13,9 @@ spec:
     enabled: true
   env:
     - name: KAFKA_CONSUMER_GROUP_ID
-      value: dp-data-inntekt-v2
+      value: dp-data-innlop-v1
     - name: KAFKA_RAPID_TOPIC
-      value: teamdagpenger.rapid.v1
+      value: teamdagpenger.mottak.v1
     - name: KAFKA_RESET_POLICY
       value: earliest
     - name: KAFKA_PRODUKT_TOPIC

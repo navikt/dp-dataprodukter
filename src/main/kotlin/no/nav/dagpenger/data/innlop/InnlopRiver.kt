@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.inntekt
+package no.nav.dagpenger.data.innlop
 
 import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.JsonMessage
@@ -10,10 +10,9 @@ import java.util.UUID
 
 private val logger = KotlinLogging.logger { }
 
-internal class InntektRiver(
+internal class InnlopRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic,
-    private val grunnbeløp: Grunnbeløp,
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {

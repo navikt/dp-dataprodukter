@@ -1,13 +1,11 @@
-package no.nav.dagpenger.data.inntekt
+package no.nav.dagpenger.data.innlop
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
-import no.nav.dagpenger.data.inntekt.grunnbeløp.GGrunnbeløp
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
-import java.time.Duration
 import java.util.Properties
 
 private val aivenKafka: AivenConfig = AivenConfig.default
@@ -35,8 +33,7 @@ fun main() {
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-        FakeInntektProducer(rapidsConnection, dataTopic)
-        InntektRiver(rapidsConnection, dataTopic, GGrunnbeløp(timeToLive = Duration.ofHours(4)))
+        InnlopRiver(rapidsConnection, dataTopic)
     }.start()
 }
 

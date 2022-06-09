@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.inntekt.grunnbeløp
+package no.nav.dagpenger.data.innlop.grunnbeløp
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

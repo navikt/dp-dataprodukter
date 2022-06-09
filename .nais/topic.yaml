@@ -16,11 +16,8 @@ spec:
     retentionHours: 72
   acl:
     - team: teamdagpenger
-      application: dp-data-inntekt
+      application: dp-data-innlop
       access: readwrite
     - team: teamdagpenger
       application: dp-kafka-connect
       access: read
-    - team: teamdagpenger
-      application: dp-data-admin
-      access: readwrite

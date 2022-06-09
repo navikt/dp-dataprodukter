@@ -1,1 +1,1 @@
-rootProject.name = "dp-data-inntekt"
+rootProject.name = "dp-data-innlop"

@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.inntekt
+package no.nav.dagpenger.data.innlop
 
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.kafka.clients.consumer.ConsumerConfig

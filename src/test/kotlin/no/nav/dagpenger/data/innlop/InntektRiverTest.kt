@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.inntekt
+package no.nav.dagpenger.data.innlop
 
 import io.mockk.mockk
 import io.mockk.verify
@@ -12,7 +12,7 @@ internal class InntektsMonitorTest {
     private val dataTopic = mockk<DataTopic>(relaxed = true)
     private val rapid by lazy {
         TestRapid().apply {
-            InntektRiver(
+            InnlopRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
                 grunnbeløp = object : Grunnbeløp {

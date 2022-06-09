@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.inntekt
+package no.nav.dagpenger.data.innlop
 
 import com.natpryce.konfig.ConfigurationProperties
 import com.natpryce.konfig.EnvironmentVariables
