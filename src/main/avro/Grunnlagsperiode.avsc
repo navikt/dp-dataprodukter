@@ -1,9 +1,0 @@
-{
-  "namespace": "no.nav.dagpenger.data.inntekt",
-  "name": "Grunnlagsperiode",
-  "type": "enum",
-  "symbols": [
-    "Siste12mnd",
-    "Siste36mnd"
-  ]
-}

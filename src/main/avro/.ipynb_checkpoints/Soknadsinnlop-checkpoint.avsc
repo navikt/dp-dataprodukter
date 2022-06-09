@@ -1,0 +1,42 @@
+{
+  "namespace": "no.nav.dagpenger.data.innlop",
+  "name": "Soknadsinnlop",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "opprettet_dato",
+      "type": "date"
+    },
+    {
+      "name": "registrert_dato",
+      "type": "date"
+    },
+    {
+      "name": "journalpostId",
+      "type": "string"
+    },
+    {
+      "name": "skjemaKode",
+      "type": "string"
+    },
+    {
+      "name": "tittel",
+      "type": "string"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "fagsakId",
+      "type": "string"
+    }
+  ]
+}
