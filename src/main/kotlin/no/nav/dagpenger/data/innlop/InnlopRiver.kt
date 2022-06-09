@@ -38,7 +38,6 @@ internal class InnlopRiver(
                 type = grunnlagsperiode
                 verdi = beregnetGrunnlag
                 kontekst = Kontekst.Automatisering
-                gjeldendeGrunnbeloep = grunnbeløp.gjeldendeGrunnbeløp(virkingstidspunkt)
             }.build().also { grunnlag ->
                 logger.info { "Sender ut $grunnlag" }
 
