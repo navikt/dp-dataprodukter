@@ -13,15 +13,15 @@
     {
       "name": "opprettetDato",
       "type": {
-        "type": "int",
-        "logicalType": "date"
+        "type": "long",
+        "logicalType": "local-timestamp-millis"
       }
     },
     {
       "name": "registrertDato",
       "type": {
-        "type": "int",
-        "logicalType": "date"
+        "type": "long",
+        "logicalType": "local-timestamp-millis"
       }
     },
     {

@@ -5,7 +5,8 @@ import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
-import java.time.LocalDate
+import no.nav.helse.rapids_rivers.asLocalDate
+import no.nav.helse.rapids_rivers.asLocalDateTime
 
 private val logger = KotlinLogging.logger { }
 
@@ -16,7 +17,29 @@ internal class InnlopRiver(
     init {
         River(rapidsConnection).apply {
             validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
-            validate { it.requireAny("type", listOf("NySøknad", "Gjenopptak", "Utdanning", "Etablering", "KlageOgAnke")) }
+            validate {
+                it.requireAny(
+                    "type",
+                    listOf(
+                        "NySøknad",
+                        "Gjenopptak",
+                        "Utdanning",
+                        "Etablering",
+                        "KlageOgAnke"
+                    )
+                )
+            }
+            validate {
+                it.interestedIn(
+                    "@id",
+                    "@opprettet",
+                    "datoRegistrert",
+                    "journalpostId",
+                    "skjemaKode",
+                    "tittel",
+                    "fagsakId"
+                )
+            }
         }.register(this)
     }
 
