@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dp-connect-data-innlop-v1
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+    destination: connect
+    enabled: "false"
+data:
+  data-inntekt.json: |-
+    {
+      "name": "data-innlop-v1",
+      "config": {
+        "connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
+        "autoCreateTables": "true",
+        "sanitizeTopics": "true",
+        "topics": "teamdagpenger.data-innlop-v1",
+        "tasks.max": "1",
+        "project": "",
+        "defaultDataset": "dataprodukt",
+        "transforms": "dropPrefix",
+        "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+        "transforms.dropPrefix.regex": "teamdagpenger\\.(.*)",
+        "transforms.dropPrefix.replacement": "$1"
+      }
+    }
