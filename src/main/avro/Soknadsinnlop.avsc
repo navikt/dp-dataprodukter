@@ -12,11 +12,17 @@
     },
     {
       "name": "opprettet_dato",
-      "type": "date"
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
     },
     {
       "name": "registrert_dato",
-      "type": "date"
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
     },
     {
       "name": "journalpostId",

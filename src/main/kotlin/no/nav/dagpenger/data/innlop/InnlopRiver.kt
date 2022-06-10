@@ -5,8 +5,7 @@ import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
-import no.nav.helse.rapids_rivers.asLocalDate
-import java.util.UUID
+import java.time.LocalDate
 
 private val logger = KotlinLogging.logger { }
 
@@ -21,11 +20,10 @@ internal class InnlopRiver(
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
-
         Soknadsinnlop.newBuilder().apply {
             id = id
-            opprettet_dato = opprettet
-            registrert_dato = datoRegistrert
+            opprettetDato = LocalDate.now()
+            registrertDato = LocalDate.now()
             journalpostId = journalpostId
             skjemaKode = skjemaKode
             tittel = tittel
@@ -35,7 +33,6 @@ internal class InnlopRiver(
             logger.info { "Sender ut $grunnlag" }
 
             dataTopic.publiser(grunnlag)
-            }
+        }
     }
 }
-
