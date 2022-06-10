@@ -63,8 +63,4 @@ internal class InnlopRiver(
     override fun onError(problems: MessageProblems, context: MessageContext) {
         logger.error { "Feil med pakka: ${problems.toExtendedReport()}" }
     }
-
-    override fun onSevere(error: MessageProblems.MessageException, context: MessageContext) {
-        logger.error { "Feil med pakka: ${error.problems.toExtendedReport()}" }
-    }
 }
