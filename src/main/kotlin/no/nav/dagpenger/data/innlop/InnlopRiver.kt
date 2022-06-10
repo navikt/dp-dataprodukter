@@ -3,6 +3,7 @@ package no.nav.dagpenger.data.innlop
 import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
+import no.nav.helse.rapids_rivers.MessageProblems
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
@@ -57,5 +58,13 @@ internal class InnlopRiver(
 
             dataTopic.publiser(innlop)
         }
+    }
+
+    override fun onError(problems: MessageProblems, context: MessageContext) {
+        logger.error { "Feil med pakka: ${problems.toExtendedReport()}" }
+    }
+
+    override fun onSevere(error: MessageProblems.MessageException, context: MessageContext) {
+        logger.error { "Feil med pakka: ${error.problems.toExtendedReport()}" }
     }
 }
