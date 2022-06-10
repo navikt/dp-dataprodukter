@@ -2,3 +2,5 @@ kafka:
   pool: nav-dev
 data:
   topic: data-innlop-v1
+gcp:
+  project: teamdagpenger-dev-885f
