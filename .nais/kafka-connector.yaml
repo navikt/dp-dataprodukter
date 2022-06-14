@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: dp-connect-data-innlop-v1
+  name: dp-connect-data-innlop-v2
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
@@ -10,12 +10,12 @@ metadata:
 data:
   data-inntekt.json: |-
     {
-      "name": "data-innlop-v1",
+      "name": "data-innlop-v2",
       "config": {
         "connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
         "autoCreateTables": "true",
         "sanitizeTopics": "true",
-        "topics": "teamdagpenger.data-innlop-v1",
+        "topics": "teamdagpenger.data-innlop-v2",
         "tasks.max": "1",
         "project": "{{gcp.project}}",
         "defaultDataset": "dataprodukt",
