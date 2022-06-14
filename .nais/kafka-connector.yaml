@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamdagpenger
     destination: connect
-    enabled: "false"
+    enabled: "true"
 data:
   data-inntekt.json: |-
     {
