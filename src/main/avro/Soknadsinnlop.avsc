@@ -14,14 +14,14 @@
       "name": "opprettetDato",
       "type": {
         "type": "long",
-        "logicalType": "local-timestamp-millis"
+        "logicalType": "timestamp-millis"
       }
     },
     {
       "name": "registrertDato",
       "type": {
         "type": "long",
-        "logicalType": "local-timestamp-millis"
+        "logicalType": "timestamp-millis"
       }
     },
     {
