@@ -1,12 +1,13 @@
 package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.databind.JsonNode
+import java.util.SortedSet
 
 internal class GammeltSøknadFormat(data: JsonNode) : SøknadData(data) {
     override val bostedsland: String
         get() = getFaktumValue(getFakta("bostedsland.land")).asText()
-    override val arbeidsforholdLand: List<String>
-        get() = avsluttetArbeidsforhold().map { it.land } + eosArbeidsforhold()
+    override val arbeidsforholdLand: SortedSet<String>
+        get() = (avsluttetArbeidsforhold().map { it.land } + eosArbeidsforhold()).toSortedSet()
 
     private fun avsluttetArbeidsforhold() =
         this.getFakta("arbeidsforhold")

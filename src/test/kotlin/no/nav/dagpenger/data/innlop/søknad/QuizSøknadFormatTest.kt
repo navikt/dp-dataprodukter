@@ -23,6 +23,6 @@ internal class QuizSøknadFormatTest {
 
     @Test
     fun getArbeidsforholdLand() {
-        assertEquals(listOf("NOR", "DNK", "FRA"), søknadData.arbeidsforholdLand)
+        assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.arbeidsforholdLand)
     }
 }

@@ -1,13 +1,16 @@
 package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.databind.JsonNode
+import java.util.SortedSet
 
 internal class QuizSøknadFormat(data: JsonNode) : SøknadData(data) {
     override val bostedsland: String
         get() = getFaktum("faktum.hvilket-land-bor-du-i")["svar"].asText()
-    override val arbeidsforholdLand: List<String>
-        get() = getFakta("faktum.arbeidsforhold.land").map { it["svar"].asText() } +
-            getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asText() }
+    override val arbeidsforholdLand: SortedSet<String>
+        get() = (
+            getFakta("faktum.arbeidsforhold.land").map { it["svar"].asText() } +
+                getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asText() }
+            ).toSortedSet()
 
     private fun getFaktum(faktumId: String) = getFakta(faktumId).single()
 

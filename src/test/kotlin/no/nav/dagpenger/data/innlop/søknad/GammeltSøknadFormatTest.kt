@@ -16,6 +16,6 @@ internal class GammeltSøknadFormatTest {
 
     @Test
     fun getArbeidsforholdLand() {
-        assertEquals(listOf("SWE", "NOR", "FRA", "GER"), søknadData.arbeidsforholdLand)
+        assertEquals(setOf("FRA", "GER", "NOR", "SWE"), søknadData.arbeidsforholdLand)
     }
 }
