@@ -2,6 +2,7 @@ package no.nav.dagpenger.data.innlop
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
+import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -27,13 +28,17 @@ private val avroProducerConfig = Properties().apply {
 
 fun main() {
     val env = System.getenv()
-    val dataTopic by lazy {
-        DataTopic(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
+    val soknadsinnlopDataTopic by lazy {
+        DataTopic<Soknadsinnlop>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
+    }
+    val utlandDataTopic by lazy {
+        DataTopic<Utland>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
     }
 
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
-        InnlopRiver(rapidsConnection, dataTopic)
+        SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
+        // UtlandRiver(rapidsConnection, utlandDataTopic)
     }.start()
 }
 

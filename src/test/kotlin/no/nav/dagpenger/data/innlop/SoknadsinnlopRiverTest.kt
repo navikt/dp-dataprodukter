@@ -2,18 +2,19 @@ package no.nav.dagpenger.data.innlop
 
 import io.mockk.mockk
 import io.mockk.verify
+import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 
-internal class InnlopDataTest {
-    private val dataTopic = mockk<DataTopic>(relaxed = true)
+internal class SoknadsinnlopRiverTest {
+    private val dataTopic = mockk<DataTopic<Soknadsinnlop>>(relaxed = true)
     private val rapid by lazy {
         TestRapid().apply {
-            InnlopRiver(
+            SoknadsinnlopRiver(
                 rapidsConnection = this,
-                dataTopic = dataTopic,
+                dataTopic = dataTopic
             )
         }
     }

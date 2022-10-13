@@ -1,0 +1,15 @@
+{
+  "namespace": "no.nav.dagpenger.data.innlop",
+  "name": "Permittering",
+  "type": "record",
+  "fields": [
+    {
+      "name": "journalpostId",
+      "type": "string"
+    },
+    {
+      "name": "arbeidsgiver",
+      "type": "string"
+    }
+  ]
+}

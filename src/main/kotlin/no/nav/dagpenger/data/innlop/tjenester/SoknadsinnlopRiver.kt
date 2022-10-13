@@ -1,6 +1,8 @@
-package no.nav.dagpenger.data.innlop
+package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
+import no.nav.dagpenger.data.innlop.DataTopic
+import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -8,11 +10,9 @@ import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
 import java.time.ZoneId
 
-private val logger = KotlinLogging.logger { }
-
-internal class InnlopRiver(
+internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic,
+    private val dataTopic: DataTopic<Soknadsinnlop>
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -45,6 +45,7 @@ internal class InnlopRiver(
 
     companion object {
         private val oslo: ZoneId = ZoneId.of("Europe/Oslo")
+        private val logger = KotlinLogging.logger { }
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
