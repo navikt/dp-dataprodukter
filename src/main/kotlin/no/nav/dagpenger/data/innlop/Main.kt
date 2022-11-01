@@ -3,6 +3,7 @@ package no.nav.dagpenger.data.innlop
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
 import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
+import no.nav.dagpenger.data.innlop.tjenester.UtlandRiver
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -38,7 +39,7 @@ fun main() {
     RapidApplication.create(env) { _, rapidsConnection ->
         rapidsConnection.seekToBeginning()
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
-        // UtlandRiver(rapidsConnection, utlandDataTopic)
+        UtlandRiver(rapidsConnection, utlandDataTopic)
     }.start()
 }
 
