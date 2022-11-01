@@ -38,7 +38,7 @@ fun main() {
     RapidApplication.create(env) { _, rapidsConnection ->
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
         // UtlandRiver(rapidsConnection, utlandDataTopic)
-    } // .start()
+    }.start()
 }
 
 private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
