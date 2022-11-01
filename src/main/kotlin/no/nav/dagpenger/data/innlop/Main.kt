@@ -35,9 +35,6 @@ fun main() {
         DataTopic<Utland>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
     }
 
-    println("DATA TOPIC")
-    println(soknadsinnlopDataTopic)
-
     RapidApplication.create(env) { _, rapidsConnection ->
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
         // UtlandRiver(rapidsConnection, utlandDataTopic)
