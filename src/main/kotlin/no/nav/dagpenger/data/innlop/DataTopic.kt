@@ -16,10 +16,6 @@ internal class DataTopic<T : SpecificRecord>(
         val logger = KotlinLogging.logger {}
     }
 
-    init {
-        logger.info { "publiserer til ${config[kafka_produkt_topic]}" }
-    }
-
     fun publiser(innlop: T) {
         logger.info { "Skal publisere $innlop" }
         producer.send(ProducerRecord(config[kafka_produkt_topic], innlop))
