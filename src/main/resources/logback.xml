@@ -19,9 +19,6 @@
 
     <logger name="no.nav.helse.rapids_rivers" level="DEBUG" />
 
-    <logger name="org.apache" level="DEBUG" />
-    <logger name="kafka" level="DEBUG" />
-
     <logger name="tjenestekall" level="DEBUG" additivity="false">
         <appender-ref ref="secureLog" />
     </logger>
