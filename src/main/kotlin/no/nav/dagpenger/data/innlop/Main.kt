@@ -36,7 +36,7 @@ fun main() {
     }
 
     RapidApplication.create(env) { _, rapidsConnection ->
-        rapidsConnection.seekToBeginning()
+        // rapidsConnection.seekToBeginning()
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
         // UtlandRiver(rapidsConnection, utlandDataTopic)
     }.start()
