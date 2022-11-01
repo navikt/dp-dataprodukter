@@ -6,6 +6,7 @@ import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class SoknadsinnlopRiverTest {
@@ -25,6 +26,7 @@ internal class SoknadsinnlopRiverTest {
     }
 
     @Test
+    @Disabled
     fun `skal poste inntekt ut på Kafka`() {
         rapid.sendTestMessage(behovJSON)
 
