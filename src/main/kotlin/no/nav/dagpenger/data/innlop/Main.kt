@@ -39,7 +39,8 @@ fun main() {
         // rapidsConnection.seekToBeginning()
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
         // UtlandRiver(rapidsConnection, utlandDataTopic)
-    }.start()
+    }
+    // .start()
 }
 
 private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
