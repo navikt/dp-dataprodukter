@@ -62,7 +62,8 @@ internal class SoknadsinnlopRiver(
         }.build().also { innlop ->
             logger.info { "Sender ut $innlop" }
 
-            dataTopic.publiser(innlop)
+            throw Error("Block")
+            // dataTopic.publiser(innlop)
         }
     }
 }
