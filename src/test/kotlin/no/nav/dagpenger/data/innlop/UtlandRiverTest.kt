@@ -25,6 +25,7 @@ internal class UtlandRiverTest {
     }
 
     @Test
+    @Disabled
     fun `skal poste inntekt ut på Kafka`() {
         rapid.sendTestMessage(behovJSON)
 
