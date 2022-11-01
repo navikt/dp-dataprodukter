@@ -35,12 +35,13 @@ fun main() {
         DataTopic<Utland>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
     }
 
+    println("DATA TOPIC")
     println(soknadsinnlopDataTopic)
 
     RapidApplication.create(env) { _, rapidsConnection ->
-        // SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
+        SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
         // UtlandRiver(rapidsConnection, utlandDataTopic)
-    }//.start()
+    } // .start()
 }
 
 private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
