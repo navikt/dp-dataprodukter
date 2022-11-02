@@ -35,7 +35,7 @@ internal class SoknadsinnlopRiverTest {
         rapid.sendTestMessage(behovJSON)
 
         verify {
-            producer.send(any())
+            producer.send(any(), any())
         }
     }
 }
