@@ -29,7 +29,7 @@ private val avroProducerConfig = Properties().apply {
 fun main() {
     val env = System.getenv()
     val soknadsinnlopDataTopic by lazy {
-        DataTopic(createProducer<String, Soknadsinnlop>(aivenKafka.producerConfig(avroProducerConfig)))
+        DataTopic<Soknadsinnlop>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
     }
     val utlandDataTopic by lazy {
         DataTopic<Utland>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
@@ -42,10 +42,10 @@ fun main() {
 }
 
 private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
-    KafkaProducer<K, V>(producerConfig).also {
+    KafkaProducer<K, V>(producerConfig).also { producer ->
         Runtime.getRuntime().addShutdownHook(
             Thread {
-                it.close()
+                producer.close()
             }
         )
     }
