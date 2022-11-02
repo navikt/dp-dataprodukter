@@ -18,7 +18,7 @@ dependencies {
     implementation("com.github.navikt:rapids-and-rivers:2022.02.08-20.42.8e24a34a2ecd")
     implementation("org.apache.avro:avro:1.11.0")
     implementation("io.confluent:kafka-avro-serializer:5.3.0")
-    implementation("io.github.microutils:kotlin-logging:2.1.21")
+    implementation("io.github.microutils:kotlin-logging:3.0.3")
     implementation("io.getunleash:unleash-client-java:5.0.3")
     implementation("com.natpryce:konfig:1.6.10.0")
 
