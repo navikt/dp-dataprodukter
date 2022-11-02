@@ -19,7 +19,7 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: .nais/test/topic.yaml,.nais/test/kafka-connector.yaml
+          RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
           VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }}
           PRINT_PAYLOAD: true
           DRY_RUN: true
