@@ -18,13 +18,12 @@
     </appender>
 
     <logger name="no.nav.helse.rapids_rivers" level="DEBUG" />
-    <logger name="io.confluent.kafka" level="DEBUG" />
 
     <logger name="tjenestekall" level="DEBUG" additivity="false">
         <appender-ref ref="secureLog" />
     </logger>
 
-    <root level="INFO">
+    <root level="TRACE">
         <appender-ref ref="STDOUT_JSON"/>
     </root>
 </configuration>
