@@ -19,4 +19,6 @@ spec:
     - name: KAFKA_RESET_POLICY
       value: earliest
     - name: KAFKA_PRODUKT_TOPIC
-      value: teamdagpenger.{{ data.topic }}
+      value: teamdagpenger.data-innlop-v2
+    - name: KAFKA_PRODUKT_TOPIC_UTLAND
+      value: teamdagpenger.data-innlop-utland-v1

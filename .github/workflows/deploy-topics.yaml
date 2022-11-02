@@ -11,8 +11,10 @@ jobs:
         include:
           - cluster: dev-gcp
             kafka: nav-dev
+            project: teamdagpenger-dev-885f
           - cluster: prod-gcp
             kafka: nav-prod
+            project: teamdagpenger-prod-9042
     steps:
       - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1
@@ -20,6 +22,6 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}
           RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
-          VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }}
+          VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }},project=${{ matrix.project }}
           PRINT_PAYLOAD: true
           DRY_RUN: true
