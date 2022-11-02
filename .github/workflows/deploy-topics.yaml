@@ -1,12 +1,13 @@
-on: [ push ]
+name: Deploy Kafka Topics + Kafka Connectors
+on: [ workflow_call ]
 
 jobs:
   deploy-topics:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        topic: [data-innlop-v2, data-innlop-utland]
-        cluster: [dev-gcp, prod-gcp]
+        topic: [ data-innlop-v2, data-innlop-utland ]
+        cluster: [ dev-gcp, prod-gcp ]
         include:
           - cluster: dev-gcp
             kafka: nav-dev

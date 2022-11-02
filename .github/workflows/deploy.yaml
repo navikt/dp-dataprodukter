@@ -39,9 +39,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  deploy-kafka:
+    uses: ./deploy-topics.yaml
+
   deploy-dev:
     name: Deploy to dev
-    needs: [ build ]
+    needs: [ build, deploy-kafka ]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -56,7 +59,7 @@ jobs:
 
   deploy-prod:
     name: Deploy to prod
-    needs: [ build ]
+    needs: [ build, deploy-kafka ]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
