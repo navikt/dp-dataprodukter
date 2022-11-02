@@ -51,7 +51,6 @@ internal class SoknadsinnlopRiver(
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
-        logger.info { "Behandler pakke med id=${packet["@id"].asText()}" }
         Soknadsinnlop.newBuilder().apply {
             id = packet["@id"].asUUID()
             opprettetDato = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()

@@ -14,7 +14,6 @@ internal class DataTopic<T : SpecificRecord>(
     }
 
     fun publiser(innlop: T) {
-        logger.info { "Skal publisere $innlop" }
         producer.send(ProducerRecord(topic, innlop))
     }
 }
