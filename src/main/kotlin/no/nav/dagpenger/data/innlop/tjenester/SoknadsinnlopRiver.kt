@@ -1,5 +1,6 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
+import com.fasterxml.jackson.databind.JsonNode
 import mu.KotlinLogging
 import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
@@ -9,6 +10,7 @@ import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
 import java.time.ZoneId
+import java.util.UUID
 
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
@@ -51,7 +53,7 @@ internal class SoknadsinnlopRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         logger.info { "Behandler pakke med id=${packet["@id"].asText()}" }
         Soknadsinnlop.newBuilder().apply {
-            id = packet["@id"].asText()
+            id = packet["@id"].asUUID()
             opprettetDato = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()
             registrertDato = packet["datoRegistrert"].asLocalDateTime().atZone(oslo).toInstant()
             journalpostId = packet["journalpostId"].asText()
@@ -66,3 +68,5 @@ internal class SoknadsinnlopRiver(
         }
     }
 }
+
+private fun JsonNode.asUUID(): UUID = this.asText().let { UUID.fromString(it) }
