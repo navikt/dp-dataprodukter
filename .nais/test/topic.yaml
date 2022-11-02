@@ -1,0 +1,23 @@
+apiVersion: "kafka.nais.io/v1"
+kind: "Topic"
+metadata:
+  name: {{ topic }}
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+spec:
+  pool: {{ kafka }}
+  config:
+    cleanupPolicy: delete
+    minimumInSyncReplicas: 1
+    partitions: 1
+    replication: 3
+    retentionBytes: -1
+    retentionHours: 72
+  acl:
+    - team: teamdagpenger
+      application: dp-data-innlop
+      access: readwrite
+    - team: teamdagpenger
+      application: dp-kafka-connect
+      access: read

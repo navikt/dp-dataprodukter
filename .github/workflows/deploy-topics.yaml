@@ -1,0 +1,26 @@
+name: Build and deploy
+
+on: [ push ]
+
+jobs:
+  deploy-topics:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        topic: [data-innlop]
+        cluster: [dev-gcp, prod-gcp]
+        include:
+          - cluster: dev-gcp
+            kafka: nav-dev
+          - cluster: prod-gcp
+            kafka: nav-prod
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ matrix.cluster }}
+          RESOURCE: .nais/test/topic.yaml,.nais/test/kafka-connector.yaml
+          VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }}
+          PRINT_PAYLOAD: true
+          DRY_RUN: true
