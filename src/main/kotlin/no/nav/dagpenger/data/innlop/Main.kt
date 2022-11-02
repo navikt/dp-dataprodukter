@@ -30,10 +30,16 @@ private val avroProducerConfig = Properties().apply {
 fun main() {
     val env = System.getenv()
     val soknadsinnlopDataTopic by lazy {
-        DataTopic<Soknadsinnlop>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
+        DataTopic<Soknadsinnlop>(
+            createProducer(aivenKafka.producerConfig(avroProducerConfig)),
+            config[kafka_produkt_topic]
+        )
     }
     val utlandDataTopic by lazy {
-        DataTopic<Utland>(createProducer(aivenKafka.producerConfig(avroProducerConfig)))
+        DataTopic<Utland>(
+            createProducer(aivenKafka.producerConfig(avroProducerConfig)),
+            config[kafka_produkt_utland_topic]
+        )
     }
 
     RapidApplication.create(env) { _, rapidsConnection ->
