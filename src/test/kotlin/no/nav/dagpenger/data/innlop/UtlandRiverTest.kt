@@ -4,13 +4,15 @@ import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.data.innlop.tjenester.UtlandRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
+import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class UtlandRiverTest {
-    private val dataTopic = mockk<DataTopic<Utland>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, Utland>>(relaxed = true)
+    private val dataTopic = DataTopic(producer, "data")
     private val rapid by lazy {
         TestRapid().apply {
             UtlandRiver(

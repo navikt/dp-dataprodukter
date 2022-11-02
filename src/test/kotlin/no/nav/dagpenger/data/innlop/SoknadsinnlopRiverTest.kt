@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 internal class SoknadsinnlopRiverTest {
     private val producer = mockk<KafkaProducer<String, Soknadsinnlop>>(relaxed = true)
-    private val dataTopic = DataTopic(producer)
+    private val dataTopic = DataTopic(producer, "data")
     private val rapid by lazy {
         TestRapid().apply {
             SoknadsinnlopRiver(
