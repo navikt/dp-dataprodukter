@@ -37,18 +37,25 @@ internal class UtlandRiver(
 
     companion object {
         private val logger = KotlinLogging.logger { }
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.utlandriver")
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknad = SøknadData.lagMapper(packet["søknadsData"])
-        Utland.newBuilder().apply {
-            journalpostId = packet["journalpostId"].asText()
-            bostedsland = søknad.bostedsland
-            arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
-            arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
-        }.build().also { data ->
-            logger.info { "[DRY-RUN] Sender ut $data" }
-            // dataTopic.publiser(data)
+        try {
+            Utland.newBuilder().apply {
+                journalpostId = packet["journalpostId"].asText()
+                bostedsland = søknad.bostedsland
+                arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
+                arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
+            }.build().also { data ->
+                logger.info { "[DRY-RUN] Sender ut $data" }
+                // dataTopic.publiser(data)
+            }
+        } catch (e: NoSuchElementException) {
+            logger.error(e) { "Fant ikke riktig data i søknaden" }
+            sikkerlogg.error(e) { "Fant ikke riktig data i søknad=${packet["søknadsData"]}" }
+            throw e
         }
     }
 }
