@@ -1,6 +1,7 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
+import mu.withLoggingContext
 import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Utland
 import no.nav.dagpenger.data.innlop.erEØS
@@ -41,21 +42,31 @@ internal class UtlandRiver(
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
-        val søknad = SøknadData.lagMapper(packet["søknadsData"])
-        try {
-            Utland.newBuilder().apply {
-                journalpostId = packet["journalpostId"].asText()
-                bostedsland = søknad.bostedsland
-                arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
-                arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
-            }.build().also { data ->
-                logger.info { "[DRY-RUN] Sender ut $data" }
-                // dataTopic.publiser(data)
+        val søknadsData = packet["søknadsData"]
+        val journalpostId = packet["journalpostId"].asText()
+        withLoggingContext(
+            "journalpostId" to journalpostId
+        ) {
+            if (søknadsData.isEmpty) {
+                logger.error { " Journalpost mangler søknadsdata, hopper over" }
+                return
             }
-        } catch (e: NoSuchElementException) {
-            logger.error(e) { "Fant ikke riktig data i søknaden" }
-            sikkerlogg.error(e) { "Fant ikke riktig data i søknad=${packet["søknadsData"]}" }
-            throw e
+            val søknad = SøknadData.lagMapper(søknadsData)
+            try {
+                Utland.newBuilder().apply {
+                    this.journalpostId = journalpostId
+                    bostedsland = søknad.bostedsland
+                    arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
+                    arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
+                }.build().also { data ->
+                    logger.info { "[DRY-RUN] Sender ut $data" }
+                    // dataTopic.publiser(data)
+                }
+            } catch (e: NoSuchElementException) {
+                logger.error(e) { "Fant ikke riktig data i søknaden" }
+                sikkerlogg.error(e) { "Fant ikke riktig data i søknad=$søknadsData" }
+                throw e
+            }
         }
     }
 }
