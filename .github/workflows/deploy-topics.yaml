@@ -7,14 +7,14 @@ jobs:
     strategy:
       matrix:
         topic: [ data-innlop-v2, data-innlop-utland-v2, data-innlop-ident-v1 ]
-        cluster: [ dev-gcp ] #, prod-gcp ]
+        cluster: [ dev-gcp, prod-gcp ]
         include:
           - cluster: dev-gcp
             kafka: nav-dev
             project: teamdagpenger-dev-885f
-          #- cluster: prod-gcp
-          #  kafka: nav-prod
-          #  project: teamdagpenger-prod-9042
+          - cluster: prod-gcp
+            kafka: nav-prod
+            project: teamdagpenger-prod-9042
     steps:
       - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1

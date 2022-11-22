@@ -5,7 +5,7 @@ metadata:
 spec:
   description: "BigQuery Sample Table"
   datasetRef:
-    name: dataprodukt
+    external: dataprodukt
   friendlyName: journalpost-utland-utenkode6
   view:
     query: "SELECT tittel,type  FROM `teamdagpenger-dev-885f.dataprodukt.data_innlop_v2` LIMIT 100"

@@ -71,6 +71,6 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: .nais/nais.yaml,.nais/topic.yaml,.nais/kafka-connector.yaml
+          RESOURCE: .nais/nais.yaml
           VARS: .nais/vars/prod.yaml
           PRINT_PAYLOAD: true
