@@ -8,4 +8,4 @@ spec:
     name: dataprodukt
   friendlyName: journalpost-utland-utenkode6
   view:
-    query: "SELECT * "
+    query: "SELECT tittel,type  FROM `teamdagpenger-dev-885f.dataprodukt.data_innlop_v2` LIMIT 100"

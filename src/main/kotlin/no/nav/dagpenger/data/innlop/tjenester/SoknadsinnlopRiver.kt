@@ -3,6 +3,7 @@ package no.nav.dagpenger.data.innlop.tjenester
 import com.fasterxml.jackson.databind.JsonNode
 import mu.KotlinLogging
 import no.nav.dagpenger.data.innlop.DataTopic
+import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
@@ -14,7 +15,8 @@ import java.util.UUID
 
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<Soknadsinnlop>
+    private val dataTopic: DataTopic<Soknadsinnlop>,
+    private val identTopic: DataTopic<Ident>
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -36,6 +38,7 @@ internal class SoknadsinnlopRiver(
                     "@id",
                     "@opprettet",
                     "datoRegistrert",
+                    "fødselsnummer",
                     "journalpostId",
                     "skjemaKode",
                     "tittel",
@@ -51,11 +54,13 @@ internal class SoknadsinnlopRiver(
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
+        val journalpostId = packet["journalpostId"].asText()
+
         Soknadsinnlop.newBuilder().apply {
             id = packet["@id"].asUUID()
             opprettetDato = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()
             registrertDato = packet["datoRegistrert"].asLocalDateTime().atZone(oslo).toInstant()
-            journalpostId = packet["journalpostId"].asText()
+            this.journalpostId = journalpostId
             skjemaKode = packet["skjemaKode"].asText()
             tittel = packet["tittel"].asText()
             type = packet["type"].asText()
@@ -64,6 +69,13 @@ internal class SoknadsinnlopRiver(
             logger.info { "Sender ut $innlop" }
 
             dataTopic.publiser(innlop)
+        }
+
+        Ident.newBuilder().apply {
+            this.journalpostId = journalpostId
+            ident = packet["fødselsnummer"].asText()
+        }.build().also {
+            identTopic.publiser(it)
         }
     }
 }

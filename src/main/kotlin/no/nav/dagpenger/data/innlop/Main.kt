@@ -35,6 +35,12 @@ fun main() {
             config[kafka_produkt_topic]
         )
     }
+    val identDataTopic by lazy {
+        DataTopic(
+            createProducer<String, Ident>(aivenKafka.producerConfig(avroProducerConfig)),
+            config[kafka_produkt_ident_topic]
+        )
+    }
     val utlandDataTopic by lazy {
         DataTopic(
             createProducer<String, Utland>(aivenKafka.producerConfig(avroProducerConfig)),
@@ -43,7 +49,7 @@ fun main() {
     }
 
     RapidApplication.create(env) { _, rapidsConnection ->
-        SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic)
+        SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic, identDataTopic)
         UtlandRiver(rapidsConnection, utlandDataTopic)
     }.start()
 }
