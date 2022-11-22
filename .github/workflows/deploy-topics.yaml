@@ -7,14 +7,14 @@ jobs:
     strategy:
       matrix:
         topic: [ data-innlop-v2, data-innlop-utland ]
-        cluster: [ dev-gcp, prod-gcp ]
+        cluster: [ dev-gcp ] #, prod-gcp ]
         include:
           - cluster: dev-gcp
             kafka: nav-dev
             project: teamdagpenger-dev-885f
-          - cluster: prod-gcp
-            kafka: nav-prod
-            project: teamdagpenger-prod-9042
+          #- cluster: prod-gcp
+          #  kafka: nav-prod
+          #  project: teamdagpenger-prod-9042
     steps:
       - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1
@@ -24,4 +24,3 @@ jobs:
           RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
           VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }},project=${{ matrix.project }}
           PRINT_PAYLOAD: true
-          DRY_RUN: true

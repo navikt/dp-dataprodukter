@@ -59,8 +59,8 @@ internal class UtlandRiver(
                     arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
                     arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
                 }.build().also { data ->
-                    logger.info { "[DRY-RUN] Sender ut $data" }
-                    // dataTopic.publiser(data)
+                    logger.info { "Sender ut $data" }
+                    dataTopic.publiser(data)
                 }
             } catch (e: NoSuchElementException) {
                 logger.error(e) { "Fant ikke riktig data i søknaden" }
