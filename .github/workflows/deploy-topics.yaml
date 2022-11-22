@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        topic: [ data-innlop-v2, data-innlop-utland-v1, data-innlop-ident-v1 ]
+        topic: [ data-innlop-v2, data-innlop-utland-v2, data-innlop-ident-v1 ]
         cluster: [ dev-gcp ] #, prod-gcp ]
         include:
           - cluster: dev-gcp

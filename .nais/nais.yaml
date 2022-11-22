@@ -21,6 +21,6 @@ spec:
     - name: KAFKA_PRODUKT_TOPIC
       value: teamdagpenger.data-innlop-v2
     - name: KAFKA_PRODUKT_UTLAND_TOPIC
-      value: teamdagpenger.data-innlop-utland-v1
+      value: teamdagpenger.data-innlop-utland-v2
     - name: KAFKA_PRODUKT_IDENT_TOPIC
       value: teamdagpenger.data-innlop-ident-v1
