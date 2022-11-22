@@ -1,0 +1,11 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: bigquerytablesample
+spec:
+  description: "BigQuery Sample Table"
+  datasetRef:
+    name: dataprodukt
+  friendlyName: journalpost-utland-utenkode6
+  view:
+    query: "SELECT * "
