@@ -55,6 +55,7 @@ internal class UtlandRiver(
             try {
                 Utland.newBuilder().apply {
                     this.journalpostId = journalpostId
+                    erUtland = erUtland(søknad)
                     bostedsland = søknad.bostedsland
                     arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
                     arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
@@ -68,5 +69,9 @@ internal class UtlandRiver(
                 throw e
             }
         }
+    }
+
+    private fun erUtland(søknad: SøknadData): Boolean {
+        return søknad.bostedsland != "NOR" || søknad.arbeidsforholdLand.any { it != "NOR" }
     }
 }

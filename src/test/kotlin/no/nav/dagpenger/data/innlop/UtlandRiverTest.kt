@@ -1,12 +1,14 @@
 package no.nav.dagpenger.data.innlop
 
 import io.mockk.mockk
+import io.mockk.slot
 import io.mockk.verify
 import no.nav.dagpenger.data.innlop.tjenester.UtlandRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
@@ -31,10 +33,12 @@ internal class UtlandRiverTest {
     @Disabled
     fun `skal poste inntekt ut på Kafka`() {
         rapid.sendTestMessage(behovJSON)
-
+        val packet = slot<Utland>()
         verify {
-            dataTopic.publiser(any())
+            dataTopic.publiser(capture(packet))
         }
+
+        assertTrue(packet.isCaptured)
     }
 }
 
