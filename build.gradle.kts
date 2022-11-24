@@ -15,7 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    implementation("com.github.navikt:rapids-and-rivers:2022100711511665136276.49acbaae4ed4")
+    implementation("com.github.navikt:rapids-and-rivers:2022112407251669271100.df879df951cf")
     implementation("org.apache.avro:avro:1.11.0")
     implementation("io.confluent:kafka-avro-serializer:7.2.2")
     implementation("io.github.microutils:kotlin-logging:3.0.4")
