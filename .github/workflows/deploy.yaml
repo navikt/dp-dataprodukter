@@ -45,6 +45,12 @@ jobs:
     uses: ./.github/workflows/deploy-topics.yaml
     secrets: inherit
 
+  deploy-views:
+    if: github.ref == 'refs/heads/main'
+    needs: [ build ]
+    uses: ./.github/workflows/deploy-views.yaml
+    secrets: inherit
+
   deploy-dev:
     name: Deploy to dev
     needs: [ build ]

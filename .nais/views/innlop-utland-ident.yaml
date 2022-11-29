@@ -1,0 +1,19 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: dagpengesoknader-utland-ident
+spec:
+  description: "Dataprodukt som viser alle dagpengesøknader med utenlandstilsnitt"
+  datasetRef:
+    external: dataprodukt
+  view:
+    useLegacySql: false
+    query: >-
+      SELECT
+        D.*,
+        I.ident
+      FROM
+        `dataprodukt.dagpengesoknader-utland` D,
+        `dataprodukt.data_innlop_ident_v1` I
+      WHERE
+        D.journalpostId=I.journalpostId

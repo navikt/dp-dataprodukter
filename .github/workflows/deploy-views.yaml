@@ -1,0 +1,24 @@
+name: Deploy BigQuery Views
+on: [ workflow_call ]
+
+jobs:
+  deploy-view:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cluster: [ dev-gcp, prod-gcp ]
+        include:
+          - cluster: dev-gcp
+            kafka: nav-dev
+            project: teamdagpenger-dev-885f
+          - cluster: prod-gcp
+            kafka: nav-prod
+            project: teamdagpenger-prod-9042
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ matrix.cluster }}
+          RESOURCE: .nais/views/*.yaml
+          PRINT_PAYLOAD: true
