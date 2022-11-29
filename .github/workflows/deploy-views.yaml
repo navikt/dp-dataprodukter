@@ -20,5 +20,5 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: .nais/views/*.yaml
+          RESOURCE: .nais/views/innlop-utland.yaml,.nais/views/innlop-utland-ident.yaml
           PRINT_PAYLOAD: true
