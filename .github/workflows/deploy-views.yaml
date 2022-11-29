@@ -9,10 +9,8 @@ jobs:
         cluster: [ dev-gcp, prod-gcp ]
         include:
           - cluster: dev-gcp
-            kafka: nav-dev
             project: teamdagpenger-dev-885f
           - cluster: prod-gcp
-            kafka: nav-prod
             project: teamdagpenger-prod-9042
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +19,5 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}
           RESOURCE: .nais/views/dagpengesoknader.yaml,.nais/views/dagpengesoknader-ident.yaml
+          VAR: project=${{ matrix.project }}
           PRINT_PAYLOAD: true

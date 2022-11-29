@@ -1,12 +1,12 @@
 apiVersion: "kafka.nais.io/v1"
 kind: "Topic"
 metadata:
-  name: {{ topic }}
+  name: {{topic}}
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
 spec:
-  pool: {{ kafka }}
+  pool: {{kafka}}
   config:
     cleanupPolicy: delete
     minimumInSyncReplicas: 1

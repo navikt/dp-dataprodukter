@@ -6,7 +6,10 @@ metadata:
   labels:
     team: teamdagpenger
   annotations:
+    cnrm.cloud.google.com/management-conflict-prevention-policy: none
+    cnrm.cloud.google.com/project-id: {{project}}
     cnrm.cloud.google.com/state-into-spec: merge
+
 spec:
   description: "Dataprodukt som viser alle dagpengesøknader inkludert utenlandstilsnitt og ident"
   datasetRef:
