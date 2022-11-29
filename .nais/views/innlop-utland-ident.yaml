@@ -1,9 +1,12 @@
 apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
 kind: BigQueryTable
 metadata:
-  name: dagpengesoknader-utland-ident
+  name: dagpengesoknader-ident
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
 spec:
-  description: "Dataprodukt som viser alle dagpengesøknader med utenlandstilsnitt"
+  description: "Dataprodukt som viser alle dagpengesøknader inkludert utenlandstilsnitt og ident"
   datasetRef:
     external: dataprodukt
   view:
