@@ -11,6 +11,7 @@ metadata:
     cnrm.cloud.google.com/state-into-spec: merge
 
 spec:
+  resourceID: dagpengesoknader-ident
   description: "Dataprodukt som viser alle dagpengesøknader inkludert utenlandstilsnitt og ident"
   datasetRef:
     external: dataprodukt
