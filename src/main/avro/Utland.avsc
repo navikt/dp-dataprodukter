@@ -13,7 +13,8 @@
     },
     {
       "name": "bostedsland",
-      "type": "string"
+      "type": "string",
+      "description": "Hvilket land personen oppgir å være bosted"
     },
     {
       "name": "arbeidsforhold_eos",
