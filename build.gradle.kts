@@ -19,10 +19,10 @@ dependencies {
     implementation("org.apache.avro:avro:1.11.0")
     implementation("io.confluent:kafka-avro-serializer:7.2.2")
     implementation("io.github.microutils:kotlin-logging:3.0.4")
-    implementation("io.getunleash:unleash-client-java:6.1.0")
+    implementation("io.getunleash:unleash-client-java:7.0.0")
     implementation("com.natpryce:konfig:1.6.10.0")
 
-    testImplementation("io.mockk:mockk:1.12.2")
+    testImplementation("io.mockk:mockk:1.13.2")
 }
 
 tasks.test {

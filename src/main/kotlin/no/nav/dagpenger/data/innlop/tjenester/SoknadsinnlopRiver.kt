@@ -1,17 +1,16 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
-import com.fasterxml.jackson.databind.JsonNode
 import mu.KotlinLogging
 import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
+import no.nav.dagpenger.data.innlop.asUUID
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
 import java.time.ZoneId
-import java.util.UUID
 
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
@@ -79,5 +78,3 @@ internal class SoknadsinnlopRiver(
         }
     }
 }
-
-private fun JsonNode.asUUID(): UUID = this.asText().let { UUID.fromString(it) }

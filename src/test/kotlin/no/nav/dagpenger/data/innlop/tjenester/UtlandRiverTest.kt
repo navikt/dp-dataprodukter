@@ -1,9 +1,10 @@
-package no.nav.dagpenger.data.innlop
+package no.nav.dagpenger.data.innlop.tjenester
 
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import no.nav.dagpenger.data.innlop.tjenester.UtlandRiver
+import no.nav.dagpenger.data.innlop.DataTopic
+import no.nav.dagpenger.data.innlop.Utland
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
@@ -11,6 +12,36 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+
+internal class UtlandRiverTest {
+    private val producer = mockk<KafkaProducer<String, Utland>>(relaxed = true)
+    private val dataTopic = DataTopic(producer, "data")
+    private val rapid by lazy {
+        TestRapid().apply {
+            UtlandRiver(
+                rapidsConnection = this,
+                dataTopic = dataTopic
+            )
+        }
+    }
+
+    @AfterEach
+    fun cleanUp() {
+        rapid.reset()
+    }
+
+    @Test
+    @Disabled
+    fun `skal poste inntekt ut på Kafka`() {
+        rapid.sendTestMessage(behovJSON)
+        val packet = slot<Utland>()
+        verify {
+            dataTopic.publiser(capture(packet))
+        }
+
+        assertTrue(packet.isCaptured)
+    }
+}
 
 @Language("JSON")
 private val behovJSON = """{
