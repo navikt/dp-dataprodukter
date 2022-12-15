@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 internal class QuizSøknadDataTest {
     private val søknadData by lazy {
-        QuizSøknadData(jacksonObjectMapper().readTree(object {}.javaClass.getResourceAsStream("/soknadsdata_nytt_format.json")))
+        SøknadData.lagMapper(jacksonObjectMapper().readTree(object {}.javaClass.getResourceAsStream("/soknadsdata_nytt_format.json")))
     }
 
     @Test
