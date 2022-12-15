@@ -52,7 +52,7 @@ fun main() {
     }
     val faktumSvarDataTopic by lazy {
         DataTopic(
-            createProducer<String, SøknadFaktum>(aivenKafka.producerConfig(avroProducerConfig)),
+            createProducer<String, SoknadFaktum>(aivenKafka.producerConfig(avroProducerConfig)),
             config[kafka_produkt_faktum_svar_topic]
         )
     }

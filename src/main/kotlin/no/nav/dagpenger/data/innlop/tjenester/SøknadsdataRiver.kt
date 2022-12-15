@@ -3,7 +3,7 @@ package no.nav.dagpenger.data.innlop.tjenester
 import mu.KotlinLogging
 import mu.withLoggingContext
 import no.nav.dagpenger.data.innlop.DataTopic
-import no.nav.dagpenger.data.innlop.SøknadFaktum
+import no.nav.dagpenger.data.innlop.SoknadFaktum
 import no.nav.dagpenger.data.innlop.asUUID
 import no.nav.dagpenger.data.innlop.søknad.QuizSøknadData
 import no.nav.dagpenger.data.innlop.søknad.SøknadRepository
@@ -41,7 +41,7 @@ internal class SøknadsdataRiver(
 internal class SøknadInnsendtRiver(
     rapidsConnection: RapidsConnection,
     private val ferdigeSøknader: SøknadRepository,
-    private val dataTopic: DataTopic<SøknadFaktum>
+    private val dataTopic: DataTopic<SoknadFaktum>
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -62,7 +62,7 @@ internal class SøknadInnsendtRiver(
             ferdigeSøknader.hent(søknadId)?.let { data ->
                 logger.info { "Fant data for innsendt søknad" }
                 data.fakta.onEach { faktum ->
-                    SøknadFaktum.newBuilder().apply {
+                    SoknadFaktum.newBuilder().apply {
                         this.søknadId = søknadId
                         beskrivelse = faktum.beskrivendeId
                         type = faktum.type

@@ -1,6 +1,6 @@
 {
   "namespace": "no.nav.dagpenger.data.innlop",
-  "name": "SøknadFaktum",
+  "name": "SoknadFaktum",
   "type": "record",
   "doc": "Et faktum innehentet i en dagpengesøknad",
   "fields": [

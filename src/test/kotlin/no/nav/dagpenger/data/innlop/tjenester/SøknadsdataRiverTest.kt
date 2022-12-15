@@ -3,7 +3,7 @@ package no.nav.dagpenger.data.innlop.tjenester
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.data.innlop.DataTopic
-import no.nav.dagpenger.data.innlop.SøknadFaktum
+import no.nav.dagpenger.data.innlop.SoknadFaktum
 import no.nav.dagpenger.data.innlop.helpers.Seksjoner
 import no.nav.dagpenger.data.innlop.helpers.faktum
 import no.nav.dagpenger.data.innlop.helpers.generator
@@ -18,7 +18,7 @@ import java.util.UUID
 
 internal class SøknadsdataRiverTest {
     private val repository = InMemorySøknadRepository()
-    private val producer = mockk<KafkaProducer<String, SøknadFaktum>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, SoknadFaktum>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid = TestRapid().also {
         SøknadsdataRiver(it, repository)
