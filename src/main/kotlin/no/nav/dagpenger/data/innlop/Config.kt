@@ -12,3 +12,4 @@ val config = ConfigurationProperties.systemProperties() overriding
 val kafka_produkt_topic by stringType
 val kafka_produkt_utland_topic by stringType
 val kafka_produkt_ident_topic by stringType
+val kafka_produkt_faktum_svar_topic by stringType
