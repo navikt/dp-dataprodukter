@@ -37,7 +37,7 @@ internal class SøknadsdataRiverTest {
         rapid.sendTestMessage(getInnsendtMessage(søknadId))
 
         verify(exactly = 9) {
-            producer.send(any())
+            producer.send(any(), any())
         }
     }
 }
