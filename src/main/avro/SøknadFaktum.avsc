@@ -20,12 +20,28 @@
     {
       "name": "type",
       "type": "string",
-      "doc": "Hva slags type er dette faktumet"
+      "doc": "Hva slags datatype er dette faktumet"
     },
     {
       "name": "svar",
       "type": "string",
       "doc": "Hva har bruker oppgitt som svar"
+    },
+    {
+      "name": "gruppe",
+      "type": [
+        "null",
+        "string"
+      ],
+      "doc": "Hvilket type gruppe faktumet tilhører. Kan være null; da er faktumet unikt per søknad"
+    },
+    {
+      "name": "gruppeId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "doc": "Hvilket gruppeId faktumet tilhører"
     }
   ]
 }

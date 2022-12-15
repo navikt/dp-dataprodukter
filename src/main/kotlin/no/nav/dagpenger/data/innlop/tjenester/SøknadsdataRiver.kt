@@ -58,6 +58,8 @@ internal class SøknadInnsendtRiver(
                     beskrivelse = faktum.beskrivendeId
                     type = faktum.type
                     svar = faktum.svar
+                    gruppe = faktum.gruppe
+                    gruppeId = faktum.gruppeId
                 }.build().also { data ->
                     logger.info { "Sender ut $data" }
                     dataTopic.publiser(data)

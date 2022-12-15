@@ -1,10 +1,13 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.SøknadFaktum
+import no.nav.dagpenger.data.innlop.helpers.Seksjoner
+import no.nav.dagpenger.data.innlop.helpers.faktum
+import no.nav.dagpenger.data.innlop.helpers.generator
+import no.nav.dagpenger.data.innlop.helpers.seksjon
 import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
@@ -30,23 +33,37 @@ internal class SøknadsdataRiverTest {
     @Test
     fun foo() {
         val søknadId = UUID.randomUUID()
-        rapid.sendTestMessage(
-            getDataMessage(søknadId) {
-                seksjon(
-                    faktum("seksjon1-faktum1", "land", "NOR"),
-                    faktum("seksjon1-faktum2", "land", "NOR")
-                )
-                seksjon(faktum("seksjon2-faktum1", "land", "NOR"))
-            }
-        )
+        rapid.sendTestMessage(getSøknadData(søknadId))
         rapid.sendTestMessage(getInnsendtMessage(søknadId))
-        val packet = mutableListOf<SøknadFaktum>()
-        verify(exactly = 3) {
+
+        verify(exactly = 9) {
             producer.send(any())
-            // dataTopic.publiser(allAny())
         }
     }
 }
+
+private fun getSøknadData(søknadId: UUID) =
+    getDataMessage(søknadId) {
+        seksjon(
+            faktum("seksjon1-faktum1", "land", "NOR"),
+            faktum("seksjon1-faktum2", "land", "NOR")
+        )
+        seksjon(faktum("seksjon2-faktum1", "land", "NOR"))
+        seksjon(
+            generator(
+                "arbeidsforhold",
+                faktum("arbeidsforhold1-faktum1", "int", 123, "1.1"),
+                faktum("arbeidsforhold1-faktum2", "int", 345, "2.1")
+            ),
+            generator(
+                "barn",
+                faktum("barn1-faktum1", "string", "Per", "3.1"),
+                faktum("barn1-faktum2", "bool", true, "4.1"),
+                faktum("barn2-faktum1", "string", "Arne", "3.2"),
+                faktum("barn2-faktum2", "bool", false, "4.2")
+            )
+        )
+    }
 
 private fun getDataMessage(uuid: UUID, seksjoner: Seksjoner.() -> Seksjoner) =
     JsonMessage.newMessage(
@@ -58,12 +75,6 @@ private fun getDataMessage(uuid: UUID, seksjoner: Seksjoner.() -> Seksjoner) =
             "seksjoner" to seksjoner(mutableListOf())
         )
     ).toJson()
-typealias Seksjoner = MutableList<Map<String, Any>>
-
-private fun Seksjoner.seksjon(vararg faktum: Map<String, Any>) = this.also { it.add(mapOf(fakta(*faktum))) }
-private fun fakta(vararg faktum: Map<String, Any>) = "fakta" to faktum.toList()
-private fun faktum(beskrivendeId: String, type: String, svar: Any) =
-    mapOf("beskrivendeId" to beskrivendeId, "type" to type, "svar" to svar)
 
 private fun getInnsendtMessage(uuid: UUID) = JsonMessage.newMessage(
     "søknad_endret_tilstand",
