@@ -1,6 +1,7 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
+import mu.withLoggingContext
 import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.SøknadFaktum
 import no.nav.dagpenger.data.innlop.asUUID
@@ -24,10 +25,16 @@ internal class SøknadsdataRiver(
         }.register(this)
     }
 
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
+
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
 
-        ferdigeSøknader.lagre(søknadId, QuizSøknadData(packet["seksjoner"]))
+        ferdigeSøknader.lagre(søknadId, QuizSøknadData(packet["seksjoner"])).also {
+            logger.info { "Mellomlagrer data for søknadId=$søknadId" }
+        }
     }
 }
 
@@ -51,22 +58,27 @@ internal class SøknadInnsendtRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
 
-        ferdigeSøknader.hent(søknadId)?.let { data ->
-            data.fakta.forEach { faktum ->
-                SøknadFaktum.newBuilder().apply {
-                    this.søknadId = søknadId
-                    beskrivelse = faktum.beskrivendeId
-                    type = faktum.type
-                    svar = faktum.svar
-                    gruppe = faktum.gruppe
-                    gruppeId = faktum.gruppeId
-                }.build().also { data ->
-                    logger.info { "Sender ut $data" }
-                    dataTopic.publiser(data)
+        withLoggingContext("søknadId" to søknadId.toString()) {
+            ferdigeSøknader.hent(søknadId)?.let { data ->
+                logger.info { "Fant data for innsendt søknad" }
+                data.fakta.onEach { faktum ->
+                    SøknadFaktum.newBuilder().apply {
+                        this.søknadId = søknadId
+                        beskrivelse = faktum.beskrivendeId
+                        type = faktum.type
+                        svar = faktum.svar
+                        gruppe = faktum.gruppe
+                        gruppeId = faktum.gruppeId
+                    }.build().also { data ->
+                        logger.info { "Sender ut $data" }
+                        dataTopic.publiser(data)
+                    }
+                }.also {
+                    logger.info { "Produserte ${it.size} faktumrader" }
                 }
-            }
 
-            ferdigeSøknader.slett(søknadId)
-        } ?: logger.warn { "Manglet søknadsdata for innsendt søknad=$søknadId" }
+                ferdigeSøknader.slett(søknadId)
+            } ?: logger.warn { "Manglet søknadsdata for innsendt søknad" }
+        }
     }
 }

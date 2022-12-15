@@ -10,7 +10,7 @@ internal class DataTopic<T : SpecificRecord>(
     private val topic: String
 ) {
     companion object {
-        val logger = KotlinLogging.logger {}
+        private val logger = KotlinLogging.logger {}
     }
 
     fun publiser(innlop: T) {
