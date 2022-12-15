@@ -63,7 +63,7 @@ internal class SøknadInnsendtRiver(
                 logger.info { "Fant data for innsendt søknad" }
                 data.fakta.onEach { faktum ->
                     SoknadFaktum.newBuilder().apply {
-                        this.søknadId = søknadId
+                        this.soknadId = søknadId
                         beskrivelse = faktum.beskrivendeId
                         type = faktum.type
                         svar = faktum.svar

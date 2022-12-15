@@ -5,7 +5,7 @@
   "doc": "Et faktum innehentet i en dagpengesøknad",
   "fields": [
     {
-      "name": "søknadId",
+      "name": "soknadId",
       "type": {
         "type": "string",
         "logicalType": "uuid"
