@@ -14,6 +14,10 @@ internal class DataTopic<T : SpecificRecord>(
     }
 
     fun publiser(innlop: T) {
-        producer.send(ProducerRecord(topic, innlop))
+        producer.send(ProducerRecord(topic, innlop)).also {
+            if (topic == "teamdagpenger.data-soknad-faktum-v1") {
+                logger.info { "Sendte melding for faktum svar. Record=${it.get()}" }
+            }
+        }
     }
 }
