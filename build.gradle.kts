@@ -22,7 +22,7 @@ dependencies {
     implementation("io.getunleash:unleash-client-java:7.0.0")
     implementation("com.natpryce:konfig:1.6.10.0")
 
-    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation("io.mockk:mockk:1.13.3")
 }
 
 tasks.test {
