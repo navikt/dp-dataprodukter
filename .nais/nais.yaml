@@ -27,4 +27,4 @@ spec:
     - name: KAFKA_PRODUKT_IDENT_TOPIC
       value: teamdagpenger.data-innlop-ident-v1
     - name: KAFKA_PRODUKT_FAKTUM_SVAR_TOPIC
-      value: teamdagpenger.data-soknad-faktum-v2
+      value: teamdagpenger.data-soknad-faktum-v1

@@ -11,6 +11,7 @@ import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
+import no.nav.helse.rapids_rivers.asLocalDate
 import no.nav.helse.rapids_rivers.asLocalDateTime
 import java.time.ZoneId
 
@@ -60,7 +61,7 @@ internal class SøknadInnsendtRiver(
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
-        val opprettet = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()
+        val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             ferdigeSøknader.hent(søknadId)?.let { data ->

@@ -15,10 +15,10 @@
     {
       "name": "innsendtDato",
       "type": {
-        "type": "long",
-        "logicalType": "timestamp-millis"
+        "type": "int",
+        "logicalType": "date"
       },
-      "doc": "Når ble søknaden sendt inn"
+      "doc": "Datoen søknaden ble sendt inn"
     },
     {
       "name": "beskrivelse",
