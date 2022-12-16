@@ -16,7 +16,7 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("com.github.navikt:rapids-and-rivers:2022121215491670856576.b6fcc126df12")
-    implementation("org.apache.avro:avro:1.11.0")
+    implementation("org.apache.avro:avro:1.11.1")
     implementation("io.confluent:kafka-avro-serializer:7.2.2")
     implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation("io.getunleash:unleash-client-java:7.0.0")
