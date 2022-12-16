@@ -11,6 +11,8 @@ import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
+import no.nav.helse.rapids_rivers.asLocalDateTime
+import java.time.ZoneId
 
 internal class SøknadsdataRiver(
     rapidsConnection: RapidsConnection,
@@ -47,16 +49,18 @@ internal class SøknadInnsendtRiver(
         River(rapidsConnection).apply {
             validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
             validate { it.demandValue("gjeldendeTilstand", "Innsendt") }
-            validate { it.requireKey("søknad_uuid") }
+            validate { it.requireKey("søknad_uuid", "@opprettet") }
         }.register(this)
     }
 
     companion object {
+        private val oslo: ZoneId = ZoneId.of("Europe/Oslo")
         private val logger = KotlinLogging.logger { }
     }
 
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
+        val opprettet = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             ferdigeSøknader.hent(søknadId)?.let { data ->
@@ -64,6 +68,7 @@ internal class SøknadInnsendtRiver(
                 data.fakta.onEach { faktum ->
                     SoknadFaktum.newBuilder().apply {
                         this.soknadId = søknadId
+                        innsendtDato = opprettet
                         beskrivelse = faktum.beskrivendeId
                         type = faktum.type
                         svar = faktum.svar

@@ -13,6 +13,17 @@
       "doc": "Intern ID til søknaden"
     },
     {
+      "name": "innsendtDato",
+      "type": [
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        },
+        "null"
+      ],
+      "doc": "Når ble søknaden sendt inn"
+    },
+    {
       "name": "beskrivelse",
       "type": "string",
       "doc": "En beskrivelse av faktumet"
