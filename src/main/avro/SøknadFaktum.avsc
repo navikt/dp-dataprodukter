@@ -14,13 +14,10 @@
     },
     {
       "name": "innsendtDato",
-      "type": [
-        {
-          "type": "long",
-          "logicalType": "timestamp-millis"
-        },
-        "null"
-      ],
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
       "doc": "Når ble søknaden sendt inn"
     },
     {
