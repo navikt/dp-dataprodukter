@@ -10,6 +10,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 0 # Gir kun security updates
   # Maintain dependencies for docker
   - package-ecosystem: "docker"
     directory: "/"
