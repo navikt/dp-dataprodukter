@@ -9,8 +9,8 @@ internal abstract class SøknadData(protected val data: JsonNode) {
 
     companion object {
         fun lagMapper(data: JsonNode) = when (data["seksjoner"]) {
-            null -> GammeltSøknadFormat(data)
-            else -> QuizSøknadFormat(data)
+            null -> GammelSøknadData(data)
+            else -> QuizSøknadData(data["seksjoner"])
         }
     }
 }

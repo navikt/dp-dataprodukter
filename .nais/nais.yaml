@@ -16,6 +16,8 @@ spec:
       value: dp-data-innlop-v1
     - name: KAFKA_RAPID_TOPIC
       value: teamdagpenger.journalforing.v1
+    - name: KAFKA_EXTRA_TOPIC
+      value: teamdagpenger.rapid.v1
     - name: KAFKA_RESET_POLICY
       value: earliest
     - name: KAFKA_PRODUKT_TOPIC
@@ -24,3 +26,5 @@ spec:
       value: teamdagpenger.data-innlop-utland-v2
     - name: KAFKA_PRODUKT_IDENT_TOPIC
       value: teamdagpenger.data-innlop-ident-v1
+    - name: KAFKA_PRODUKT_FAKTUM_SVAR_TOPIC
+      value: teamdagpenger.data-soknad-faktum-v1

@@ -1,8 +1,10 @@
-package no.nav.dagpenger.data.innlop
+package no.nav.dagpenger.data.innlop.tjenester
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
+import no.nav.dagpenger.data.innlop.DataTopic
+import no.nav.dagpenger.data.innlop.Ident
+import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
@@ -38,8 +40,8 @@ internal class SoknadsinnlopRiverTest {
         rapid.sendTestMessage(behovJSON)
 
         verify {
-            producer.send(any())
-            producerIdent.send(any())
+            producer.send(any(), any())
+            producerIdent.send(any(), any())
         }
     }
 }

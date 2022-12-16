@@ -2,7 +2,10 @@ package no.nav.dagpenger.data.innlop
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
+import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
 import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
+import no.nav.dagpenger.data.innlop.tjenester.SøknadInnsendtRiver
+import no.nav.dagpenger.data.innlop.tjenester.SøknadsdataRiver
 import no.nav.dagpenger.data.innlop.tjenester.UtlandRiver
 import no.nav.helse.rapids_rivers.RapidApplication
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -47,10 +50,19 @@ fun main() {
             config[kafka_produkt_utland_topic]
         )
     }
+    val faktumSvarDataTopic by lazy {
+        DataTopic(
+            createProducer<String, SoknadFaktum>(aivenKafka.producerConfig(avroProducerConfig)),
+            config[kafka_produkt_faktum_svar_topic]
+        )
+    }
+    val søknadRepository = InMemorySøknadRepository()
 
     RapidApplication.create(env) { _, rapidsConnection ->
         SoknadsinnlopRiver(rapidsConnection, soknadsinnlopDataTopic, identDataTopic)
         UtlandRiver(rapidsConnection, utlandDataTopic)
+        SøknadsdataRiver(rapidsConnection, søknadRepository)
+        SøknadInnsendtRiver(rapidsConnection, søknadRepository, faktumSvarDataTopic)
     }.start()
 }
 

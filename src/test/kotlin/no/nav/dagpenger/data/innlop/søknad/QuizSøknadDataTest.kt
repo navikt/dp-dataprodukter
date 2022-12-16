@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-internal class QuizSøknadFormatTest {
+internal class QuizSøknadDataTest {
     private val søknadData by lazy {
-        QuizSøknadFormat(jacksonObjectMapper().readTree(object {}.javaClass.getResourceAsStream("/soknadsdata_nytt_format.json")))
+        SøknadData.lagMapper(jacksonObjectMapper().readTree(object {}.javaClass.getResourceAsStream("/soknadsdata_nytt_format.json")))
     }
 
     @Test
