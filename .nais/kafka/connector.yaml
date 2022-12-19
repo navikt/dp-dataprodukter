@@ -22,6 +22,8 @@ data:
         "transforms": "dropPrefix",
         "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
         "transforms.dropPrefix.regex": "teamdagpenger\\.(.*)",
-        "transforms.dropPrefix.replacement": "$1"
+        "transforms.dropPrefix.replacement": "$1",
+        "allowBigQueryRequiredFieldRelaxation": "true",
+        "allowNewBigQueryFields": "true"
       }
     }
