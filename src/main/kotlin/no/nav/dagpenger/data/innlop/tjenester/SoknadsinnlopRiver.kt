@@ -1,16 +1,16 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
-import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.dagpenger.data.innlop.asUUID
+import no.nav.dagpenger.data.innlop.avro.asTimestamp
+import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
-import java.time.ZoneId
 
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
@@ -48,7 +48,6 @@ internal class SoknadsinnlopRiver(
     }
 
     companion object {
-        private val oslo: ZoneId = ZoneId.of("Europe/Oslo")
         private val logger = KotlinLogging.logger { }
     }
 
@@ -57,8 +56,8 @@ internal class SoknadsinnlopRiver(
 
         Soknadsinnlop.newBuilder().apply {
             id = packet["@id"].asUUID()
-            opprettetDato = packet["@opprettet"].asLocalDateTime().atZone(oslo).toInstant()
-            registrertDato = packet["datoRegistrert"].asLocalDateTime().atZone(oslo).toInstant()
+            opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
+            registrertDato = packet["datoRegistrert"].asLocalDateTime().asTimestamp()
             this.journalpostId = journalpostId
             skjemaKode = packet["skjemaKode"].asText()
             tittel = packet["tittel"].asText()

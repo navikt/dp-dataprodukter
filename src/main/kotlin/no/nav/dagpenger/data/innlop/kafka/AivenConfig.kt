@@ -1,10 +1,13 @@
-package no.nav.dagpenger.data.innlop
+package no.nav.dagpenger.data.innlop.kafka
 
+import io.confluent.kafka.serializers.KafkaAvroSerializer
+import io.confluent.kafka.serializers.KafkaAvroSerializerConfig
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.config.SslConfigs
 import org.apache.kafka.common.security.auth.SecurityProtocol
+import org.apache.kafka.common.serialization.StringSerializer
 import java.util.Properties
 
 // Klippet og limt fra rapids-and-rivers-cli
@@ -56,5 +59,22 @@ class AivenConfig(
         put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, truststorePw)
         put(SslConfigs.SSL_KEYSTORE_LOCATION_CONFIG, keystorePath)
         put(SslConfigs.SSL_KEYSTORE_PASSWORD_CONFIG, keystorePw)
+    }
+
+    fun avroProducerConfig(properties: Properties = Properties()) = Properties().apply {
+        val schemaRegistryUser =
+            requireNotNull(System.getenv("KAFKA_SCHEMA_REGISTRY_USER")) { "Expected KAFKA_SCHEMA_REGISTRY_USER" }
+        val schemaRegistryPassword =
+            requireNotNull(System.getenv("KAFKA_SCHEMA_REGISTRY_PASSWORD")) { "Expected KAFKA_SCHEMA_REGISTRY_PASSWORD" }
+
+        put(
+            KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
+            requireNotNull(System.getenv("KAFKA_SCHEMA_REGISTRY")) { "Expected KAFKA_SCHEMA_REGISTRY" }
+        )
+        put(KafkaAvroSerializerConfig.USER_INFO_CONFIG, "$schemaRegistryUser:$schemaRegistryPassword")
+        put(KafkaAvroSerializerConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "USER_INFO")
+        put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+        put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
+        putAll(producerConfig(properties))
     }
 }

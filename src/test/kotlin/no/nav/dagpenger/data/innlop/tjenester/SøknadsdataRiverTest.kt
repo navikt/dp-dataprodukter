@@ -2,12 +2,13 @@ package no.nav.dagpenger.data.innlop.tjenester
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.SoknadFaktum
 import no.nav.dagpenger.data.innlop.helpers.Seksjoner
 import no.nav.dagpenger.data.innlop.helpers.faktum
 import no.nav.dagpenger.data.innlop.helpers.generator
 import no.nav.dagpenger.data.innlop.helpers.seksjon
+import no.nav.dagpenger.data.innlop.helpers.tilstandEndretEvent
+import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
@@ -34,7 +35,7 @@ internal class SøknadsdataRiverTest {
     fun foo() {
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
-        rapid.sendTestMessage(getInnsendtMessage(søknadId))
+        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "Innsendt"))
 
         verify(exactly = 9) {
             producer.send(any(), any())
@@ -75,11 +76,3 @@ private fun getDataMessage(uuid: UUID, seksjoner: Seksjoner.() -> Seksjoner) =
             "seksjoner" to seksjoner(mutableListOf())
         )
     ).toJson()
-
-private fun getInnsendtMessage(uuid: UUID) = JsonMessage.newMessage(
-    "søknad_endret_tilstand",
-    mapOf(
-        "søknad_uuid" to uuid,
-        "gjeldendeTilstand" to "Innsendt"
-    )
-).toJson()

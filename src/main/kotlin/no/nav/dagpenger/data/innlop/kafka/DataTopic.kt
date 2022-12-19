@@ -1,4 +1,4 @@
-package no.nav.dagpenger.data.innlop
+package no.nav.dagpenger.data.innlop.kafka
 
 import mu.KotlinLogging
 import org.apache.avro.specific.SpecificRecord
@@ -10,6 +10,7 @@ import org.apache.kafka.common.errors.InvalidTopicException
 import org.apache.kafka.common.errors.RecordBatchTooLargeException
 import org.apache.kafka.common.errors.RecordTooLargeException
 import org.apache.kafka.common.errors.UnknownServerException
+import java.util.Properties
 
 internal class DataTopic<T : SpecificRecord>(
     private val producer: KafkaProducer<String, T>,
@@ -17,6 +18,10 @@ internal class DataTopic<T : SpecificRecord>(
 ) {
     companion object {
         private val logger = KotlinLogging.logger {}
+
+        fun <T : SpecificRecord> dataTopic(topic: String) =
+            DataTopic(createProducer<String, T>(AivenConfig.default.avroProducerConfig()), topic)
+
         private fun isFatalError(err: Exception) = when (err) {
             is InvalidConfigurationException,
             is InvalidTopicException,
@@ -38,3 +43,13 @@ internal class DataTopic<T : SpecificRecord>(
         }
     }
 }
+
+private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
+    KafkaProducer<K, V>(producerConfig).also { producer ->
+        Runtime.getRuntime().addShutdownHook(
+            Thread {
+                producer.flush()
+                producer.close()
+            }
+        )
+    }

@@ -1,0 +1,21 @@
+{
+  "namespace": "no.nav.dagpenger.data.innlop",
+  "name": "SoknadIdent",
+  "type": "record",
+  "doc": "Linke-tabell for å koble søknad og person",
+  "fields": [
+    {
+      "name": "soknadId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Intern ID til søknaden"
+    },
+    {
+      "name": "ident",
+      "type": "string",
+      "doc": "Ident til personen ved søknadstidspunktet"
+    }
+  ]
+}

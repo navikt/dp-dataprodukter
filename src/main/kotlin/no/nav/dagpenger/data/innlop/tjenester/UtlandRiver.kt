@@ -2,9 +2,9 @@ package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Utland
 import no.nav.dagpenger.data.innlop.erEØS
+import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.dagpenger.data.innlop.søknad.SøknadData
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext

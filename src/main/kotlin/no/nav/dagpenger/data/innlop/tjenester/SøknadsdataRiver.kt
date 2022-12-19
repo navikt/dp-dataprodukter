@@ -2,18 +2,16 @@ package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.SoknadFaktum
 import no.nav.dagpenger.data.innlop.asUUID
+import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.dagpenger.data.innlop.søknad.QuizSøknadData
 import no.nav.dagpenger.data.innlop.søknad.SøknadRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
-import no.nav.helse.rapids_rivers.asLocalDate
 import no.nav.helse.rapids_rivers.asLocalDateTime
-import java.time.ZoneId
 
 internal class SøknadsdataRiver(
     rapidsConnection: RapidsConnection,
@@ -55,7 +53,6 @@ internal class SøknadInnsendtRiver(
     }
 
     companion object {
-        private val oslo: ZoneId = ZoneId.of("Europe/Oslo")
         private val logger = KotlinLogging.logger { }
     }
 

@@ -2,9 +2,9 @@ package no.nav.dagpenger.data.innlop.tjenester
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.data.innlop.DataTopic
 import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
+import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language

@@ -1,0 +1,33 @@
+{
+  "namespace": "no.nav.dagpenger.data.innlop",
+  "name": "SoknadTilstand",
+  "type": "record",
+  "doc": "Endringer i tilstand for en søknad",
+  "fields": [
+    {
+      "name": "soknadId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Intern ID til søknaden"
+    },
+    {
+      "name": "tidsstempel",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "forrigeTilstand",
+      "type": "string",
+      "doc": "Hva var forrige tilstand"
+    },
+    {
+      "name": "gjeldendeTilstand",
+      "type": "string",
+      "doc": "Hva er gjeldende tilstand"
+    }
+  ]
+}
