@@ -39,22 +39,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  deploy-kafka:
-    if: github.ref == 'refs/heads/main'
-    needs: [ build ]
-    uses: ./.github/workflows/deploy-topics.yaml
-    secrets: inherit
-
-  deploy-views:
-    if: github.ref == 'refs/heads/main'
-    needs: [ build ]
-    uses: ./.github/workflows/deploy-views.yaml
-    secrets: inherit
-
   deploy-dev:
-    name: Deploy to dev
     needs: [ build ]
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -66,8 +52,24 @@ jobs:
           VARS: .nais/vars/dev.yaml
           PRINT_PAYLOAD: true
 
+  deploy-dev-kafka:
+    needs: [ build ]
+    uses: ./.github/workflows/deploy-topics.yaml
+    secrets: inherit
+    with:
+      cluster: dev-gcp
+      kafka: nav-dev
+      project: teamdagpenger-dev-885f
+
+  deploy-dev-views:
+    needs: [ build ]
+    uses: ./.github/workflows/deploy-views.yaml
+    secrets: inherit
+    with:
+      cluster: dev-gcp
+      project: teamdagpenger-dev-885f
+
   deploy-prod:
-    name: Deploy to prod
     needs: [ build ]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -80,3 +82,22 @@ jobs:
           RESOURCE: .nais/nais.yaml
           VARS: .nais/vars/prod.yaml
           PRINT_PAYLOAD: true
+
+  deploy-prod-kafka:
+    if: github.ref == 'refs/heads/main'
+    needs: [ build ]
+    uses: ./.github/workflows/deploy-topics.yaml
+    secrets: inherit
+    with:
+      cluster: prod-gcp
+      kafka: nav-prod
+      project: teamdagpenger-prod-9042
+
+  deploy-prod-views:
+    if: github.ref == 'refs/heads/main'
+    needs: [ build ]
+    uses: ./.github/workflows/deploy-views.yaml
+    secrets: inherit
+    with:
+      cluster: dev-gcp
+      project: teamdagpenger-dev-885f

@@ -13,6 +13,15 @@
       "doc": "Intern ID til søknaden"
     },
     {
+      "name": "type",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Hva slags type søknaden er"
+    },
+    {
       "name": "tidsstempel",
       "type": {
         "type": "long",

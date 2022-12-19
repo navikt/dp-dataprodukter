@@ -11,6 +11,7 @@ import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import no.nav.helse.rapids_rivers.asLocalDateTime
+import no.nav.helse.rapids_rivers.isMissingOrNull
 
 internal class SøknadTilstandRiver(
     rapidsConnection: RapidsConnection,
@@ -27,6 +28,7 @@ internal class SøknadTilstandRiver(
                     "gjeldendeTilstand"
                 )
             }
+            validate { it.interestedIn("prosessnavn") }
         }.register(this)
     }
 
@@ -46,6 +48,7 @@ internal class SøknadTilstandRiver(
                 this.tidsstempel = opprettet.asTimestamp()
                 this.forrigeTilstand = forrigeTilstand
                 this.gjeldendeTilstand = gjeldendeTilstand
+                packet["prosessnavn"].takeUnless { it.isMissingOrNull() }?.let { this.type = it.asText() }
             }.build().also { data ->
                 logger.info { "Sender ut $data" }
                 dataTopic.publiser(data)

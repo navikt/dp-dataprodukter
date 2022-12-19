@@ -1,5 +1,16 @@
 name: Deploy Kafka Topics + Kafka Connectors
-on: [ workflow_call ]
+on:
+  workflow_call:
+    inputs:
+      cluster:
+        required: true
+        type: string
+      kafka:
+        required: true
+        type: string
+      project:
+        required: true
+        type: string
 
 jobs:
   deploy-topics:
@@ -14,20 +25,12 @@ jobs:
           data-soknad-tilstand-v1,
           data-soknad-ident-v1
         ]
-        cluster: [ dev-gcp, prod-gcp ]
-        include:
-          - cluster: dev-gcp
-            kafka: nav-dev
-            project: teamdagpenger-dev-885f
-          - cluster: prod-gcp
-            kafka: nav-prod
-            project: teamdagpenger-prod-9042
     steps:
       - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: ${{ matrix.cluster }}
+          CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
-          VAR: topic=${{ matrix.topic }},kafka=${{ matrix.kafka }},project=${{ matrix.project }}
+          VAR: topic=${{ matrix.topic }},kafka=${{ inputs.kafka }},project=${{ inputs.project }}
           PRINT_PAYLOAD: true
