@@ -799,16 +799,6 @@
                     "readOnly": true,
                     "beskrivendeId": "faktum.dokument-arbeidsavtale",
                     "sannsynliggjoresAv": []
-                  },
-                  {
-                    "id": "8056.1",
-                    "type": "dokument",
-                    "roller": [
-                      "søker"
-                    ],
-                    "readOnly": true,
-                    "beskrivendeId": "faktum.dokument-dokumentasjon-av-arbeidsforhold",
-                    "sannsynliggjoresAv": []
                   }
                 ]
               },
@@ -1142,16 +1132,6 @@
                     ],
                     "readOnly": true,
                     "beskrivendeId": "faktum.dokument-arbeidsavtale",
-                    "sannsynliggjoresAv": []
-                  },
-                  {
-                    "id": "8056.2",
-                    "type": "dokument",
-                    "roller": [
-                      "søker"
-                    ],
-                    "readOnly": true,
-                    "beskrivendeId": "faktum.dokument-dokumentasjon-av-arbeidsforhold",
                     "sannsynliggjoresAv": []
                   }
                 ]
@@ -1594,14 +1574,6 @@
               "beskrivendeId": "faktum.dokument-arbeidsavtale"
             },
             {
-              "id": "8056",
-              "type": "dokument",
-              "roller": [
-                "søker"
-              ],
-              "beskrivendeId": "faktum.dokument-dokumentasjon-av-arbeidsforhold"
-            },
-            {
               "id": "8058",
               "type": "dokument",
               "roller": [
@@ -1615,7 +1587,7 @@
               "roller": [
                 "søker"
               ],
-              "beskrivendeId": "faktum.dokument-permitteringsvarsel"
+              "beskrivendeId": "faktum.dokument-arbeidsforhold-permittert"
             },
             {
               "id": "8057",
@@ -1631,7 +1603,7 @@
               "roller": [
                 "søker"
               ],
-              "beskrivendeId": "faktum.dokument-ny-arbeidsavtale"
+              "beskrivendeId": "faktum.dokument-arbeidsavtale"
             }
           ],
           "beskrivendeId": "faktum.arbeidsforhold"
