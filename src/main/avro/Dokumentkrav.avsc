@@ -1,0 +1,53 @@
+{
+  "namespace": "no.nav.dagpenger.data.innlop",
+  "name": "Dokumentkrav",
+  "type": "record",
+  "doc": "Tilstand for dokumentkrav for søknader",
+  "fields": [
+    {
+      "name": "soknadId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "hendelseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "soknadType",
+      "type": "string"
+    },
+    {
+      "name": "innsendingstype",
+      "type": "string"
+    },
+    {
+      "name": "innsendttidspunkt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "ferdigBesvart",
+      "type": "boolean"
+    },
+    {
+      "name": "dokumentnavn",
+      "type": "string"
+    },
+    {
+      "name": "skjemakode",
+      "type": "string"
+    },
+    {
+      "name": "valg",
+      "type": "string"
+    }
+  ]
+}

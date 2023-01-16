@@ -2,6 +2,7 @@ package no.nav.dagpenger.data.innlop
 
 import no.nav.dagpenger.data.innlop.kafka.DataTopic.Companion.dataTopic
 import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
+import no.nav.dagpenger.data.innlop.tjenester.DokumentkravRiver
 import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
 import no.nav.dagpenger.data.innlop.tjenester.SøknadIdentRiver
 import no.nav.dagpenger.data.innlop.tjenester.SøknadInnsendtRiver
@@ -17,6 +18,7 @@ internal object DataTopics {
     val soknadFaktum = dataTopic<SoknadFaktum>(config[kafka_produkt_soknad_faktum_topic])
     val soknadTilstand = dataTopic<SoknadTilstand>(config[kafka_produkt_soknad_tilstand_topic])
     val soknadIdent = dataTopic<SoknadIdent>(config[kafka_produkt_soknad_ident_topic])
+    val dokumentkrav = dataTopic<Dokumentkrav>(config[kafka_produkt_soknad_dokumentkrav_topic])
 }
 
 fun main() {
@@ -30,5 +32,6 @@ fun main() {
         SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
         SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
         SøknadIdentRiver(rapidsConnection, DataTopics.soknadIdent)
+        DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
     }.start()
 }

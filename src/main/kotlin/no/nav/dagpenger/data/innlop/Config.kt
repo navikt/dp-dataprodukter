@@ -15,3 +15,4 @@ val kafka_produkt_ident_topic by stringType
 val kafka_produkt_soknad_faktum_topic by stringType
 val kafka_produkt_soknad_tilstand_topic by stringType
 val kafka_produkt_soknad_ident_topic by stringType
+val kafka_produkt_soknad_dokumentkrav_topic by stringType
