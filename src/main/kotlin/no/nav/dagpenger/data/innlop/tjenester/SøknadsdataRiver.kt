@@ -6,6 +6,7 @@ import no.nav.dagpenger.data.innlop.SoknadFaktum
 import no.nav.dagpenger.data.innlop.asUUID
 import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.dagpenger.data.innlop.søknad.QuizSøknadData
+import no.nav.dagpenger.data.innlop.søknad.Søknad
 import no.nav.dagpenger.data.innlop.søknad.SøknadRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
@@ -22,6 +23,7 @@ internal class SøknadsdataRiver(
             validate { it.demandValue("@event_name", "søker_oppgave") }
             validate { it.demandValue("ferdig", true) }
             validate { it.demandValue("versjon_navn", "Dagpenger") }
+            validate { it.demandKey("versjon_navn") }
             validate { it.requireKey("søknad_uuid", "seksjoner") }
         }.register(this)
     }
@@ -33,9 +35,10 @@ internal class SøknadsdataRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
 
-        ferdigeSøknader.lagre(søknadId, QuizSøknadData(packet["seksjoner"])).also {
-            logger.info { "Mellomlagrer data for søknadId=$søknadId" }
-        }
+        ferdigeSøknader.lagre(Søknad(søknadId, packet["versjon_navn"].asText(), QuizSøknadData(packet["seksjoner"])))
+            .also {
+                logger.info { "Mellomlagrer data for søknadId=$søknadId" }
+            }
     }
 }
 
@@ -61,12 +64,13 @@ internal class SøknadInnsendtRiver(
         val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
-            ferdigeSøknader.hent(søknadId)?.let { data ->
+            ferdigeSøknader.hent(søknadId)?.let { (_, søknadType, data) ->
                 logger.info { "Fant data for innsendt søknad" }
                 data.fakta.onEach { faktum ->
                     SoknadFaktum.newBuilder().apply {
                         this.soknadId = søknadId
                         innsendtDato = opprettet
+                        soknadType = søknadType
                         beskrivelse = faktum.beskrivendeId
                         type = faktum.type
                         svar = faktum.svar
