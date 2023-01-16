@@ -2,6 +2,7 @@ package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import no.nav.dagpenger.data.innlop.erEØS
+import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -25,4 +26,51 @@ internal class QuizSøknadDataTest {
     fun getArbeidsforholdLand() {
         assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.arbeidsforholdLand)
     }
+
+    @Test
+    fun getFlervalgSvar() {
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(json))
+        assertEquals(
+            listOf(
+                "faktum.kun-deltid-aarsak.svar.omsorg-baby",
+                "faktum.kun-deltid-aarsak.svar.redusert-helse"
+            ),
+            data.fakta.map { it.svar }
+        )
+    }
 }
+
+@Language("JSON")
+private val json = """
+[
+  {
+    "fakta": [
+      {
+        "id": "2",
+        "svar": [
+          "faktum.kun-deltid-aarsak.svar.omsorg-baby",
+          "faktum.kun-deltid-aarsak.svar.redusert-helse"
+        ],
+        "type": "flervalg",
+        "roller": [
+          "søker"
+        ],
+        "readOnly": false,
+        "gyldigeValg": [
+          "faktum.kun-deltid-aarsak.svar.redusert-helse",
+          "faktum.kun-deltid-aarsak.svar.omsorg-baby",
+          "faktum.kun-deltid-aarsak.svar.eneansvar-barn",
+          "faktum.kun-deltid-aarsak.svar.omsorg-barn-spesielle-behov",
+          "faktum.kun-deltid-aarsak.svar.skift-turnus",
+          "faktum.kun-deltid-aarsak.svar.har-fylt-60",
+          "faktum.kun-deltid-aarsak.svar.annen-situasjon"
+        ],
+        "beskrivendeId": "faktum.kun-deltid-aarsak",
+        "sannsynliggjoresAv": []
+      }
+    ],
+    "ferdig": true,
+    "beskrivendeId": "reell-arbeidssoker"
+  }
+]
+""".trimIndent()

@@ -40,6 +40,13 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
                         }
                 }
 
+                "flervalg" -> {
+                    fakta["svar"].map {
+                        val flervalg: ObjectNode = fakta.deepCopy()
+                        flervalg.put("svar", it.asText())
+                    }
+                }
+
                 else -> listOf(fakta)
             }
         }
