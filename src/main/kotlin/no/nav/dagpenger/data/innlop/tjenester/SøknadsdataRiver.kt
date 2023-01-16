@@ -22,7 +22,6 @@ internal class SøknadsdataRiver(
         River(rapidsConnection).apply {
             validate { it.demandValue("@event_name", "søker_oppgave") }
             validate { it.demandValue("ferdig", true) }
-            validate { it.demandValue("versjon_navn", "Dagpenger") }
             validate { it.demandKey("versjon_navn") }
             validate { it.requireKey("søknad_uuid", "seksjoner") }
         }.register(this)
