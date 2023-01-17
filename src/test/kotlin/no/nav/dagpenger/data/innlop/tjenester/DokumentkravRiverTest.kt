@@ -42,7 +42,6 @@ private val dokumentkravEvent = JsonMessage.newMessage(
         "søknadType" to "Dagpenger",
         "innsendingsType" to "Ettersending",
         "innsendttidspunkt" to LocalDateTime.now(),
-        "ferdigBesvart" to true,
         "hendelseId" to UUID.randomUUID(),
         "dokumentkrav" to listOf(
             mapOf(

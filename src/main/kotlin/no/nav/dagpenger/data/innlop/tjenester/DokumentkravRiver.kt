@@ -14,7 +14,7 @@ import no.nav.helse.rapids_rivers.asLocalDateTime
 
 internal class DokumentkravRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<Dokumentkrav>,
+    private val dataTopic: DataTopic<Dokumentkrav>
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -26,8 +26,7 @@ internal class DokumentkravRiver(
                     "søknadType",
                     "innsendingsType",
                     "innsendttidspunkt",
-                    "ferdigBesvart",
-                    "hendelseId",
+                    "hendelseId"
                 )
             }
             validate {
@@ -51,7 +50,7 @@ internal class DokumentkravRiver(
                 soknadType = packet["søknadType"].asText()
                 innsendingstype = packet["innsendingsType"].asText()
                 innsendttidspunkt = packet["innsendttidspunkt"].asLocalDateTime().asTimestamp()
-                ferdigBesvart = packet["ferdigBesvart"].asBoolean()
+                ferdigBesvart = packet["dokumentkrav"].none { it["valg"].asText() == "SEND_SENERE" }
                 hendelseId = packet["hendelseId"].asUUID()
             }
 
