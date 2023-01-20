@@ -29,7 +29,7 @@ internal class QuizSøknadDataTest {
 
     @Test
     fun getFlervalgSvar() {
-        val data = QuizSøknadData(jacksonObjectMapper().readTree(json))
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(flervalgJSON))
         assertEquals(
             listOf(
                 "faktum.kun-deltid-aarsak.svar.omsorg-baby",
@@ -38,10 +38,16 @@ internal class QuizSøknadDataTest {
             data.fakta.map { it.svar }
         )
     }
+
+    @Test
+    fun `generator mangler svar`() {
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(generatorUtenSvarJSON))
+        assertEquals(0, data.fakta.size)
+    }
 }
 
 @Language("JSON")
-private val json = """
+private val flervalgJSON = """
 [
   {
     "fakta": [
@@ -65,6 +71,28 @@ private val json = """
           "faktum.kun-deltid-aarsak.svar.har-fylt-60",
           "faktum.kun-deltid-aarsak.svar.annen-situasjon"
         ],
+        "beskrivendeId": "faktum.kun-deltid-aarsak",
+        "sannsynliggjoresAv": []
+      }
+    ],
+    "ferdig": true,
+    "beskrivendeId": "reell-arbeidssoker"
+  }
+]
+""".trimIndent()
+
+@Language("JSON")
+private val generatorUtenSvarJSON = """
+[
+  {
+    "fakta": [
+      {
+        "id": "2",
+        "type": "generator",
+        "roller": [
+          "søker"
+        ],
+        "readOnly": false,
         "beskrivendeId": "faktum.kun-deltid-aarsak",
         "sannsynliggjoresAv": []
       }

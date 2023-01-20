@@ -2,7 +2,10 @@ package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
+import mu.KotlinLogging
 import java.util.SortedSet
+
+private val logger = KotlinLogging.logger { }
 
 internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
     override val bostedsland: String
@@ -30,7 +33,10 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
             when (fakta["type"].asText()) {
                 "generator" -> {
                     val navn = fakta["beskrivendeId"].asText()
-                    fakta["svar"]
+                    val svar = if (fakta.has("svar")) fakta["svar"] else emptyList<List<*>>().also {
+                        logger.warn { "Generator $navn mangler svar " }
+                    }
+                    svar
                         .flatten()
                         .map {
                             it as ObjectNode
