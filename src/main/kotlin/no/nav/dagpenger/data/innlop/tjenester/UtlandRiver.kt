@@ -72,6 +72,11 @@ internal class UtlandRiver(
     }
 
     private fun erUtland(søknad: SøknadData): Boolean {
-        return søknad.bostedsland != "NOR" || søknad.arbeidsforholdLand.any { it != "NOR" }
+        return try {
+            søknad.bostedsland != "NOR" || søknad.arbeidsforholdLand.any { it != "NOR" }
+        } catch (e: Exception) {
+            sikkerlogg.error(e) { søknad.data }
+            throw e
+        }
     }
 }

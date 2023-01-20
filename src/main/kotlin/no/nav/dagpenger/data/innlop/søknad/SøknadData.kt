@@ -3,7 +3,7 @@ package no.nav.dagpenger.data.innlop.søknad
 import com.fasterxml.jackson.databind.JsonNode
 import java.util.SortedSet
 
-internal abstract class SøknadData(protected val data: JsonNode) {
+internal abstract class SøknadData(val data: JsonNode) {
     abstract val bostedsland: String
     abstract val arbeidsforholdLand: SortedSet<String>
 
