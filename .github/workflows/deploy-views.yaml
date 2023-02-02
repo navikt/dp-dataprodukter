@@ -18,6 +18,6 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/views/dagpengesoknader.yaml,.nais/views/dagpengesoknader-ident.yaml, .nais/views/dagpengesoknad-faktum-svar.yaml
+          RESOURCE: .nais/views/dagpengesoknader.yaml,.nais/views/dagpengesoknader-ident.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml
           VAR: project=${{ inputs.project }}
           PRINT_PAYLOAD: true
