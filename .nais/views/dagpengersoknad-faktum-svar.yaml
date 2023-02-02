@@ -1,0 +1,31 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: dagpengesoknad-faktum-svar
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+  annotations:
+    cnrm.cloud.google.com/management-conflict-prevention-policy: none
+    cnrm.cloud.google.com/project-id: {{project}}
+    cnrm.cloud.google.com/state-into-spec: merge
+
+spec:
+  resourceID: dagpengesoknad-faktum-svar
+  description: "Dataprodukt som viser alle svarene oppgitt i dagpengesøknadene"
+  datasetRef:
+    external: dataprodukt
+  view:
+    useLegacySql: false
+    query: >-
+      SELECT
+        F.soknadId,
+        F.innsendtDato,
+        replace(F.beskrivelse, 'faktum.', '') as beskrivelse,
+        F.type,
+        replace(F.svar, 'faktum.', '') as svar,
+        replace(F.gruppe, 'faktum.', '') as gruppe,
+        replace(F.gruppeId, 'faktum.', '') as gruppeId,
+        F.soknadType,
+      FROM
+        `dataprodukt.data_soknad_faktum_v1` F
