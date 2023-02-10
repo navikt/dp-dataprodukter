@@ -55,7 +55,9 @@ internal class SøknadInnsendtRiver(
         rapidsConnection,
         ferdigeSøknader,
         dataTopic,
-        listOf("faktum.barn-foedselsdato"),
+        listOf("faktum.barn-foedselsdato",
+               "faktum.egen-naering-organisasjonsnummer",
+               "faktum.eget-gaardsbruk-organisasjonsnummer"),
     )
 
     init {
