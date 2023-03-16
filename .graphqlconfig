@@ -1,0 +1,15 @@
+{
+  "name": "PDL GraphQL Schema",
+  "schemaPath": "pdl-schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "PDL dev(Q2) GraphQL Endpoint": {
+        "url": "https://pdl-api.dev.intern.nav.no/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

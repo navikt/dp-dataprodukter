@@ -4,3 +4,6 @@ data:
   topic: data-innlop-v2
 gcp:
   project: teamdagpenger-prod-9042
+pdl:
+  host: pdl-api.prod-fss-pub.nais.io
+  scope: "api://prod-fss.pdl.pdl-api/.default"

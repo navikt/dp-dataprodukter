@@ -5,6 +5,7 @@ import mu.withLoggingContext
 import no.nav.dagpenger.data.innlop.SoknadIdent
 import no.nav.dagpenger.data.innlop.asUUID
 import no.nav.dagpenger.data.innlop.kafka.DataTopic
+import no.nav.dagpenger.data.innlop.person.PersonRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -12,7 +13,8 @@ import no.nav.helse.rapids_rivers.River
 
 internal class SøknadIdentRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<SoknadIdent>
+    private val dataTopic: DataTopic<SoknadIdent>,
+    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -29,6 +31,9 @@ internal class SøknadIdentRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val ident = packet["ident"].asText()
+        val person = personRepository.hentPerson(ident)
+
+        if (person.harAdressebeskyttelse) return
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             SoknadIdent.newBuilder().apply {

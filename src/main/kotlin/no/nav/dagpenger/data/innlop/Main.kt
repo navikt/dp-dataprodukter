@@ -1,6 +1,9 @@
 package no.nav.dagpenger.data.innlop
 
+import com.expediagroup.graphql.client.spring.GraphQLWebClient
 import no.nav.dagpenger.data.innlop.kafka.DataTopic.Companion.dataTopic
+import no.nav.dagpenger.data.innlop.oauth2.AzureAD
+import no.nav.dagpenger.data.innlop.person.PdlPersonRepository
 import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
 import no.nav.dagpenger.data.innlop.tjenester.DokumentkravRiver
 import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
@@ -24,6 +27,10 @@ internal object DataTopics {
 fun main() {
     val env = System.getenv()
     val søknadRepository = InMemorySøknadRepository()
+    val azureAdClient = AzureAD(config[pdl.scope])
+    val personRepository = PdlPersonRepository(
+        GraphQLWebClient(url = config[pdl.endpoint]),
+    ) { azureAdClient.token().toAuthorizationHeader() }
 
     RapidApplication.create(env) { _, rapidsConnection ->
         SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident)
@@ -31,7 +38,7 @@ fun main() {
         SøknadsdataRiver(rapidsConnection, søknadRepository)
         SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
         SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
-        SøknadIdentRiver(rapidsConnection, DataTopics.soknadIdent)
+        SøknadIdentRiver(rapidsConnection, DataTopics.soknadIdent, personRepository)
         DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
     }.start()
 }

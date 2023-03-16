@@ -8,7 +8,6 @@ import com.natpryce.konfig.stringType
 
 val config = ConfigurationProperties.systemProperties() overriding
     EnvironmentVariables()
-
 val kafka_produkt_topic by stringType
 val kafka_produkt_utland_topic by stringType
 val kafka_produkt_ident_topic by stringType
@@ -16,3 +15,14 @@ val kafka_produkt_soknad_faktum_topic by stringType
 val kafka_produkt_soknad_tilstand_topic by stringType
 val kafka_produkt_soknad_ident_topic by stringType
 val kafka_produkt_soknad_dokumentkrav_topic by stringType
+
+object pdl {
+    val endpoint by stringType
+    val scope by stringType
+}
+
+object azure {
+    val app_client_id by stringType
+    val app_client_secret by stringType
+    val app_config_token_endpoint by stringType
+}

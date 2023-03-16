@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.7.20"
     application
     id("com.github.davidmc24.gradle.plugin.avro") version "1.5.0"
+    id("com.expediagroup.graphql") version "6.4.0"
 }
 
 repositories {
@@ -22,6 +23,10 @@ dependencies {
     implementation("io.getunleash:unleash-client-java:7.0.0")
     implementation("com.natpryce:konfig:1.6.10.0")
 
+    implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
+    implementation("com.nimbusds:oauth2-oidc-sdk:10.7")
+
+    testImplementation("no.nav.security:mock-oauth2-server:0.5.8")
     testImplementation("io.mockk:mockk:1.13.2")
 }
 
@@ -35,4 +40,11 @@ tasks.withType<KotlinCompile> {
 
 application {
     mainClass.set("no.nav.dagpenger.data.innlop.MainKt")
+}
+
+graphql {
+    client {
+        schemaFile = file("pdl-schema.graphql")
+        packageName = "no.nav.pdl"
+    }
 }
