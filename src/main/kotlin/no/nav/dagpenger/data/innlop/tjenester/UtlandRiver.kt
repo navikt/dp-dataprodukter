@@ -48,7 +48,7 @@ internal class UtlandRiver(
             "journalpostId" to journalpostId
         ) {
             if (søknadsData.isEmpty) {
-                logger.error { " Journalpost mangler søknadsdata, hopper over" }
+                logger.debug { " Journalpost mangler søknadsdata, hopper over" }
                 return
             }
             val søknad = SøknadData.lagMapper(søknadsData)
