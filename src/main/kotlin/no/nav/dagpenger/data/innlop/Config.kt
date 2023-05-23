@@ -18,8 +18,8 @@ val kafka_produkt_soknad_ident_topic by stringType
 val kafka_produkt_soknad_dokumentkrav_topic by stringType
 
 object pdl : PropertyGroup() {
-    val pdl_endpoint by stringType
-    val pdl_scope by stringType
+    val endpoint by stringType
+    val scope by stringType
 }
 
 object azure : PropertyGroup() {
