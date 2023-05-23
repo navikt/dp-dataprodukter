@@ -27,9 +27,9 @@ internal object DataTopics {
 fun main() {
     val env = System.getenv()
     val søknadRepository = InMemorySøknadRepository()
-    val azureAdClient = AzureAD(config[pdl.scope])
+    val azureAdClient = AzureAD(config[pdl_scope])
     val personRepository = PdlPersonRepository(
-        GraphQLWebClient(url = config[pdl.endpoint]),
+        GraphQLWebClient(url = config[pdl_endpoint]),
     ) { azureAdClient.token().toAuthorizationHeader() }
 
     RapidApplication.create(env) { _, rapidsConnection ->
