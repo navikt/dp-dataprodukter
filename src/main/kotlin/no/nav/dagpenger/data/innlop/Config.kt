@@ -25,5 +25,5 @@ object pdl : PropertyGroup() {
 object azure : PropertyGroup() {
     val app_client_id by stringType
     val app_client_secret by stringType
-    val app_config_token_endpoint by stringType
+    val openid_config_token_endpoint by stringType
 }

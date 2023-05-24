@@ -20,7 +20,7 @@ class AzureAD internal constructor(
 ) {
     constructor(vararg scope: String) : this(
         Scope(*scope),
-        URI(config[azure.app_config_token_endpoint]),
+        URI(config[azure.openid_config_token_endpoint]),
         ClientSecretBasic(ClientID(config[azure.app_client_id]), Secret(config[azure.app_client_secret])),
     )
 
