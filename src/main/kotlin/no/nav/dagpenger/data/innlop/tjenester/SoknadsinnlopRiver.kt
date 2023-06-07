@@ -55,7 +55,10 @@ internal class SoknadsinnlopRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val journalpostId = packet["journalpostId"].asText()
 
-        withLoggingContext("journalpostId" to journalpostId) {
+        withLoggingContext(
+            "journalpostId" to journalpostId,
+            "dataprodukt" to dataTopic.topic,
+        ) {
             Soknadsinnlop.newBuilder().apply {
                 id = packet["@id"].asUUID()
                 opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
@@ -70,13 +73,13 @@ internal class SoknadsinnlopRiver(
 
                 dataTopic.publiser(innlop)
             }
+        }
 
-            Ident.newBuilder().apply {
-                this.journalpostId = journalpostId
-                ident = packet["fødselsnummer"].asText()
-            }.build().also {
-                identTopic.publiser(it)
-            }
+        Ident.newBuilder().apply {
+            this.journalpostId = journalpostId
+            ident = packet["fødselsnummer"].asText()
+        }.build().also {
+            identTopic.publiser(it)
         }
     }
 }

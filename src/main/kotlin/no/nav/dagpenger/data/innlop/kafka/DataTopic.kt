@@ -14,7 +14,7 @@ import java.util.Properties
 
 internal class DataTopic<T : SpecificRecord>(
     private val producer: KafkaProducer<String, T>,
-    private val topic: String
+    internal val topic: String,
 ) {
     companion object {
         private val logger = KotlinLogging.logger {}
@@ -28,7 +28,8 @@ internal class DataTopic<T : SpecificRecord>(
             is RecordBatchTooLargeException,
             is RecordTooLargeException,
             is UnknownServerException,
-            is AuthorizationException -> true
+            is AuthorizationException,
+            -> true
 
             else -> false
         }
@@ -50,6 +51,6 @@ private fun <K, V> createProducer(producerConfig: Properties = Properties()) =
             Thread {
                 producer.flush()
                 producer.close()
-            }
+            },
         )
     }

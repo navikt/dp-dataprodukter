@@ -78,7 +78,10 @@ internal class SøknadInnsendtRiver(
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
 
-        withLoggingContext("søknadId" to søknadId.toString()) {
+        withLoggingContext(
+            "søknadId" to søknadId.toString(),
+            "dataprodukt" to dataTopic.topic,
+        ) {
             ferdigeSøknader.hent(søknadId)?.let { (_, søknadType, data) ->
                 logger.info { "Fant data for innsendt søknad" }
                 data.fakta
