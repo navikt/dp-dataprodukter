@@ -55,9 +55,11 @@ internal class SøknadInnsendtRiver(
         rapidsConnection,
         ferdigeSøknader,
         dataTopic,
-        listOf("faktum.barn-foedselsdato",
-               "faktum.egen-naering-organisasjonsnummer",
-               "faktum.eget-gaardsbruk-organisasjonsnummer"),
+        listOf(
+            "faktum.barn-foedselsdato",
+            "faktum.egen-naering-organisasjonsnummer",
+            "faktum.eget-gaardsbruk-organisasjonsnummer",
+        ),
     )
 
     init {
@@ -92,7 +94,6 @@ internal class SøknadInnsendtRiver(
                             gruppe = faktum.gruppe
                             gruppeId = faktum.gruppeId
                         }.build().also { data ->
-                            logger.info { "Sender ut $data" }
                             dataTopic.publiser(data)
                         }
                     }.also {
