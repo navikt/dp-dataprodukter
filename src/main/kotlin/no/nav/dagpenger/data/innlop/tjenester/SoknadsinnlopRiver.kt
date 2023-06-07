@@ -1,6 +1,7 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
 import mu.KotlinLogging
+import mu.withLoggingContext
 import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.dagpenger.data.innlop.asUUID
@@ -15,7 +16,7 @@ import no.nav.helse.rapids_rivers.asLocalDateTime
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Soknadsinnlop>,
-    private val identTopic: DataTopic<Ident>
+    private val identTopic: DataTopic<Ident>,
 ) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -28,8 +29,8 @@ internal class SoknadsinnlopRiver(
                         "Gjenopptak",
                         "Utdanning",
                         "Etablering",
-                        "KlageOgAnke"
-                    )
+                        "KlageOgAnke",
+                    ),
                 )
             }
             validate {
@@ -41,7 +42,7 @@ internal class SoknadsinnlopRiver(
                     "journalpostId",
                     "skjemaKode",
                     "tittel",
-                    "fagsakId"
+                    "fagsakId",
                 )
             }
         }.register(this)
@@ -54,26 +55,28 @@ internal class SoknadsinnlopRiver(
     override fun onPacket(packet: JsonMessage, context: MessageContext) {
         val journalpostId = packet["journalpostId"].asText()
 
-        Soknadsinnlop.newBuilder().apply {
-            id = packet["@id"].asUUID()
-            opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
-            registrertDato = packet["datoRegistrert"].asLocalDateTime().asTimestamp()
-            this.journalpostId = journalpostId
-            skjemaKode = packet["skjemaKode"].asText()
-            tittel = packet["tittel"].asText()
-            type = packet["type"].asText()
-            fagsakId = packet["fagsakId"].asText()
-        }.build().also { innlop ->
-            logger.info { "Sender ut $innlop" }
+        withLoggingContext("journalpostId" to journalpostId) {
+            Soknadsinnlop.newBuilder().apply {
+                id = packet["@id"].asUUID()
+                opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
+                registrertDato = packet["datoRegistrert"].asLocalDateTime().asTimestamp()
+                this.journalpostId = journalpostId
+                skjemaKode = packet["skjemaKode"].asText()
+                tittel = packet["tittel"].asText()
+                type = packet["type"].asText()
+                fagsakId = packet["fagsakId"].asText()
+            }.build().also { innlop ->
+                logger.info { "Publiserer rad for innlop: $innlop" }
 
-            dataTopic.publiser(innlop)
-        }
+                dataTopic.publiser(innlop)
+            }
 
-        Ident.newBuilder().apply {
-            this.journalpostId = journalpostId
-            ident = packet["fødselsnummer"].asText()
-        }.build().also {
-            identTopic.publiser(it)
+            Ident.newBuilder().apply {
+                this.journalpostId = journalpostId
+                ident = packet["fødselsnummer"].asText()
+            }.build().also {
+                identTopic.publiser(it)
+            }
         }
     }
 }
