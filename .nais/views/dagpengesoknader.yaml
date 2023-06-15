@@ -30,7 +30,11 @@ spec:
         U.arbeidsforhold_land,
         U.er_utland
       FROM
-        `dataprodukt.data_innlop_v2` I,
-        `dataprodukt.data_innlop_utland_v2` U
-      WHERE
+        (SELECT journalpostId, min(opprettetDato) AS opprettetDato, registrertDato, skjemaKode, tittel, fagsakId 
+         FROM `dataprodukt.data_innlop_v2`
+         WHERE skjemaKode in ('NAV 04-16.03', 'NAV 04-01.03', 'NAV 04-16.04', 'NAV 04-01.04')
+         GROUP BY journalpostId, registrertDato, skjemaKode, tittel, fagsakId) I
+      LEFT JOIN
+        (SELECT DISTINCT * from `dataprodukt.data_innlop_utland_v2`) U
+      ON
         I.journalpostId=U.journalpostId

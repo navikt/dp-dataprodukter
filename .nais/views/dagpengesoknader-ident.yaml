@@ -22,7 +22,8 @@ spec:
         D.*,
         I.ident
       FROM
-        `dataprodukt.dagpengesoknader` D,
-        `dataprodukt.data_innlop_ident_v1` I
-      WHERE
+        `dataprodukt.dagpengesoknader` D
+      INNER JOIN 
+        (SELECT DISTINCT * FROM `dataprodukt.data_innlop_ident_v1`) I
+      ON
         D.journalpostId=I.journalpostId
