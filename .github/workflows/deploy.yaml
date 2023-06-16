@@ -103,4 +103,4 @@ jobs:
     secrets: inherit
     with:
       cluster: prod-gcp
-      project: teamdagpenger-dev-885f
+      project: teamdagpenger-prod-9042
