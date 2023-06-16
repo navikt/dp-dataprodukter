@@ -102,5 +102,5 @@ jobs:
     uses: ./.github/workflows/deploy-views.yaml
     secrets: inherit
     with:
-      cluster: dev-gcp
+      cluster: prod-gcp
       project: teamdagpenger-dev-885f
