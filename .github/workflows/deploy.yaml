@@ -22,7 +22,7 @@ jobs:
         id: build
         with:
           dependency-graph: generate-and-submit
-          arguments: --configuration-cache build installDist
+          arguments: build installDist
 
       - name: docker-build-push
         uses: nais/docker-build-push@v0
