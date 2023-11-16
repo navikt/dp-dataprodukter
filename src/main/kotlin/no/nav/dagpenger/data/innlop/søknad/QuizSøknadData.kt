@@ -2,10 +2,12 @@ package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import mu.KotlinLogging
 import java.util.SortedSet
 
 private val logger = KotlinLogging.logger { }
+private val objectMapper = jacksonObjectMapper()
 
 internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
     override val bostedsland: String
@@ -33,8 +35,12 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
             when (fakta["type"].asText()) {
                 "generator" -> {
                     val navn = fakta["beskrivendeId"].asText()
-                    val svar = if (fakta.has("svar")) fakta["svar"] else emptyList<List<*>>().also {
-                        logger.warn { "Generator $navn mangler svar " }
+                    val svar = if (fakta.has("svar")) {
+                        fakta["svar"]
+                    } else {
+                        emptyList<List<*>>().also {
+                            logger.warn { "Generator $navn mangler svar " }
+                        }
                     }
                     svar
                         .flatten()
@@ -51,6 +57,12 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
                         val flervalg: ObjectNode = fakta.deepCopy()
                         flervalg.put("svar", it.asText())
                     }
+                }
+                "periode" -> {
+                    val svar = fakta["svar"] as ObjectNode
+                    val periode = fakta.deepCopy() as ObjectNode
+                    periode.put("svar", objectMapper.writeValueAsString(svar))
+                    listOf(periode)
                 }
 
                 else -> listOf(fakta)
@@ -69,7 +81,7 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
         val type: String,
         val svar: String,
         val gruppe: String?,
-        val gruppeId: String?
+        val gruppeId: String?,
     ) {
         val erFritekst = type == "tekst"
     }

@@ -33,9 +33,9 @@ internal class QuizSøknadDataTest {
         assertEquals(
             listOf(
                 "faktum.kun-deltid-aarsak.svar.omsorg-baby",
-                "faktum.kun-deltid-aarsak.svar.redusert-helse"
+                "faktum.kun-deltid-aarsak.svar.redusert-helse",
             ),
-            data.fakta.map { it.svar }
+            data.fakta.map { it.svar },
         )
     }
 
@@ -43,6 +43,25 @@ internal class QuizSøknadDataTest {
     fun `generator mangler svar`() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(generatorUtenSvarJSON))
         assertEquals(0, data.fakta.size)
+    }
+
+    @Test
+    fun `periode svar med fom og tom`() {
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(periodeSvar))
+        assertEquals(
+            """{"fom":"2021-01-14","tom":"2021-03-12"}""",
+            data.fakta.first().svar,
+        )
+    }
+
+    @Test
+    fun `periode svar med uten tom`() {
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(periodeSvarUtenTom))
+        assertEquals(
+            """{"fom":"2021-01-14"}""",
+            data.fakta.first().svar,
+
+        )
     }
 }
 
@@ -100,5 +119,52 @@ private val generatorUtenSvarJSON = """
     "ferdig": true,
     "beskrivendeId": "reell-arbeidssoker"
   }
+]
+""".trimIndent()
+
+// language=JSON
+private val periodeSvar = """
+[
+    {
+      "fakta": [
+        {
+          "id": "14",
+          "type": "periode",
+          "beskrivendeId": "eine kleine Periode",
+          "svar": {
+            "fom": "2021-01-14",
+            "tom": "2021-03-12"
+          },
+          "roller": [
+            "søker"
+          ]
+        } 
+      ],
+      "ferdig": true,
+      "beskrivendeId": "periode"
+    }
+]
+""".trimIndent()
+
+// language=JSON
+private val periodeSvarUtenTom = """
+[
+    {
+      "fakta": [
+        {
+          "id": "14",
+          "type": "periode",
+          "beskrivendeId": "eine kleine Periode",
+          "svar": {
+            "fom": "2021-01-14"
+          },
+          "roller": [
+            "søker"
+          ]
+        } 
+      ],
+      "ferdig": true,
+      "beskrivendeId": "periode"
+    }
 ]
 """.trimIndent()
