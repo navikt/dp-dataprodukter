@@ -44,11 +44,18 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
                     }
                     svar
                         .flatten()
-                        .map {
-                            it as ObjectNode
-                            val indeks = it["id"].asText().let { id -> id.split(".")[1] }
-                            it.put("gruppe", navn)
-                            it.put("gruppeId", "$navn.$indeks")
+                        .map { generatorSvar ->
+                            generatorSvar as ObjectNode
+                            val indeks = generatorSvar["id"].asText().let { id -> id.split(".")[1] }
+                            generatorSvar.put("gruppe", navn)
+                            generatorSvar.put("gruppeId", "$navn.$indeks")
+
+                            when (generatorSvar["type"].asText()) {
+                                "periode" -> {
+                                    periode(generatorSvar)
+                                }
+                                else -> generatorSvar
+                            }
                         }
                 }
 
@@ -59,15 +66,19 @@ internal class QuizSøknadData(data: JsonNode) : SøknadData(data) {
                     }
                 }
                 "periode" -> {
-                    val svar = fakta["svar"] as ObjectNode
-                    val periode = fakta.deepCopy() as ObjectNode
-                    periode.put("svar", objectMapper.writeValueAsString(svar))
-                    listOf(periode)
+                    listOf(periode(fakta))
                 }
 
                 else -> listOf(fakta)
             }
         }
+
+    private fun periode(node: JsonNode): ObjectNode {
+        val svar = node["svar"] as ObjectNode
+        val periode = node.deepCopy() as ObjectNode
+        periode.put("svar", objectMapper.writeValueAsString(svar))
+        return periode
+    }
 
     val fakta
         get() = alleFakta(data).map {

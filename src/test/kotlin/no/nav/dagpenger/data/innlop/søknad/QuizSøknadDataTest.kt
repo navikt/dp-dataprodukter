@@ -2,7 +2,6 @@ package no.nav.dagpenger.data.innlop.søknad
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import no.nav.dagpenger.data.innlop.erEØS
-import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -63,9 +62,24 @@ internal class QuizSøknadDataTest {
 
         )
     }
+
+    @Test
+    fun `generator med flere svartyper`() {
+        val data = QuizSøknadData(jacksonObjectMapper().readTree(generatorMedPeriode))
+        assertEquals("11", data.fakta.find { it.gruppeId == "f67.1" && it.type == "int" }?.svar)
+        assertEquals(
+            """{"fom":"2021-01-14","tom":"2021-03-12"}""",
+            data.fakta.find { it.gruppeId == "f67.1" && it.type == "periode" }?.svar,
+        )
+        assertEquals("19", data.fakta.find { it.gruppeId == "f67.2" && it.type == "int" }?.svar)
+        assertEquals(
+            """{"fom":"2023-01-14","tom":"2023-03-12"}""",
+            data.fakta.find { it.gruppeId == "f67.2" && it.type == "periode" }?.svar,
+        )
+    }
 }
 
-@Language("JSON")
+// language=JSON
 private val flervalgJSON = """
 [
   {
@@ -100,7 +114,7 @@ private val flervalgJSON = """
 ]
 """.trimIndent()
 
-@Language("JSON")
+// language=JSON
 private val generatorUtenSvarJSON = """
 [
   {
@@ -165,6 +179,104 @@ private val periodeSvarUtenTom = """
       ],
       "ferdig": true,
       "beskrivendeId": "periode"
+    }
+]
+""".trimIndent()
+
+// language=JSON
+private val generatorMedPeriode = """ [{
+    "fakta": [
+        {
+          "id": "67",
+          "type": "generator",
+          "beskrivendeId": "f67",
+          "svar": [
+            [
+              {
+                "id": "6.1",
+                "type": "int",
+                "beskrivendeId": "f6",
+                "svar": 11,
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              },
+              {
+                "id": "7.1",
+                "type": "periode",
+                "beskrivendeId": "f7",
+                "svar": {
+                   "fom": "2021-01-14",
+                   "tom": "2021-03-12"
+                },
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              }
+            ],
+            [
+              {
+                "id": "6.2",
+                "type": "int",
+                "beskrivendeId": "f6",
+                "svar": 19,
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              },
+               {
+                "id": "6.3",
+                "type": "flervalg",
+                "beskrivendeId": "f7",
+                 "svar": [
+                  "svar1",
+                  "svar2"
+                  ],
+                
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              },
+              
+              {
+                "id": "7.2",
+                "type": "periode",
+                "beskrivendeId": "f7",
+                "svar": {
+                   "fom": "2023-01-14",
+                   "tom": "2023-03-12"
+                },
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              },
+               {
+                "id": "7.3",
+                "type": "flervalg",
+                "beskrivendeId": "f7",
+                 "svar": [
+                  "svar1",
+                  "svar2"
+                  ],
+                
+                "roller": [
+                  "søker"
+                ],
+                "readOnly": false
+              }
+            ]
+          ],
+          "roller": [
+            "søker"
+          ],
+          "readOnly": false
+        }
+      ]
     }
 ]
 """.trimIndent()
