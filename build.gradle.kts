@@ -18,9 +18,9 @@ dependencies {
 
     implementation(libs.rapids.and.rivers)
     implementation("org.apache.avro:avro:1.11.0")
-    implementation("io.confluent:kafka-avro-serializer:7.2.2")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
+    implementation("io.confluent:kafka-avro-serializer:7.3.0")
 
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
     implementation("com.nimbusds:oauth2-oidc-sdk:10.7")
