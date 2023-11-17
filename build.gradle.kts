@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.22"
+    kotlin("jvm") version "1.9.20"
     application
     id("com.github.davidmc24.gradle.plugin.avro") version "1.5.0"
     id("com.expediagroup.graphql") version "6.4.0"
@@ -23,9 +23,11 @@ dependencies {
     implementation("io.confluent:kafka-avro-serializer:7.3.0")
 
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
-    implementation("com.nimbusds:oauth2-oidc-sdk:10.7")
+    implementation("com.nimbusds:oauth2-oidc-sdk:11.6")
 
-    testImplementation("no.nav.security:mock-oauth2-server:0.5.8")
+    testImplementation("no.nav.security:mock-oauth2-server:2.0.0") {
+        exclude(group = "junit", module = "junit")
+    }
     testImplementation(libs.mockk)
 }
 
