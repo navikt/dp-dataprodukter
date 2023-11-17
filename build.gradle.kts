@@ -16,18 +16,17 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    implementation("com.github.navikt:rapids-and-rivers:2022121215491670856576.b6fcc126df12")
+    implementation(libs.rapids.and.rivers)
     implementation("org.apache.avro:avro:1.11.0")
     implementation("io.confluent:kafka-avro-serializer:7.2.2")
-    implementation("io.github.microutils:kotlin-logging:3.0.4")
-    implementation("io.getunleash:unleash-client-java:7.0.0")
-    implementation("com.natpryce:konfig:1.6.10.0")
+    implementation(libs.kotlin.logging)
+    implementation(libs.konfig)
 
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
     implementation("com.nimbusds:oauth2-oidc-sdk:10.7")
 
     testImplementation("no.nav.security:mock-oauth2-server:0.5.8")
-    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation(libs.mockk)
 }
 
 tasks.test {
