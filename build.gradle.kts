@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.20"
+    kotlin("jvm") version "1.9.22"
     application
     id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
     id("com.expediagroup.graphql") version "6.4.0"
