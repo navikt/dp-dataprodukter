@@ -25,7 +25,7 @@ dependencies {
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
     implementation("com.nimbusds:oauth2-oidc-sdk:11.9.1")
 
-    testImplementation("no.nav.security:mock-oauth2-server:2.0.0") {
+    testImplementation("no.nav.security:mock-oauth2-server:2.1.0") {
         exclude(group = "junit", module = "junit")
     }
     testImplementation(libs.mockk)
