@@ -23,7 +23,7 @@ dependencies {
     implementation("io.confluent:kafka-avro-serializer:7.6.0")
 
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
-    implementation("com.nimbusds:oauth2-oidc-sdk:11.9.1")
+    implementation("com.nimbusds:oauth2-oidc-sdk:11.10")
 
     testImplementation("no.nav.security:mock-oauth2-server:2.1.2") {
         exclude(group = "junit", module = "junit")
