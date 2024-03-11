@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.9.23"
     application
     id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
-    id("com.expediagroup.graphql") version "6.4.0"
+    id("com.expediagroup.graphql") version "7.0.2"
 }
 
 repositories {
