@@ -20,7 +20,7 @@ dependencies {
     implementation("org.apache.avro:avro:1.11.3")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
-    implementation("io.confluent:kafka-avro-serializer:7.6.2")
+    implementation("io.confluent:kafka-avro-serializer:7.7.0")
 
     implementation("com.expediagroup", "graphql-kotlin-spring-client", "6.4.0")
     implementation("com.nimbusds:oauth2-oidc-sdk:11.13")
