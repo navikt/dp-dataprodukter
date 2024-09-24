@@ -13,7 +13,7 @@ spec:
     partitions: 1
     replication: 3
     retentionBytes: -1
-    retentionHours: 72
+    retentionHours: 120
   acl:
     - team: teamdagpenger
       application: dp-data-innlop
