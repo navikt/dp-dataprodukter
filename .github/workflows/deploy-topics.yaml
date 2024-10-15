@@ -24,7 +24,8 @@ jobs:
           data-soknad-faktum-v1,
           data-soknad-tilstand-v1,
           data-soknad-ident-v1,
-          data-soknad-dokumentkrav-v1
+          data-soknad-dokumentkrav-v1,
+          data-behandling-beta-v1
         ]
     steps:
       - uses: actions/checkout@v4

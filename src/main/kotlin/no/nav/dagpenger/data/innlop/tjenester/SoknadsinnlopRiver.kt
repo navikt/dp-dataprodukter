@@ -19,67 +19,77 @@ internal class SoknadsinnlopRiver(
     private val identTopic: DataTopic<Ident>,
 ) : River.PacketListener {
     init {
-        River(rapidsConnection).apply {
-            validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
-            validate {
-                it.requireAny(
-                    "type",
-                    listOf(
-                        "NySøknad",
-                        "Gjenopptak",
-                        "Utdanning",
-                        "Etablering",
-                        "KlageOgAnke",
-                    ),
-                )
-            }
-            validate {
-                it.interestedIn(
-                    "@id",
-                    "@opprettet",
-                    "datoRegistrert",
-                    "fødselsnummer",
-                    "journalpostId",
-                    "skjemaKode",
-                    "tittel",
-                    "fagsakId",
-                )
-            }
-        }.register(this)
+        River(rapidsConnection)
+            .apply {
+                validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
+                validate {
+                    it.requireAny(
+                        "type",
+                        listOf(
+                            "NySøknad",
+                            "Gjenopptak",
+                            "Utdanning",
+                            "Etablering",
+                            "KlageOgAnke",
+                        ),
+                    )
+                }
+                validate {
+                    it.interestedIn(
+                        "@id",
+                        "@opprettet",
+                        "datoRegistrert",
+                        "fødselsnummer",
+                        "journalpostId",
+                        "skjemaKode",
+                        "tittel",
+                        "fagsakId",
+                    )
+                }
+            }.register(this)
     }
 
     companion object {
         private val logger = KotlinLogging.logger { }
     }
 
-    override fun onPacket(packet: JsonMessage, context: MessageContext) {
+    override fun onPacket(
+        packet: JsonMessage,
+        context: MessageContext,
+    ) {
         val journalpostId = packet["journalpostId"].asText()
 
         withLoggingContext(
             "journalpostId" to journalpostId,
             "dataprodukt" to dataTopic.topic,
         ) {
-            Soknadsinnlop.newBuilder().apply {
-                id = packet["@id"].asUUID()
-                opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
-                registrertDato = packet["datoRegistrert"].asLocalDateTime().asTimestamp()
+            Soknadsinnlop
+                .newBuilder()
+                .apply {
+                    id = packet["@id"].asUUID()
+                    opprettetDato = packet["@opprettet"].asLocalDateTime().asTimestamp()
+                    registrertDato = packet["datoRegistrert"].asLocalDateTime().asTimestamp()
+                    this.journalpostId = journalpostId
+                    skjemaKode = packet["skjemaKode"].asText()
+                    tittel = packet["tittel"].asText()
+                    type = packet["type"].asText()
+                    fagsakId = packet["fagsakId"].asText()
+                }.build()
+                .also { innlop ->
+                    logger.info { "Publiserer rad for innlop: $innlop" }
+
+                    dataTopic.publiser(innlop)
+                }
+        }
+
+        Ident
+            .newBuilder()
+            .apply {
                 this.journalpostId = journalpostId
-                skjemaKode = packet["skjemaKode"].asText()
-                tittel = packet["tittel"].asText()
-                type = packet["type"].asText()
-                fagsakId = packet["fagsakId"].asText()
-            }.build().also { innlop ->
-                logger.info { "Publiserer rad for innlop: $innlop" }
-
-                dataTopic.publiser(innlop)
+                ident = packet["fødselsnummer"].asText()
+            }.build()
+            .also {
+                identTopic.publiser(it)
             }
-        }
-
-        Ident.newBuilder().apply {
-            this.journalpostId = journalpostId
-            ident = packet["fødselsnummer"].asText()
-        }.build().also {
-            identTopic.publiser(it)
-        }
     }
 }

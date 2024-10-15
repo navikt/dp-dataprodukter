@@ -21,7 +21,7 @@ internal class SoknadsinnlopRiverTest {
             SoknadsinnlopRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
-                identTopic = identTopic
+                identTopic = identTopic,
             )
         }
     }
@@ -47,7 +47,9 @@ internal class SoknadsinnlopRiverTest {
 }
 
 @Language("JSON")
-private val behovJSON = """{
+private val behovJSON =
+    """
+    {
   "@id": "1aac8cc3-d83f-49c0-aff5-27c56bc1f97d",
   "@opprettet": "2022-06-09T12:40:12.949953",
   "journalpostId": "12455",
@@ -64,4 +66,4 @@ private val behovJSON = """{
   "@event_name": "innsending_ferdigstilt",
   "system_read_count": 0
 }
-""".trimIndent()
+    """.trimIndent()

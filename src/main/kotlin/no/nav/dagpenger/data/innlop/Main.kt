@@ -1,10 +1,12 @@
 package no.nav.dagpenger.data.innlop
 
 import com.expediagroup.graphql.client.spring.GraphQLWebClient
+import no.nav.dagpenger.data.Behandling
 import no.nav.dagpenger.data.innlop.kafka.DataTopic.Companion.dataTopic
 import no.nav.dagpenger.data.innlop.oauth2.AzureAD
 import no.nav.dagpenger.data.innlop.person.PdlPersonRepository
 import no.nav.dagpenger.data.innlop.søknad.InMemorySøknadRepository
+import no.nav.dagpenger.data.innlop.tjenester.BehandlingEndretTilstandRiver
 import no.nav.dagpenger.data.innlop.tjenester.DokumentkravRiver
 import no.nav.dagpenger.data.innlop.tjenester.SoknadsinnlopRiver
 import no.nav.dagpenger.data.innlop.tjenester.SøknadIdentRiver
@@ -22,23 +24,27 @@ internal object DataTopics {
     val soknadTilstand = dataTopic<SoknadTilstand>(config[kafka_produkt_soknad_tilstand_topic])
     val soknadIdent = dataTopic<SoknadIdent>(config[kafka_produkt_soknad_ident_topic])
     val dokumentkrav = dataTopic<Dokumentkrav>(config[kafka_produkt_soknad_dokumentkrav_topic])
+    val behandlingTopic = dataTopic<Behandling>(config[kafka_produkt_behandling_topic])
 }
 
 fun main() {
     val env = System.getenv()
     val søknadRepository = InMemorySøknadRepository()
     val azureAdClient = AzureAD(config[pdl.scope])
-    val personRepository = PdlPersonRepository(
-        GraphQLWebClient(url = config[pdl.endpoint]),
-    ) { azureAdClient.token().toAuthorizationHeader() }
+    val personRepository =
+        PdlPersonRepository(
+            GraphQLWebClient(url = config[pdl.endpoint]),
+        ) { azureAdClient.token().toAuthorizationHeader() }
 
-    RapidApplication.create(env) { _, rapidsConnection ->
-        SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident)
-        UtlandRiver(rapidsConnection, DataTopics.utland)
-        SøknadsdataRiver(rapidsConnection, søknadRepository)
-        SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
-        SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
-        SøknadIdentRiver(rapidsConnection, DataTopics.soknadIdent, personRepository)
-        DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
-    }.start()
+    RapidApplication
+        .create(env) { _, rapidsConnection ->
+            SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident)
+            UtlandRiver(rapidsConnection, DataTopics.utland)
+            SøknadsdataRiver(rapidsConnection, søknadRepository)
+            SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
+            SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
+            SøknadIdentRiver(rapidsConnection, DataTopics.soknadIdent, personRepository)
+            DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
+            BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTopic)
+        }.start()
 }

@@ -1,0 +1,160 @@
+{
+  "namespace": "no.nav.dagpenger.data",
+  "name": "Behandling",
+  "type": "record",
+  "fields": [
+    {
+      "name": "meldingsreferanseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "saksnummer",
+      "type": "string"
+    },
+    {
+      "name": "ident",
+      "type": "string"
+    },
+    {
+      "name": "endretTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "tekniskTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen"
+    },
+    {
+      "name": "behandlingType",
+      "type": "string",
+      "doc": "Kode som angir hvilken type behandling det er snakk om - typisk: søknad, revurdering, tilbakekreving, klage, etc."
+    },
+    {
+      "name": "behandlingStatus",
+      "type": "string"
+    },
+    {
+      "name": "avsender",
+      "type": "string"
+    },
+    {
+      "name": "versjon",
+      "type": "string"
+    },
+    {
+      "name": "mottattTid",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når søknaden ble mottatt"
+    },
+    {
+      "name": "registrertTid",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når søknaden ble registrert"
+    },
+    {
+      "name": "ferdigBehandletTid",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når behandlingen ble ferdig"
+    },
+    {
+      "name": "virkningstidspunkt",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Om søknaden er i papirformat eller digitalt"
+    },
+    {
+      "name": "utland",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Om saken er nasjonal eller utland"
+    },
+    {
+      "name": "resultat",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Resultatet av behandlingen"
+    },
+    {
+      "name": "automatisk",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Om behandlingen har vært kjørt automatisk"
+    },
+    {
+      "name": "saksbehandler",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "NAV-ident til saksbehandler som står ansvarlig for behandlingen"
+    },
+    {
+      "name": "beslutter",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "NAV-ident til beslutter som står ansvarlig for behandlingen"
+    },
+    {
+      "name": "ansvarligEnhet",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Enhet som står ansvarlig for behandlingen"
+    }
+  ]
+}
