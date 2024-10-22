@@ -8,6 +8,7 @@ import no.nav.dagpenger.data.innlop.kafka.DataTopic
 import no.nav.dagpenger.data.innlop.person.PersonRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
+import no.nav.helse.rapids_rivers.MessageProblems
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 
@@ -57,5 +58,19 @@ internal class SøknadIdentRiver(
                     dataTopic.publiser(data)
                 }
         }
+    }
+
+    override fun onError(
+        problems: MessageProblems,
+        context: MessageContext,
+    ) {
+        sikkerlogg.error(problems.toExtendedReport())
+    }
+
+    override fun onSevere(
+        error: MessageProblems.MessageException,
+        context: MessageContext,
+    ) {
+        sikkerlogg.error(error.message, error.cause)
     }
 }
