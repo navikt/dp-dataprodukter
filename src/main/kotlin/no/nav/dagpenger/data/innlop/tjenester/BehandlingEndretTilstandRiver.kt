@@ -35,6 +35,7 @@ internal class BehandlingEndretTilstandRiver(
 
     companion object {
         private val logger = KotlinLogging.logger { }
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.BehandlingEndretTilstandRiver")
     }
 
     override fun onPacket(
@@ -62,7 +63,8 @@ internal class BehandlingEndretTilstandRiver(
                     versjon = image
                 }.build()
                 .also { behandling ->
-                    logger.info { "Publiserer rad for behandling: $behandling" }
+                    logger.info { "Publiserer rad for behandling" }
+                    sikkerlogg.info { "Publiserer rad for behadnlig: $behandling" }
 
                     dataTopic.publiser(behandling)
                 }
