@@ -21,7 +21,7 @@ internal class SøknadIdentRiver(
         River(rapidsConnection)
             .apply {
                 validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
-                validate { it.demandValue("gjeldendeTilstand", "opprettet") }
+                validate { it.requireKey("gjeldendeTilstand", "opprettet") }
                 validate { it.requireKey("søknad_uuid", "ident") }
             }.register(this)
     }
@@ -64,13 +64,6 @@ internal class SøknadIdentRiver(
         problems: MessageProblems,
         context: MessageContext,
     ) {
-        sikkerlogg.error(problems.toExtendedReport())
-    }
-
-    override fun onSevere(
-        error: MessageProblems.MessageException,
-        context: MessageContext,
-    ) {
-        sikkerlogg.error(error.message, error.cause)
+        sikkerlogg.info(problems.toExtendedReport())
     }
 }
