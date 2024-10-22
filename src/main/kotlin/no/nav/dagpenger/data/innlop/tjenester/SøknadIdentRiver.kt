@@ -17,18 +17,23 @@ internal class SøknadIdentRiver(
     private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
-        River(rapidsConnection).apply {
-            validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
-            validate { it.demandValue("gjeldendeTilstand", "opprettet") }
-            validate { it.requireKey("søknad_uuid", "ident") }
-        }.register(this)
+        River(rapidsConnection)
+            .apply {
+                validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
+                validate { it.demandValue("gjeldendeTilstand", "opprettet") }
+                validate { it.requireKey("søknad_uuid", "ident") }
+            }.register(this)
     }
 
     companion object {
         private val logger = KotlinLogging.logger { }
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.SøknadIdentRiver")
     }
 
-    override fun onPacket(packet: JsonMessage, context: MessageContext) {
+    override fun onPacket(
+        packet: JsonMessage,
+        context: MessageContext,
+    ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val ident = packet["ident"].asText()
         val person = personRepository.hentPerson(ident)
@@ -36,13 +41,17 @@ internal class SøknadIdentRiver(
         if (person.harAdressebeskyttelse) return
 
         withLoggingContext("søknadId" to søknadId.toString()) {
-            SoknadIdent.newBuilder().apply {
-                this.soknadId = søknadId
-                this.ident = ident
-            }.build().also { data ->
-                logger.info { "Sender ut $data" }
-                dataTopic.publiser(data)
-            }
+            SoknadIdent
+                .newBuilder()
+                .apply {
+                    this.soknadId = søknadId
+                    this.ident = ident
+                }.build()
+                .also { data ->
+                    logger.info { "Sender ut SøknadIdent" }
+                    sikkerlogg.info { "Sender ut SøknadIdent: $data" }
+                    dataTopic.publiser(data)
+                }
         }
     }
 }

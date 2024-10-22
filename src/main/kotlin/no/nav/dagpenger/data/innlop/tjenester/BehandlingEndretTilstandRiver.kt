@@ -64,7 +64,7 @@ internal class BehandlingEndretTilstandRiver(
                 }.build()
                 .also { behandling ->
                     logger.info { "Publiserer rad for behandling" }
-                    sikkerlogg.info { "Publiserer rad for behadnlig: $behandling" }
+                    sikkerlogg.info { "Publiserer rad for behandling: $behandling" }
 
                     dataTopic.publiser(behandling)
                 }
