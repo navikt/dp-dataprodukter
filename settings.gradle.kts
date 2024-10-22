@@ -1,4 +1,4 @@
-rootProject.name = "dp-data-innlop"
+rootProject.name = "dp-dataprodukter"
 
 dependencyResolutionManagement {
     repositories {

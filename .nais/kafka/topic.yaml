@@ -19,5 +19,8 @@ spec:
       application: dp-data-innlop
       access: readwrite
     - team: teamdagpenger
+      application: dp-dataprodukter
+      access: readwrite
+    - team: teamdagpenger
       application: dp-kafka-connect
       access: read
