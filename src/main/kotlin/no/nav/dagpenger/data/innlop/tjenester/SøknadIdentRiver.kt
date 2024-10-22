@@ -52,8 +52,8 @@ internal class SøknadIdentRiver(
                     this.ident = ident
                 }.build()
                 .also { data ->
-                    logger.info { "Sender ut SøknadIdent" }
-                    sikkerlogg.info { "Sender ut SøknadIdent: $data" }
+                    logger.info { "Publiserer rad for ${data::class.java.simpleName}" }
+                    sikkerlogg.info { "Publiserer rad for ${data::class.java.simpleName}: $data " }
                     dataTopic.publiser(data)
                 }
         }

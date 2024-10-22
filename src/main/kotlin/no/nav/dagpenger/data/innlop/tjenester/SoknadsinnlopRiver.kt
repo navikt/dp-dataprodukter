@@ -51,6 +51,7 @@ internal class SoknadsinnlopRiver(
 
     companion object {
         private val logger = KotlinLogging.logger { }
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.SoknadsinnlopRiver")
     }
 
     override fun onPacket(
@@ -76,7 +77,8 @@ internal class SoknadsinnlopRiver(
                     fagsakId = packet["fagsakId"].asText()
                 }.build()
                 .also { innlop ->
-                    logger.info { "Publiserer rad for innlop: $innlop" }
+                    logger.info { "Publiserer rad for ${innlop::class.java.simpleName}" }
+                    sikkerlogg.info { "Publiserer rad for ${innlop::class.java.simpleName}: $innlop " }
 
                     dataTopic.publiser(innlop)
                 }

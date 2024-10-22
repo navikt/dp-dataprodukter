@@ -67,8 +67,8 @@ internal class UtlandRiver(
                         arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
                     }.build()
                     .also { data ->
-                        logger.info { "Sender ut Utland" }
-                        sikkerlogg.info { "Sender ut Utland: $data" }
+                        logger.info { "Publiserer rad for ${data::class.java.simpleName}" }
+                        sikkerlogg.info { "Publiserer rad for ${data::class.java.simpleName}: $data" }
                         dataTopic.publiser(data)
                     }
             } catch (e: NoSuchElementException) {

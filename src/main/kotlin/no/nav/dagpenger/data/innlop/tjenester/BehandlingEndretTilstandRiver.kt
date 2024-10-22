@@ -63,8 +63,8 @@ internal class BehandlingEndretTilstandRiver(
                     versjon = image
                 }.build()
                 .also { behandling ->
-                    logger.info { "Publiserer rad for behandling" }
-                    sikkerlogg.info { "Publiserer rad for behandling: $behandling" }
+                    logger.info { "Publiserer rad for ${behandling::class.java.simpleName}" }
+                    sikkerlogg.info { "Publiserer rad for ${behandling::class.java.simpleName}: $behandling " }
 
                     dataTopic.publiser(behandling)
                 }
