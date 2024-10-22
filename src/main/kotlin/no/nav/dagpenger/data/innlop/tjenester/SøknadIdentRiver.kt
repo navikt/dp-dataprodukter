@@ -36,11 +36,15 @@ internal class SøknadIdentRiver(
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val ident = packet["ident"].asText()
-        val person = personRepository.hentPerson(ident)
 
-        if (person.harAdressebeskyttelse) return
+        withLoggingContext(
+            "søknadId" to søknadId.toString(),
+        ) {
+            logger.info { "Sjekker om vi skal publisere SøknadIdent" }
+            val person = personRepository.hentPerson(ident)
 
-        withLoggingContext("søknadId" to søknadId.toString()) {
+            if (person.harAdressebeskyttelse) return
+
             SoknadIdent
                 .newBuilder()
                 .apply {
