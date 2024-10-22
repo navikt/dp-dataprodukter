@@ -13,39 +13,43 @@ import no.nav.helse.rapids_rivers.River
 
 internal class UtlandRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<Utland>
+    private val dataTopic: DataTopic<Utland>,
 ) : River.PacketListener {
     init {
-        River(rapidsConnection).apply {
-            validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
-            validate {
-                it.requireAny(
-                    "type",
-                    listOf(
-                        "NySøknad",
-                        "Gjenopptak"
+        River(rapidsConnection)
+            .apply {
+                validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
+                validate {
+                    it.requireAny(
+                        "type",
+                        listOf(
+                            "NySøknad",
+                            "Gjenopptak",
+                        ),
                     )
-                )
-            }
-            validate {
-                it.interestedIn(
-                    "journalpostId",
-                    "søknadsData"
-                )
-            }
-        }.register(this)
+                }
+                validate {
+                    it.interestedIn(
+                        "journalpostId",
+                        "søknadsData",
+                    )
+                }
+            }.register(this)
     }
 
     companion object {
         private val logger = KotlinLogging.logger { }
-        private val sikkerlogg = KotlinLogging.logger("tjenestekall.utlandriver")
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.UtlandRiver")
     }
 
-    override fun onPacket(packet: JsonMessage, context: MessageContext) {
+    override fun onPacket(
+        packet: JsonMessage,
+        context: MessageContext,
+    ) {
         val søknadsData = packet["søknadsData"]
         val journalpostId = packet["journalpostId"].asText()
         withLoggingContext(
-            "journalpostId" to journalpostId
+            "journalpostId" to journalpostId,
         ) {
             if (søknadsData.isEmpty) {
                 logger.debug { " Journalpost mangler søknadsdata, hopper over" }
@@ -53,16 +57,20 @@ internal class UtlandRiver(
             }
             val søknad = SøknadData.lagMapper(søknadsData)
             try {
-                Utland.newBuilder().apply {
-                    this.journalpostId = journalpostId
-                    erUtland = erUtland(søknad)
-                    bostedsland = søknad.bostedsland
-                    arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
-                    arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
-                }.build().also { data ->
-                    logger.info { "Sender ut $data" }
-                    dataTopic.publiser(data)
-                }
+                Utland
+                    .newBuilder()
+                    .apply {
+                        this.journalpostId = journalpostId
+                        erUtland = erUtland(søknad)
+                        bostedsland = søknad.bostedsland
+                        arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
+                        arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
+                    }.build()
+                    .also { data ->
+                        logger.info { "Sender ut Utland" }
+                        sikkerlogg.info { "Sender ut Utland: $data" }
+                        dataTopic.publiser(data)
+                    }
             } catch (e: NoSuchElementException) {
                 logger.error(e) { "Fant ikke riktig data i søknaden" }
                 sikkerlogg.error(e) { "Fant ikke riktig data i søknad=$søknadsData" }
@@ -71,12 +79,11 @@ internal class UtlandRiver(
         }
     }
 
-    private fun erUtland(søknad: SøknadData): Boolean {
-        return try {
+    private fun erUtland(søknad: SøknadData): Boolean =
+        try {
             søknad.bostedsland != "NOR" || søknad.arbeidsforholdLand.any { it != "NOR" }
         } catch (e: Exception) {
             sikkerlogg.error(e) { søknad.data }
             throw e
         }
-    }
 }
