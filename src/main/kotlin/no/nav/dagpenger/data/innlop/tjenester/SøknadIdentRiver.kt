@@ -34,13 +34,13 @@ internal class SøknadIdentRiver(
         packet: JsonMessage,
         context: MessageContext,
     ) {
+        logger.info { "Sjekker om vi skal publisere SøknadIdent" }
         val søknadId = packet["søknad_uuid"].asUUID()
         val ident = packet["ident"].asText()
 
         withLoggingContext(
             "søknadId" to søknadId.toString(),
         ) {
-            logger.info { "Sjekker om vi skal publisere SøknadIdent" }
             val person = personRepository.hentPerson(ident)
 
             if (person.harAdressebeskyttelse) return
