@@ -3,19 +3,19 @@ package no.nav.dagpenger.dataprodukter.søknad.data
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import no.nav.dagpenger.dataprodukter.søknad.objectMapper
-import java.util.SortedSet
 
-class QuizSøknadData(
+internal class QuizSøknadData(
     data: JsonNode,
 ) : SøknadData(data) {
-    override val bostedsland: String
+    private val bostedsland
         get() = getFaktum("faktum.hvilket-land-bor-du-i")["svar"].asText()
-    override val arbeidsforholdLand: SortedSet<String>
+    private val arbeidsforholdLand
         get() =
-            (
-                getFakta("faktum.arbeidsforhold.land").map { it["svar"].asText() } +
-                    getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asText() }
-            ).toSortedSet()
+            getFakta("faktum.arbeidsforhold.land").map { it["svar"].asText() } +
+                getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asText() }
+
+    override val utenlandstilsnitt: Utenlandstilsnitt
+        get() = Utenlandstilsnitt(bostedsland, arbeidsforholdLand)
 
     private fun getFaktum(faktumId: String) = getFakta(faktumId).single()
 
@@ -83,7 +83,7 @@ class QuizSøknadData(
         return periode
     }
 
-    val fakta
+    override val fakta: List<Faktum>
         get() =
             alleFakta(data)
                 .map {
@@ -91,14 +91,4 @@ class QuizSøknadData(
                     val gruppeId = it["gruppeId"]?.asText()
                     Faktum(it["beskrivendeId"].asText(), it["type"].asText(), it["svar"].asText(), gruppe, gruppeId)
                 }.filterNot { it.erFritekst }
-
-    data class Faktum(
-        val beskrivendeId: String,
-        val type: String,
-        val svar: String,
-        val gruppe: String?,
-        val gruppeId: String?,
-    ) {
-        val erFritekst = type == "tekst"
-    }
 }

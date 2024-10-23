@@ -5,7 +5,6 @@ import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
-import no.nav.dagpenger.dataprodukter.søknad.erEØS
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -61,10 +60,10 @@ internal class UtlandRiver(
                     .newBuilder()
                     .apply {
                         this.journalpostId = journalpostId
-                        erUtland = erUtland(søknad)
-                        bostedsland = søknad.bostedsland
-                        arbeidsforholdEos = søknad.arbeidsforholdLand.any { it.erEØS() }
-                        arbeidsforholdLand = søknad.arbeidsforholdLand.joinToString()
+                        erUtland = søknad.utenlandstilsnitt.erUtland
+                        bostedsland = søknad.utenlandstilsnitt.bostedsland
+                        arbeidsforholdEos = søknad.utenlandstilsnitt.harArbeidsforholdEØS
+                        arbeidsforholdLand = søknad.utenlandstilsnitt.arbeidsland.joinToString(",")
                     }.build()
                     .also { data ->
                         logger.info { "Publiserer rad for ${data::class.java.simpleName}" }
@@ -78,12 +77,4 @@ internal class UtlandRiver(
             }
         }
     }
-
-    private fun erUtland(søknad: SøknadData): Boolean =
-        try {
-            søknad.bostedsland != "NOR" || søknad.arbeidsforholdLand.any { it != "NOR" }
-        } catch (e: Exception) {
-            sikkerlogg.error(e) { søknad.data }
-            throw e
-        }
 }

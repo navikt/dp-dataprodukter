@@ -7,7 +7,7 @@ import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
-import no.nav.dagpenger.dataprodukter.søknad.data.QuizSøknadData
+import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -38,8 +38,9 @@ internal class SøknadsdataRiver(
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
 
+        val søknadData = SøknadData.lagMapper(packet["seksjoner"])
         ferdigeSøknader
-            .lagre(Søknad(søknadId, packet["versjon_navn"].asText(), QuizSøknadData(packet["seksjoner"])))
+            .lagre(Søknad(søknadId, packet["versjon_navn"].asText(), søknadData))
             .also {
                 logger.info { "Mellomlagrer data for søknadId=$søknadId" }
             }

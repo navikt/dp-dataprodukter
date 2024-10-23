@@ -1,7 +1,6 @@
 package no.nav.dagpenger.dataprodukter.søknad.data
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import no.nav.dagpenger.dataprodukter.søknad.erEØS
 import no.nav.dagpenger.dataprodukter.søknad.objectMapper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -13,17 +12,17 @@ internal class QuizSøknadDataTest {
 
     @Test
     fun getBostedsland() {
-        Assertions.assertEquals("SWE", søknadData.bostedsland)
+        Assertions.assertEquals("SWE", søknadData.utenlandstilsnitt.bostedsland)
     }
 
     @Test
     fun getArbeidsforholdEos() {
-        Assertions.assertTrue(søknadData.arbeidsforholdLand.any { it.erEØS() })
+        Assertions.assertTrue(søknadData.utenlandstilsnitt.erUtland)
     }
 
     @Test
     fun getArbeidsforholdLand() {
-        Assertions.assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.arbeidsforholdLand)
+        Assertions.assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.utenlandstilsnitt.arbeidsland)
     }
 
     @Test
