@@ -30,7 +30,8 @@
       "type": {
         "type": "long",
         "logicalType": "timestamp-millis"
-      }
+      },
+      "doc": "Tidspunkt for siste endring på behandlingen"
     },
     {
       "name": "tekniskTid",
@@ -38,7 +39,7 @@
         "type": "long",
         "logicalType": "timestamp-millis"
       },
-      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen"
+      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen. Kan brukes til delta-last."
     },
     {
       "name": "behandlingType",
@@ -47,15 +48,18 @@
     },
     {
       "name": "behandlingStatus",
-      "type": "string"
+      "type": "string",
+      "doc": "Kode som angir hvilken status behandlingen har. Typisk: registrert, klar til behandling, avsluttet, etc."
     },
     {
       "name": "avsender",
-      "type": "string"
+      "type": "string",
+      "doc": "Angir fagsystemets eget navn"
     },
     {
       "name": "versjon",
-      "type": "string"
+      "type": "string",
+      "doc": "Hvilken versjonen av koden dataene er generert med bakgrunn på."
     },
     {
       "name": "mottattTid",
