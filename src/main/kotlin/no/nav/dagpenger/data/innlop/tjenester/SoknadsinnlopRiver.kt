@@ -98,6 +98,7 @@ internal class SoknadsinnlopRiver(
             }.build()
             .also {
                 identTopic.publiser(it)
+                logger.info { "Publiserer rad for ${it::class.java.simpleName}" }
             }
     }
 }
