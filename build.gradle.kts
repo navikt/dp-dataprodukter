@@ -10,7 +10,7 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://packages.confluent.io/maven")
-    maven("https://jitpack.io")
+    maven("https://github-package-registry-mirror.gc.nav.no/cached/maven-release")
 }
 
 dependencies {
@@ -40,7 +40,7 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("no.nav.dagpenger.data.innlop.MainKt")
+    mainClass.set("no.nav.dagpenger.dataprodukter.MainKt")
 }
 
 graphql {
