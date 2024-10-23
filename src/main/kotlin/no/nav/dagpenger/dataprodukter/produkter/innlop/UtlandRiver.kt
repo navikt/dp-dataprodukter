@@ -3,9 +3,9 @@ package no.nav.dagpenger.dataprodukter.produkter.innlop
 import mu.KotlinLogging
 import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.innlop.Utland
-import no.nav.dagpenger.dataprodukter.erEØS
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.søknad.SøknadData
+import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
+import no.nav.dagpenger.dataprodukter.søknad.erEØS
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection

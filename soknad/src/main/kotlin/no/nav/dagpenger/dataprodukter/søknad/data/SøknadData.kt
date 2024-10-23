@@ -1,9 +1,9 @@
-package no.nav.dagpenger.dataprodukter.søknad
+package no.nav.dagpenger.dataprodukter.søknad.data
 
 import com.fasterxml.jackson.databind.JsonNode
 import java.util.SortedSet
 
-internal abstract class SøknadData(
+abstract class SøknadData(
     val data: JsonNode,
 ) {
     abstract val bostedsland: String

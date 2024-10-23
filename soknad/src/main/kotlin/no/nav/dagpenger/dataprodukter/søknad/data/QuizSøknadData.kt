@@ -1,15 +1,11 @@
-package no.nav.dagpenger.dataprodukter.søknad
+package no.nav.dagpenger.dataprodukter.søknad.data
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import mu.KotlinLogging
+import no.nav.dagpenger.dataprodukter.søknad.objectMapper
 import java.util.SortedSet
 
-private val logger = KotlinLogging.logger { }
-private val objectMapper = jacksonObjectMapper()
-
-internal class QuizSøknadData(
+class QuizSøknadData(
     data: JsonNode,
 ) : SøknadData(data) {
     override val bostedsland: String
@@ -45,9 +41,7 @@ internal class QuizSøknadData(
                             if (fakta.has("svar")) {
                                 fakta["svar"]
                             } else {
-                                emptyList<List<*>>().also {
-                                    logger.warn { "Generator $navn mangler svar " }
-                                }
+                                emptyList<List<*>>()
                             }
                         svar
                             .flatten()
@@ -61,6 +55,7 @@ internal class QuizSøknadData(
                                     "periode" -> {
                                         periode(generatorSvar)
                                     }
+
                                     else -> generatorSvar
                                 }
                             }
@@ -72,6 +67,7 @@ internal class QuizSøknadData(
                             flervalg.put("svar", it.asText())
                         }
                     }
+
                     "periode" -> {
                         listOf(periode(fakta))
                     }

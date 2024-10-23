@@ -1,35 +1,35 @@
-package no.nav.dagpenger.dataprodukter.søknad
+package no.nav.dagpenger.dataprodukter.søknad.data
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import no.nav.dagpenger.dataprodukter.erEØS
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import no.nav.dagpenger.dataprodukter.søknad.erEØS
+import no.nav.dagpenger.dataprodukter.søknad.objectMapper
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class QuizSøknadDataTest {
     private val søknadData by lazy {
-        SøknadData.lagMapper(jacksonObjectMapper().readTree(object {}.javaClass.getResourceAsStream("/soknadsdata_nytt_format.json")))
+        SøknadData.lagMapper(objectMapper.readTree(object {}.javaClass.getResourceAsStream("/nytt_format.json")))
     }
 
     @Test
     fun getBostedsland() {
-        assertEquals("SWE", søknadData.bostedsland)
+        Assertions.assertEquals("SWE", søknadData.bostedsland)
     }
 
     @Test
     fun getArbeidsforholdEos() {
-        assertTrue(søknadData.arbeidsforholdLand.any { it.erEØS() })
+        Assertions.assertTrue(søknadData.arbeidsforholdLand.any { it.erEØS() })
     }
 
     @Test
     fun getArbeidsforholdLand() {
-        assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.arbeidsforholdLand)
+        Assertions.assertEquals(setOf("DNK", "FRA", "NOR"), søknadData.arbeidsforholdLand)
     }
 
     @Test
     fun getFlervalgSvar() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(flervalgJSON))
-        assertEquals(
+        Assertions.assertEquals(
             listOf(
                 "faktum.kun-deltid-aarsak.svar.omsorg-baby",
                 "faktum.kun-deltid-aarsak.svar.redusert-helse",
@@ -41,13 +41,13 @@ internal class QuizSøknadDataTest {
     @Test
     fun `generator mangler svar`() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(generatorUtenSvarJSON))
-        assertEquals(0, data.fakta.size)
+        Assertions.assertEquals(0, data.fakta.size)
     }
 
     @Test
     fun `periode svar med fom og tom`() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(periodeSvar))
-        assertEquals(
+        Assertions.assertEquals(
             """{"fom":"2021-01-14","tom":"2021-03-12"}""",
             data.fakta.first().svar,
         )
@@ -56,7 +56,7 @@ internal class QuizSøknadDataTest {
     @Test
     fun `periode svar med uten tom`() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(periodeSvarUtenTom))
-        assertEquals(
+        Assertions.assertEquals(
             """{"fom":"2021-01-14"}""",
             data.fakta.first().svar,
         )
@@ -65,13 +65,13 @@ internal class QuizSøknadDataTest {
     @Test
     fun `generator med flere svartyper`() {
         val data = QuizSøknadData(jacksonObjectMapper().readTree(generatorMedPeriode))
-        assertEquals("11", data.fakta.find { it.gruppeId == "f67.1" && it.type == "int" }?.svar)
-        assertEquals(
+        Assertions.assertEquals("11", data.fakta.find { it.gruppeId == "f67.1" && it.type == "int" }?.svar)
+        Assertions.assertEquals(
             """{"fom":"2021-01-14","tom":"2021-03-12"}""",
             data.fakta.find { it.gruppeId == "f67.1" && it.type == "periode" }?.svar,
         )
-        assertEquals("19", data.fakta.find { it.gruppeId == "f67.2" && it.type == "int" }?.svar)
-        assertEquals(
+        Assertions.assertEquals("19", data.fakta.find { it.gruppeId == "f67.2" && it.type == "int" }?.svar)
+        Assertions.assertEquals(
             """{"fom":"2023-01-14","tom":"2023-03-12"}""",
             data.fakta.find { it.gruppeId == "f67.2" && it.type == "periode" }?.svar,
         )

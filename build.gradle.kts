@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    implementation(project(":soknad"))
 
     implementation(libs.rapids.and.rivers)
     implementation("org.apache.avro:avro:1.12.0")
@@ -28,6 +28,8 @@ dependencies {
     testImplementation("no.nav.security:mock-oauth2-server:2.1.9") {
         exclude(group = "junit", module = "junit")
     }
+
+    testImplementation(kotlin("test"))
     testImplementation(libs.mockk)
 }
 

@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.søknad
 
 import java.util.UUID
 
-internal interface SøknadRepository {
+interface SøknadRepository {
     fun lagre(søknad: Søknad)
 
     fun hent(søknadId: UUID): Søknad?
@@ -10,7 +10,7 @@ internal interface SøknadRepository {
     fun slett(søknadId: UUID): Søknad?
 }
 
-internal class InMemorySøknadRepository : SøknadRepository {
+class InMemorySøknadRepository : SøknadRepository {
     private val søknader = mutableMapOf<UUID, Søknad>()
 
     override fun lagre(søknad: Søknad) = søknader.set(søknad.søknadId, søknad)

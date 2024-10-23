@@ -1,6 +1,7 @@
-package no.nav.dagpenger.dataprodukter.søknad
+package no.nav.dagpenger.dataprodukter.søknad.data
 
 import com.fasterxml.jackson.databind.JsonNode
+import no.nav.dagpenger.dataprodukter.søknad.AvsluttetArbeidsforhold
 import java.util.SortedSet
 
 internal class GammelSøknadData(

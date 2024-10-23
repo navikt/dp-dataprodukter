@@ -1,4 +1,4 @@
-package no.nav.dagpenger.dataprodukter
+package no.nav.dagpenger.dataprodukter.søknad
 
 fun String.erEØS() = this in eøsLand
 
