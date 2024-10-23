@@ -9,6 +9,9 @@ spec:
   image: {{image}}
   kafka:
     pool: {{kafka.pool}}
+  replicas:
+    min: 2
+    max: 4
   secureLogs:
     enabled: true
   env:
