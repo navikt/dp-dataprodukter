@@ -7,6 +7,7 @@ import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.dagpenger.data.innlop.asUUID
 import no.nav.dagpenger.data.innlop.avro.asTimestamp
 import no.nav.dagpenger.data.innlop.kafka.DataTopic
+import no.nav.dagpenger.data.innlop.person.PersonRepository
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -17,6 +18,7 @@ internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Soknadsinnlop>,
     private val identTopic: DataTopic<Ident>,
+    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -59,6 +61,8 @@ internal class SoknadsinnlopRiver(
         context: MessageContext,
     ) {
         val journalpostId = packet["journalpostId"].asText()
+        val ident = packet["fødselsnummer"].asText()
+        val person = personRepository.hentPerson(ident)
 
         withLoggingContext(
             "journalpostId" to journalpostId,
@@ -84,11 +88,13 @@ internal class SoknadsinnlopRiver(
                 }
         }
 
+        if (person.harAdressebeskyttelse) return
+
         Ident
             .newBuilder()
             .apply {
                 this.journalpostId = journalpostId
-                ident = packet["fødselsnummer"].asText()
+                this.ident = ident
             }.build()
             .also {
                 identTopic.publiser(it)

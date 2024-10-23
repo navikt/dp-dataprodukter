@@ -38,7 +38,7 @@ fun main() {
 
     RapidApplication
         .create(env) { _, rapidsConnection ->
-            SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident)
+            SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident, personRepository)
             UtlandRiver(rapidsConnection, DataTopics.utland)
             SøknadsdataRiver(rapidsConnection, søknadRepository)
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
