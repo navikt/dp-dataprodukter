@@ -6,6 +6,7 @@ import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.innlop.Ident
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.Person
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
@@ -45,7 +46,7 @@ internal class SoknadsinnlopRiverTest {
     fun `skal produsere dataprodukt for innløp og ident`() {
         every {
             personRepository.hentPerson(any())
-        } returns PersonRepository.Person(harAdressebeskyttelse = false)
+        } returns Person(harAdressebeskyttelse = false)
 
         rapid.sendTestMessage(behovJSON)
 
@@ -59,7 +60,7 @@ internal class SoknadsinnlopRiverTest {
     fun `skal produsere dataprodukt for innløp uten ident når adressebeskyttelse`() {
         every {
             personRepository.hentPerson(any())
-        } returns PersonRepository.Person(harAdressebeskyttelse = true)
+        } returns Person(harAdressebeskyttelse = true)
 
         rapid.sendTestMessage(behovJSON)
 

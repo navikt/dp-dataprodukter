@@ -1,5 +1,9 @@
 package no.nav.dagpenger.dataprodukter.oauth2
 
+import com.natpryce.konfig.EnvironmentVariables
+import com.natpryce.konfig.PropertyGroup
+import com.natpryce.konfig.getValue
+import com.natpryce.konfig.stringType
 import com.nimbusds.oauth2.sdk.ClientCredentialsGrant
 import com.nimbusds.oauth2.sdk.Scope
 import com.nimbusds.oauth2.sdk.TokenRequest
@@ -9,9 +13,21 @@ import com.nimbusds.oauth2.sdk.auth.ClientSecretBasic
 import com.nimbusds.oauth2.sdk.auth.Secret
 import com.nimbusds.oauth2.sdk.id.ClientID
 import com.nimbusds.oauth2.sdk.token.AccessToken
-import no.nav.dagpenger.dataprodukter.azure
-import no.nav.dagpenger.dataprodukter.config
+import no.nav.dagpenger.dataprodukter.person.TokenProvider
 import java.net.URI
+
+private object azure : PropertyGroup() {
+    val app_client_id by stringType
+    val app_client_secret by stringType
+    val openid_config_token_endpoint by stringType
+}
+
+private val config = EnvironmentVariables()
+
+fun tokenProvider(scope: String): TokenProvider {
+    val azureAD = AzureAD(scope)
+    return { azureAD.token().toAuthorizationHeader() }
+}
 
 class AzureAD internal constructor(
     private val scope: Scope,

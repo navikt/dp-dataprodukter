@@ -4,14 +4,22 @@ import com.expediagroup.graphql.client.spring.GraphQLWebClient
 import com.expediagroup.graphql.client.types.GraphQLClientError
 import io.ktor.http.HttpHeaders
 import kotlinx.coroutines.runBlocking
+import no.nav.dagpenger.dataprodukter.oauth2.tokenProvider
 import no.nav.pdl.HentPerson
 import no.nav.pdl.enums.AdressebeskyttelseGradering
 import org.slf4j.MDC
 
-class PdlPersonRepository(
+internal typealias TokenProvider = () -> String
+
+class PdlPersonRepository internal constructor(
     private val client: GraphQLWebClient,
-    private val tokenExchange: () -> String,
+    private val tokenProvider: TokenProvider,
 ) : PersonRepository {
+    constructor(
+        endpoint: String,
+        scope: String,
+    ) : this(GraphQLWebClient(endpoint), tokenProvider(scope))
+
     private companion object {
         private val beskyttet =
             listOf(
@@ -20,12 +28,12 @@ class PdlPersonRepository(
             )
     }
 
-    override fun hentPerson(ident: String): PersonRepository.Person {
+    override fun hentPerson(ident: String): Person {
         val person =
             runBlocking {
                 client
                     .execute(HentPerson(HentPerson.Variables(ident))) {
-                        header(HttpHeaders.Authorization, "Bearer ${tokenExchange()}")
+                        header(HttpHeaders.Authorization, "Bearer ${tokenProvider()}")
                         header(HttpHeaders.XRequestId, MDC.get("journalpostId"))
                         header("behandlingsnummer", "B342")
                     }.also {
@@ -39,7 +47,7 @@ class PdlPersonRepository(
                     }
             }.data!!.hentPerson
 
-        return PersonRepository.Person(
+        return Person(
             harAdressebeskyttelse = person!!.adressebeskyttelse.any { it.gradering in beskyttet },
         )
     }

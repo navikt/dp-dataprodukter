@@ -23,7 +23,7 @@ class PdlPersonRepositoryTest {
         private val ugradertPerson = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.UGRADERT)))
         private val kode7 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.FORTROLIG)))
         private val kode6 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.STRENGT_FORTROLIG)))
-        private const val ident = "12312312311"
+        private val ident = "12312312311"
     }
 
     @Test
