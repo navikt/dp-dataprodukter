@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.innlop
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.Utland
+import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.erEØS
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.SøknadData
@@ -57,7 +57,7 @@ internal class UtlandRiver(
             }
             val søknad = SøknadData.lagMapper(søknadsData)
             try {
-                no.nav.dagpenger.dataprodukter.Utland
+                Utland
                     .newBuilder()
                     .apply {
                         this.journalpostId = journalpostId

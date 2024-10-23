@@ -3,6 +3,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
+import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.produkter.innlop.UtlandRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class UtlandRiverTest {
-    private val producer = mockk<KafkaProducer<String, no.nav.dagpenger.dataprodukter.Utland>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, Utland>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid by lazy {
         TestRapid().apply {
@@ -34,7 +35,7 @@ internal class UtlandRiverTest {
     @Disabled
     fun `skal poste inntekt ut på Kafka`() {
         rapid.sendTestMessage(behovJSON)
-        val packet = slot<no.nav.dagpenger.dataprodukter.Utland>()
+        val packet = slot<Utland>()
         verify {
             dataTopic.publiser(capture(packet))
         }

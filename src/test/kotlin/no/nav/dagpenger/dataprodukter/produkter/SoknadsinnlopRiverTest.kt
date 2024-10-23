@@ -3,6 +3,8 @@ package no.nav.dagpenger.dataprodukter.produkter
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import no.nav.dagpenger.dataprodukt.innlop.Ident
+import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
@@ -13,8 +15,8 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 
 internal class SoknadsinnlopRiverTest {
-    private val producer = mockk<KafkaProducer<String, no.nav.dagpenger.dataprodukter.Soknadsinnlop>>(relaxed = true)
-    private val producerIdent = mockk<KafkaProducer<String, no.nav.dagpenger.dataprodukter.Ident>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, Soknadsinnlop>>(relaxed = true)
+    private val producerIdent = mockk<KafkaProducer<String, Ident>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val identTopic = DataTopic(producerIdent, "ident")
     private val personRepository = mockk<PersonRepository>()

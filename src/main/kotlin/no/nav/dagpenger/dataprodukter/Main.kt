@@ -1,7 +1,14 @@
 package no.nav.dagpenger.dataprodukter
 
 import com.expediagroup.graphql.client.spring.GraphQLWebClient
-import no.nav.dagpenger.data.Behandling
+import no.nav.dagpenger.dataprodukt.behandling.Behandling
+import no.nav.dagpenger.dataprodukt.innlop.Ident
+import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
+import no.nav.dagpenger.dataprodukt.innlop.Utland
+import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
+import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
+import no.nav.dagpenger.dataprodukt.soknad.SoknadIdent
+import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic.Companion.dataTopic
 import no.nav.dagpenger.dataprodukter.oauth2.AzureAD
 import no.nav.dagpenger.dataprodukter.person.PdlPersonRepository

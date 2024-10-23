@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.data.Behandling
+import no.nav.dagpenger.dataprodukt.behandling.Behandling
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic

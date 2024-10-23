@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.søknad
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.SoknadFaktum
+import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.QuizSøknadData
@@ -96,7 +96,7 @@ internal class SøknadInnsendtRiver(
                 data.fakta
                     .filterNot { it.beskrivendeId in sperretFakta }
                     .onEach { faktum ->
-                        no.nav.dagpenger.dataprodukter.SoknadFaktum
+                        SoknadFaktum
                             .newBuilder()
                             .apply {
                                 this.soknadId = søknadId

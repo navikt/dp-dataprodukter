@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.søknad
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.SoknadIdent
+import no.nav.dagpenger.dataprodukt.soknad.SoknadIdent
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
@@ -45,7 +45,7 @@ internal class SøknadIdentRiver(
 
             if (person.harAdressebeskyttelse) return
 
-            no.nav.dagpenger.dataprodukter.SoknadIdent
+            SoknadIdent
                 .newBuilder()
                 .apply {
                     this.soknadId = søknadId

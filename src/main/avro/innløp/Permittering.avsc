@@ -1,5 +1,5 @@
 {
-  "namespace": "no.nav.dagpenger.data.innlop",
+  "namespace": "no.nav.dagpenger.dataprodukt.innlop",
   "name": "Permittering",
   "type": "record",
   "fields": [

@@ -2,6 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 
 import io.mockk.mockk
 import io.mockk.verify
+import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.produkter.søknad.DokumentkravRiver
 import no.nav.helse.rapids_rivers.JsonMessage
@@ -13,7 +14,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 internal class DokumentkravRiverTest {
-    private val producer = mockk<KafkaProducer<String, no.nav.dagpenger.dataprodukter.Dokumentkrav>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, Dokumentkrav>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid =
         TestRapid().also {

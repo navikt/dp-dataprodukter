@@ -2,8 +2,8 @@ package no.nav.dagpenger.dataprodukter.produkter.innlop
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.Ident
-import no.nav.dagpenger.dataprodukter.Soknadsinnlop
+import no.nav.dagpenger.dataprodukt.innlop.Ident
+import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -68,7 +68,7 @@ internal class SoknadsinnlopRiver(
             "journalpostId" to journalpostId,
             "dataprodukt" to dataTopic.topic,
         ) {
-            no.nav.dagpenger.dataprodukter.Soknadsinnlop
+            Soknadsinnlop
                 .newBuilder()
                 .apply {
                     id = packet["@id"].asUUID()
@@ -90,7 +90,7 @@ internal class SoknadsinnlopRiver(
 
         if (person.harAdressebeskyttelse) return
 
-        no.nav.dagpenger.dataprodukter.Ident
+        Ident
             .newBuilder()
             .apply {
                 this.journalpostId = journalpostId

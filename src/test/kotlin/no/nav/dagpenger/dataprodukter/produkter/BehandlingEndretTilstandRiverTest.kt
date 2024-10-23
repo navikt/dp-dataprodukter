@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.data.Behandling
+import no.nav.dagpenger.dataprodukt.behandling.Behandling
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingEndretTilstandRiver
 import no.nav.helse.rapids_rivers.testsupport.TestRapid

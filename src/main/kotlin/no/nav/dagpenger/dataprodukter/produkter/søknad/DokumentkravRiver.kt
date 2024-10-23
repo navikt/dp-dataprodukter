@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.søknad
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.Dokumentkrav
+import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -51,7 +51,7 @@ internal class DokumentkravRiver(
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             val dokumentkrav =
-                no.nav.dagpenger.dataprodukter.Dokumentkrav.newBuilder().apply {
+                Dokumentkrav.newBuilder().apply {
                     soknadId = søknadId
                     soknadType = packet["søknadType"].asText()
                     innsendingstype = packet["innsendingsType"].asText()
@@ -61,7 +61,7 @@ internal class DokumentkravRiver(
                 }
 
             packet["dokumentkrav"].map {
-                no.nav.dagpenger.dataprodukter.Dokumentkrav
+                Dokumentkrav
                     .newBuilder(dokumentkrav)
                     .apply {
                         dokumentnavn = it["dokumentnavn"].asText()

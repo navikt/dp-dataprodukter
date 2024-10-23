@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 
 import io.mockk.every
 import io.mockk.mockk
-import no.nav.dagpenger.dataprodukter.SoknadIdent
+import no.nav.dagpenger.dataprodukt.soknad.SoknadIdent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.person.PersonRepository.Person

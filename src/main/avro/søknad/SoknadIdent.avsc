@@ -1,5 +1,5 @@
 {
-  "namespace": "no.nav.dagpenger.data.innlop",
+  "namespace": "no.nav.dagpenger.dataprodukt.soknad",
   "name": "SoknadIdent",
   "type": "record",
   "doc": "Linke-tabell for å koble søknad og person",

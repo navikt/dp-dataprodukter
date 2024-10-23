@@ -2,6 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 
 import io.mockk.mockk
 import io.mockk.verify
+import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.helpers.tilstandEndretEvent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadTilstandRiver
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test
 import java.util.UUID
 
 internal class SøknadTilstandRiverTest {
-    private val producer = mockk<KafkaProducer<String, no.nav.dagpenger.dataprodukter.SoknadTilstand>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, SoknadTilstand>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid =
         TestRapid().also {

@@ -2,7 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter.søknad
 
 import mu.KotlinLogging
 import mu.withLoggingContext
-import no.nav.dagpenger.dataprodukter.SoknadTilstand
+import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -48,7 +48,7 @@ internal class SøknadTilstandRiver(
         val gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
-            no.nav.dagpenger.dataprodukter.SoknadTilstand
+            SoknadTilstand
                 .newBuilder()
                 .apply {
                     this.soknadId = søknadId
