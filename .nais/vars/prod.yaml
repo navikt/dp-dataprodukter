@@ -7,3 +7,5 @@ gcp:
 pdl:
   host: pdl-api.prod-fss-pub.nais.io
   scope: "api://prod-fss.pdl.pdl-api/.default"
+db:
+  tier: db-custom-1-3840

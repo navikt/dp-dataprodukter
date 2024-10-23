@@ -47,3 +47,11 @@ spec:
   azure:
     application:
       enabled: true
+  gcp:
+    sqlInstances:
+      - type: POSTGRES_16
+        tier: {{db.tier}}
+        highAvailability: true
+        databases:
+          - name: dataprodukt
+            envVarPrefix: DB
