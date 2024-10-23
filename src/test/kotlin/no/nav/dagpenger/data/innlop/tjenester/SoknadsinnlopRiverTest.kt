@@ -1,10 +1,12 @@
 package no.nav.dagpenger.data.innlop.tjenester
 
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.data.innlop.Ident
 import no.nav.dagpenger.data.innlop.Soknadsinnlop
 import no.nav.dagpenger.data.innlop.kafka.DataTopic
+import no.nav.dagpenger.data.innlop.person.PersonRepository
 import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
@@ -16,12 +18,15 @@ internal class SoknadsinnlopRiverTest {
     private val producerIdent = mockk<KafkaProducer<String, Ident>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val identTopic = DataTopic(producerIdent, "ident")
+    private val personRepository = mockk<PersonRepository>()
+
     private val rapid by lazy {
         TestRapid().apply {
             SoknadsinnlopRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
                 identTopic = identTopic,
+                personRepository = personRepository,
             )
         }
     }
@@ -36,11 +41,31 @@ internal class SoknadsinnlopRiverTest {
     }
 
     @Test
-    fun `skal poste inntekt ut på Kafka`() {
+    fun `skal produsere dataprodukt for innløp og ident`() {
+        every {
+            personRepository.hentPerson(any())
+        } returns PersonRepository.Person(harAdressebeskyttelse = false)
+
         rapid.sendTestMessage(behovJSON)
 
         verify {
             producer.send(any(), any())
+            producerIdent.send(any(), any())
+        }
+    }
+
+    @Test
+    fun `skal produsere dataprodukt for innløp uten ident når adressebeskyttelse`() {
+        every {
+            personRepository.hentPerson(any())
+        } returns PersonRepository.Person(harAdressebeskyttelse = true)
+
+        rapid.sendTestMessage(behovJSON)
+
+        verify {
+            producer.send(any(), any())
+        }
+        verify(exactly = 0) {
             producerIdent.send(any(), any())
         }
     }
