@@ -20,6 +20,7 @@ dependencies {
     implementation("io.confluent:kafka-avro-serializer:7.7.1")
 
     testImplementation(libs.mockk)
+    testImplementation(libs.rapids.and.rivers.test)
 }
 
 application {

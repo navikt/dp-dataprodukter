@@ -5,12 +5,13 @@ on:
     branches-ignore:
       - 'dependabot/**'
 
+permissions:
+  id-token: write
+
 jobs:
   build:
     name: build
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4

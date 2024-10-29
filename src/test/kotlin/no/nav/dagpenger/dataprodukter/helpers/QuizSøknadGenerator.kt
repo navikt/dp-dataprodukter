@@ -1,6 +1,6 @@
 package no.nav.dagpenger.dataprodukter.helpers
 
-import no.nav.helse.rapids_rivers.JsonMessage
+import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import java.util.UUID
 
 typealias Seksjoner = MutableList<Map<String, Any>>
