@@ -6,4 +6,4 @@ import java.time.ZoneId
 
 private val oslo: ZoneId = ZoneId.of("Europe/Oslo")
 
-fun LocalDateTime.asTimestamp(): Instant? = this.atZone(no.nav.dagpenger.dataprodukter.avro.oslo).toInstant()
+fun LocalDateTime.asTimestamp(): Instant? = this.atZone(oslo).toInstant()

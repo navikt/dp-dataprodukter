@@ -1,5 +1,7 @@
 package no.nav.dagpenger.dataprodukter.produkter
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
+import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -12,8 +14,6 @@ import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadInnsendtRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
-import no.nav.helse.rapids_rivers.JsonMessage
-import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

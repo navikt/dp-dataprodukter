@@ -1,5 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.every
 import io.mockk.mockk
 import no.nav.dagpenger.dataprodukt.soknad.SoknadIdent
@@ -7,7 +8,6 @@ import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.person.Person
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadIdentRiver
-import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
