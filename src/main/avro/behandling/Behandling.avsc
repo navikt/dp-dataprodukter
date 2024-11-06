@@ -4,14 +4,6 @@
   "type": "record",
   "fields": [
     {
-      "name": "sekvensnummer",
-      "type": [
-        "null",
-        "long"
-      ],
-      "default": null
-    },
-    {
       "name": "meldingsreferanseId",
       "type": {
         "type": "string",
