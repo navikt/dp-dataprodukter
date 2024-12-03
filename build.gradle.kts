@@ -17,7 +17,7 @@ dependencies {
     implementation("org.apache.avro:avro:1.12.0")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
-    implementation("io.confluent:kafka-avro-serializer:7.7.2")
+    implementation("io.confluent:kafka-avro-serializer:7.8.0")
 
     testImplementation(libs.mockk)
     testImplementation(libs.rapids.and.rivers.test)
