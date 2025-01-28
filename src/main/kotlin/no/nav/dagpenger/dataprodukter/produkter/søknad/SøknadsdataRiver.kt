@@ -4,7 +4,9 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
+import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
 import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -21,9 +23,9 @@ internal class SøknadsdataRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "søker_oppgave") }
-                validate { it.demandValue("ferdig", true) }
-                validate { it.demandKey("versjon_navn") }
+                precondition { it.requireValue("@event_name", "søker_oppgave") }
+                precondition { it.requireValue("ferdig", true) }
+                precondition { it.requireKey("versjon_navn") }
                 validate { it.requireKey("søknad_uuid", "seksjoner") }
             }.register(this)
     }
@@ -35,6 +37,8 @@ internal class SøknadsdataRiver(
     override fun onPacket(
         packet: JsonMessage,
         context: MessageContext,
+        metadata: MessageMetadata,
+        meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
 
@@ -71,8 +75,8 @@ internal class SøknadInnsendtRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
-                validate { it.demandValue("gjeldendeTilstand", "Innsendt") }
+                precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
+                precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
                 validate { it.requireKey("søknad_uuid", "@opprettet") }
             }.register(this)
     }
@@ -84,6 +88,8 @@ internal class SøknadInnsendtRiver(
     override fun onPacket(
         packet: JsonMessage,
         context: MessageContext,
+        metadata: MessageMetadata,
+        meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
