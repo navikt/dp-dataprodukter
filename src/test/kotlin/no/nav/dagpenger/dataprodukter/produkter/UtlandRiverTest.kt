@@ -6,6 +6,7 @@ import io.mockk.slot
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.Person
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.innlop.UtlandRiver
 import org.intellij.lang.annotations.Language
@@ -35,6 +36,10 @@ internal class UtlandRiverTest {
 
     @Test
     fun `skal lage produkt utlandstilsnitt`() {
+        every {
+            personRepository.hentPerson(any())
+        } returns Person(harAdressebeskyttelse = false)
+
         rapid.sendTestMessage(behovJSON)
 
         val packet = slot<Utland>()
