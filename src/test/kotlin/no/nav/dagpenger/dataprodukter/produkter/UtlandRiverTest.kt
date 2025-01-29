@@ -1,6 +1,7 @@
 package no.nav.dagpenger.dataprodukter.produkter
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
