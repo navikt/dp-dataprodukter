@@ -71,7 +71,7 @@ internal class SoknadsinnlopRiver(
         withLoggingContext(
             "journalpostId" to journalpostId,
             "dataprodukt" to dataTopic.topic,
-        ) { 
+        ) {
             Soknadsinnlop
                 .newBuilder()
                 .apply {
