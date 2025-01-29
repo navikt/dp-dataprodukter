@@ -69,8 +69,11 @@ internal class SoknadsinnlopRiver(
         withLoggingContext(
             "journalpostId" to journalpostId,
             "dataprodukt" to dataTopic.topic,
-        ) {
-            Soknadsinnlop
+        )
+        
+        if (person.harAdressebeskyttelse) return
+        
+        {   Soknadsinnlop
                 .newBuilder()
                 .apply {
                     id = packet["@id"].asUUID()
@@ -89,7 +92,5 @@ internal class SoknadsinnlopRiver(
                     dataTopic.publiser(innlop)
                 }
         }
-
-        if (person.harAdressebeskyttelse) return
     }
 }
