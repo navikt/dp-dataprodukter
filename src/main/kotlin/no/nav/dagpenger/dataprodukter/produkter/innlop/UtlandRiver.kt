@@ -11,10 +11,12 @@ import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 
 internal class UtlandRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Utland>,
+    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -33,6 +35,7 @@ internal class UtlandRiver(
                     it.interestedIn(
                         "journalpostId",
                         "søknadsData",
+                        "fødselsnummer",
                     )
                 }
             }.register(this)
@@ -51,6 +54,11 @@ internal class UtlandRiver(
     ) {
         val søknadsData = packet["søknadsData"]
         val journalpostId = packet["journalpostId"].asText()
+        val ident = packet["fødselsnummer"].asText()
+        val person = personRepository.hentPerson(ident)
+
+        if (person.harAdressebeskyttelse) return
+
         withLoggingContext(
             "journalpostId" to journalpostId,
         ) {
