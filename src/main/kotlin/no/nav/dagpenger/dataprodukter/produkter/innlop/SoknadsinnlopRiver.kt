@@ -66,14 +66,13 @@ internal class SoknadsinnlopRiver(
         val ident = packet["fødselsnummer"].asText()
         val person = personRepository.hentPerson(ident)
 
+        if (person.harAdressebeskyttelse) return
+
         withLoggingContext(
             "journalpostId" to journalpostId,
             "dataprodukt" to dataTopic.topic,
-        )
-        
-        if (person.harAdressebeskyttelse) return
-        
-        {   Soknadsinnlop
+        ) { 
+            Soknadsinnlop
                 .newBuilder()
                 .apply {
                     id = packet["@id"].asUUID()
