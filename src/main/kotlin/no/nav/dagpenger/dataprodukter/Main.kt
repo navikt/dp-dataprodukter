@@ -1,7 +1,6 @@
 package no.nav.dagpenger.dataprodukter
 
 import no.nav.dagpenger.dataprodukt.behandling.Behandling
-import no.nav.dagpenger.dataprodukt.innlop.Ident
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
@@ -23,7 +22,6 @@ import no.nav.helse.rapids_rivers.RapidApplication
 
 internal object DataTopics {
     val soknadsinnlop = dataTopic<Soknadsinnlop>(config[kafka_produkt_topic])
-    val ident = dataTopic<Ident>(config[kafka_produkt_ident_topic])
     val utland = dataTopic<Utland>(config[kafka_produkt_utland_topic])
     val soknadFaktum = dataTopic<SoknadFaktum>(config[kafka_produkt_soknad_faktum_topic])
     val soknadTilstand = dataTopic<SoknadTilstand>(config[kafka_produkt_soknad_tilstand_topic])
@@ -43,7 +41,7 @@ fun main() {
 
     RapidApplication
         .create(env) { _, rapidsConnection ->
-            SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, DataTopics.ident, personRepository)
+            SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop, personRepository)
             UtlandRiver(rapidsConnection, DataTopics.utland)
             SøknadsdataRiver(rapidsConnection, søknadRepository)
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
