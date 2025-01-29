@@ -6,6 +6,7 @@ import io.mockk.slot
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.innlop.Utland
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.innlop.UtlandRiver
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
@@ -15,11 +16,14 @@ import org.junit.jupiter.api.Test
 
 internal class UtlandRiverTest {
     private val dataTopic: DataTopic<Utland> = mockk(relaxed = true)
+    private val personRepository = mockk<PersonRepository>()
+
     private val rapid by lazy {
         TestRapid().apply {
             UtlandRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
+                personRepository = personRepository,
             )
         }
     }
