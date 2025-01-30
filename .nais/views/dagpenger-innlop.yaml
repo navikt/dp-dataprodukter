@@ -12,7 +12,7 @@ metadata:
 
 spec:
   resourceID: dagpenger-innlop
-  description: "Dataprodukt om inngangshendelser uten duplikater"
+  description: "Dataprodukt om inngangshendelser på dagpenger uten duplikater"
   datasetRef:
     external: dataprodukt
   view:
