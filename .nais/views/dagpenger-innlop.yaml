@@ -1,0 +1,28 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: dagpenger-innlop
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+  annotations:
+    cnrm.cloud.google.com/management-conflict-prevention-policy: none
+    cnrm.cloud.google.com/project-id: {{project}}
+    cnrm.cloud.google.com/state-into-spec: merge
+
+spec:
+  resourceID: dagpenger-innlop
+  description: "Dataprodukt om inngangshendelser uten duplikater"
+  datasetRef:
+    external: dataprodukt
+  view:
+    useLegacySql: false
+    query: >-
+      SELECT journalpostId,
+             min(opprettetDato) AS opprettetDato,
+             registrertDato,
+             skjemaKode,
+             tittel,
+             type
+      FROM `dataprodukt.data_innlop_v2`
+      GROUP BY journalpostId, registrertDato, skjemaKode, tittel, type
