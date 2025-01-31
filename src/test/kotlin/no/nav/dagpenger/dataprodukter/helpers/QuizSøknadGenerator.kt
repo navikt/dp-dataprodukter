@@ -27,6 +27,7 @@ fun faktum(
 
 fun tilstandEndretEvent(
     uuid: UUID,
+    ident: String,
     gjeldeneTilstand: String,
     forrigeTilstand: String = gjeldeneTilstand,
 ) = JsonMessage
@@ -34,6 +35,7 @@ fun tilstandEndretEvent(
         "søknad_endret_tilstand",
         mapOf(
             "søknad_uuid" to uuid,
+            "ident" to ident,
             "forrigeTilstand" to forrigeTilstand,
             "gjeldendeTilstand" to gjeldeneTilstand,
         ),

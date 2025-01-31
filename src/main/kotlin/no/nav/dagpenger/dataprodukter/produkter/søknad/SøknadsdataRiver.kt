@@ -15,10 +15,12 @@ import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
 import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 
 internal class SøknadsdataRiver(
     rapidsConnection: RapidsConnection,
     private val ferdigeSøknader: SøknadRepository,
+    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -26,7 +28,7 @@ internal class SøknadsdataRiver(
                 precondition { it.requireValue("@event_name", "søker_oppgave") }
                 precondition { it.requireValue("ferdig", true) }
                 precondition { it.requireKey("versjon_navn") }
-                validate { it.requireKey("søknad_uuid", "seksjoner") }
+                validate { it.requireKey("søknad_uuid", "seksjoner", "fødselsnummer") }
             }.register(this)
     }
 
@@ -41,6 +43,10 @@ internal class SøknadsdataRiver(
         meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
+        val ident = packet["fødselsnummer"].astext()
+        val person = personRepository.hentPerson(ident)
+
+        if (person.harAdressebeskyttelse) return
 
         val søknadData = SøknadData.lagMapper(packet["seksjoner"])
         ferdigeSøknader
