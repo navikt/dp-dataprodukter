@@ -1,7 +1,7 @@
 apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
 kind: BigQueryTable
 metadata:
-  name: dagpengesoknader-ident
+  name: dagpenger-innlop
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
@@ -11,19 +11,18 @@ metadata:
     cnrm.cloud.google.com/state-into-spec: merge
 
 spec:
-  resourceID: dagpengesoknader-ident
-  description: "Dataprodukt som viser alle dagpengesøknader inkludert utenlandstilsnitt og ident"
+  resourceID: dagpenger-innlop
+  description: "Dataprodukt om inngangshendelser på dagpenger uten duplikater"
   datasetRef:
     external: dataprodukt
   view:
     useLegacySql: false
     query: >-
-      SELECT
-        D.*,
-        I.ident
-      FROM
-        `dataprodukt.dagpengesoknader` D
-      INNER JOIN 
-        (SELECT DISTINCT * FROM `dataprodukt.data_innlop_ident_v1`) I
-      ON
-        D.journalpostId=I.journalpostId
+      SELECT journalpostId,
+             min(opprettetDato) AS opprettetDato,
+             registrertDato,
+             skjemaKode,
+             tittel,
+             type
+      FROM `dataprodukt.data_innlop_v2`
+      GROUP BY journalpostId, registrertDato, skjemaKode, tittel, type

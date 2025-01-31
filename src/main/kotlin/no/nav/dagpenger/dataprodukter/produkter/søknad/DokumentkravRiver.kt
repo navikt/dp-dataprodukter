@@ -13,10 +13,12 @@ import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 
 internal class DokumentkravRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Dokumentkrav>,
+    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -52,6 +54,10 @@ internal class DokumentkravRiver(
         meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
+        val ident = packet["ident"].asText()
+        val person = personRepository.hentPerson(ident)
+
+        if (person.harAdressebeskyttelse) return
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             val dokumentkrav =
