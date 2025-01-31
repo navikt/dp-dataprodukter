@@ -21,7 +21,7 @@ internal class SøknadTilstandRiverTest {
     private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            SøknadTilstandRiver(it, dataTopic, , personRepository)
+            SøknadTilstandRiver(it, dataTopic, personRepository)
         }
 
     @AfterEach
