@@ -29,7 +29,7 @@ internal class SøknadsdataRiverTest {
     private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            SøknadsdataRiver(it, repository)
+            SøknadsdataRiver(it, repository, personRepository)
             SøknadInnsendtRiver(it, repository, dataTopic, listOf("sperret-faktum"))
         }
 
@@ -46,7 +46,7 @@ internal class SøknadsdataRiverTest {
 
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
-        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "Innsendt"))
+        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "123123", "Innsendt"))
 
         verify(exactly = 9) {
             producer.send(any(), any())
@@ -61,7 +61,7 @@ internal class SøknadsdataRiverTest {
 
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
-        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "Innsendt"))
+        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "123123", "Innsendt"))
 
         verify(exactly = 0) {
             producer.send(any(), any())

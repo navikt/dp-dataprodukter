@@ -22,7 +22,7 @@ internal class DokumentkravRiverTest {
     private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            DokumentkravRiver(it, dataTopic)
+            DokumentkravRiver(it, dataTopic, personRepository)
         }
 
     @AfterEach
