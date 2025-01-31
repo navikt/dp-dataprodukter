@@ -53,7 +53,7 @@ internal class SøknadTilstandRiver(
         val opprettet = packet["@opprettet"].asLocalDateTime()
         val forrigeTilstand = packet["forrigeTilstand"].asText()
         val gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
-        val ident = packet["ident"].astext()
+        val ident = packet["ident"].asText()
         val person = personRepository.hentPerson(ident)
 
         if (person.harAdressebeskyttelse) return

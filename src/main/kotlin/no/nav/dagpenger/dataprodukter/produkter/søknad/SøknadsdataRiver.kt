@@ -43,7 +43,7 @@ internal class SøknadsdataRiver(
         meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
-        val ident = packet["fødselsnummer"].astext()
+        val ident = packet["fødselsnummer"].asText()
         val person = personRepository.hentPerson(ident)
 
         if (person.harAdressebeskyttelse) return
