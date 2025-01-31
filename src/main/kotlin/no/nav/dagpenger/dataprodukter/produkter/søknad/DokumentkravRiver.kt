@@ -54,7 +54,7 @@ internal class DokumentkravRiver(
         meterRegistry: MeterRegistry
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
-        val ident = packet["ident"].astext()
+        val ident = packet["ident"].asText()
         val person = personRepository.hentPerson(ident)
 
         if (person.harAdressebeskyttelse) return
