@@ -2,6 +2,7 @@ package no.nav.dagpenger.dataprodukter.produkter
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -11,6 +12,8 @@ import no.nav.dagpenger.dataprodukter.helpers.generator
 import no.nav.dagpenger.dataprodukter.helpers.seksjon
 import no.nav.dagpenger.dataprodukter.helpers.tilstandEndretEvent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.Person
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadInnsendtRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
@@ -23,9 +26,10 @@ internal class SøknadsdataRiverTest {
     private val repository = InMemorySøknadRepository()
     private val producer = mockk<KafkaProducer<String, SoknadFaktum>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
+    private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            SøknadsdataRiver(it, repository)
+            SøknadsdataRiver(it, repository, personRepository)
             SøknadInnsendtRiver(it, repository, dataTopic, listOf("sperret-faktum"))
         }
 
@@ -35,12 +39,31 @@ internal class SøknadsdataRiverTest {
     }
 
     @Test
-    fun foo() {
+    fun `Søknadfakta blir mellomlagret`() {
+        every {
+            personRepository.hentPerson(any())
+        } returns Person(harAdressebeskyttelse = false)
+
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
-        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "Innsendt"))
+        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "123123", "Innsendt"))
 
         verify(exactly = 9) {
+            producer.send(any(), any())
+        }
+    }
+
+    @Test
+    fun `Søknadfakta blir ikke mellomlagret når adressebeskyttelse`() {
+        every {
+            personRepository.hentPerson(any())
+        } returns Person(harAdressebeskyttelse = true)
+
+        val søknadId = UUID.randomUUID()
+        rapid.sendTestMessage(getSøknadData(søknadId))
+        rapid.sendTestMessage(tilstandEndretEvent(søknadId, "123123", "Innsendt"))
+
+        verify(exactly = 0) {
             producer.send(any(), any())
         }
     }
@@ -81,5 +104,6 @@ private fun getDataMessage(
             "søknad_uuid" to uuid,
             "ferdig" to true,
             "seksjoner" to seksjoner(mutableListOf()),
+            "fødselsnummer" to "123123",
         ),
     ).toJson()

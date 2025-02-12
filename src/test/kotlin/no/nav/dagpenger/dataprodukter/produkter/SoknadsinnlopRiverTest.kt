@@ -4,7 +4,6 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.dataprodukt.innlop.Ident
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.person.Person
@@ -17,9 +16,7 @@ import org.junit.jupiter.api.Test
 
 internal class SoknadsinnlopRiverTest {
     private val producer = mockk<KafkaProducer<String, Soknadsinnlop>>(relaxed = true)
-    private val producerIdent = mockk<KafkaProducer<String, Ident>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
-    private val identTopic = DataTopic(producerIdent, "ident")
     private val personRepository = mockk<PersonRepository>()
 
     private val rapid by lazy {
@@ -27,7 +24,6 @@ internal class SoknadsinnlopRiverTest {
             SoknadsinnlopRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
-                identTopic = identTopic,
                 personRepository = personRepository,
             )
         }
@@ -43,7 +39,7 @@ internal class SoknadsinnlopRiverTest {
     }
 
     @Test
-    fun `skal produsere dataprodukt for innløp og ident`() {
+    fun `skal produsere dataprodukt for innløp`() {
         every {
             personRepository.hentPerson(any())
         } returns Person(harAdressebeskyttelse = false)
@@ -52,23 +48,19 @@ internal class SoknadsinnlopRiverTest {
 
         verify {
             producer.send(any(), any())
-            producerIdent.send(any(), any())
         }
     }
 
     @Test
-    fun `skal produsere dataprodukt for innløp uten ident når adressebeskyttelse`() {
+    fun `skal ikke produsere dataprodukt for innløp når adressebeskyttelse`() {
         every {
             personRepository.hentPerson(any())
         } returns Person(harAdressebeskyttelse = true)
 
         rapid.sendTestMessage(behovJSON)
 
-        verify {
-            producer.send(any(), any())
-        }
         verify(exactly = 0) {
-            producerIdent.send(any(), any())
+            producer.send(any(), any())
         }
     }
 }

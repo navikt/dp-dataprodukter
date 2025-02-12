@@ -19,8 +19,6 @@ jobs:
       matrix:
         topic: [
           data-innlop-v2,
-          data-innlop-utland-v2,
-          data-innlop-ident-v1,
           data-soknad-faktum-v1,
           data-soknad-tilstand-v1,
           data-soknad-ident-v1,
