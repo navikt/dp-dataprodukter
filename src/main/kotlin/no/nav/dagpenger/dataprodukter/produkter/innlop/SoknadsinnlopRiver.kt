@@ -32,7 +32,8 @@ internal class SoknadsinnlopRiver(
                             "Gjenopptak",
                             "Utdanning",
                             "Etablering",
-                            "KlageOgAnke",
+                            "Klage",
+                            "Anke",
                         ),
                     )
                 }
