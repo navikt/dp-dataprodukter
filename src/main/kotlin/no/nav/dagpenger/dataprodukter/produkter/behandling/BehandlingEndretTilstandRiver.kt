@@ -21,7 +21,7 @@ internal class BehandlingEndretTilstandRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "behandling_endret_tilstand") }
+                precondition { it.requireValue("@event_name", "behandling_endret_tilstand") }
                 validate {
                     it.requireKey(
                         "@id",
