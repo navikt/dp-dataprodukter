@@ -23,7 +23,7 @@ internal class DokumentkravRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "dokumentkrav_innsendt") }
+                precondition { it.requireValue("@event_name", "dokumentkrav_innsendt") }
                 validate {
                     it.requireKey(
                         "søknad_uuid",

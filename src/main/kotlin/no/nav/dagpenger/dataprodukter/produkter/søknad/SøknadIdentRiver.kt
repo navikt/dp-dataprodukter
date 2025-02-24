@@ -21,7 +21,7 @@ internal class SøknadIdentRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "søknad_endret_tilstand") }
+                precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
                 validate { it.requireValue("gjeldendeTilstand", "opprettet") }
                 validate { it.requireKey("søknad_uuid", "ident") }
             }.register(this)

@@ -23,7 +23,7 @@ internal class SoknadsinnlopRiver(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
+                precondition { it.requireValue("@event_name", "innsending_ferdigstilt") }
                 validate {
                     it.requireAny(
                         "type",
