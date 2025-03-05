@@ -66,7 +66,10 @@ internal class SoknadsinnlopRiver(
         val journalpostId = packet["journalpostId"].asText()
         val ident = packet["fødselsnummer"].asText()
 
-        sikkerlogg.info { "Slår opp person med ident=$ident" }
+        if (ident.isNullOrEmpty()) {
+            logger.error { "Mottok søknad uten ident. Se sikkerlogg for detaljer." }
+            sikkerlogg.error { "Mottok søknad uten ident. ${packet.toJson()}" }
+        }
         val person = personRepository.hentPerson(ident)
         if (person.harAdressebeskyttelse) return
 
