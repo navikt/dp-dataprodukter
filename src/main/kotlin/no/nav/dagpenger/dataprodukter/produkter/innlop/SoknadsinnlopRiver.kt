@@ -69,6 +69,7 @@ internal class SoknadsinnlopRiver(
         if (ident.isNullOrEmpty()) {
             logger.error { "Mottok søknad uten ident. Se sikkerlogg for detaljer." }
             sikkerlogg.error { "Mottok søknad uten ident. ${packet.toJson()}" }
+            return
         }
         val person = personRepository.hentPerson(ident)
         if (person.harAdressebeskyttelse) return
