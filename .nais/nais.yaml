@@ -29,8 +29,6 @@ spec:
       value: teamdagpenger.data-soknad-faktum-v1
     - name: KAFKA_PRODUKT_SOKNAD_TILSTAND_TOPIC
       value: teamdagpenger.data-soknad-tilstand-v1
-    - name: KAFKA_PRODUKT_SOKNAD_IDENT_TOPIC
-      value: teamdagpenger.data-soknad-ident-v1
     - name: KAFKA_PRODUKT_SOKNAD_DOKUMENTKRAV_TOPIC
       value: teamdagpenger.data-soknad-dokumentkrav-v1
     - name: KAFKA_PRODUKT_BEHANDLING_TOPIC
