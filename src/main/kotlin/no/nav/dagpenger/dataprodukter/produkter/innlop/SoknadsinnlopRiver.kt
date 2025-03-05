@@ -61,12 +61,13 @@ internal class SoknadsinnlopRiver(
         packet: JsonMessage,
         context: MessageContext,
         metadata: MessageMetadata,
-        meterRegistry: MeterRegistry
+        meterRegistry: MeterRegistry,
     ) {
         val journalpostId = packet["journalpostId"].asText()
         val ident = packet["fødselsnummer"].asText()
-        val person = personRepository.hentPerson(ident)
 
+        sikkerlogg.info { "Slår opp person med ident=$ident" }
+        val person = personRepository.hentPerson(ident)
         if (person.harAdressebeskyttelse) return
 
         withLoggingContext(
