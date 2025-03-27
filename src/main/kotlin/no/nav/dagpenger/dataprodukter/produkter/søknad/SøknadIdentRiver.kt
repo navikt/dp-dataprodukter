@@ -36,7 +36,7 @@ internal class SøknadIdentRiver(
         packet: JsonMessage,
         context: MessageContext,
         metadata: MessageMetadata,
-        meterRegistry: MeterRegistry
+        meterRegistry: MeterRegistry,
     ) {
         logger.info { "Sjekker om vi skal publisere SøknadIdent" }
         val søknadId = packet["søknad_uuid"].asUUID()
@@ -58,7 +58,7 @@ internal class SøknadIdentRiver(
                 .also { data ->
                     logger.info { "Publiserer rad for ${data::class.java.simpleName}" }
                     sikkerlogg.info { "Publiserer rad for ${data::class.java.simpleName}: $data " }
-                    dataTopic.publiser(data)
+                    dataTopic.publiser(ident, data)
                 }
         }
     }

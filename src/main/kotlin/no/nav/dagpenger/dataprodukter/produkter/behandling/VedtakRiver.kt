@@ -65,6 +65,7 @@ internal class VedtakRiver(
         ) {
             val image = packet["system_participating_services"].first()["image"]?.asText() ?: ""
             val status = packet["@event_name"].asText()
+            val ident = packet["ident"].asText()
 
             if (!packet.harBehandletAv && !packet["automatisk"].asBoolean()) {
                 sikkerlogg.warn { "Behandlingen er ikke automatisk, men mangler behandlet av: ${packet.toJson()}" }
@@ -78,7 +79,7 @@ internal class VedtakRiver(
                     behandlingId = packet["behandlingId"].asUUID()
                     tekniskTid = LocalDateTime.now().asTimestamp()
                     endretTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
-                    ident = packet["ident"].asText()
+                    this.ident = ident
                     saksnummer = packet.saksnummer
                     behandlingType = "søknad"
                     behandlingStatus = status
@@ -100,7 +101,7 @@ internal class VedtakRiver(
                     logger.info { "Publiserer rad for ${behandling::class.java.simpleName}" }
                     sikkerlogg.info { "Publiserer rad for ${behandling::class.java.simpleName}: $behandling " }
 
-                    dataTopic.publiser(behandling)
+                    dataTopic.publiser(ident, behandling)
                 }
         }
     }

@@ -36,8 +36,11 @@ internal class DataTopic<T : SpecificRecord>(
             }
     }
 
-    fun publiser(innlop: T) {
-        producer.send(ProducerRecord(topic, innlop)) { _, err ->
+    fun publiser(
+        ident: String,
+        innlop: T,
+    ) {
+        producer.send(ProducerRecord(topic, ident, innlop)) { _, err ->
             if (err == null || !isFatalError(err)) return@send
             logger.error(err) { "Shutting down rapid due to fatal error: ${err.message}" }
             producer.flush()

@@ -12,10 +12,10 @@ import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
 import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
-import no.nav.dagpenger.dataprodukter.person.PersonRepository
 
 internal class SøknadsdataRiver(
     rapidsConnection: RapidsConnection,
@@ -40,7 +40,7 @@ internal class SøknadsdataRiver(
         packet: JsonMessage,
         context: MessageContext,
         metadata: MessageMetadata,
-        meterRegistry: MeterRegistry
+        meterRegistry: MeterRegistry,
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val ident = packet["fødselsnummer"].asText()
@@ -95,7 +95,7 @@ internal class SøknadInnsendtRiver(
         packet: JsonMessage,
         context: MessageContext,
         metadata: MessageMetadata,
-        meterRegistry: MeterRegistry
+        meterRegistry: MeterRegistry,
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
@@ -122,7 +122,7 @@ internal class SøknadInnsendtRiver(
                                 gruppeId = faktum.gruppeId
                             }.build()
                             .also { data ->
-                                dataTopic.publiser(data)
+                                dataTopic.publiser(søknadId.toString(), data)
                             }
                     }.also {
                         logger.info { "Produserte ${it.size} faktumrader" }

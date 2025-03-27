@@ -28,7 +28,7 @@ class SøknadIdentRiverTest {
         rapid.sendTestMessage(søknadIdentMessage)
 
         every {
-            topic.publiser(any())
+            topic.publiser(any(), any())
         }
     }
 

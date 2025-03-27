@@ -94,7 +94,7 @@ internal class SoknadsinnlopRiver(
                     logger.info { "Publiserer rad for ${innlop::class.java.simpleName}" }
                     sikkerlogg.info { "Publiserer rad for ${innlop::class.java.simpleName}: $innlop " }
 
-                    dataTopic.publiser(innlop)
+                    dataTopic.publiser(ident, innlop)
                 }
         }
     }
