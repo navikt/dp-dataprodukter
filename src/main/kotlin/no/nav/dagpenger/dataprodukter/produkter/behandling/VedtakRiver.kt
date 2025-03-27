@@ -63,8 +63,6 @@ internal class VedtakRiver(
         ) {
             val image = packet["system_participating_services"].first()["image"]?.asText() ?: ""
 
-            val behandlere = packet.behandletAv
-
             val status = packet["@event_name"].asText()
             Behandling
                 .newBuilder()
@@ -85,6 +83,7 @@ internal class VedtakRiver(
                     resultat = packet["fastsatt"]["utfall"].asBoolean()
                     automatisk = packet["automatisk"].asBoolean()
                     if (status == "vedtak_fattet" && packet.harBehandletAv) {
+                        val behandlere = packet.behandletAv
                         saksbehandler = behandlere.saksbehandler
                         beslutter = behandlere.beslutter
                     }
