@@ -66,6 +66,10 @@ internal class VedtakRiver(
             val image = packet["system_participating_services"].first()["image"]?.asText() ?: ""
             val status = packet["@event_name"].asText()
 
+            if (!packet.harBehandletAv && !packet["automatisk"].asBoolean()) {
+                sikkerlogg.warn { "Behandlingen er ikke automatisk, men mangler behandlet av: ${packet.toJson()}" }
+            }
+
             Behandling
                 .newBuilder()
                 .apply {
