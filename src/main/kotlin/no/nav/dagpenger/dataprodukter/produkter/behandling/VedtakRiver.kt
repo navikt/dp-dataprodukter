@@ -5,6 +5,7 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDate
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
+import com.github.navikt.tbd_libs.rapids_and_rivers.isMissingOrNull
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
@@ -83,7 +84,7 @@ internal class VedtakRiver(
                     virkningsdato = packet["virkningsdato"].asLocalDate()
                     resultat = packet["fastsatt"]["utfall"].asBoolean()
                     automatisk = packet["automatisk"].asBoolean()
-                    if (status == "vedtak_fattet") {
+                    if (status == "vedtak_fattet" && packet.harBehandletAv) {
                         saksbehandler = behandlere.saksbehandler
                         beslutter = behandlere.beslutter
                     }
@@ -104,6 +105,7 @@ val JsonMessage.registrert: LocalDateTime get() = fagsakId["kilde"]["registrert"
 val JsonMessage.saksnummer: String get() = fagsakId["verdi"].asText()
 val JsonMessage.fagsakId: JsonNode get() = this["opplysninger"].single { it["navn"].asText() == "fagsakId" }
 
+val JsonMessage.harBehandletAv: Boolean get() = !this["behandletAv"].isMissingOrNull()
 val JsonMessage.behandletAv: BehandletAv
     get() =
         this["behandletAv"].let { behandletAv ->
