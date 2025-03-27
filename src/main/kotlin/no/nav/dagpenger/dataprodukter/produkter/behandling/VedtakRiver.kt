@@ -35,12 +35,14 @@ internal class VedtakRiver(
                     it.requireKey(
                         "ident",
                         "behandlingId",
-                        "behandletAv",
                         "automatisk",
                         "virkningsdato",
                         "vedtakstidspunkt",
                         "fastsatt",
                         "opplysninger",
+                    )
+                    it.interestedIn(
+                        "behandletAv",
                     )
                 }
             }.register(this)
@@ -62,8 +64,8 @@ internal class VedtakRiver(
             "dataprodukt" to dataTopic.topic,
         ) {
             val image = packet["system_participating_services"].first()["image"]?.asText() ?: ""
-
             val status = packet["@event_name"].asText()
+
             Behandling
                 .newBuilder()
                 .apply {
