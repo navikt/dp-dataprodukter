@@ -18,5 +18,5 @@ spec:
   view:
     useLegacySql: false
     query: >-
-      SELECT b.* EXCEPT (ident, saksbehandler, beslutter, ansvarligEnhet)
+      SELECT b.* EXCEPT (ident, saksbehandler, beslutter, ansvarligEnhet, avsender, versjon)
       FROM `dataprodukt.data_behandling_beta_v2` b
