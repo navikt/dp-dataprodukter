@@ -18,6 +18,5 @@ spec:
   view:
     useLegacySql: false
     query: >-
-      SELECT UNIX_SECONDS(tekniskTid) AS sekvensnummer,
-             b.*
-      FROM `dataprodukt.data_behandling_beta_v1` b
+      SELECT b.*
+      FROM `dataprodukt.data_behandling_beta_v2` b
