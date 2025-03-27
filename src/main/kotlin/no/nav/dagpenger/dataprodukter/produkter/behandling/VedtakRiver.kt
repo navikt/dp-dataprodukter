@@ -108,15 +108,15 @@ val JsonMessage.harBehandletAv: Boolean get() = !this["behandletAv"].isMissingOr
 val JsonMessage.behandletAv: BehandletAv
     get() =
         this["behandletAv"].let { behandletAv ->
-            val beslutter = behandletAv.single { it["rolle"].asText() == "beslutter" }
-            val saksbehandler = behandletAv.single { it["rolle"].asText() == "saksbehandler" }
+            val beslutter = behandletAv.singleOrNull { it["rolle"].asText() == "beslutter" }
+            val saksbehandler = behandletAv.singleOrNull { it["rolle"].asText() == "saksbehandler" }
             BehandletAv(
-                beslutter = beslutter["behandler"]["ident"].asText(),
-                saksbehandler = saksbehandler["behandler"]["ident"].asText(),
+                beslutter = beslutter?.get("behandler")?.get("ident")?.asText(),
+                saksbehandler = saksbehandler?.get("behandler")?.get("ident")?.asText(),
             )
         }
 
 data class BehandletAv(
-    val beslutter: String,
-    val saksbehandler: String,
+    val beslutter: String?,
+    val saksbehandler: String?,
 )
