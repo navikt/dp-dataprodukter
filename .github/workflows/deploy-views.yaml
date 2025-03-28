@@ -18,10 +18,6 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE:
-            - .nais/views/dagpenger-innlop.yaml,
-            - .nais/views/dagpengesoknad-faktum-svar.yaml,
-            - .nais/views/dagpenger-behandling.yaml,
-            - .nais/views/dagpenger-behandling-anonymisiert.yaml
+          RESOURCE: .nais/views/dagpenger-innlop.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml,.nais/views/dagpenger-behandling.yaml,.nais/views/dagpenger-behandling-anonymisiert.yaml
           VAR: project=${{ inputs.project }}
           PRINT_PAYLOAD: true
