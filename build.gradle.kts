@@ -21,6 +21,7 @@ dependencies {
 
     testImplementation(libs.mockk)
     testImplementation(libs.rapids.and.rivers.test)
+    testImplementation(libs.kotest.assertions.core)
 }
 
 application {

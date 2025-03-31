@@ -4,6 +4,10 @@
   "type": "record",
   "fields": [
     {
+      "name": "sekvensnummer",
+      "type": "long"
+    },
+    {
       "name": "meldingsreferanseId",
       "type": {
         "type": "string",
@@ -98,19 +102,22 @@
       "doc": "Tidspunkt for når behandlingen ble ferdig"
     },
     {
-      "name": "virkningstidspunkt",
+      "name": "virkningsdato",
       "type": [
         "null",
-        "string"
+        {
+          "type": "int",
+          "logicalType": "date"
+        }
       ],
       "default": null,
-      "doc": "Om søknaden er i papirformat eller digitalt"
+      "doc": "Dato fra når vedtaket skal gjelde fra"
     },
     {
       "name": "utland",
       "type": [
         "null",
-        "string"
+        "boolean"
       ],
       "default": null,
       "doc": "Om saken er nasjonal eller utland"
@@ -119,7 +126,7 @@
       "name": "resultat",
       "type": [
         "null",
-        "string"
+        "boolean"
       ],
       "default": null,
       "doc": "Resultatet av behandlingen"

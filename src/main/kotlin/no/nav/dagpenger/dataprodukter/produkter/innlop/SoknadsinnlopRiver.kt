@@ -61,12 +61,17 @@ internal class SoknadsinnlopRiver(
         packet: JsonMessage,
         context: MessageContext,
         metadata: MessageMetadata,
-        meterRegistry: MeterRegistry
+        meterRegistry: MeterRegistry,
     ) {
         val journalpostId = packet["journalpostId"].asText()
         val ident = packet["fødselsnummer"].asText()
-        val person = personRepository.hentPerson(ident)
 
+        if (ident.isNullOrEmpty()) {
+            logger.error { "Mottok søknad uten ident. Se sikkerlogg for detaljer." }
+            sikkerlogg.error { "Mottok søknad uten ident. ${packet.toJson()}" }
+            return
+        }
+        val person = personRepository.hentPerson(ident)
         if (person.harAdressebeskyttelse) return
 
         withLoggingContext(
@@ -89,7 +94,7 @@ internal class SoknadsinnlopRiver(
                     logger.info { "Publiserer rad for ${innlop::class.java.simpleName}" }
                     sikkerlogg.info { "Publiserer rad for ${innlop::class.java.simpleName}: $innlop " }
 
-                    dataTopic.publiser(innlop)
+                    dataTopic.publiser(ident, innlop)
                 }
         }
     }

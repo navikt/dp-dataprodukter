@@ -7,7 +7,7 @@ import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic.Companion.dataTopic
 import no.nav.dagpenger.dataprodukter.person.PdlPersonRepository
-import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingEndretTilstandRiver
+import no.nav.dagpenger.dataprodukter.produkter.behandling.VedtakRiver
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.DokumentkravRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadInnsendtRiver
@@ -40,6 +40,8 @@ fun main() {
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
             SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand, personRepository)
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav, personRepository)
-            BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTopic)
+
+            // Behandling
+            VedtakRiver(rapidsConnection, DataTopics.behandlingTopic)
         }.start()
 }

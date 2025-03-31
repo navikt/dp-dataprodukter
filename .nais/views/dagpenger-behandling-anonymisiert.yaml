@@ -1,7 +1,7 @@
 apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
 kind: BigQueryTable
 metadata:
-  name: dagpenger-behandling
+  name: dagpenger-behandling-anonymisiert
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
@@ -11,12 +11,12 @@ metadata:
     cnrm.cloud.google.com/state-into-spec: merge
 
 spec:
-  resourceID: dagpenger-behandling
-  description: "Dataprodukt som viser alle behandlinger av dagpenger"
+  resourceID: dagpenger-behandling-anonymisiert
+  description: "Dataprodukt som viser alle behandlinger av dagpenger uten sensitiv informasjon"
   datasetRef:
     external: dataprodukt
   view:
     useLegacySql: false
     query: >-
-      SELECT b.*
+      SELECT b.* EXCEPT (ident, saksbehandler, beslutter, ansvarligEnhet, avsender, versjon)
       FROM `dataprodukt.data_behandling_beta_v2` b
