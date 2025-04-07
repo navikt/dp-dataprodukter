@@ -1,13 +1,10 @@
 package no.nav.dagpenger.dataprodukter.produkter
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.person.Person
-import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
@@ -17,14 +14,12 @@ import org.junit.jupiter.api.Test
 internal class SoknadsinnlopRiverTest {
     private val producer = mockk<KafkaProducer<String, Soknadsinnlop>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
-    private val personRepository = mockk<PersonRepository>()
 
     private val rapid by lazy {
         TestRapid().apply {
             SoknadsinnlopRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
-                personRepository = personRepository,
             )
         }
     }
@@ -40,26 +35,9 @@ internal class SoknadsinnlopRiverTest {
 
     @Test
     fun `skal produsere dataprodukt for innløp`() {
-        every {
-            personRepository.hentPerson(any())
-        } returns Person(harAdressebeskyttelse = false)
-
         rapid.sendTestMessage(behovJSON)
 
         verify {
-            producer.send(any(), any())
-        }
-    }
-
-    @Test
-    fun `skal ikke produsere dataprodukt for innløp når adressebeskyttelse`() {
-        every {
-            personRepository.hentPerson(any())
-        } returns Person(harAdressebeskyttelse = true)
-
-        rapid.sendTestMessage(behovJSON)
-
-        verify(exactly = 0) {
             producer.send(any(), any())
         }
     }
