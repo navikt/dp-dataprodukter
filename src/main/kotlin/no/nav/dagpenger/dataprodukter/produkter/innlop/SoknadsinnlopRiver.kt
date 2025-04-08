@@ -13,12 +13,10 @@ import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.person.PersonRepository
 
 internal class SoknadsinnlopRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Soknadsinnlop>,
-    private val personRepository: PersonRepository,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -71,8 +69,6 @@ internal class SoknadsinnlopRiver(
             sikkerlogg.error { "Mottok søknad uten ident. ${packet.toJson()}" }
             return
         }
-        val person = personRepository.hentPerson(ident)
-        if (person.harAdressebeskyttelse) return
 
         withLoggingContext(
             "journalpostId" to journalpostId,
