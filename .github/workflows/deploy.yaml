@@ -27,7 +27,7 @@ jobs:
         with:
           dependency-graph: generate-and-submit
           cache-encryption-key: ${{ secrets.GradleEncryptionKey }}
-      - run: ./gradlew --configuration-cache build installDist
+      - run: ./gradlew build installDist
 
       - name: docker-build-push
         uses: nais/docker-build-push@v0
