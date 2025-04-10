@@ -101,7 +101,7 @@ internal class VedtakFattetRiver(
                     fastsatt =
                         Fastsatt(
                             packet["fastsatt"]["utfall"].asBoolean(),
-                            packet["fastsatt"]["status"].asText(),
+                            packet["fastsatt"]["status"]?.asText(),
                             packet["fastsatt"]["grunnlag"].takeUnless { it.isMissingOrNull() }?.let {
                                 Grunnlag(
                                     it["grunnlag"].asDouble(),
