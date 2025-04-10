@@ -25,4 +25,3 @@ spec:
       FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak,
            UNNEST(fastsatt.samordning) AS samordning
       WHERE behandletHendelse.type = 'Søknad';
-  
