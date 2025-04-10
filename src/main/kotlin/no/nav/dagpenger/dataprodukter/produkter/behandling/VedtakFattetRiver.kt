@@ -102,40 +102,40 @@ internal class VedtakFattetRiver(
                         Fastsatt(
                             packet["fastsatt"]["utfall"].asBoolean(),
                             packet["fastsatt"]["status"]?.asText(),
-                            packet["fastsatt"]["grunnlag"].takeUnless { it.isMissingOrNull() }?.let {
+                            packet["fastsatt"]["grunnlag"]?.takeUnless { it.isMissingOrNull() }?.let {
                                 Grunnlag(
                                     it["grunnlag"].asDouble(),
-                                    it["begrunnelse"].takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
                                 )
                             },
-                            packet["fastsatt"]["fastsattVanligArbeidstid"].takeUnless { it.isMissingOrNull() }?.let {
+                            packet["fastsatt"]["fastsattVanligArbeidstid"]?.takeUnless { it.isMissingOrNull() }?.let {
                                 VanligArbeidstid(
                                     it["vanligArbeidstidPerUke"].asDouble(),
                                     it["nyArbeidstidPerUke"].asDouble(),
-                                    it["begrunnelse"].takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
                                 )
                             },
-                            packet["fastsatt"]["sats"].takeUnless { it.isMissingOrNull() }?.let {
+                            packet["fastsatt"]["sats"]?.takeUnless { it.isMissingOrNull() }?.let {
                                 Sats(
                                     it["dagsatsMedBarnetillegg"].asInt(),
-                                    it["dagsats"].takeUnless { it.isMissingOrNull() }?.asInt(),
-                                    it["begrunnelse"].takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it["dagsats"]?.takeUnless { it.isMissingOrNull() }?.asInt(),
+                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
                                 )
                             },
-                            packet["fastsatt"]["samordning"].map {
+                            packet["fastsatt"]["samordning"]?.map {
                                 Samordning(
                                     it["type"].asText(),
                                     it["beløp"].asInt(),
                                     it["grad"].asInt(),
                                 )
-                            },
+                            } ?: emptyList(),
                             packet["fastsatt"]["kvoter"]?.map {
                                 Kvote(
                                     it["navn"].asText(),
                                     it["type"].asText(),
                                     it["verdi"].asInt(),
                                 )
-                            },
+                            } ?: emptyList(),
                         )
                     utbetalinger = emptyList<String>()
                 }.build()
