@@ -208,7 +208,7 @@
                     "type": "string"
                   },
                   {
-                    "name": "beløp",
+                    "name": "beloep",
                     "type": "int"
                   },
                   {
