@@ -47,6 +47,20 @@
       "type": "string"
     },
     {
+      "name": "automatisk",
+      "type": "boolean"
+    },
+    {
+      "name": "opprettetTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "aliases": [
+        "@opprettet"
+      ]
+    },
+    {
       "name": "vedtakstidspunkt",
       "type": {
         "type": "long",
@@ -118,7 +132,7 @@
                 "fields": [
                   {
                     "name": "grunnlag",
-                    "type": "double"
+                    "type": "int"
                   },
                   {
                     "name": "begrunnelse",
@@ -169,13 +183,6 @@
                   {
                     "name": "dagsatsMedBarnetillegg",
                     "type": "int"
-                  },
-                  {
-                    "name": "dagsats",
-                    "type": [
-                      "null",
-                      "int"
-                    ]
                   },
                   {
                     "name": "begrunnelse",
@@ -238,27 +245,6 @@
           }
         ]
       }
-    },
-    {
-      "name": "utbetalinger",
-      "type": {
-        "type": "array",
-        "items": "string"
-      }
-    },
-    {
-      "name": "automatisk",
-      "type": "boolean"
-    },
-    {
-      "name": "opprettetTid",
-      "type": {
-        "type": "long",
-        "logicalType": "timestamp-millis"
-      },
-      "aliases": [
-        "@opprettet"
-      ]
     }
   ]
 }

@@ -10,8 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":soknad"))
+    implementation(project(":behandling"))
     implementation(project(":person"))
+    implementation(project(":soknad"))
 
     implementation(libs.rapids.and.rivers)
     implementation("org.apache.avro:avro:1.12.0")
