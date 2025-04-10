@@ -37,6 +37,7 @@ internal class VedtakFattetRiverTest {
 
     @Test
     fun `skal lage produkt av vedtak fattet`() {
+        println(innvilgelsesVedtak)
         rapid.sendTestMessage(innvilgelsesVedtak)
 
         val value = slot<ProducerRecord<String, Vedtak>>()
@@ -62,14 +63,12 @@ internal class VedtakFattetRiverTest {
                 .shouldBeNull()
 
             this.fastsatt.sats.dagsatsMedBarnetillegg shouldBe 1077
-            this.fastsatt.sats.dagsats shouldBe null
             this.fastsatt.sats.begrunnelse shouldBe null
 
             this.fastsatt.samordning shouldHaveSize 1
             this.fastsatt.kvoter shouldHaveSize 2
 
             this.automatisk shouldBe true
-            this.utbetalinger shouldHaveSize 0
         }
     }
 
@@ -99,7 +98,6 @@ internal class VedtakFattetRiverTest {
             this.fastsatt.kvoter shouldHaveSize 0
 
             this.automatisk shouldBe true
-            this.utbetalinger shouldHaveSize 0
         }
     }
 

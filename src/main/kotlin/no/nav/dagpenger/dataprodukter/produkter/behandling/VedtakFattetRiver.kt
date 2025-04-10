@@ -2,15 +2,14 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
-import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDate
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
-import com.github.navikt.tbd_libs.rapids_and_rivers.isMissingOrNull
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
 import mu.withLoggingContext
+import no.nav.dagpenger.behandling.api.models.VedtakDTO
 import no.nav.dagpenger.dataprodukt.behandling.BehandletHendelseIdentifikasjon
 import no.nav.dagpenger.dataprodukt.behandling.Fastsatt
 import no.nav.dagpenger.dataprodukt.behandling.Grunnlag
@@ -23,6 +22,7 @@ import no.nav.dagpenger.dataprodukt.behandling.Vilkaar
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.objectMapper
 
 internal class VedtakFattetRiver(
     rapidsConnection: RapidsConnection,
@@ -72,72 +72,72 @@ internal class VedtakFattetRiver(
                 sikkerlogg.warn { "Vedtaket er ikke automatisk, men mangler behandlet av: ${packet.toJson()}" }
             }
 
+            val vedtak = objectMapper.readValue(packet.toJson(), VedtakDTO::class.java)
+
             Vedtak
                 .newBuilder()
                 .apply {
                     sekvensnummer = System.currentTimeMillis()
                     meldingsreferanseId = packet["@id"].asUUID()
-                    behandlingId = packet["behandlingId"].asUUID()
+                    behandlingId = vedtak.behandlingId
                     fagsakId = packet["fagsakId"].asText()
                     opprettetTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
                     this.ident = ident
                     behandletHendelse =
                         BehandletHendelseIdentifikasjon(
-                            packet["behandletHendelse"]["type"].asText(),
-                            packet["behandletHendelse"]["id"].asText(),
+                            vedtak.behandletHendelse.type.value,
+                            vedtak.behandletHendelse.id,
                         )
-                    vedtakstidspunkt = packet["vedtakstidspunkt"].asLocalDateTime().asTimestamp()
-                    virkningsdato = packet["virkningsdato"].asLocalDate()
-                    automatisk = packet["automatisk"].asBoolean()
+                    vedtakstidspunkt = vedtak.vedtakstidspunkt.asTimestamp()
+                    virkningsdato = vedtak.virkningsdato
+                    automatisk = vedtak.automatisk == true
                     vilkaar =
-                        packet["vilkår"].map {
+                        vedtak.vilkår.map {
                             Vilkaar(
-                                it["navn"].asText(),
-                                it["status"].asText(),
-                                it["vurderingstidspunkt"].asLocalDateTime().asTimestamp(),
-                                it["hjemmel"].asText(),
+                                it.navn,
+                                it.status.value,
+                                it.vurderingstidspunkt.asTimestamp(),
+                                it.hjemmel,
                             )
                         }
                     fastsatt =
                         Fastsatt(
-                            packet["fastsatt"]["utfall"].asBoolean(),
-                            packet["fastsatt"]["status"]?.asText(),
-                            packet["fastsatt"]["grunnlag"]?.takeUnless { it.isMissingOrNull() }?.let {
+                            vedtak.fastsatt.utfall,
+                            vedtak.fastsatt.status?.value,
+                            vedtak.fastsatt.grunnlag?.let {
                                 Grunnlag(
-                                    it["grunnlag"].asDouble(),
-                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it.grunnlag,
+                                    it.begrunnelse?.toString(),
                                 )
                             },
-                            packet["fastsatt"]["fastsattVanligArbeidstid"]?.takeUnless { it.isMissingOrNull() }?.let {
+                            vedtak.fastsatt.fastsattVanligArbeidstid?.let {
                                 VanligArbeidstid(
-                                    it["vanligArbeidstidPerUke"].asDouble(),
-                                    it["nyArbeidstidPerUke"].asDouble(),
-                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it.vanligArbeidstidPerUke.toDouble(),
+                                    it.nyArbeidstidPerUke.toDouble(),
+                                    it.begrunnelse?.toString(),
                                 )
                             },
-                            packet["fastsatt"]["sats"]?.takeUnless { it.isMissingOrNull() }?.let {
+                            vedtak.fastsatt.sats?.let {
                                 Sats(
-                                    it["dagsatsMedBarnetillegg"].asInt(),
-                                    it["dagsats"]?.takeUnless { it.isMissingOrNull() }?.asInt(),
-                                    it["begrunnelse"]?.takeUnless { it.isMissingOrNull() }?.asText(),
+                                    it.dagsatsMedBarnetillegg,
+                                    it.begrunnelse?.toString(),
                                 )
                             },
-                            packet["fastsatt"]["samordning"]?.map {
+                            vedtak.fastsatt.samordning?.map {
                                 Samordning(
-                                    it["type"].asText(),
-                                    it["beløp"].asInt(),
-                                    it["grad"].asInt(),
+                                    it.type,
+                                    it.beløp.toInt(),
+                                    it.grad.toInt(),
                                 )
                             } ?: emptyList(),
-                            packet["fastsatt"]["kvoter"]?.map {
+                            vedtak.fastsatt.kvoter?.map {
                                 Kvote(
-                                    it["navn"].asText(),
-                                    it["type"].asText(),
-                                    it["verdi"].asInt(),
+                                    it.navn,
+                                    it.type?.value,
+                                    it.verdi?.toInt(),
                                 )
                             } ?: emptyList(),
                         )
-                    utbetalinger = emptyList<String>()
                 }.build()
                 .also { vedtak ->
                     logger.info { "Publiserer rad for ${vedtak::class.java.simpleName}" }
