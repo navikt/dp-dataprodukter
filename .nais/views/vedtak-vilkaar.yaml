@@ -22,6 +22,6 @@ spec:
              vilkaar.navn,
              vilkaar.hjemmel,
              vilkaar.vurderingstidspunkt,
-             vilkaar.utfall
-      FROM `dataprodukt.vedtak_beta_v1` AS vedtak,
+             vilkaar.status
+      FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak,
            UNNEST(vilkaar) AS vilkaar;
