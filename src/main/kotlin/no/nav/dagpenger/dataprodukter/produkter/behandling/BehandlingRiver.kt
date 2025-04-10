@@ -8,6 +8,7 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers.isMissingOrNull
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageProblems
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
@@ -18,7 +19,7 @@ import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import java.time.LocalDateTime
 
-internal class VedtakRiver(
+internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Behandling>,
 ) : River.PacketListener {
@@ -51,6 +52,22 @@ internal class VedtakRiver(
     companion object {
         private val logger = KotlinLogging.logger { }
         private val sikkerlogg = KotlinLogging.logger("tjenestekall.VedtakFattetRiver")
+    }
+
+    override fun onError(
+        problems: MessageProblems,
+        context: MessageContext,
+        metadata: MessageMetadata,
+    ) {
+        super.onError(problems, context, metadata)
+    }
+
+    override fun onPreconditionError(
+        error: MessageProblems,
+        context: MessageContext,
+        metadata: MessageMetadata,
+    ) {
+        super.onPreconditionError(error, context, metadata)
     }
 
     override fun onPacket(
