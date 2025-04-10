@@ -1,0 +1,264 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.behandling",
+  "name": "Vedtak",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sekvensnummer",
+      "type": "long"
+    },
+    {
+      "name": "meldingsreferanseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "fagsakId",
+      "type": "string"
+    },
+    {
+      "name": "behandletHendelse",
+      "type": {
+        "type": "record",
+        "name": "BehandletHendelseIdentifikasjon",
+        "fields": [
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ident",
+      "type": "string"
+    },
+    {
+      "name": "vedtakstidspunkt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "virkningsdato",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "vilkaar",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Vilkaar",
+          "fields": [
+            {
+              "name": "navn",
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "vurderingstidspunkt",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            },
+            {
+              "name": "hjemmel",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "fastsatt",
+      "type": {
+        "type": "record",
+        "name": "Fastsatt",
+        "fields": [
+          {
+            "name": "utfall",
+            "type": "boolean"
+          },
+          {
+            "name": "status",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "grunnlag",
+            "type": [
+              "null",
+              {
+                "type": "record",
+                "name": "Grunnlag",
+                "fields": [
+                  {
+                    "name": "grunnlag",
+                    "type": "double"
+                  },
+                  {
+                    "name": "begrunnelse",
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "fastsattVanligArbeidstid",
+            "type": [
+              "null",
+              {
+                "type": "record",
+                "name": "VanligArbeidstid",
+                "fields": [
+                  {
+                    "name": "vanligArbeidstidPerUke",
+                    "type": "double"
+                  },
+                  {
+                    "name": "nyArbeidstidPerUke",
+                    "type": "double"
+                  },
+                  {
+                    "name": "begrunnelse",
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "sats",
+            "type": [
+              "null",
+              {
+                "type": "record",
+                "name": "Sats",
+                "fields": [
+                  {
+                    "name": "dagsatsMedBarnetillegg",
+                    "type": "int"
+                  },
+                  {
+                    "name": "dagsats",
+                    "type": [
+                      "null",
+                      "int"
+                    ]
+                  },
+                  {
+                    "name": "begrunnelse",
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "samordning",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "Samordning",
+                "fields": [
+                  {
+                    "name": "type",
+                    "type": "string"
+                  },
+                  {
+                    "name": "beløp",
+                    "type": "int"
+                  },
+                  {
+                    "name": "grad",
+                    "type": "int"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "kvoter",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "Kvote",
+                "fields": [
+                  {
+                    "name": "navn",
+                    "type": "string"
+                  },
+                  {
+                    "name": "type",
+                    "type": "string"
+                  },
+                  {
+                    "name": "verdi",
+                    "type": "int"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "utbetalinger",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "automatisk",
+      "type": "boolean"
+    },
+    {
+      "name": "opprettetTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "aliases": [
+        "@opprettet"
+      ]
+    }
+  ]
+}
