@@ -35,6 +35,8 @@ spec:
       value: teamdagpenger.data-behandling-beta-v2
     - name: KAFKA_PRODUKT_VEDTAK_TOPIC
       value: teamdagpenger.data-vedtak-beta-v1
+    - name: KAFKA_PRODUKT_BEHANDLING_TILSTAND_TOPIC
+      value: teamdagpenger.data-behandling-tilstand-v1
     - name: PDL_ENDPOINT
       value: https://{{pdl.host}}/graphql
     - name: PDL_SCOPE
