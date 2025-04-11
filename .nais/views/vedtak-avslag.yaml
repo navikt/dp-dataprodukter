@@ -25,10 +25,9 @@ spec:
              automatisk,
              vedtakstidspunkt,
              opprettetTid,
-             string_agg(vilkaar.navn) as grunnAvslag
+             vilkaar.navn as grunnAvslag
       FROM  `dataprodukt.data_vedtak_beta_v1` AS vedtak,
             UNNEST(vilkaar) as vilkaar
       WHERE fastsatt.utfall is false
       AND   behandletHendelse.type = 'Søknad'
       AND   vilkaar.status = 'IkkeOppfylt'
-      GROUP BY behandlingId, fagsakId, behandletHendelse.id, ident, automatisk, vedtakstidspunkt, opprettetTid;
