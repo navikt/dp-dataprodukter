@@ -64,12 +64,7 @@
   ],
   "fastsatt": {
     "utfall": false,
-    "status": null,
-    "grunnlag": null,
-    "fastsattVanligArbeidstid": null,
-    "sats": null,
-    "samordning": [],
-    "kvoter": null
+    "samordning": []
   },
   "utbetalinger": [],
   "opplysninger": [
