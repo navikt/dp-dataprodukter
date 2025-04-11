@@ -30,5 +30,5 @@ spec:
             UNNEST(vilkaar) as vilkaar
       WHERE fastsatt.utfall is false
       AND   behandletHendelse.type = 'Søknad'
-      AND   vilkaar.status = 'Ikke oppfylt'
+      AND   vilkaar.status = 'IkkeOppfylt'
       GROUP BY behandlingId, fagsakId, behandletHendelse.id, ident, automatisk, vedtakstidspunkt, opprettetTid;
