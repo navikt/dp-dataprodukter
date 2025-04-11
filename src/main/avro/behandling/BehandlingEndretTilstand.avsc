@@ -41,11 +41,15 @@
     },
     {
       "name": "forventetFerdig",
-      "type": {
-        "type": "long",
-        "logicalType": "timestamp-millis"
-      },
-      "doc": "Tidspunkt for når behandlingen forventes å være ferdig"
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når behandlingen forventes å være ferdig. Null om tilstanden er lovlig for alltid."
     },
     {
       "name": "tidBruktSekund",
