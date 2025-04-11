@@ -24,6 +24,7 @@ jobs:
           data-soknad-dokumentkrav-v1,
           data-behandling-beta-v2,
           data-vedtak-beta-v1
+          data-behandling-tilstand-v1,
         ]
     steps:
       - uses: actions/checkout@v4

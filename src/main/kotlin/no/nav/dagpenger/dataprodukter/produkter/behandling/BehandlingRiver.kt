@@ -8,7 +8,6 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers.isMissingOrNull
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
-import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageProblems
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
@@ -52,22 +51,6 @@ internal class BehandlingRiver(
     companion object {
         private val logger = KotlinLogging.logger { }
         private val sikkerlogg = KotlinLogging.logger("tjenestekall.VedtakFattetRiver")
-    }
-
-    override fun onError(
-        problems: MessageProblems,
-        context: MessageContext,
-        metadata: MessageMetadata,
-    ) {
-        super.onError(problems, context, metadata)
-    }
-
-    override fun onPreconditionError(
-        error: MessageProblems,
-        context: MessageContext,
-        metadata: MessageMetadata,
-    ) {
-        super.onPreconditionError(error, context, metadata)
     }
 
     override fun onPacket(

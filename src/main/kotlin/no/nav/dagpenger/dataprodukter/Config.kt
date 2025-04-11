@@ -16,6 +16,7 @@ val kafka_produkt_soknad_tilstand_topic by stringType
 val kafka_produkt_soknad_dokumentkrav_topic by stringType
 val kafka_produkt_behandling_topic by stringType
 val kafka_produkt_vedtak_topic by stringType
+val kafka_produkt_behandling_tilstand_topic by stringType
 
 object pdl : PropertyGroup() {
     val endpoint by stringType
