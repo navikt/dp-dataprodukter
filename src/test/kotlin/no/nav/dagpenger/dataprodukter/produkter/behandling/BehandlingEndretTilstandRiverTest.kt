@@ -1,6 +1,7 @@
 package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
@@ -51,6 +52,7 @@ class BehandlingEndretTilstandRiverTest {
             this.ident shouldBe "11109233444"
             forrigeTilstand shouldBe "UnderOpprettelse"
             gjeldendeTilstand shouldBe "UnderBehandling"
+            forventetFerdig.shouldBeNull()
             tidBruktSekund shouldBe 8640000L
             tidBrukt shouldBe "PT2400H"
         }

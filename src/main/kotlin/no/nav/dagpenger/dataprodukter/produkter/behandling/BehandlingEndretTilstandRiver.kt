@@ -14,6 +14,7 @@ import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import java.time.Duration
+import java.time.LocalDateTime
 
 internal class BehandlingEndretTilstandRiver(
     rapidsConnection: RapidsConnection,
@@ -54,6 +55,7 @@ internal class BehandlingEndretTilstandRiver(
         ) {
             val ident = packet["ident"].asText()
             val tidBrukt = Duration.parse(packet["tidBrukt"].asText())
+            val forventetFerdig = packet["forventetFerdig"].asLocalDateTime()
 
             BehandlingEndretTilstand
                 .newBuilder()
@@ -65,7 +67,9 @@ internal class BehandlingEndretTilstandRiver(
                     this.ident = ident
                     forrigeTilstand = packet["forrigeTilstand"].asText()
                     gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
-                    this.forventetFerdig = packet["forventetFerdig"].asLocalDateTime().asTimestamp()
+                    if (forventetFerdig != LocalDateTime.MAX) {
+                        this.forventetFerdig = forventetFerdig.asTimestamp()
+                    }
                     tidBruktSekund = tidBrukt.seconds
                     this.tidBrukt = tidBrukt.toString()
                 }.build()
