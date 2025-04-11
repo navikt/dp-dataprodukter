@@ -1,0 +1,64 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.behandling",
+  "name": "BehandlingEndretTilstand",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sekvensnummer",
+      "type": "long"
+    },
+    {
+      "name": "meldingsreferanseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "ident",
+      "type": "string",
+      "doc": "Identifikator for personen"
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "forrigeTilstand",
+      "type": "string"
+    },
+    {
+      "name": "gjeldendeTilstand",
+      "type": "string"
+    },
+    {
+      "name": "forventetFerdig",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-micros"
+      },
+      "doc": "Tidspunkt for når behandlingen forventes å være ferdig"
+    },
+    {
+      "name": "tidBruktMillis",
+      "type": "long",
+      "doc": "Tid brukt i behandling i millisekunder"
+    },
+    {
+      "name": "tidBrukt",
+      "type": "string",
+      "doc": "ISO-8601 duration string, f.eks. PT5M30S"
+    },
+    {
+      "name": "tekniskTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen"
+    }
+  ]
+}
