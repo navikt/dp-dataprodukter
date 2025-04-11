@@ -5,25 +5,29 @@
   "fields": [
     {
       "name": "sekvensnummer",
-      "type": "long"
+      "type": "long",
+      "doc": "Sekvensnummer for å sikre rekkefølge. Kan brukes til delta-last."
     },
     {
       "name": "meldingsreferanseId",
       "type": {
         "type": "string",
         "logicalType": "uuid"
-      }
+      },
+      "doc": "UUID som refererer til meldingen som har blitt behandlet."
     },
     {
       "name": "behandlingId",
       "type": {
         "type": "string",
         "logicalType": "uuid"
-      }
+      },
+      "doc": "UUID som refererer til behandlingen som har ført til vedtaket"
     },
     {
       "name": "fagsakId",
-      "type": "string"
+      "type": "string",
+      "doc": "ID for fagsaken som vedtaket ligger i"
     },
     {
       "name": "behandletHendelse",
@@ -40,15 +44,18 @@
             "type": "string"
           }
         ]
-      }
+      },
+      "doc": "Hendelsen som førte til vedtaket. Kan være søknad, meldekort, klage, etc."
     },
     {
       "name": "ident",
-      "type": "string"
+      "type": "string",
+      "doc": "Identifikator for personen som vedtaket gjelder"
     },
     {
       "name": "automatisk",
-      "type": "boolean"
+      "type": "boolean",
+      "doc": "Om vedtaket er automatisk eller manuelt"
     },
     {
       "name": "opprettetTid",
@@ -58,21 +65,24 @@
       },
       "aliases": [
         "@opprettet"
-      ]
+      ],
+      "doc": "Tidspunkt for når melding om vedtaket ble opprettet"
     },
     {
       "name": "vedtakstidspunkt",
       "type": {
         "type": "long",
         "logicalType": "timestamp-millis"
-      }
+      },
+      "doc": "Tidspunkt for når vedtaket ble fattet"
     },
     {
       "name": "virkningsdato",
       "type": {
         "type": "int",
         "logicalType": "date"
-      }
+      },
+      "doc": "Dato fra når vedtaket skal gjelde fra"
     },
     {
       "name": "vilkaar",
@@ -103,7 +113,8 @@
             }
           ]
         }
-      }
+      },
+      "doc": "Vilkår som er vurdert i behandlingen"
     },
     {
       "name": "fastsatt",
