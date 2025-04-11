@@ -33,4 +33,5 @@ spec:
              --stønadstype,
              opprettetTid
       FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak
-      WHERE behandletHendelse.type = 'Søknad';
+      WHERE fastsatt.utfall is true
+      AND   behandletHendelse.type = 'Søknad';

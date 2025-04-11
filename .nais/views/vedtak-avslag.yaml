@@ -22,11 +22,13 @@ spec:
              fagsakId,
              behandletHendelse.id as soknadId,
              ident,
+             automatisk,
              vedtakstidspunkt,
              opprettetTid,
              string_agg(vilkaar.navn) as grunnAvslag
       FROM  `dataprodukt.data_vedtak_beta_v1` AS vedtak,
             UNNEST(vilkaar) as vilkaar
-      WHERE behandletHendelse.type = 'Søknad'
+      WHERE fastsatt.utfall is false
+      AND   behandletHendelse.type = 'Søknad'
       AND   vilkaar.status = 'Ikke oppfylt'
-      GROUP BY behandlingId, fagsakId, behandletHendelse.id, ident, vedtakstidspunkt, opprettetTid;
+      GROUP BY behandlingId, fagsakId, behandletHendelse.id, ident, automatisk, vedtakstidspunkt, opprettetTid;
