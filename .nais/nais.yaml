@@ -56,3 +56,7 @@ spec:
         databases:
           - name: dataprodukt
             envVarPrefix: DB
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
