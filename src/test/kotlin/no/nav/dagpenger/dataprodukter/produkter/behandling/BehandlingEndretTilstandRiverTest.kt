@@ -11,6 +11,7 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import java.time.LocalDateTime
 
 class BehandlingEndretTilstandRiverTest {
     private val producer = mockk<KafkaProducer<String, BehandlingEndretTilstand>>(relaxed = true)
@@ -50,8 +51,8 @@ class BehandlingEndretTilstandRiverTest {
             this.ident shouldBe "11109233444"
             forrigeTilstand shouldBe "UnderOpprettelse"
             gjeldendeTilstand shouldBe "UnderBehandling"
-            tidBruktMillis shouldBe 9L
-            tidBrukt shouldBe "PT0.009093S"
+            tidBruktSekund shouldBe 8640000L
+            tidBrukt shouldBe "PT2400H"
         }
     }
 
@@ -63,8 +64,8 @@ class BehandlingEndretTilstandRiverTest {
           "behandlingId": "01962470-6e8b-7f6d-9e9b-c722c1fbc1a1",
           "forrigeTilstand": "UnderOpprettelse",
           "gjeldendeTilstand": "UnderBehandling",
-          "forventetFerdig": "2025-04-11T13:41:10.294581",
-          "tidBrukt": "PT0.009093S",
+          "forventetFerdig": "${LocalDateTime.MAX}",
+          "tidBrukt": "PT2400H",
           "@id": "1bf1426d-3092-409e-9f8e-d88ab453cbde",
           "@opprettet": "2025-04-11T12:41:10.29518",
           "system_read_count": 0,

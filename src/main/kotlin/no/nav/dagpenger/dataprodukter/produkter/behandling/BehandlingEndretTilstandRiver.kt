@@ -66,7 +66,7 @@ internal class BehandlingEndretTilstandRiver(
                     forrigeTilstand = packet["forrigeTilstand"].asText()
                     gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
                     this.forventetFerdig = packet["forventetFerdig"].asLocalDateTime().asTimestamp()
-                    tidBruktMillis = tidBrukt.toMillis()
+                    tidBruktSekund = tidBrukt.seconds
                     this.tidBrukt = tidBrukt.toString()
                 }.build()
                 .also { behandlingEndretTilstand ->
