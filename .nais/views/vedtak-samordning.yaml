@@ -20,7 +20,7 @@ spec:
     query: >-
       SELECT behandlingId,
              samordning.type,
-             samordning.`beløp`,
+             samordning.beloep,
              samordning.grad
       FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak,
            UNNEST(fastsatt.samordning) AS samordning

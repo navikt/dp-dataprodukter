@@ -28,7 +28,6 @@ spec:
              fastsatt.grunnlag.begrunnelse as grunnlagBegrunnelse,
              fastsatt.fastsattVanligArbeidstid.vanligArbeidstidPerUke,
              fastsatt.fastsattVanligArbeidstid.nyArbeidstidPerUke,
-             fastsatt.sats.dagsats,
              fastsatt.sats.dagsatsMedBarnetillegg,
              --antallbarn,
              --stønadstype,
