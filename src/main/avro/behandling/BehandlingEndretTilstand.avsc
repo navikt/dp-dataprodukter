@@ -5,14 +5,16 @@
   "fields": [
     {
       "name": "sekvensnummer",
-      "type": "long"
+      "type": "long",
+      "doc": "Sekvensnummer for å sikre rekkefølge. Kan brukes til delta-last."
     },
     {
       "name": "meldingsreferanseId",
       "type": {
         "type": "string",
         "logicalType": "uuid"
-      }
+      },
+      "doc": "UUID som refererer til meldingen som har blitt behandlet."
     },
     {
       "name": "ident",
@@ -24,15 +26,18 @@
       "type": {
         "type": "string",
         "logicalType": "uuid"
-      }
+      },
+      "doc": "UUID som refererer til behandlingen som har endret tilstand"
     },
     {
       "name": "forrigeTilstand",
-      "type": "string"
+      "type": "string",
+      "doc": "Tilstand før endringen"
     },
     {
       "name": "gjeldendeTilstand",
-      "type": "string"
+      "type": "string",
+      "doc": "Tilstand etter endringen"
     },
     {
       "name": "forventetFerdig",
