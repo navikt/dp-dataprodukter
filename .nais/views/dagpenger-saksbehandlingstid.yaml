@@ -67,9 +67,9 @@ spec:
              a.tid_a                                  AS mottatt,
              d.tid_d                                  AS vedtaksdato,
              -- Calculate time differences in seconds. If no matching state found, the result is NULL.
-             TIMESTAMP_DIFF(b.tid_b, a.tid_a, SECOND) AS sekund_mottat_til_saksbehandler,
+             TIMESTAMP_DIFF(b.tid_b, a.tid_a, SECOND) AS sekund_mottatt_til_saksbehandler,
              TIMESTAMP_DIFF(c.tid_c, a.tid_a, SECOND) AS sekund_mottatt_til_beslutter,
-             TIMESTAMP_DIFF(d.tid_d, a.tid_a, SECOND) AS sekund_mottat_til_vedtak,
+             TIMESTAMP_DIFF(d.tid_d, a.tid_a, SECOND) AS sekund_mottatt_til_vedtak,
              TIMESTAMP_DIFF(c.tid_c, b.tid_b, SECOND) AS sekund_saksbehandler_til_beslutter,
              TIMESTAMP_DIFF(d.tid_d, c.tid_c, SECOND) AS sekund_beslutter_til_ferdig
       FROM first_a AS a
