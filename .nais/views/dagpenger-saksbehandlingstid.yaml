@@ -18,9 +18,6 @@ spec:
   view:
     useLegacySql: false
     query: >-
-      SELECT *
-      FROM `dataprodukt.data_behandling_tilstand_v1`
-      LIMIT 1000;
       WITH state_entries AS (SELECT behandlingId,
                                     TIMESTAMP(tekniskTid) AS tid,
                                     forrigeTilstand,
