@@ -22,5 +22,5 @@ spec:
              kvoter.navn,
              kvoter.type,
              kvoter.verdi
-      FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak,
+      FROM `dataprodukt.data_vedtak_v1` AS vedtak,
            UNNEST(fastsatt.kvoter) AS kvoter;

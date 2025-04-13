@@ -26,7 +26,7 @@ spec:
              vedtakstidspunkt,
              opprettetTid,
              vilkaar.navn as grunnAvslag
-      FROM  `dataprodukt.data_vedtak_beta_v1` AS vedtak,
+      FROM  `dataprodukt.data_vedtak_v1` AS vedtak,
             UNNEST(vilkaar) as vilkaar
       WHERE fastsatt.utfall is false
       AND   behandletHendelse.type = 'Søknad'

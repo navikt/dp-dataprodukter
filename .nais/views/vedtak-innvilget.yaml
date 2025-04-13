@@ -32,6 +32,6 @@ spec:
              --antallbarn,
              --stønadstype,
              opprettetTid
-      FROM `dataprodukt.data_vedtak_beta_v1` AS vedtak
+      FROM `dataprodukt.data_vedtak_v1` AS vedtak
       WHERE fastsatt.utfall is true
       AND   behandletHendelse.type = 'Søknad';
