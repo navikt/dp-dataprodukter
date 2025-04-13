@@ -1,0 +1,73 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.behandling",
+  "name": "BehandlingEndretTilstand",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sekvensnummer",
+      "type": "long",
+      "doc": "Sekvensnummer for å sikre rekkefølge. Kan brukes til delta-last."
+    },
+    {
+      "name": "meldingsreferanseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "UUID som refererer til meldingen som har blitt behandlet."
+    },
+    {
+      "name": "ident",
+      "type": "string",
+      "doc": "Identifikator for personen"
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "UUID som refererer til behandlingen som har endret tilstand"
+    },
+    {
+      "name": "forrigeTilstand",
+      "type": "string",
+      "doc": "Tilstand før endringen"
+    },
+    {
+      "name": "gjeldendeTilstand",
+      "type": "string",
+      "doc": "Tilstand etter endringen"
+    },
+    {
+      "name": "forventetFerdig",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når behandlingen forventes å være ferdig. Null om tilstanden er lovlig for alltid."
+    },
+    {
+      "name": "tidBruktSekund",
+      "type": "long",
+      "doc": "Tid brukt i behandling i millisekunder"
+    },
+    {
+      "name": "tidBrukt",
+      "type": "string",
+      "doc": "ISO-8601 duration string, f.eks. PT5M30S"
+    },
+    {
+      "name": "tekniskTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen"
+    }
+  ]
+}

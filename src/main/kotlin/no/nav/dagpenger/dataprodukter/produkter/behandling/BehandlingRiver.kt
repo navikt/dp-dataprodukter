@@ -18,7 +18,7 @@ import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import java.time.LocalDateTime
 
-internal class VedtakRiver(
+internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Behandling>,
 ) : River.PacketListener {

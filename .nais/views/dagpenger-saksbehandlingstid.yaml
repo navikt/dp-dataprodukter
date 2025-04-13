@@ -1,0 +1,87 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: dagpenger-saksbehandlingstid
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+  annotations:
+    cnrm.cloud.google.com/management-conflict-prevention-policy: none
+    cnrm.cloud.google.com/project-id: {{project}}
+    cnrm.cloud.google.com/state-into-spec: merge
+
+spec:
+  resourceID: dagpenger-saksbehandlingstid
+  description: "Dataprodukt for saksbehandlingstid"
+  datasetRef:
+    external: dataprodukt
+  view:
+    useLegacySql: false
+    query: >-
+      WITH state_entries AS (SELECT behandlingId,
+                                    TIMESTAMP(tekniskTid) AS tid,
+                                    forrigeTilstand,
+                                    gjeldendeTilstand
+                             FROM `dataprodukt.data_behandling_tilstand_v1`),
+           -- Get the first time each behandlingId enters state A.
+           first_a AS (SELECT behandlingId,
+                              MIN(tid) AS tid_a
+                       FROM state_entries
+                       WHERE forrigeTilstand = 'UnderOpprettelse'
+                       GROUP BY behandlingId),
+           -- Get the first time each behandlingId enters state B after entering A.
+           first_b AS (SELECT se.behandlingId,
+                              MIN(se.tid) AS tid_b
+                       FROM state_entries se
+                                JOIN
+                            first_a fa
+                            ON
+                                se.behandlingId = fa.behandlingId
+                       WHERE (se.gjeldendeTilstand = 'TilGodkjenning' OR se.gjeldendeTilstand = 'ForslagTilVedtak')
+                         AND se.tid > fa.tid_a
+                       GROUP BY se.behandlingId),
+           -- Get the first time each behandlingId enters state C after entering A.
+           first_c AS (SELECT se.behandlingId,
+                              MIN(se.tid) AS tid_c
+                       FROM state_entries se
+                                JOIN
+                            first_a fa
+                            ON
+                                se.behandlingId = fa.behandlingId
+                       WHERE se.gjeldendeTilstand = 'TilBeslutning'
+                         AND se.tid > fa.tid_a
+                       GROUP BY se.behandlingId),
+           -- Get the first time each behandlingId enters state D after entering A.
+           first_d AS (SELECT se.behandlingId,
+                              MIN(se.tid) AS tid_d
+                       FROM state_entries se
+                                JOIN
+                            first_a fa
+                            ON
+                                se.behandlingId = fa.behandlingId
+                       WHERE se.gjeldendeTilstand = 'Ferdig'
+                         AND se.tid > fa.tid_a
+                       GROUP BY se.behandlingId)
+      SELECT a.behandlingId,
+             a.tid_a                                  AS mottatt,
+             d.tid_d                                  AS vedtaksdato,
+             -- Calculate time differences in seconds. If no matching state found, the result is NULL.
+             TIMESTAMP_DIFF(b.tid_b, a.tid_a, SECOND) AS sekund_mottatt_til_saksbehandler,
+             TIMESTAMP_DIFF(c.tid_c, a.tid_a, SECOND) AS sekund_mottatt_til_beslutter,
+             TIMESTAMP_DIFF(d.tid_d, a.tid_a, SECOND) AS sekund_mottatt_til_vedtak,
+             TIMESTAMP_DIFF(c.tid_c, b.tid_b, SECOND) AS sekund_saksbehandler_til_beslutter,
+             TIMESTAMP_DIFF(d.tid_d, c.tid_c, SECOND) AS sekund_beslutter_til_ferdig
+      FROM first_a AS a
+               LEFT JOIN
+           first_b AS b
+           ON
+               a.behandlingId = b.behandlingId
+               LEFT JOIN
+           first_c AS c
+           ON
+               a.behandlingId = c.behandlingId
+               LEFT JOIN
+           first_d AS d
+           ON
+               a.behandlingId = d.behandlingId
+      ORDER BY a.behandlingId;

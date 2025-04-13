@@ -12,12 +12,12 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 
-internal class VedtakRiverTest {
+internal class BehandlingRiverTest {
     private val producer = mockk<KafkaProducer<String, Behandling>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid by lazy {
         TestRapid().apply {
-            VedtakRiver(
+            BehandlingRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
             )

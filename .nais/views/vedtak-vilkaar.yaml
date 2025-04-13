@@ -1,0 +1,27 @@
+apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
+kind: BigQueryTable
+metadata:
+  name: vedtak-vilkaar
+  namespace: teamdagpenger
+  labels:
+    team: teamdagpenger
+  annotations:
+    cnrm.cloud.google.com/management-conflict-prevention-policy: none
+    cnrm.cloud.google.com/project-id: {{project}}
+    cnrm.cloud.google.com/state-into-spec: merge
+
+spec:
+  resourceID: vedtak-vilkaar
+  description: "Dataprodukt som viser vilkårsbruk i vedtak"
+  datasetRef:
+    external: dataprodukt
+  view:
+    useLegacySql: false
+    query: >-
+      SELECT behandlingId,
+             vilkaar.navn,
+             vilkaar.hjemmel,
+             vilkaar.vurderingstidspunkt,
+             vilkaar.status
+      FROM `dataprodukt.data_vedtak_v1` AS vedtak,
+           UNNEST(vilkaar) AS vilkaar;
