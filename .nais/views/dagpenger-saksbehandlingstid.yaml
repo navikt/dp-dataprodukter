@@ -37,9 +37,8 @@ spec:
                             first_a fa
                             ON
                                 se.behandlingId = fa.behandlingId
-                       WHERE se.gjeldendeTilstand = 'TilGodkjenning'
-                          OR se.gjeldendeTilstand = 'ForslagTilVedtak'
-                           AND se.tid > fa.tid_a
+                       WHERE (se.gjeldendeTilstand = 'TilGodkjenning' OR se.gjeldendeTilstand = 'ForslagTilVedtak')
+                         AND se.tid > fa.tid_a
                        GROUP BY se.behandlingId),
            -- Get the first time each behandlingId enters state C after entering A.
            first_c AS (SELECT se.behandlingId,
