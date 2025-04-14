@@ -18,10 +18,10 @@ spec:
   view:
     useLegacySql: false
     query: >-
-      SELECT behandlingId,
+      SELECT vedtak.behandlingId,
              fagsakId,
              behandletHendelse.id as soknadId,
-             ident,
+             vedtak.ident,
              vedtakstidspunkt,
              virkningsdato,
              fastsatt.grunnlag.grunnlag,
@@ -31,7 +31,9 @@ spec:
              fastsatt.sats.dagsatsMedBarnetillegg,
              --antallbarn,
              --stønadstype,
-             opprettetTid
+             tilstand.tekniskTid AS opprettetTid
       FROM `dataprodukt.data_vedtak_v1` AS vedtak
+      INNER JOIN `dataprodukt.data_behandling_tilstand_v1` tilstand on vedtak.behandlingId = tilstand.behandlingId
       WHERE fastsatt.utfall is true
-      AND   behandletHendelse.type = 'Søknad';
+      AND   behandletHendelse.type = 'Søknad'
+      AND   tilstand.gjeldendeTilstand = 'UnderBehandling';

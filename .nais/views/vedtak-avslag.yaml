@@ -18,16 +18,18 @@ spec:
   view:
     useLegacySql: false
     query: >-
-      SELECT behandlingId,
+      SELECT vedtak.behandlingId,
              fagsakId,
              behandletHendelse.id as soknadId,
-             ident,
+             vedtak.ident,
              automatisk,
              vedtakstidspunkt,
-             opprettetTid,
+             tilstand.tekniskTid AS opprettetTid,
              vilkaar.navn as grunnAvslag
       FROM  `dataprodukt.data_vedtak_v1` AS vedtak,
             UNNEST(vilkaar) as vilkaar
+      INNER JOIN `dataprodukt.data_behandling_tilstand_v1` AS tilstand ON vedtak.behandlingId = tilstand.behandlingId
       WHERE fastsatt.utfall is false
       AND   behandletHendelse.type = 'Søknad'
-      AND   vilkaar.status = 'IkkeOppfylt'
+      AND   tilstand.gjeldendeTilstand = 'UnderBehandling'
+      AND   vilkaar.status = 'IkkeOppfylt';
