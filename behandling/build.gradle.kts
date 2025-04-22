@@ -25,7 +25,7 @@ tasks {
 openApiGenerate {
     generatorName.set("kotlin")
     remoteInputSpec.set(
-        "https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml",
+        "https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml?1",
     )
     outputDir.set("${layout.buildDirectory.get()}/generated/")
     packageName.set("no.nav.dagpenger.behandling.api")
