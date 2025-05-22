@@ -94,7 +94,7 @@ internal class VedtakFattetRiver(
                     vilkaar =
                         vedtak.vilkår.map {
                             Vilkaar(
-                                it.navn,
+                                it.navn.value,
                                 it.status.value,
                                 it.vurderingstidspunkt.asTimestamp(),
                                 it.hjemmel,
