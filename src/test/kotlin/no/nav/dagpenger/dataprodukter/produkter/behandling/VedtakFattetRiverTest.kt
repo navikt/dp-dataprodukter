@@ -37,7 +37,6 @@ internal class VedtakFattetRiverTest {
 
     @Test
     fun `skal lage produkt av vedtak fattet`() {
-        println(innvilgelsesVedtak)
         rapid.sendTestMessage(innvilgelsesVedtak)
 
         val value = slot<ProducerRecord<String, Vedtak>>()

@@ -1,7 +1,11 @@
+import org.gradle.internal.impldep.com.amazonaws.util.json.Jackson
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+import java.net.URI
+
 plugins {
     id("common")
     `java-library`
-    id("org.openapi.generator") version "7.13.0"
+    id("ch.acanda.gradle.fabrikt") version "1.15.4"
 }
 
 dependencies {
@@ -16,28 +20,54 @@ sourceSets {
     }
 }
 
-tasks {
-    compileKotlin {
-        dependsOn("openApiGenerate")
+val apiSpecFile = layout.buildDirectory.file("tmp/behandling-api.yaml")
+
+val downloadApiSpec by tasks.registering {
+    group = "openapi"
+    description = "Henter OpenAPI spesifikasjonen fra github og lagrer den lokalt"
+    outputs.file(apiSpecFile)
+    doLast {
+        val url =
+            URI(
+                "https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml",
+            ).toURL()
+        val file = apiSpecFile.get().asFile
+        file.parentFile.mkdirs()
+        url.openStream().use { input ->
+            file.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
     }
 }
 
-openApiGenerate {
-    generatorName.set("kotlin")
-    remoteInputSpec.set(
-        "https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml?1",
-    )
-    outputDir.set("${layout.buildDirectory.get()}/generated/")
-    packageName.set("no.nav.dagpenger.behandling.api")
-    globalProperties.set(mapOf("models" to ""))
-    modelNameSuffix.set("DTO")
-    typeMappings = mapOf("DateTime" to "LocalDateTime")
-    importMappings = mapOf("LocalDateTime" to "java.time.LocalDateTime")
-    configOptions.set(
-        mapOf(
-            "serializationLibrary" to "jackson",
-            "dateLibrary" to "custom",
-            "enumPropertyNaming" to "original",
-        ),
-    )
+tasks {
+    compileKotlin {
+        dependsOn("fabriktGenerate")
+    }
+    fabriktGenerate {
+        dependsOn(downloadApiSpec)
+    }
+}
+
+fabrikt {
+    generate("behandling") {
+        apiFile = apiSpecFile
+        basePackage = "no.nav.dagpenger.behandling.api"
+        skip = false
+        quarkusReflectionConfig = disabled
+        typeOverrides {
+            datetime = LocalDateTime
+        }
+        model {
+            generate = enabled
+            validationLibrary = NoValidation
+            extensibleEnums = disabled
+            sealedInterfacesForOneOf = enabled
+            ignoreUnknownProperties = disabled
+            nonNullMapValues = enabled
+            serializationLibrary = Jackson
+            suffix = "DTO"
+        }
+    }
 }
