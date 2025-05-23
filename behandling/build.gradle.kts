@@ -6,7 +6,7 @@ plugins {
     id("common")
     `java-library`
     id("ch.acanda.gradle.fabrikt") version "1.15.4"
-    id("de.undercouch.download") version "5.5.0"
+    id("de.undercouch.download") version "5.6.0"
 }
 
 dependencies {
