@@ -1,11 +1,12 @@
+import de.undercouch.gradle.tasks.download.Download
 import org.gradle.internal.impldep.com.amazonaws.util.json.Jackson
 import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
-import java.net.URI
 
 plugins {
     id("common")
     `java-library`
     id("ch.acanda.gradle.fabrikt") version "1.15.4"
+    id("de.undercouch.download") version "5.5.0"
 }
 
 dependencies {
@@ -22,23 +23,12 @@ sourceSets {
 
 val apiSpecFile = layout.buildDirectory.file("tmp/behandling-api.yaml")
 
-val downloadApiSpec by tasks.registering {
+val hentOpenAPI by tasks.register<Download>("hentOpenAPI") {
+    src("https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml")
+    dest(apiSpecFile)
+    overwrite(true)
     group = "openapi"
     description = "Henter OpenAPI spesifikasjonen fra github og lagrer den lokalt"
-    outputs.file(apiSpecFile)
-    doLast {
-        val url =
-            URI(
-                "https://raw.githubusercontent.com/navikt/dp-behandling/refs/heads/main/openapi/src/main/resources/behandling-api.yaml",
-            ).toURL()
-        val file = apiSpecFile.get().asFile
-        file.parentFile.mkdirs()
-        url.openStream().use { input ->
-            file.outputStream().use { output ->
-                input.copyTo(output)
-            }
-        }
-    }
 }
 
 tasks {
@@ -46,7 +36,7 @@ tasks {
         dependsOn("fabriktGenerate")
     }
     fabriktGenerate {
-        dependsOn(downloadApiSpec)
+        dependsOn(hentOpenAPI)
     }
 }
 
