@@ -6,9 +6,9 @@ metadata:
   labels:
     team: teamdagpenger
 spec:
-  image: {{image}}
+  image: "{{image}}"
   kafka:
-    pool: {{kafka.pool}}
+    pool: "{{kafka.pool}}"
   replicas:
     min: 2
     max: 4
@@ -40,18 +40,18 @@ spec:
     - name: PDL_ENDPOINT
       value: https://{{pdl.host}}/graphql
     - name: PDL_SCOPE
-      value: {{pdl.scope}}
+      value: "{{pdl.scope}}"
   accessPolicy:
     outbound:
       external:
-        - host: {{pdl.host}}
+        - host: "{{pdl.host}}"
   azure:
     application:
       enabled: true
   gcp:
     sqlInstances:
       - type: POSTGRES_16
-        tier: {{db.tier}}
+        tier: "{{db.tier}}"
         highAvailability: true
         databases:
           - name: dataprodukt
