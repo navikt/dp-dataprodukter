@@ -38,6 +38,7 @@ internal class BehandlingRiver(
                         "automatisk",
                         "virkningsdato",
                         "vedtakstidspunkt",
+                        "behandletHendelse",
                         "fastsatt",
                         "opplysninger",
                     )
