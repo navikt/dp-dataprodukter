@@ -81,7 +81,7 @@ internal class BehandlingRiver(
                     endretTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
                     this.ident = ident
                     saksnummer = packet.saksnummer
-                    behandlingType = "søknad"
+                    behandlingType = packet["behandletHendelse"]["type"].asText()
                     behandlingStatus = status
                     mottattTid = packet.registrert.asTimestamp()
                     registrertTid = packet.registrert.asTimestamp()
@@ -94,7 +94,7 @@ internal class BehandlingRiver(
                         saksbehandler = behandlere.saksbehandler
                         beslutter = behandlere.beslutter
                     }
-                    avsender = "digidag"
+                    avsender = "Dagpenger saksbehandling"
                     versjon = image
                 }.build()
                 .also { behandling ->
