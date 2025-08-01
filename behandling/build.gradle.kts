@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 plugins {
     id("common")
     `java-library`
-    id("ch.acanda.gradle.fabrikt") version "1.17.0"
+    id("ch.acanda.gradle.fabrikt") version "1.18.0"
     id("de.undercouch.download") version "5.6.0"
 }
 
