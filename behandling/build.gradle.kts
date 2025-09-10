@@ -1,7 +1,4 @@
 import de.undercouch.gradle.tasks.download.Download
-import org.gradle.internal.impldep.com.amazonaws.util.json.Jackson
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
-
 plugins {
     id("common")
     `java-library`
