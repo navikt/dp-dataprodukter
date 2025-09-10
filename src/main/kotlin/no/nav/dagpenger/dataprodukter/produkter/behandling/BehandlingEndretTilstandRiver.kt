@@ -6,9 +6,9 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
-import mu.KotlinLogging
-import mu.withLoggingContext
 import no.nav.dagpenger.dataprodukt.behandling.BehandlingEndretTilstand
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
@@ -67,7 +67,7 @@ internal class BehandlingEndretTilstandRiver(
                     this.ident = ident
                     forrigeTilstand = packet["forrigeTilstand"].asText()
                     gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
-                    if (forventetFerdig != LocalDateTime.MAX) {
+                    if (!forventetFerdig.isEqual(LocalDateTime.MAX)) {
                         this.forventetFerdig = forventetFerdig.asTimestamp()
                     }
                     tidBruktSekund = tidBrukt.seconds
