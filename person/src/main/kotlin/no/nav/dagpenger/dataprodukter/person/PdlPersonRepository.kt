@@ -16,28 +16,32 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.netty.http.client.HttpClient
 import java.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.toJavaDuration
 
 internal typealias TokenProvider = () -> String
 
-private fun httpClient(timeoutSec: Long): HttpClient =
+private fun httpClient(timeout: Duration): HttpClient =
     HttpClient
         .create()
-        .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, (timeoutSec * 1000 / 2).toInt()) // f.eks. 5s ved timeoutSec=10
-        .responseTimeout(Duration.ofSeconds(timeoutSec))
+        .option(
+            ChannelOption.CONNECT_TIMEOUT_MILLIS,
+            (timeout.seconds * 1000 / 2).toInt(),
+        ) // f.eks. 5s ved timeoutSec=10
+        .responseTimeout(timeout)
         .doOnConnected { connection ->
             connection
-                .addHandlerLast(ReadTimeoutHandler(timeoutSec.toInt()))
-                .addHandlerLast(WriteTimeoutHandler(timeoutSec.toInt()))
+                .addHandlerLast(ReadTimeoutHandler(timeout.seconds.toInt()))
+                .addHandlerLast(WriteTimeoutHandler(timeout.seconds.toInt()))
         }
 
 private fun webClientWithTimeouts(
     baseUrl: String,
-    timeoutSec: Long,
+    timeout: Duration,
 ): WebClient.Builder =
     WebClient
         .builder()
         .baseUrl(baseUrl)
-        .clientConnector(ReactorClientHttpConnector(httpClient(timeoutSec)))
+        .clientConnector(ReactorClientHttpConnector(httpClient(timeout)))
 
 class PdlPersonRepository internal constructor(
     private val client: GraphQLWebClient,
@@ -47,7 +51,7 @@ class PdlPersonRepository internal constructor(
         endpoint: String,
         scope: String,
     ) : this(
-        GraphQLWebClient(endpoint, builder = webClientWithTimeouts(endpoint, 15.seconds.inWholeMilliseconds)),
+        GraphQLWebClient(endpoint, builder = webClientWithTimeouts(endpoint, 15.seconds.toJavaDuration())),
         tokenProvider(scope),
     )
 
