@@ -1,6 +1,6 @@
 package no.nav.dagpenger.dataprodukter.person
 
-import com.expediagroup.graphql.client.spring.GraphQLWebClient
+import com.expediagroup.graphql.client.ktor.GraphQLKtorClient
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo
 import com.github.tomakehurst.wiremock.junit5.WireMockTest
 import no.nav.dagpenger.dataprodukter.PdlMock
@@ -21,12 +21,12 @@ class PdlPersonRepositoryTest {
         private val kode7 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.FORTROLIG)))
         private val kode6 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.STRENGT_FORTROLIG)))
         private val ident = "12312312311"
-        private lateinit var pdlClient: GraphQLWebClient
+        private lateinit var pdlClient: GraphQLKtorClient
 
         @JvmStatic
         @BeforeAll
         fun setup(wiremock: WireMockRuntimeInfo) {
-            pdlClient = GraphQLWebClient("http://localhost:${wiremock.httpPort}/graphql")
+            pdlClient = graphQLKtorClient("http://localhost:${wiremock.httpPort}/graphql")
         }
     }
 
@@ -62,7 +62,7 @@ class PdlPersonRepositoryTest {
             }
 
         assertEquals(
-            "Kall mot PDL feilet. Feil: JacksonGraphQLError(message=foo, locations=null, path=null, extensions=null)",
+            "Kall mot PDL feilet. Feil: KotlinxGraphQLError(message=foo, locations=null, path=null, extensions=null)",
             exception.message,
         )
     }

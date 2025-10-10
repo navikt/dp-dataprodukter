@@ -1,57 +1,32 @@
 package no.nav.dagpenger.dataprodukter.person
 
-import com.expediagroup.graphql.client.spring.GraphQLWebClient
+import com.expediagroup.graphql.client.ktor.GraphQLKtorClient
 import com.expediagroup.graphql.client.types.GraphQLClientError
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
-import io.netty.channel.ChannelOption
-import io.netty.handler.timeout.ReadTimeoutHandler
-import io.netty.handler.timeout.WriteTimeoutHandler
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.runBlocking
 import no.nav.dagpenger.dataprodukter.oauth2.tokenProvider
 import no.nav.pdl.HentPerson
 import no.nav.pdl.enums.AdressebeskyttelseGradering
 import org.slf4j.MDC
-import org.springframework.http.client.reactive.ReactorClientHttpConnector
-import org.springframework.web.reactive.function.client.WebClient
-import reactor.netty.http.client.HttpClient
-import java.time.Duration
+import java.net.URI
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.toJavaDuration
 
 internal typealias TokenProvider = () -> String
 
-private fun httpClient(timeout: Duration): HttpClient =
-    HttpClient
-        .create()
-        .option(
-            ChannelOption.CONNECT_TIMEOUT_MILLIS,
-            (timeout.seconds * 1000 / 2).toInt(),
-        ) // f.eks. 5s ved timeoutSec=10
-        .responseTimeout(timeout)
-        .doOnConnected { connection ->
-            connection
-                .addHandlerLast(ReadTimeoutHandler(timeout.seconds.toInt()))
-                .addHandlerLast(WriteTimeoutHandler(timeout.seconds.toInt()))
-        }
-
-private fun webClientWithTimeouts(
-    baseUrl: String,
-    timeout: Duration,
-): WebClient.Builder =
-    WebClient
-        .builder()
-        .baseUrl(baseUrl)
-        .clientConnector(ReactorClientHttpConnector(httpClient(timeout)))
-
 class PdlPersonRepository internal constructor(
-    private val client: GraphQLWebClient,
+    private val client: GraphQLKtorClient,
     private val tokenProvider: TokenProvider,
 ) : PersonRepository {
     constructor(
         endpoint: String,
         scope: String,
     ) : this(
-        GraphQLWebClient(endpoint, builder = webClientWithTimeouts(endpoint, 15.seconds.toJavaDuration())),
+        graphQLKtorClient(endpoint),
         tokenProvider(scope),
     )
 
@@ -87,3 +62,20 @@ class PdlPersonRepository internal constructor(
         )
     }
 }
+
+internal fun graphQLKtorClient(endpoint: String): GraphQLKtorClient =
+    GraphQLKtorClient(
+        URI.create(endpoint).toURL(),
+        httpClient =
+            HttpClient {
+                expectSuccess = true
+                install(HttpTimeout) {
+                    requestTimeoutMillis = 15.seconds.inWholeMilliseconds
+                    connectTimeoutMillis = 15.seconds.inWholeMilliseconds
+                    socketTimeoutMillis = 15.seconds.inWholeMilliseconds
+                }
+                install(ContentNegotiation) {
+                    json()
+                }
+            },
+    )
