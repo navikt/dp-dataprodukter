@@ -5,6 +5,7 @@ import com.expediagroup.graphql.client.types.GraphQLClientError
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
@@ -76,6 +77,10 @@ internal fun graphQLKtorClient(endpoint: String): GraphQLKtorClient =
                 }
                 install(ContentNegotiation) {
                     json()
+                }
+                defaultRequest {
+                    // TODO: Skrur på keep-alive for å se om vi får samme problemer som med Spring klienten
+                    header(HttpHeaders.Connection, "keep-alive")
                 }
             },
     )
