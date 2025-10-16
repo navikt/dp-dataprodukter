@@ -107,9 +107,9 @@ internal class BehandlingRiver(
     }
 }
 
-val JsonMessage.registrert: LocalDateTime get() = fagsakId["kilde"]["registrert"].asLocalDateTime()
-val JsonMessage.saksnummer: String get() = fagsakId["verdi"].asText()
-val JsonMessage.fagsakId: JsonNode get() = this["opplysninger"].single { it["navn"].asText() == "fagsakId" }
+val JsonMessage.registrert: LocalDateTime get() = fagsakId?.let { it["kilde"]["registrert"] }?.asLocalDateTime() ?: LocalDateTime.now()
+val JsonMessage.saksnummer: String get() = fagsakId?.let { it["verdi"].asText() } ?: "0"
+val JsonMessage.fagsakId: JsonNode? get() = this["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
 
 val JsonMessage.harBehandletAv: Boolean get() = !this["behandletAv"].isMissingOrNull()
 val JsonMessage.behandletAv: BehandletAv
