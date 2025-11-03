@@ -2,7 +2,7 @@ import de.undercouch.gradle.tasks.download.Download
 plugins {
     id("common")
     `java-library`
-    id("ch.acanda.gradle.fabrikt") version "1.22.0"
+    id("ch.acanda.gradle.fabrikt") version "1.23.0"
     id("de.undercouch.download") version "5.6.0"
 }
 
