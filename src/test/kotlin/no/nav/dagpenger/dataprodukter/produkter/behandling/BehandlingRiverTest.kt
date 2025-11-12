@@ -2,6 +2,8 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.kotest.matchers.collections.shouldNotBeEmpty
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
@@ -84,6 +86,7 @@ internal class BehandlingRiverTest {
 
         with(value.captured.value()) {
             this.ident shouldBe "19395850346"
+            this.soknadId.shouldNotBeNull()
             this.resultat shouldBe "Beregning"
             this.kvote.shouldNotBeEmpty()
         }

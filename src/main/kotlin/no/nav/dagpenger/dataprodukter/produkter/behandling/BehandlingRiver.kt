@@ -97,12 +97,16 @@ class BehandlingsresultatParser(
 ) {
     val behandlingId get() = packet["behandlingId"].asUUID()
     val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
+
+    // Henter alltid ut en søknadsId, selv om behandlingen er basert på en annen hendelse
     val søknadId: String?
         get() =
             packet["opplysninger"]
                 .find { opplysning ->
                     opplysning["opplysningTypeId"].asText() == søknadTypeId
-                }?.map { it["perioder"] }
+                }
+                // Hent ut alle perioder (unike søknader)
+                ?.let { it["perioder"] }
                 // Vi vil alltid bare ha den siste søknaden
                 ?.lastOrNull()
                 ?.let { sistePeriode ->
@@ -118,11 +122,12 @@ class BehandlingsresultatParser(
             )
     val rettighetstype: Rettighetstype
         get() {
+            // TODO: Dette blir ikke riktig
             return Rettighetstype().apply {
-                ordinaer = rettighet("0194881f-9444-7a73-a458-0af81c034d85")
-                permittert = rettighet("0194881f-9444-7a73-a458-0af81c034d86")
-                loennsgaranti = rettighet("0194881f-9444-7a73-a458-0af81c034d87")
-                fiskeforedling = rettighet("0194881f-9444-7a73-a458-0af81c034d88")
+                ordinaer = rettighet(ordinærTypeId) ?: true
+                permittert = rettighet(permittertTypeId) ?: false
+                loennsgaranti = rettighet(lønnTypeId) ?: false
+                fiskeforedling = rettighet(fiskepermTypeId) ?: false
             }
         }
 
@@ -197,10 +202,14 @@ class BehandlingsresultatParser(
     private fun rettighet(opplysningTypeId: String) =
         packet.opplysning(opplysningTypeId)?.let {
             it["perioder"].any { periode -> periode["verdi"]["verdi"].asBoolean() }
-        } ?: false
+        }
 
     private companion object {
         private val søknadTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
+        private val ordinærTypeId = "0194881f-9444-7a73-a458-0af81c034d85"
+        private val permittertTypeId = "0194881f-9444-7a73-a458-0af81c034d86"
+        private val lønnTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
+        private val fiskepermTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
         private val kvoteOpplysninger =
             listOf(
                 // Fobrukt
