@@ -1,11 +1,12 @@
 package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import no.nav.dagpenger.dataprodukt.behandling.Behandling
+import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 
 internal class BehandlingRiverTest {
-    private val producer = mockk<KafkaProducer<String, Behandling>>(relaxed = true)
+    private val producer = mockk<KafkaProducer<String, Behandlingsresultat>>(relaxed = true)
     private val dataTopic = DataTopic(producer, "data")
     private val rapid by lazy {
         TestRapid().apply {
@@ -34,28 +35,71 @@ internal class BehandlingRiverTest {
     }
 
     @Test
-    fun `skal poste forslag eller fattet vedtak ut på Kafka`() {
-        rapid.sendTestMessage(innvilgelsesVedtak)
+    fun `kan videreformidle avslag`() {
+        rapid.sendTestMessage(avslag)
 
-        val value = slot<ProducerRecord<String, Behandling>>()
+        val value = slot<ProducerRecord<String, Behandlingsresultat>>()
         verify {
             producer.send(capture(value), any())
         }
 
         value.isCaptured shouldBe true
-
-        value.captured.key() shouldBe "11109233444"
+        value.captured.key() shouldBe "11620486155"
 
         with(value.captured.value()) {
-            this.ident shouldBe "11109233444"
-            this.behandlingStatus shouldBe "vedtak_fattet"
-            this.beslutter shouldBe "NAV987987"
-            this.saksbehandler shouldBe "NAV123123"
+            this.ident shouldBe "11620486155"
+            this.resultat shouldBe "Avslag"
         }
     }
 
-    private val innvilgelsesVedtak by lazy {
+    @Test
+    fun `kan videreformidle innvilgelse`() {
+        rapid.sendTestMessage(innvilgelse)
+
+        val value = slot<ProducerRecord<String, Behandlingsresultat>>()
+        verify {
+            producer.send(capture(value), any())
+        }
+
+        value.isCaptured shouldBe true
+        value.captured.key() shouldBe "18036404989"
+
+        with(value.captured.value()) {
+            this.ident shouldBe "18036404989"
+            this.resultat shouldBe "Gjenopptak"
+        }
+    }
+
+    @Test
+    fun `kan videreformidle beregning`() {
+        rapid.sendTestMessage(beregning)
+
+        val value = slot<ProducerRecord<String, Behandlingsresultat>>()
+        verify {
+            producer.send(capture(value), any())
+        }
+
+        value.isCaptured shouldBe true
+        value.captured.key() shouldBe "19395850346"
+
+        with(value.captured.value()) {
+            this.ident shouldBe "19395850346"
+            this.resultat shouldBe "Beregning"
+            this.kvote.shouldNotBeEmpty()
+        }
+    }
+
+    private val avslag by lazy {
         // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
-        javaClass.getResource("/dp-behandling/vedtak_fattet_innvilgelse.json")!!.readText()
+        javaClass.getResource("/dp-behandling/behandlingsresultat_avslag.json")!!.readText()
+    }
+
+    private val innvilgelse by lazy {
+        // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
+        javaClass.getResource("/dp-behandling/behandlingsresultat_gjenopptak.json")!!.readText()
+    }
+    private val beregning by lazy {
+        // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
+        javaClass.getResource("/dp-behandling/behandlingsresultat_beregnet.json")!!.readText()
     }
 }

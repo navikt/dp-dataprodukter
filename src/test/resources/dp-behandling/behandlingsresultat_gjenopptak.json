@@ -1,0 +1,6492 @@
+{
+  "@event_name": "behandlingsresultat",
+  "behandlingId": "019a6eb6-4a56-7075-9a60-4bbcc73df29c",
+  "behandletHendelse": {
+    "datatype": "UUID",
+    "id": "ee62b5aa-a363-4918-99d2-a516b00c4c60",
+    "type": "Søknad"
+  },
+  "basertPå": "019a6eb6-4712-7dd7-b357-31fe73ef647d",
+  "automatisk": false,
+  "ident": "18036404989",
+  "opplysninger": [
+    {
+      "opplysningTypeId": "0194881f-9462-78af-8977-46092bb030eb",
+      "navn": "fagsakId",
+      "perioder": [
+        {
+          "id": "019a6eb6-3eee-73db-863f-c4fef46d7222",
+          "opprettet": "2025-11-10T18:00:28.782258",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 660503482,
+            "datatype": "heltall"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.781923",
+            "meldingId": "426a125e-fe8f-46e8-b20a-c7e46a8f06d0"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91d1-7df2-ba1d-4533f37fcc77",
+      "navn": "søknadId",
+      "perioder": [
+        {
+          "id": "019a6eb6-3ef2-7419-8898-fb71786a2344",
+          "opprettet": "2025-11-10T18:00:28.78656",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": "14e759e5-7b44-4844-981e-ced189a480f0",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.786542",
+            "meldingId": "426a125e-fe8f-46e8-b20a-c7e46a8f06d0"
+          }
+        },
+        {
+          "id": "019a6eb6-4a56-7075-9a60-4bbcc73df29f",
+          "opprettet": "2025-11-10T18:00:31.702775",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "ee62b5aa-a363-4918-99d2-a516b00c4c60",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.702773",
+            "meldingId": "15dec2af-a85c-4741-80b6-ecd14258d145"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "01958ef2-e237-77c4-89e1-de91256e2e4a",
+      "navn": "hendelseType",
+      "perioder": [
+        {
+          "id": "019a6eb6-3ef2-7419-8898-fb71786a2346",
+          "opprettet": "2025-11-10T18:00:28.786781",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "SøknadInnsendtHendelse",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.786776",
+            "meldingId": "426a125e-fe8f-46e8-b20a-c7e46a8f06d0"
+          }
+        },
+        {
+          "id": "019a6eb6-4712-7dd7-b357-31fe73ef647a",
+          "opprettet": "2025-11-10T18:00:30.866215",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-07-22",
+          "verdi": {
+            "verdi": "OpprettBehandlingHendelse",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:30.86621",
+            "meldingId": "90e49a7a-cae7-4df9-b9c7-c77833c38018"
+          }
+        },
+        {
+          "id": "019a6eb6-4a57-7837-ac4f-753e9e5f2d13",
+          "opprettet": "2025-11-10T18:00:31.703278",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "gyldigTilOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "SøknadInnsendtHendelse",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.703276",
+            "meldingId": "15dec2af-a85c-4741-80b6-ecd14258d145"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940b-76ff-acf5-ba7bcb367234",
+      "navn": "Aldersgrense",
+      "perioder": [
+        {
+          "id": "019a6eb6-3efb-7ad6-84e3-cd4a9c35a37f",
+          "opprettet": "2025-11-10T18:00:28.795208",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 67,
+            "datatype": "heltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940b-76ff-acf5-ba7bcb367233",
+      "navn": "Fødselsdato",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fac-7d28-868b-3521931c737b",
+          "opprettet": "2025-11-10T18:00:28.972867",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": "1985-06-21",
+            "datatype": "dato"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.906223",
+            "meldingId": "ddaa7b03-5664-4bfc-80b2-1bc695b3628e"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91d1-7df2-ba1d-4533f37fcc73",
+      "navn": "Søknadsdato",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fad-79c5-a979-82d232361f27",
+          "opprettet": "2025-11-10T18:00:28.973322",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": "2018-06-21",
+            "datatype": "dato"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.907233",
+            "meldingId": "ddaa7b03-5664-4bfc-80b2-1bc695b3628e"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b6e-744d-a85a-a5d7a6cbfde3",
+          "opprettet": "2025-11-10T18:00:31.982958",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "2018-08-23",
+            "datatype": "dato"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778256",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91d1-7df2-ba1d-4533f37fcc74",
+      "navn": "Ønsker dagpenger fra dato",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fad-79c5-a979-82d232361f28",
+          "opprettet": "2025-11-10T18:00:28.973439",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": "2018-06-21",
+            "datatype": "dato"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:28.907404",
+            "meldingId": "ddaa7b03-5664-4bfc-80b2-1bc695b3628e"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b6f-7f53-b449-0f41a361431f",
+          "opprettet": "2025-11-10T18:00:31.983363",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "2018-08-23",
+            "datatype": "dato"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778345",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91d1-7df2-ba1d-4533f37fcc75",
+      "navn": "Søknadstidspunkt",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fae-7799-bdfa-42d62ff157b6",
+          "opprettet": "2025-11-10T18:00:28.974152",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": "2018-06-21",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-3fad-79c5-a979-82d232361f27",
+              "019a6eb6-3fad-79c5-a979-82d232361f28"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b76-7248-be12-9e3fc769c846",
+          "opprettet": "2025-11-10T18:00:31.990603",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "2018-08-23",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b6e-744d-a85a-a5d7a6cbfde3",
+              "019a6eb6-4b6f-7f53-b449-0f41a361431f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940b-76ff-acf5-ba7bcb367235",
+      "navn": "Dato søker når maks alder",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fae-7799-bdfa-42d62ff157b7",
+          "opprettet": "2025-11-10T18:00:28.974221",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": "2052-06-21",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "LeggTilÅr"
+            },
+            "opplysninger": [
+              "019a6eb6-3fac-7d28-868b-3521931c737b",
+              "019a6eb6-3efb-7ad6-84e3-cd4a9c35a37f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91d1-7df2-ba1d-4533f37fcc76",
+      "navn": "Prøvingsdato",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fae-7799-bdfa-42d62ff157b9",
+          "opprettet": "2025-11-10T18:00:28.974578",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": "2018-06-21",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b6"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7b-7b56-9325-1590cfa241f8",
+          "opprettet": "2025-11-10T18:00:31.995695",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": "2018-08-23",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b76-7248-be12-9e3fc769c846"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940b-76ff-acf5-ba7bcb367236",
+      "navn": "Siste mulige dag bruker kan oppfylle alderskrav",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fae-7799-bdfa-42d62ff157ba",
+          "opprettet": "2025-11-10T18:00:28.974637",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": "2052-06-30",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteDagIMåned"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b7"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940b-76ff-acf5-ba7bcb367237",
+      "navn": "Oppfyller kravet til alder",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fae-7799-bdfa-42d62ff157bc",
+          "opprettet": "2025-11-10T18:00:28.974972",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "FørEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9",
+              "019a6eb6-3fae-7799-bdfa-42d62ff157ba"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7e-7104-9408-5e5c3ce4acf0",
+          "opprettet": "2025-11-10T18:00:31.998637",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "FørEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8",
+              "019a6eb6-3fae-7799-bdfa-42d62ff157ba"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9414-7823-8d29-0e25b7feb7ce",
+      "navn": "Lovpålagt rapporteringsfrist for A-ordningen",
+      "perioder": [
+        {
+          "id": "019a6eb6-3faf-7d9e-990c-685277de8b29",
+          "opprettet": "2025-11-10T18:00:28.97585",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "2018-06-05",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04246",
+      "navn": "Maks lengde på opptjeningsperiode",
+      "perioder": [
+        {
+          "id": "019a6eb6-3faf-7d9e-990c-685277de8b2a",
+          "opprettet": "2025-11-10T18:00:28.975922",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 36,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04243",
+      "navn": "Grunnbeløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb2-7c0b-839d-d91e96e7ef33",
+          "opprettet": "2025-11-10T18:00:28.978448",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 96883,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f0423f",
+      "navn": "Antall G for krav til 12 mnd arbeidsinntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb3-70fc-858a-ed0ed9c71957",
+          "opprettet": "2025-11-10T18:00:28.979109",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1.5,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04240",
+      "navn": "Antall G for krav til 36 mnd arbeidsinntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb3-70fc-858a-ed0ed9c71958",
+          "opprettet": "2025-11-10T18:00:28.979182",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 3.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194ff86-a035-7eb0-9c60-21899f7cc0c1",
+      "navn": "Kravet til reell arbeidssøker er vurdert",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb3-70fc-858a-ed0ed9c71959",
+          "opprettet": "2025-11-10T18:00:28.979226",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9414-7823-8d29-0e25b7feb7cf",
+      "navn": "Arbeidsgivers rapporteringsfrist",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb5-755d-9fba-fa5b760b67ca",
+          "opprettet": "2025-11-10T18:00:28.981146",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "2018-06-05",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "FørsteArbeidsdag"
+            },
+            "opplysninger": [
+              "019a6eb6-3faf-7d9e-990c-685277de8b29"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04248",
+      "navn": "Inntektskrav for siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb5-755d-9fba-fa5b760b67cb",
+          "opprettet": "2025-11-10T18:00:28.981661",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 145324.5,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-3fb2-7c0b-839d-d91e96e7ef33",
+              "019a6eb6-3fb3-70fc-858a-ed0ed9c71957"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04249",
+      "navn": "Inntektskrav for siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb5-755d-9fba-fa5b760b67cc",
+          "opprettet": "2025-11-10T18:00:28.981746",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 290649,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-3fb2-7c0b-839d-d91e96e7ef33",
+              "019a6eb6-3fb3-70fc-858a-ed0ed9c71958"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a769",
+      "navn": "Minimum vanlig arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb5-755d-9fba-fa5b760b67cd",
+          "opprettet": "2025-11-10T18:00:28.98179",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 18.75,
+            "datatype": "desimaltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9414-7823-8d29-0e25b7feb7d0",
+      "navn": "Siste avsluttende kalendermåned",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb6-7e70-af2e-04a79b5bc5df",
+          "opprettet": "2025-11-10T18:00:28.982843",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "2018-05-31",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SisteavsluttendeKalenderMåned"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9",
+              "019a6eb6-3fb5-755d-9fba-fa5b760b67ca"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04247",
+      "navn": "Første måned av opptjeningsperiode",
+      "perioder": [
+        {
+          "id": "019a6eb6-3fb7-704c-8d09-7b25f4c1ca05",
+          "opprettet": "2025-11-10T18:00:28.983765",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "2015-06-01",
+            "datatype": "dato"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "TrekkFraMåned"
+            },
+            "opplysninger": [
+              "019a6eb6-3fb6-7e70-af2e-04a79b5bc5df",
+              "019a6eb6-3faf-7d9e-990c-685277de8b2a"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a75f",
+      "navn": "Ønsket arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad33",
+          "opprettet": "2025-11-10T18:00:29.105285",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": 40.0,
+            "datatype": "desimaltall"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.052241",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b6f-7f53-b449-0f41a3614320",
+          "opprettet": "2025-11-10T18:00:31.983746",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": 40.0,
+            "datatype": "desimaltall"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.77842",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04244",
+      "navn": "Inntektsopplysninger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad34",
+          "opprettet": "2025-11-10T18:00:29.105393",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "01J677GHJRC2H08Q55DASFD0XX",
+            "datatype": "tekst"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.05242",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9",
+              "019a6eb6-3fb6-7e70-af2e-04a79b5bc5df",
+              "019a6eb6-3fb7-704c-8d09-7b25f4c1ca05"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9441-7d1b-a06a-6727543a141e",
+      "navn": "Kan jobbe heltid og deltid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad35",
+          "opprettet": "2025-11-10T18:00:29.105496",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.05721",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b70-717a-b9ce-71eb199f7fa6",
+          "opprettet": "2025-11-10T18:00:31.984012",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.77849",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bd9",
+      "navn": "Kan jobbe i hele Norge",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad36",
+          "opprettet": "2025-11-10T18:00:29.1056",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.057382",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b70-717a-b9ce-71eb199f7fa7",
+          "opprettet": "2025-11-10T18:00:31.984271",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778565",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bdc",
+      "navn": "Kan ta alle typer arbeid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad37",
+          "opprettet": "2025-11-10T18:00:29.105699",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.05753",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b70-717a-b9ce-71eb199f7fa8",
+          "opprettet": "2025-11-10T18:00:31.984536",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778656",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bde",
+      "navn": "Villig til å bytte yrke",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad38",
+          "opprettet": "2025-11-10T18:00:29.105809",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.057704",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b70-717a-b9ce-71eb199f7fa9",
+          "opprettet": "2025-11-10T18:00:31.984789",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778733",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877be0",
+      "navn": "Registrert som arbeidssøker",
+      "perioder": [
+        {
+          "id": "019a6eb6-4031-7486-8345-f60f9bc0ad39",
+          "opprettet": "2025-11-10T18:00:29.105911",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058044",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce6-72dc-85d6-12f945b0abcf",
+          "opprettet": "2025-11-10T18:00:32.358652",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210326",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d85",
+      "navn": "Har rett til ordinære dagpenger gjennom arbeidsforhold",
+      "perioder": [
+        {
+          "id": "019a6eb6-4032-77c8-bd43-17c1bca7b0f8",
+          "opprettet": "2025-11-10T18:00:29.106012",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058243",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b71-704d-bf9c-884bd8434f12",
+          "opprettet": "2025-11-10T18:00:31.985346",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778864",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d86",
+      "navn": "Bruker er permittert",
+      "perioder": [
+        {
+          "id": "019a6eb6-4032-77c8-bd43-17c1bca7b0f9",
+          "opprettet": "2025-11-10T18:00:29.106101",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058395",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b71-704d-bf9c-884bd8434f13",
+          "opprettet": "2025-11-10T18:00:31.985605",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778926",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d87",
+      "navn": "Forskutterte lønnsgarantimidler i form av dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4032-77c8-bd43-17c1bca7b0fa",
+          "opprettet": "2025-11-10T18:00:29.106191",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058528",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b71-704d-bf9c-884bd8434f14",
+          "opprettet": "2025-11-10T18:00:31.98588",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.778991",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d88",
+      "navn": "Permittert fra fiskeindustrien",
+      "perioder": [
+        {
+          "id": "019a6eb6-4032-77c8-bd43-17c1bca7b0fb",
+          "opprettet": "2025-11-10T18:00:29.106277",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058668",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b72-783e-bc40-dadab8276c20",
+          "opprettet": "2025-11-10T18:00:31.986136",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.779063",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "01948d3c-4bea-7802-9d18-5342a5e2be99",
+      "navn": "Avtjent verneplikt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4032-77c8-bd43-17c1bca7b0fc",
+          "opprettet": "2025-11-10T18:00:29.106365",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.058805",
+            "meldingId": "ccf29c82-bd5c-479d-85b8-f031d8c6a849"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b72-783e-bc40-dadab8276c21",
+          "opprettet": "2025-11-10T18:00:31.986418",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.779125",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04245",
+      "navn": "Brutto arbeidsinntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4033-75e1-bf95-054c08c39b51",
+          "opprettet": "2025-11-10T18:00:29.107694",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "01J677GHJRC2H08Q55DASFD0XX",
+            "datatype": "tekst"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "FiltrerRelevanteInntekter"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad34"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9441-7d1b-a06a-6727543a141f",
+      "navn": "Det er godkjent at bruker kun søker deltidsarbeid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4033-75e1-bf95-054c08c39b52",
+          "opprettet": "2025-11-10T18:00:29.107795",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad35"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b76-7248-be12-9e3fc769c847",
+          "opprettet": "2025-11-10T18:00:31.990952",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bda",
+      "navn": "Det er godkjent at bruker kun søker arbeid lokalt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4033-75e1-bf95-054c08c39b53",
+          "opprettet": "2025-11-10T18:00:29.107866",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad36"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b77-745a-b14b-2d74f61eee97",
+          "opprettet": "2025-11-10T18:00:31.991197",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa7"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194929e-2036-7ac1-ada3-5cbe05a83f08",
+      "navn": "Har helsemessige begrensninger og kan ikke ta alle typer arbeid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4033-75e1-bf95-054c08c39b54",
+          "opprettet": "2025-11-10T18:00:29.107928",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad37"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b77-745a-b14b-2d74f61eee98",
+          "opprettet": "2025-11-10T18:00:31.991443",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bdf",
+      "navn": "Oppfyller kravet til å ta ethvert arbeid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd5446",
+          "opprettet": "2025-11-10T18:00:29.108009",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad38"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b77-745a-b14b-2d74f61eee99",
+          "opprettet": "2025-11-10T18:00:31.991698",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76d",
+      "navn": "Villig til å jobbe minimum arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd5447",
+          "opprettet": "2025-11-10T18:00:29.108096",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad33",
+              "019a6eb6-3fb5-755d-9fba-fa5b760b67cd"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b77-745a-b14b-2d74f61eee9a",
+          "opprettet": "2025-11-10T18:00:31.991979",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4b6f-7f53-b449-0f41a3614320",
+              "019a6eb6-3fb5-755d-9fba-fa5b760b67cd"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877be1",
+      "navn": "Oppfyller kravet til å være registrert som arbeidssøker",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd5448",
+          "opprettet": "2025-11-10T18:00:29.108172",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad39"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ceb-741f-a41f-22410796e8b7",
+          "opprettet": "2025-11-10T18:00:32.363357",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4ce6-72dc-85d6-12f945b0abcf"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d89",
+      "navn": "Har rett til ordinære dagpenger uten arbeidsforhold",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd5449",
+          "opprettet": "2025-11-10T18:00:29.108313",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0f8",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0f9",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fa",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fb"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b78-7a30-a0bf-a59f288930d3",
+          "opprettet": "2025-11-10T18:00:31.992534",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b71-704d-bf9c-884bd8434f12",
+              "019a6eb6-4b71-704d-bf9c-884bd8434f13",
+              "019a6eb6-4b71-704d-bf9c-884bd8434f14",
+              "019a6eb6-4b72-783e-bc40-dadab8276c20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "01980cf4-9010-7bcf-b578-ca5a825d64ef",
+      "navn": "Skal kravet til verneplikt vurderes",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd544a",
+          "opprettet": "2025-11-10T18:00:29.108397",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fc"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b78-7a30-a0bf-a59f288930d4",
+          "opprettet": "2025-11-10T18:00:31.992796",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4b72-783e-bc40-dadab8276c21"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "01948d43-e218-76f1-b29b-7e604241d98a",
+      "navn": "Oppfyller kravet til verneplikt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4034-731d-903c-dc3a9cbd544b",
+          "opprettet": "2025-11-10T18:00:29.108597",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fc"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7a-7954-bddc-e75c4915607d",
+          "opprettet": "2025-11-10T18:00:31.994201",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4b72-783e-bc40-dadab8276c21"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04241",
+      "navn": "Arbeidsinntekt siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4037-7cac-88c5-1a6000b4cc7e",
+          "opprettet": "2025-11-10T18:00:29.111601",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 500000,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-4033-75e1-bf95-054c08c39b51"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f04242",
+      "navn": "Arbeidsinntekt siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4038-7f34-bf7a-03e7c86a9a44",
+          "opprettet": "2025-11-10T18:00:29.112001",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 500000,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-4033-75e1-bf95-054c08c39b51"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bd8",
+      "navn": "Oppfyller kravet til heltid- og deltidsarbeid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4038-7f34-bf7a-03e7c86a9a45",
+          "opprettet": "2025-11-10T18:00:29.112098",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad35",
+              "019a6eb6-4033-75e1-bf95-054c08c39b52"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec4",
+          "opprettet": "2025-11-10T18:00:31.996071",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa6",
+              "019a6eb6-4b76-7248-be12-9e3fc769c847"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bdb",
+      "navn": "Oppfyller kravet til mobilitet",
+      "perioder": [
+        {
+          "id": "019a6eb6-4038-7f34-bf7a-03e7c86a9a46",
+          "opprettet": "2025-11-10T18:00:29.112183",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad36",
+              "019a6eb6-4033-75e1-bf95-054c08c39b53"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec5",
+          "opprettet": "2025-11-10T18:00:31.996363",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa7",
+              "019a6eb6-4b77-745a-b14b-2d74f61eee97"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877bdd",
+      "navn": "Oppfyller kravet til å være arbeidsfør",
+      "perioder": [
+        {
+          "id": "019a6eb6-4038-7f34-bf7a-03e7c86a9a47",
+          "opprettet": "2025-11-10T18:00:29.112266",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad37",
+              "019a6eb6-4033-75e1-bf95-054c08c39b54"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec6",
+          "opprettet": "2025-11-10T18:00:31.996685",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b70-717a-b9ce-71eb199f7fa8",
+              "019a6eb6-4b77-745a-b14b-2d74f61eee98"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d8a",
+      "navn": "Ordinære dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4038-7f34-bf7a-03e7c86a9a48",
+          "opprettet": "2025-11-10T18:00:29.112349",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0f8",
+              "019a6eb6-4034-731d-903c-dc3a9cbd5449"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec7",
+          "opprettet": "2025-11-10T18:00:31.996967",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b71-704d-bf9c-884bd8434f12",
+              "019a6eb6-4b78-7a30-a0bf-a59f288930d3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f0424a",
+      "navn": "Arbeidsinntekt er over kravet for siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4039-799c-ae70-11ba4380e2bf",
+          "opprettet": "2025-11-10T18:00:29.113797",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4037-7cac-88c5-1a6000b4cc7e",
+              "019a6eb6-3fb5-755d-9fba-fa5b760b67cb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f0424b",
+      "navn": "Arbeidsinntekt er over kravet for siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4039-799c-ae70-11ba4380e2c0",
+          "opprettet": "2025-11-10T18:00:29.113942",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a44",
+              "019a6eb6-3fb5-755d-9fba-fa5b760b67cc"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9442-707b-a6ee-e96c06877be2",
+      "navn": "Reell arbeidssøker",
+      "perioder": [
+        {
+          "id": "019a6eb6-403a-754b-ae71-2c23389585bc",
+          "opprettet": "2025-11-10T18:00:29.114077",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4034-731d-903c-dc3a9cbd5447",
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a45",
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a46",
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a47",
+              "019a6eb6-4034-731d-903c-dc3a9cbd5446"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7e-7104-9408-5e5c3ce4acf1",
+          "opprettet": "2025-11-10T18:00:31.99899",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4b77-745a-b14b-2d74f61eee9a",
+              "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec4",
+              "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec5",
+              "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec6",
+              "019a6eb6-4b77-745a-b14b-2d74f61eee99"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9444-7a73-a458-0af81c034d8b",
+      "navn": "Rettighetstype",
+      "perioder": [
+        {
+          "id": "019a6eb6-403a-754b-ae71-2c23389585bd",
+          "opprettet": "2025-11-10T18:00:29.114182",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a48",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0f9",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fa",
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fb"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7f-79f1-90d0-85f36f1d3362",
+          "opprettet": "2025-11-10T18:00:31.999286",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7c-741c-99b7-3d7c6ba1bec7",
+              "019a6eb6-4b71-704d-bf9c-884bd8434f13",
+              "019a6eb6-4b71-704d-bf9c-884bd8434f14",
+              "019a6eb6-4b72-783e-bc40-dadab8276c20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9413-77ce-92ec-d29700f0424c",
+      "navn": "Oppfyller kravet til minsteinntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-403b-7893-b3b5-bb75a0685737",
+          "opprettet": "2025-11-10T18:00:29.115613",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4039-799c-ae70-11ba4380e2bf",
+              "019a6eb6-4039-799c-ae70-11ba4380e2c0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943f-78d9-b874-00a4944c54f1",
+      "navn": "Oppfyller vilkåret om å ikke motta andre fulle ytelser",
+      "perioder": [
+        {
+          "id": "019a6eb6-403d-723c-b91f-32e90d5ac6ed",
+          "opprettet": "2025-11-10T18:00:29.117752",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d54c",
+      "navn": "Bruker er medlem av folketrygden",
+      "perioder": [
+        {
+          "id": "019a6eb6-403d-723c-b91f-32e90d5ac6ee",
+          "opprettet": "2025-11-10T18:00:29.117868",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d4",
+      "navn": "Sykepenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403d-723c-b91f-32e90d5ac6ef",
+          "opprettet": "2025-11-10T18:00:29.117956",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d5",
+      "navn": "Pleiepenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7da",
+          "opprettet": "2025-11-10T18:00:29.118045",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d6",
+      "navn": "Omsorgspenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7db",
+          "opprettet": "2025-11-10T18:00:29.118138",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d7",
+      "navn": "Opplæringspenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7dc",
+          "opprettet": "2025-11-10T18:00:29.118228",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d1",
+      "navn": "Uføretrygd etter lovens kapittel 12",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7dd",
+          "opprettet": "2025-11-10T18:00:29.118318",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d9",
+      "navn": "Foreldrepenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7de",
+          "opprettet": "2025-11-10T18:00:29.118406",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45da",
+      "navn": "Svangerskapspenger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7df",
+          "opprettet": "2025-11-10T18:00:29.118495",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91df-746a-a8ac-4a6b2b30685d",
+      "navn": "Brukeren deltar i streik eller er omfattet av lock-out",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7e0",
+          "opprettet": "2025-11-10T18:00:29.118586",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91df-746a-a8ac-4a6b2b30685e",
+      "navn": "Brukeren er ledig ved samme bedrift eller arbeidsplass, og blir påvirket av utfallet",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7e1",
+          "opprettet": "2025-11-10T18:00:29.118686",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76b",
+      "navn": "Ny arbeidstid per uke",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7e2",
+          "opprettet": "2025-11-10T18:00:29.11878",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0.0,
+            "datatype": "desimaltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "019522d6-846d-7173-a892-67f10016d8d2",
+      "navn": "Ordinært krav til prosentvis tap av arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-403e-7866-a460-a3279b8cb7e3",
+          "opprettet": "2025-11-10T18:00:29.11891",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 50.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a764",
+      "navn": "Beregningsregel: Arbeidstid siste 6 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7c7",
+          "opprettet": "2025-11-10T18:00:29.11901",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a765",
+      "navn": "Beregningsregel: Arbeidstid siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7c8",
+          "opprettet": "2025-11-10T18:00:29.11911",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a766",
+      "navn": "Beregningsregel: Arbeidstid siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7c9",
+          "opprettet": "2025-11-10T18:00:29.119213",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0196b4a7-23b5-7b2c-aa95-e4167d900de8",
+      "navn": "Arbeidstidsreduksjonen er ikke brukt tidligere i en full stønadsperiode",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7ca",
+          "opprettet": "2025-11-10T18:00:29.119314",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b527",
+      "navn": "Deltar i arbeidsmarkedstiltak",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7cb",
+          "opprettet": "2025-11-10T18:00:29.119415",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b528",
+      "navn": "Deltar i opplæring for innvandrere",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7cc",
+          "opprettet": "2025-11-10T18:00:29.119519",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b529",
+      "navn": "Deltar i grunnskoleopplæring, videregående opplæring og opplæring i grunnleggende ferdigheter",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7cd",
+          "opprettet": "2025-11-10T18:00:29.119621",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b52a",
+      "navn": "Deltar i høyere yrkesfaglig utdanning",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7ce",
+          "opprettet": "2025-11-10T18:00:29.119727",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b52b",
+      "navn": "Deltar i høyere utdanning",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7cf",
+          "opprettet": "2025-11-10T18:00:29.119837",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b52c",
+      "navn": "Deltar på kurs mv",
+      "perioder": [
+        {
+          "id": "019a6eb6-403f-7ccf-9efd-551dbd63a7d0",
+          "opprettet": "2025-11-10T18:00:29.119948",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9447-7e36-a569-3e9f42bff9f6",
+      "navn": "Bruker er utestengt fra dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4040-7720-bced-8ee01dcf9bd1",
+          "opprettet": "2025-11-10T18:00:29.120063",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d54d",
+      "navn": "Oppfyller kravet til medlemskap",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02a",
+          "opprettet": "2025-11-10T18:00:29.122239",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-403d-723c-b91f-32e90d5ac6ee"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0196afaf-afbd-7079-b2cf-3669ad9d86aa",
+      "navn": "Uføretrygden er gitt med virkningstidspunkt i inneværende år eller innenfor de to siste kalenderår",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02b",
+          "opprettet": "2025-11-10T18:00:29.122385",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-403e-7866-a460-a3279b8cb7dd"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-91df-746a-a8ac-4a6b2b30685f",
+      "navn": "Brukeren er ikke påvirket av streik eller lock-out",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02c",
+          "opprettet": "2025-11-10T18:00:29.122626",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-403e-7866-a460-a3279b8cb7e0",
+              "019a6eb6-403e-7866-a460-a3279b8cb7e1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a762",
+      "navn": "Krav til prosentvis tap av arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02d",
+          "opprettet": "2025-11-10T18:00:29.122705",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 50.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fb",
+              "019a6eb6-403e-7866-a460-a3279b8cb7e3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a763",
+      "navn": "Beregningsregel: Tapt arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02e",
+          "opprettet": "2025-11-10T18:00:29.122788",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7c7",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7c8",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7c9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b523",
+      "navn": "Godkjent unntak for utdanning eller opplæring?",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb02f",
+          "opprettet": "2025-11-10T18:00:29.122887",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7cb",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7cc",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7cd",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7ce",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7cf",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7d0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9447-7e36-a569-3e9f42bff9f7",
+      "navn": "Oppfyller krav til ikke utestengt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4042-7939-859f-7b3162dcb030",
+          "opprettet": "2025-11-10T18:00:29.122961",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4040-7720-bced-8ee01dcf9bd1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0196afc0-6807-7fa3-83e4-cf7f621f3a7e",
+      "navn": "Sum hvis Uføre ikke skal samordnes",
+      "perioder": [
+        {
+          "id": "019a6eb6-4045-7c00-9a98-b987fc66dc52",
+          "opprettet": "2025-11-10T18:00:29.125108",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0196afbf-e32d-775a-ad10-f476e26dcb6f",
+      "navn": "Uførebeløp som skal samordnes",
+      "perioder": [
+        {
+          "id": "019a6eb6-404d-7cc7-b6ef-b4b44d31256a",
+          "opprettet": "2025-11-10T18:00:29.133904",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4042-7939-859f-7b3162dcb02b",
+              "019a6eb6-4045-7c00-9a98-b987fc66dc52"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86e9",
+      "navn": "Sum andre ytelser",
+      "perioder": [
+        {
+          "id": "019a6eb6-4050-74d3-b7f8-620487254f00",
+          "opprettet": "2025-11-10T18:00:29.136564",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Addisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-403d-723c-b91f-32e90d5ac6ef",
+              "019a6eb6-403e-7866-a460-a3279b8cb7da",
+              "019a6eb6-403e-7866-a460-a3279b8cb7db",
+              "019a6eb6-403e-7866-a460-a3279b8cb7dc",
+              "019a6eb6-404d-7cc7-b6ef-b4b44d31256a",
+              "019a6eb6-403e-7866-a460-a3279b8cb7de",
+              "019a6eb6-403e-7866-a460-a3279b8cb7df"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0196ab10-0cff-7301-99d6-65be50a50201",
+      "navn": "Bostedsland er Norge",
+      "perioder": [
+        {
+          "id": "019a6eb6-410b-7fa7-bd02-117bb0264a85",
+          "opprettet": "2025-11-10T18:00:29.323832",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.238478",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b522",
+      "navn": "Brukeren er under utdanning eller opplæring",
+      "perioder": [
+        {
+          "id": "019a6eb6-410b-7fa7-bd02-117bb0264a86",
+          "opprettet": "2025-11-10T18:00:29.323979",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.238775",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b72-783e-bc40-dadab8276c22",
+          "opprettet": "2025-11-10T18:00:31.986687",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.779186",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45cd",
+      "navn": "Sykepenger etter lovens kapittel 8",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac20",
+          "opprettet": "2025-11-10T18:00:29.324069",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.238912",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce7-751f-97ec-6b2215c22555",
+          "opprettet": "2025-11-10T18:00:32.359328",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210422",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45cf",
+      "navn": "Omsorgspenger etter lovens kapittel 9",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac21",
+          "opprettet": "2025-11-10T18:00:29.324266",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.239043",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce7-751f-97ec-6b2215c22556",
+          "opprettet": "2025-11-10T18:00:32.359883",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210492",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d3",
+      "navn": "Svangerskapspenger etter lovens kapittel 14",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac22",
+          "opprettet": "2025-11-10T18:00:29.324488",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.23918",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce8-7a1b-a7fd-53dbf6329d55",
+          "opprettet": "2025-11-10T18:00:32.360317",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210564",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d2",
+      "navn": "Foreldrepenger etter lovens kapittel 14",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac23",
+          "opprettet": "2025-11-10T18:00:29.324603",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.239646",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce8-7a1b-a7fd-53dbf6329d56",
+          "opprettet": "2025-11-10T18:00:32.360762",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210631",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45d0",
+      "navn": "Opplæringspenger etter lovens kapittel 9",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac24",
+          "opprettet": "2025-11-10T18:00:29.324694",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.240117",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce9-75d3-a761-70131253dd1c",
+          "opprettet": "2025-11-10T18:00:32.361206",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210696",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9433-70e9-a85b-c246150c45ce",
+      "navn": "Pleiepenger etter lovens kapittel 9",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac25",
+          "opprettet": "2025-11-10T18:00:29.324802",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.240601",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ce9-75d3-a761-70131253dd1d",
+          "opprettet": "2025-11-10T18:00:32.361641",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:32.210765",
+            "meldingId": "a4d4793a-33f4-4922-a740-4df7f02d3b1d"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7b-7b56-9325-1590cfa241f8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a75e",
+      "navn": "Har krav på lønn fra arbeidsgiver",
+      "perioder": [
+        {
+          "id": "019a6eb6-410c-730d-ba02-3f2eaf5dac26",
+          "opprettet": "2025-11-10T18:00:29.324889",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.240771",
+            "meldingId": "70b0c824-bc0e-4559-8cfc-a76b55265ce0"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b75-73e0-be01-3f29c8c7f857",
+          "opprettet": "2025-11-10T18:00:31.989109",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:31.779642",
+            "meldingId": "34fb74f9-9e9d-4da7-b0d7-23eec51affc8"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-4a56-7075-9a60-4bbcc73df29f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d549",
+      "navn": "Bruker oppholder seg i Norge",
+      "perioder": [
+        {
+          "id": "019a6eb6-410e-7176-b134-cf53b517dcc3",
+          "opprettet": "2025-11-10T18:00:29.326354",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-07-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-410b-7fa7-bd02-117bb0264a85"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4787-71f6-b91e-9e313a5f72db",
+          "opprettet": "2025-11-10T18:00:30.983617",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "Saksbehandler",
+            "registrert": "2025-11-10T18:00:30.943001",
+            "ident": "NAV123123",
+            "begrunnelse": {
+              "verdi": "Er i utlandet",
+              "sistEndret": "2025-11-10T18:00:30.942985"
+            }
+          }
+        },
+        {
+          "id": "019a6eb6-4e01-7073-897b-f2ffb315382f",
+          "opprettet": "2025-11-10T18:00:32.64179",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "Saksbehandler",
+            "registrert": "2025-11-10T18:00:32.509149",
+            "ident": "NAV123123",
+            "begrunnelse": {
+              "verdi": "Tilbake fra utlandet",
+              "sistEndret": "2025-11-10T18:00:32.509146"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86ea",
+      "navn": "Medlem har reduserte ytelser fra folketrygden (Samordning)",
+      "perioder": [
+        {
+          "id": "019a6eb6-410e-7176-b134-cf53b517dcc4",
+          "opprettet": "2025-11-10T18:00:29.326489",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac20",
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac25",
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac21",
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac24",
+              "019a6eb6-4042-7939-859f-7b3162dcb02b",
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac23",
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac22"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4ceb-741f-a41f-22410796e8b8",
+          "opprettet": "2025-11-10T18:00:32.363753",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4ce7-751f-97ec-6b2215c22555",
+              "019a6eb6-4ce9-75d3-a761-70131253dd1d",
+              "019a6eb6-4ce7-751f-97ec-6b2215c22556",
+              "019a6eb6-4ce9-75d3-a761-70131253dd1c",
+              "019a6eb6-4042-7939-859f-7b3162dcb02b",
+              "019a6eb6-4ce8-7a1b-a7fd-53dbf6329d56",
+              "019a6eb6-4ce8-7a1b-a7fd-53dbf6329d55"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a761",
+      "navn": "Oppfyller vilkåret til tap av arbeidsinntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-410e-7176-b134-cf53b517dcc5",
+          "opprettet": "2025-11-10T18:00:29.326561",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-410c-730d-ba02-3f2eaf5dac26"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b79-788a-9eaf-a2d41375f2d9",
+          "opprettet": "2025-11-10T18:00:31.993389",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "IngenAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b75-73e0-be01-3f29c8c7f857"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b524",
+      "navn": "Har svart ja på spørsmål om utdanning eller opplæring",
+      "perioder": [
+        {
+          "id": "019a6eb6-410e-7176-b134-cf53b517dcc6",
+          "opprettet": "2025-11-10T18:00:29.326623",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-410b-7fa7-bd02-117bb0264a86"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b79-788a-9eaf-a2d41375f2da",
+          "opprettet": "2025-11-10T18:00:31.993655",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErSann"
+            },
+            "opplysninger": [
+              "019a6eb6-4b72-783e-bc40-dadab8276c22"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b525",
+      "navn": "Har svart nei på spørsmål om utdanning eller opplæring",
+      "perioder": [
+        {
+          "id": "019a6eb6-410e-7176-b134-cf53b517dcc7",
+          "opprettet": "2025-11-10T18:00:29.32671",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErUsann"
+            },
+            "opplysninger": [
+              "019a6eb6-410b-7fa7-bd02-117bb0264a86"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b79-788a-9eaf-a2d41375f2db",
+          "opprettet": "2025-11-10T18:00:31.99393",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErUsann"
+            },
+            "opplysninger": [
+              "019a6eb6-4b72-783e-bc40-dadab8276c22"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d54a",
+      "navn": "Oppfyller unntak for opphold i Norge",
+      "perioder": [
+        {
+          "id": "019a6eb6-410f-76e2-a5bd-59df74ff574b",
+          "opprettet": "2025-11-10T18:00:29.327824",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-07-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-410e-7176-b134-cf53b517dcc3"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-478a-7c87-9a6d-4e5b483a8611",
+          "opprettet": "2025-11-10T18:00:30.986967",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4787-71f6-b91e-9e313a5f72db"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4e03-736a-a465-787759605c65",
+          "opprettet": "2025-11-10T18:00:32.643651",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Utgangspunkt"
+            },
+            "opplysninger": [
+              "019a6eb6-4e01-7073-897b-f2ffb315382f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b526",
+      "navn": "Oppfyller kravet på unntak for utdanning eller opplæring",
+      "perioder": [
+        {
+          "id": "019a6eb6-410f-76e2-a5bd-59df74ff574c",
+          "opprettet": "2025-11-10T18:00:29.327912",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-410e-7176-b134-cf53b517dcc6",
+              "019a6eb6-4042-7939-859f-7b3162dcb02f"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7d-7d1b-b400-2fd45ea37f71",
+          "opprettet": "2025-11-10T18:00:31.997255",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4b79-788a-9eaf-a2d41375f2da",
+              "019a6eb6-4042-7939-859f-7b3162dcb02f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d54b",
+      "navn": "Oppfyller kravet til opphold i Norge eller unntak",
+      "perioder": [
+        {
+          "id": "019a6eb6-4111-7f70-8fcb-3c3d2ed36e42",
+          "opprettet": "2025-11-10T18:00:29.329007",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-07-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-410e-7176-b134-cf53b517dcc3",
+              "019a6eb6-410f-76e2-a5bd-59df74ff574b"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-478c-7421-91f0-b207432015f5",
+          "opprettet": "2025-11-10T18:00:30.988262",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4787-71f6-b91e-9e313a5f72db",
+              "019a6eb6-478a-7c87-9a6d-4e5b483a8611"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4e04-7729-822b-ace1948e387a",
+          "opprettet": "2025-11-10T18:00:32.64474",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4e01-7073-897b-f2ffb315382f",
+              "019a6eb6-4e03-736a-a465-787759605c65"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9445-734c-a7ee-045edf29b52d",
+      "navn": "Oppfyller krav til utdanning eller opplæring",
+      "perioder": [
+        {
+          "id": "019a6eb6-4111-7f70-8fcb-3c3d2ed36e43",
+          "opprettet": "2025-11-10T18:00:29.32909",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-410f-76e2-a5bd-59df74ff574c",
+              "019a6eb6-410e-7176-b134-cf53b517dcc7"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4b7f-79f1-90d0-85f36f1d3363",
+          "opprettet": "2025-11-10T18:00:31.999607",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4b7d-7d1b-b400-2fd45ea37f71",
+              "019a6eb6-4b79-788a-9eaf-a2d41375f2db"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9443-72b4-8b30-5f6cdb24d54e",
+      "navn": "Kravet til opphold i Norge er oppfylt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4112-78ba-aed7-12e31a3dbff3",
+          "opprettet": "2025-11-10T18:00:29.330587",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-07-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4111-7f70-8fcb-3c3d2ed36e42",
+              "019a6eb6-4042-7939-859f-7b3162dcb02a"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-478d-76ac-a7cc-0969d5a842b4",
+          "opprettet": "2025-11-10T18:00:30.989241",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-478c-7421-91f0-b207432015f5",
+              "019a6eb6-4042-7939-859f-7b3162dcb02a"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4e05-707b-92cc-e2b30a193942",
+          "opprettet": "2025-11-10T18:00:32.645836",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4e04-7729-822b-ace1948e387a",
+              "019a6eb6-4042-7939-859f-7b3162dcb02a"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940f-7af9-9387-052e028b29ee",
+      "navn": "Grunnbeløp for grunnlag",
+      "perioder": [
+        {
+          "id": "019a6eb6-4114-754f-8d64-62725c03cf00",
+          "opprettet": "2025-11-10T18:00:29.33252",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 96883,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940f-7af9-9387-052e028b29ed",
+      "navn": "Tellende inntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4114-754f-8d64-62725c03cf01",
+          "opprettet": "2025-11-10T18:00:29.332654",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "01J677GHJRC2H08Q55DASFD0XX",
+            "datatype": "tekst"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "FiltrerRelevanteInntekter"
+            },
+            "opplysninger": [
+              "019a6eb6-4031-7486-8345-f60f9bc0ad34"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10ca7",
+      "navn": "Faktor for maksimalt mulig grunnlag",
+      "perioder": [
+        {
+          "id": "019a6eb6-4114-754f-8d64-62725c03cf02",
+          "opprettet": "2025-11-10T18:00:29.332738",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10ca9",
+      "navn": "Antall år i 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4114-754f-8d64-62725c03cf03",
+          "opprettet": "2025-11-10T18:00:29.332808",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 3.0,
+            "datatype": "desimaltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a23e",
+      "navn": "Faktor for utregning av dagsats etter dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-4115-73eb-ad2f-664caf6dd61b",
+          "opprettet": "2025-11-10T18:00:29.333269",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0.0024,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a23d",
+      "navn": "Barnetilleggets størrelse i kroner per dag for hvert barn",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5b5",
+          "opprettet": "2025-11-10T18:00:29.334014",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 17,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a246",
+      "navn": "90% av grunnlag for dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5b6",
+          "opprettet": "2025-11-10T18:00:29.334143",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0.9,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a247",
+      "navn": "Antall arbeidsdager per år",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5b7",
+          "opprettet": "2025-11-10T18:00:29.334234",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 260,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a249",
+      "navn": "Antall arbeidsdager per uke",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5b8",
+          "opprettet": "2025-11-10T18:00:29.334311",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 5,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a2b",
+      "navn": "Hvor mange prosent av G skal brukes som terskel ved samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5b9",
+          "opprettet": "2025-11-10T18:00:29.334391",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0.03,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e7",
+      "navn": "Pensjon fra en offentlig tjenestepensjonsordning beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4116-7abc-b947-a123f7d8a5ba",
+          "opprettet": "2025-11-10T18:00:29.334459",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e8",
+      "navn": "Uførepensjon fra offentlig pensjonsordning beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4118-72dd-9e34-536e7d43bdc7",
+          "opprettet": "2025-11-10T18:00:29.336749",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a26",
+      "navn": "Vartpenger beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4118-72dd-9e34-536e7d43bdc8",
+          "opprettet": "2025-11-10T18:00:29.336856",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a27",
+      "navn": "Ventelønn beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4118-72dd-9e34-536e7d43bdc9",
+          "opprettet": "2025-11-10T18:00:29.336928",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a28",
+      "navn": "Etterlønn beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4118-72dd-9e34-536e7d43bdca",
+          "opprettet": "2025-11-10T18:00:29.336997",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a29",
+      "navn": "Garantilott fra Garantikassen for fiskere beløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1df",
+          "opprettet": "2025-11-10T18:00:29.33707",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f1544f",
+      "navn": "Terskelfaktor for 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e0",
+          "opprettet": "2025-11-10T18:00:29.337178",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 2.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15450",
+      "navn": "Terskelfaktor for 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e1",
+          "opprettet": "2025-11-10T18:00:29.337266",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 2.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15449",
+      "navn": "Antall dager som skal regnes med i hver uke",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e2",
+          "opprettet": "2025-11-10T18:00:29.337551",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 5,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943f-78d9-b874-00a4944c54f0",
+      "navn": "Antall dagsats for egenandel",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e3",
+          "opprettet": "2025-11-10T18:00:29.337656",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 3.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e1",
+      "navn": "Mottar pensjon fra en offentlig tjenestepensjonsordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e4",
+          "opprettet": "2025-11-10T18:00:29.337733",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e2",
+      "navn": "Mottar redusert uførepensjon fra offentlig pensjonsordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e5",
+          "opprettet": "2025-11-10T18:00:29.337811",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e3",
+      "navn": "Mottar vartpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e6",
+          "opprettet": "2025-11-10T18:00:29.337897",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e4",
+      "navn": "Mottar ventelønn",
+      "perioder": [
+        {
+          "id": "019a6eb6-4119-76de-a434-f4786052d1e7",
+          "opprettet": "2025-11-10T18:00:29.337989",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e5",
+      "navn": "Mottar etterlønn",
+      "perioder": [
+        {
+          "id": "019a6eb6-411a-7a5a-945f-caf8af047e2e",
+          "opprettet": "2025-11-10T18:00:29.338074",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e6",
+      "navn": "Mottar garantilott fra Garantikassen for fiskere.",
+      "perioder": [
+        {
+          "id": "019a6eb6-411a-7a5a-945f-caf8af047e2f",
+          "opprettet": "2025-11-10T18:00:29.33816",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a768",
+      "navn": "Maksimal vanlig arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-411a-7a5a-945f-caf8af047e30",
+          "opprettet": "2025-11-10T18:00:29.338258",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 40.0,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a767",
+      "navn": "Beregnet vanlig arbeidstid per uke før tap",
+      "perioder": [
+        {
+          "id": "019a6eb6-411a-7a5a-945f-caf8af047e31",
+          "opprettet": "2025-11-10T18:00:29.338341",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 37.5,
+            "datatype": "desimaltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86ed",
+      "navn": "Antall timer arbeidstiden skal samordnes mot",
+      "perioder": [
+        {
+          "id": "019a6eb6-411a-7a5a-945f-caf8af047e32",
+          "opprettet": "2025-11-10T18:00:29.338429",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0.0,
+            "datatype": "desimaltall"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-940f-7af9-9387-052e028b29ec",
+      "navn": "Oppjustert inntekt",
+      "perioder": [
+        {
+          "id": "019a6eb6-411d-7e6d-b177-809db9885b17",
+          "opprettet": "2025-11-10T18:00:29.341517",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "01J677GHJRC2H08Q55DASFD0XX",
+            "datatype": "tekst"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppjuster"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf00",
+              "019a6eb6-4114-754f-8d64-62725c03cf01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10ca8",
+      "navn": "6 ganger grunnbeløp",
+      "perioder": [
+        {
+          "id": "019a6eb6-411d-7e6d-b177-809db9885b18",
+          "opprettet": "2025-11-10T18:00:29.341698",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 581298,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf00",
+              "019a6eb6-4114-754f-8d64-62725c03cf02"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cad",
+      "navn": "Utbetalt inntekt periode 1",
+      "perioder": [
+        {
+          "id": "019a6eb6-411d-7e6d-b177-809db9885b19",
+          "opprettet": "2025-11-10T18:00:29.341959",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 500000,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cae",
+      "navn": "Utbetalt inntekt periode 2",
+      "perioder": [
+        {
+          "id": "019a6eb6-411e-78ec-b492-02a5a6558d9a",
+          "opprettet": "2025-11-10T18:00:29.342244",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10caf",
+      "navn": "Utbetalt inntekt periode 3",
+      "perioder": [
+        {
+          "id": "019a6eb6-411e-78ec-b492-02a5a6558d9b",
+          "opprettet": "2025-11-10T18:00:29.342488",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a2c",
+      "navn": "Beløp tilsvarende nedre terskel av G",
+      "perioder": [
+        {
+          "id": "019a6eb6-411e-78ec-b492-02a5a6558d9c",
+          "opprettet": "2025-11-10T18:00:29.342677",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 2906.49,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4114-754f-8d64-62725c03cf00",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a2e",
+      "navn": "Sum av ytelser utenfor folketrygden",
+      "perioder": [
+        {
+          "id": "019a6eb6-411e-78ec-b492-02a5a6558d9d",
+          "opprettet": "2025-11-10T18:00:29.342874",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SumAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4116-7abc-b947-a123f7d8a5ba",
+              "019a6eb6-4118-72dd-9e34-536e7d43bdc7",
+              "019a6eb6-4118-72dd-9e34-536e7d43bdc8",
+              "019a6eb6-4118-72dd-9e34-536e7d43bdc9",
+              "019a6eb6-4118-72dd-9e34-536e7d43bdca",
+              "019a6eb6-4119-76de-a434-f4786052d1df"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f1544c",
+      "navn": "Terskel for 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-411f-7930-bc38-4c306db63503",
+          "opprettet": "2025-11-10T18:00:29.343002",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 193766,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-3fb2-7c0b-839d-d91e96e7ef33",
+              "019a6eb6-4119-76de-a434-f4786052d1e0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15451",
+      "navn": "Snittinntekt siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-411f-7930-bc38-4c306db63504",
+          "opprettet": "2025-11-10T18:00:29.343705",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 166666.66666666666,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Divisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4038-7f34-bf7a-03e7c86a9a44",
+              "019a6eb6-4114-754f-8d64-62725c03cf03"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f1544d",
+      "navn": "Terskel for 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-411f-7930-bc38-4c306db63505",
+          "opprettet": "2025-11-10T18:00:29.343843",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 193766,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-3fb2-7c0b-839d-d91e96e7ef33",
+              "019a6eb6-4119-76de-a434-f4786052d1e1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86ee",
+      "navn": "Samordnet fastsatt arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-411f-7930-bc38-4c306db63506",
+          "opprettet": "2025-11-10T18:00:29.34399",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": 37.5,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Substraksjon"
+            },
+            "opplysninger": [
+              "019a6eb6-411a-7a5a-945f-caf8af047e31",
+              "019a6eb6-411a-7a5a-945f-caf8af047e32"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb0",
+      "navn": "Inntektperiode 1",
+      "perioder": [
+        {
+          "id": "019a6eb6-4122-7b64-b669-a73db0af72c2",
+          "opprettet": "2025-11-10T18:00:29.346598",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349.4670739261,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-411d-7e6d-b177-809db9885b17"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb1",
+      "navn": "Inntektperiode 2",
+      "perioder": [
+        {
+          "id": "019a6eb6-4122-7b64-b669-a73db0af72c3",
+          "opprettet": "2025-11-10T18:00:29.346796",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-411d-7e6d-b177-809db9885b17"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb2",
+      "navn": "Inntektperiode 3",
+      "perioder": [
+        {
+          "id": "019a6eb6-4122-7b64-b669-a73db0af72c4",
+          "opprettet": "2025-11-10T18:00:29.346974",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SummerPeriode"
+            },
+            "opplysninger": [
+              "019a6eb6-411d-7e6d-b177-809db9885b17"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15454",
+      "navn": "Over terskel for 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4123-7171-8ec5-f64673281889",
+          "opprettet": "2025-11-10T18:00:29.347101",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-4037-7cac-88c5-1a6000b4cc7e",
+              "019a6eb6-411f-7930-bc38-4c306db63503"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15455",
+      "navn": "Over terskel for 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4123-7171-8ec5-f6467328188a",
+          "opprettet": "2025-11-10T18:00:29.347214",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-411f-7930-bc38-4c306db63504",
+              "019a6eb6-411f-7930-bc38-4c306db63505"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10caa",
+      "navn": "Inntekt etter avkortning og oppjustering siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4125-7a3d-bdfa-27b72b797f82",
+          "opprettet": "2025-11-10T18:00:29.349743",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349.4670739261,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c2",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb3",
+      "navn": "Avkortet inntektperiode 1",
+      "perioder": [
+        {
+          "id": "019a6eb6-4125-7a3d-bdfa-27b72b797f83",
+          "opprettet": "2025-11-10T18:00:29.349868",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349.4670739261,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c2",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb4",
+      "navn": "Avkortet inntektperiode 2",
+      "perioder": [
+        {
+          "id": "019a6eb6-4125-7a3d-bdfa-27b72b797f84",
+          "opprettet": "2025-11-10T18:00:29.349978",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c3",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb5",
+      "navn": "Avkortet inntektperiode 3",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e361",
+          "opprettet": "2025-11-10T18:00:29.350089",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c4",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb6",
+      "navn": "Har avkortet grunnlaget i periode 1",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e362",
+          "opprettet": "2025-11-10T18:00:29.350203",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnn"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c2",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb7",
+      "navn": "Har avkortet grunnlaget i periode 2",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e363",
+          "opprettet": "2025-11-10T18:00:29.350316",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnn"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c3",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb8",
+      "navn": "Har avkortet grunnlaget i periode 3",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e364",
+          "opprettet": "2025-11-10T18:00:29.350421",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnn"
+            },
+            "opplysninger": [
+              "019a6eb6-4122-7b64-b669-a73db0af72c4",
+              "019a6eb6-411d-7e6d-b177-809db9885b18"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f1544b",
+      "navn": "Lang dagpengeperiode",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e365",
+          "opprettet": "2025-11-10T18:00:29.350536",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 104,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f1544a",
+      "navn": "Kort dagpengeperiode",
+      "perioder": [
+        {
+          "id": "019a6eb6-4126-7c9b-9c6b-91e8a9a2e366",
+          "opprettet": "2025-11-10T18:00:29.350648",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 52,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Oppslag"
+            },
+            "opplysninger": [
+              "019a6eb6-3fae-7799-bdfa-42d62ff157b9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cab",
+      "navn": "Inntekt siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4129-762e-95d4-6242771c6b57",
+          "opprettet": "2025-11-10T18:00:29.353473",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349.4670739261,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SumAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4125-7a3d-bdfa-27b72b797f83",
+              "019a6eb6-4125-7a3d-bdfa-27b72b797f84",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e361"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cb9",
+      "navn": "Har avkortet grunnlag",
+      "perioder": [
+        {
+          "id": "019a6eb6-4129-762e-95d4-6242771c6b58",
+          "opprettet": "2025-11-10T18:00:29.353648",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e362",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e363",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e364"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15452",
+      "navn": "Stønadsuker ved siste 12 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4129-762e-95d4-6242771c6b59",
+          "opprettet": "2025-11-10T18:00:29.353778",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 104,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4123-7171-8ec5-f64673281889",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e365",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e366"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15453",
+      "navn": "Stønadsuker ved siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-4129-762e-95d4-6242771c6b5a",
+          "opprettet": "2025-11-10T18:00:29.353897",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 52,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4123-7171-8ec5-f6467328188a",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e365",
+              "019a6eb6-4126-7c9b-9c6b-91e8a9a2e366"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cac",
+      "navn": "Gjennomsnittlig inntekt etter avkortning og oppjustering siste 36 måneder",
+      "perioder": [
+        {
+          "id": "019a6eb6-412c-7911-b34d-9d1ffe582e6e",
+          "opprettet": "2025-11-10T18:00:29.35661",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 172449.82235797538,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Divisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4129-762e-95d4-6242771c6b57",
+              "019a6eb6-4114-754f-8d64-62725c03cf03"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15456",
+      "navn": "Antall stønadsuker",
+      "perioder": [
+        {
+          "id": "019a6eb6-412c-7911-b34d-9d1ffe582e6f",
+          "opprettet": "2025-11-10T18:00:29.356839",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 104,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HøyesteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4129-762e-95d4-6242771c6b59",
+              "019a6eb6-4129-762e-95d4-6242771c6b5a"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cbb",
+      "navn": "Uavrundet grunnlag",
+      "perioder": [
+        {
+          "id": "019a6eb6-412f-7441-972d-115ba65fcaf3",
+          "opprettet": "2025-11-10T18:00:29.359724",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349.4670739261,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HøyesteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4125-7a3d-bdfa-27b72b797f82",
+              "019a6eb6-412c-7911-b34d-9d1ffe582e6e"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15459",
+      "navn": "Antall stønadsuker (stønadsperiode)",
+      "perioder": [
+        {
+          "id": "019a6eb6-412f-7441-972d-115ba65fcaf4",
+          "opprettet": "2025-11-10T18:00:29.35992",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 104,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-403b-7893-b3b5-bb75a0685737",
+              "019a6eb6-412c-7911-b34d-9d1ffe582e6f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943d-77a7-969c-147999f15457",
+      "navn": "Antall stønadsdager",
+      "perioder": [
+        {
+          "id": "019a6eb6-4130-7636-a764-d27001897dfa",
+          "opprettet": "2025-11-10T18:00:29.360083",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 520,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-412c-7911-b34d-9d1ffe582e6f",
+              "019a6eb6-4119-76de-a434-f4786052d1e2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cbc",
+      "navn": "Grunnlag ved ordinære dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-4134-798c-b4e4-1b6be9a998eb",
+          "opprettet": "2025-11-10T18:00:29.364621",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Avrund"
+            },
+            "opplysninger": [
+              "019a6eb6-412f-7441-972d-115ba65fcaf3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cba",
+      "navn": "Brukt beregningsregel",
+      "perioder": [
+        {
+          "id": "019a6eb6-4134-798c-b4e4-1b6be9a998ec",
+          "opprettet": "2025-11-10T18:00:29.364845",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": "Inntekt etter avkortning og oppjustering siste 12 måneder",
+            "datatype": "tekst"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Brukt"
+            },
+            "opplysninger": [
+              "019a6eb6-412f-7441-972d-115ba65fcaf3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9421-766c-9dc6-41fe6c9a1e03",
+      "navn": "Grunnlag for verneplikt hvis kravet er oppfylt",
+      "perioder": [
+        {
+          "id": "019a6eb6-4137-7ff3-b5ef-5082394c0135",
+          "opprettet": "2025-11-10T18:00:29.367843",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4034-731d-903c-dc3a9cbd544a",
+              "019a6eb6-4134-798c-b4e4-1b6be9a998eb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9410-7481-b263-4606fdd10cbd",
+      "navn": "Dagpengegrunnlag",
+      "perioder": [
+        {
+          "id": "019a6eb6-413a-793e-be70-e5fa26556e5c",
+          "opprettet": "2025-11-10T18:00:29.370639",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 517349,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HøyesteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-4134-798c-b4e4-1b6be9a998eb",
+              "019a6eb6-4137-7ff3-b5ef-5082394c0135"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9421-766c-9dc6-41fe6c9a1e05",
+      "navn": "Grunnlaget for verneplikt er høyere enn dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-413a-793e-be70-e5fa26556e5d",
+          "opprettet": "2025-11-10T18:00:29.370786",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnn"
+            },
+            "opplysninger": [
+              "019a6eb6-4137-7ff3-b5ef-5082394c0135",
+              "019a6eb6-4134-798c-b4e4-1b6be9a998eb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a23f",
+      "navn": "Dagsats uten barnetillegg før samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-413d-7135-8ed8-0c340b85e4cb",
+          "opprettet": "2025-11-10T18:00:29.373529",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1241.6376,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-413a-793e-be70-e5fa26556e5c",
+              "019a6eb6-4115-73eb-ad2f-664caf6dd61b"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a248",
+      "navn": "Maksimalt mulig grunnlag avgrenset til 90% av dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-413d-7135-8ed8-0c340b85e4cc",
+          "opprettet": "2025-11-10T18:00:29.373697",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 465614.1,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-413a-793e-be70-e5fa26556e5c",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76c",
+      "navn": "Fastsatt vanlig arbeidstid etter ordinær eller verneplikt",
+      "perioder": [
+        {
+          "id": "019a6eb6-413d-7135-8ed8-0c340b85e4cd",
+          "opprettet": "2025-11-10T18:00:29.37383",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 37.5,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-413a-793e-be70-e5fa26556e5d",
+              "019a6eb6-411a-7a5a-945f-caf8af047e31"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a241",
+      "navn": "Dagsats uten barnetillegg før samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-4140-79ef-8f64-738839960037",
+          "opprettet": "2025-11-10T18:00:29.376647",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1242,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Avrund"
+            },
+            "opplysninger": [
+              "019a6eb6-413d-7135-8ed8-0c340b85e4cb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24a",
+      "navn": "Maksimal mulig dagsats avgrenset til 90% av dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-4140-79ef-8f64-738839960038",
+          "opprettet": "2025-11-10T18:00:29.37689",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1790.8234615384615,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Divisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-413d-7135-8ed8-0c340b85e4cc",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b7"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76a",
+      "navn": "Fastsatt arbeidstid per uke før tap",
+      "perioder": [
+        {
+          "id": "019a6eb6-4141-7745-ad80-960076b3c76d",
+          "opprettet": "2025-11-10T18:00:29.377039",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 37.5,
+            "datatype": "desimaltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-411a-7a5a-945f-caf8af047e30",
+              "019a6eb6-413d-7135-8ed8-0c340b85e4cd",
+              "019a6eb6-411f-7930-bc38-4c306db63506",
+              "019a6eb6-4031-7486-8345-f60f9bc0ad33"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24b",
+      "navn": "Avrundet maksimal mulig dagsats avgrenset til 90% av dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-4143-7bab-af31-62e47c9abca8",
+          "opprettet": "2025-11-10T18:00:29.37984",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1791,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Avrund"
+            },
+            "opplysninger": [
+              "019a6eb6-4140-79ef-8f64-738839960038"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76e",
+      "navn": "Oppfyller vilkåret om tap av arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4144-7ba0-af77-d032459aef42",
+          "opprettet": "2025-11-10T18:00:29.380003",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "SjekkAvTerskel"
+            },
+            "opplysninger": [
+              "019a6eb6-403e-7866-a460-a3279b8cb7e2",
+              "019a6eb6-4141-7745-ad80-960076b3c76d",
+              "019a6eb6-4042-7939-859f-7b3162dcb02d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9435-72a8-b1ce-9575cbc2a76f",
+      "navn": "Oppfyller vilkåret om tap av arbeidsinntekt og arbeidstid",
+      "perioder": [
+        {
+          "id": "019a6eb6-4146-79fc-8760-ab0d33061fdc",
+          "opprettet": "2025-11-10T18:00:29.382701",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-410e-7176-b134-cf53b517dcc5",
+              "019a6eb6-4144-7ba0-af77-d032459aef42",
+              "019a6eb6-4042-7939-859f-7b3162dcb02e",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7ca"
+            ]
+          }
+        },
+        {
+          "id": "019a6eb6-4cec-7caa-8df4-78292492ef9f",
+          "opprettet": "2025-11-10T18:00:32.364087",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Alle"
+            },
+            "opplysninger": [
+              "019a6eb6-4b79-788a-9eaf-a2d41375f2d9",
+              "019a6eb6-4144-7ba0-af77-d032459aef42",
+              "019a6eb6-4042-7939-859f-7b3162dcb02e",
+              "019a6eb6-403f-7ccf-9efd-551dbd63a7ca"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a23b",
+      "navn": "Barn",
+      "perioder": [
+        {
+          "id": "019a6eb6-41a7-7563-8934-34e4e673884e",
+          "opprettet": "2025-11-10T18:00:29.479948",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "søknadBarnId": "019a6eb6-4184-791e-8507-b9aa6b4207d2",
+            "verdi": [
+              {
+                "fødselsdato": "2000-01-01",
+                "kvalifiserer": true
+              }
+            ],
+            "datatype": "barn"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.446715",
+            "meldingId": "5e58da60-63ab-475f-a59e-ca7ef976a0c4"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "innhentMed"
+            },
+            "opplysninger": [
+              "019a6eb6-3ef2-7419-8898-fb71786a2344"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942e-7cb0-aa59-05ea449d88e0",
+      "navn": "Oppgitt andre ytelser utenfor NAV i søknaden",
+      "perioder": [
+        {
+          "id": "019a6eb6-41a8-74cd-891a-44a4786d1107",
+          "opprettet": "2025-11-10T18:00:29.480076",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "System",
+            "registrert": "2025-11-10T18:00:29.447357",
+            "meldingId": "5e58da60-63ab-475f-a59e-ca7ef976a0c4"
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a23c",
+      "navn": "Antall barn som gir rett til barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41a9-7cd6-ace4-ea821b0e1f85",
+          "opprettet": "2025-11-10T18:00:29.481765",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1,
+            "datatype": "heltall"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "AntallAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41a7-7563-8934-34e4e673884e"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a2d",
+      "navn": "Skal samordnes med ytelser utenfor folketrygden",
+      "perioder": [
+        {
+          "id": "019a6eb6-41a9-7cd6-ace4-ea821b0e1f86",
+          "opprettet": "2025-11-10T18:00:29.481942",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41a8-74cd-891a-44a4786d1107",
+              "019a6eb6-4119-76de-a434-f4786052d1e4",
+              "019a6eb6-4119-76de-a434-f4786052d1e5",
+              "019a6eb6-4119-76de-a434-f4786052d1e6",
+              "019a6eb6-4119-76de-a434-f4786052d1e7",
+              "019a6eb6-411a-7a5a-945f-caf8af047e2e",
+              "019a6eb6-411a-7a5a-945f-caf8af047e2f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a244",
+      "navn": "Sum av barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41ab-794a-a16a-5b3518be77fb",
+          "opprettet": "2025-11-10T18:00:29.483237",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 17,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b5",
+              "019a6eb6-41a9-7cd6-ace4-ea821b0e1f85"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a245",
+      "navn": "Dagsats med barnetillegg før samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-41ac-7c23-bbc5-83a1d3f19fbf",
+          "opprettet": "2025-11-10T18:00:29.484584",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1259,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Addisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4140-79ef-8f64-738839960037",
+              "019a6eb6-41ab-794a-a16a-5b3518be77fb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24c",
+      "navn": "Har barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41ac-7c23-bbc5-83a1d3f19fc0",
+          "opprettet": "2025-11-10T18:00:29.484682",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-41ab-794a-a16a-5b3518be77fb",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a242",
+      "navn": "Andel av dagsats med barnetillegg som overstiger maks andel av dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-41ae-7a6d-a524-1677f07ce4ca",
+          "opprettet": "2025-11-10T18:00:29.486388",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 0,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Substraksjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41ac-7c23-bbc5-83a1d3f19fbf",
+              "019a6eb6-4143-7bab-af31-62e47c9abca8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a240",
+      "navn": "Avrundet ukessats med barnetillegg før samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-41ae-7a6d-a524-1677f07ce4cb",
+          "opprettet": "2025-11-10T18:00:29.486493",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6295,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41ac-7c23-bbc5-83a1d3f19fbf",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a243",
+      "navn": "Andel av dagsats uten barnetillegg avkortet til maks andel av dagpengegrunnlaget",
+      "perioder": [
+        {
+          "id": "019a6eb6-41af-7b73-89a1-4fc13b5b7127",
+          "opprettet": "2025-11-10T18:00:29.48788",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1242,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Substraksjon"
+            },
+            "opplysninger": [
+              "019a6eb6-4140-79ef-8f64-738839960037",
+              "019a6eb6-41ae-7a6d-a524-1677f07ce4ca"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86eb",
+      "navn": "Samordnet dagsats uten barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b1-73c3-b818-fc325a0218c7",
+          "opprettet": "2025-11-10T18:00:29.489332",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1242,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Substraksjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41af-7b73-89a1-4fc13b5b7127",
+              "019a6eb6-4050-74d3-b7f8-620487254f00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86ec",
+      "navn": "Samordnet dagsats er større enn 0",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b1-73c3-b818-fc325a0218c8",
+          "opprettet": "2025-11-10T18:00:29.489494",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "StørreEnnEllerLik"
+            },
+            "opplysninger": [
+              "019a6eb6-41af-7b73-89a1-4fc13b5b7127",
+              "019a6eb6-4050-74d3-b7f8-620487254f00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a2f",
+      "navn": "Samordnet ukessats uten barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b2-7647-9590-0b55267d7920",
+          "opprettet": "2025-11-10T18:00:29.490858",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6210,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41b1-73c3-b818-fc325a0218c7",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9434-79e8-a64d-1a23cc5d86ef",
+      "navn": "Utfall etter samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b2-7647-9590-0b55267d7921",
+          "opprettet": "2025-11-10T18:00:29.490982",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "EnAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41b1-73c3-b818-fc325a0218c8",
+              "019a6eb6-41ac-7c23-bbc5-83a1d3f19fc0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a30",
+      "navn": "Minste mulige ukessats som som kan brukes",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b4-7616-bcb9-9a4f13382ab7",
+          "opprettet": "2025-11-10T18:00:29.49232",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 2906.49,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41b2-7647-9590-0b55267d7920",
+              "019a6eb6-411e-78ec-b492-02a5a6558d9c"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a31",
+      "navn": "Ukessats trukket ned for ytelser utenfor folketrygden",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b4-7616-bcb9-9a4f13382ab8",
+          "opprettet": "2025-11-10T18:00:29.492507",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6210,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Substraksjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41b2-7647-9590-0b55267d7920",
+              "019a6eb6-411e-78ec-b492-02a5a6558d9d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a32",
+      "navn": "Samordnet ukessats med ytelser utenfor folketrygden",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b6-74e3-9067-2c977ff7661b",
+          "opprettet": "2025-11-10T18:00:29.494144",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6210,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HøyesteAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41b4-7616-bcb9-9a4f13382ab7",
+              "019a6eb6-41b4-7616-bcb9-9a4f13382ab8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-942f-7bde-ab16-68ffd19e9a33",
+      "navn": "Dagsats uten barnetillegg samordnet",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b8-7843-9800-915268342e1a",
+          "opprettet": "2025-11-10T18:00:29.496043",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1242,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Divisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41b6-74e3-9067-2c977ff7661b",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24d",
+      "navn": "Samordnet dagsats med barnetillegg",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b9-7231-a610-1a095ceeda21",
+          "opprettet": "2025-11-10T18:00:29.49757",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1259,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Addisjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41b8-7843-9800-915268342e1a",
+              "019a6eb6-41ab-794a-a16a-5b3518be77fb"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a250",
+      "navn": "Har samordnet",
+      "perioder": [
+        {
+          "id": "019a6eb6-41b9-7231-a610-1a095ceeda22",
+          "opprettet": "2025-11-10T18:00:29.497733",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "ErUlik"
+            },
+            "opplysninger": [
+              "019a6eb6-41af-7b73-89a1-4fc13b5b7127",
+              "019a6eb6-41b8-7843-9800-915268342e1a"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24f",
+      "navn": "Dagsats med barnetillegg etter samordning og 90 % regel",
+      "perioder": [
+        {
+          "id": "019a6eb6-41bb-7ea6-8d6a-6cde508520bf",
+          "opprettet": "2025-11-10T18:00:29.499118",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 1259,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "MinstAv"
+            },
+            "opplysninger": [
+              "019a6eb6-41b9-7231-a610-1a095ceeda21",
+              "019a6eb6-4143-7bab-af31-62e47c9abca8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-9428-74d5-b160-f63a4c61a24e",
+      "navn": "Ukessats med barnetillegg etter samordning",
+      "perioder": [
+        {
+          "id": "019a6eb6-41be-7f51-bfcb-024cd275f902",
+          "opprettet": "2025-11-10T18:00:29.502728",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 6295,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41bb-7ea6-8d6a-6cde508520bf",
+              "019a6eb6-4116-7abc-b947-a123f7d8a5b8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "019523aa-7941-7dd2-8c43-0644d7b43f57",
+      "navn": "Tre ganger dagsats",
+      "perioder": [
+        {
+          "id": "019a6eb6-41be-7f51-bfcb-024cd275f903",
+          "opprettet": "2025-11-10T18:00:29.502864",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 3777,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "Multiplikasjon"
+            },
+            "opplysninger": [
+              "019a6eb6-41bb-7ea6-8d6a-6cde508520bf",
+              "019a6eb6-4119-76de-a434-f4786052d1e3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "0194881f-943f-78d9-b874-00a4944c54ef",
+      "navn": "Egenandel",
+      "perioder": [
+        {
+          "id": "019a6eb6-41c0-78ab-8b9d-35b8fb99385d",
+          "opprettet": "2025-11-10T18:00:29.504578",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "verdi": {
+            "verdi": 3777,
+            "datatype": "penger"
+          },
+          "utledetAv": {
+            "regel": {
+              "navn": "HvisSannMedResultat"
+            },
+            "opplysninger": [
+              "019a6eb6-4032-77c8-bd43-17c1bca7b0fb",
+              "019a6eb6-41be-7f51-bfcb-024cd275f903"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "opplysningTypeId": "01990a09-0eab-7957-b88f-14484a50e194",
+      "navn": "Har løpende rett på dagpenger",
+      "perioder": [
+        {
+          "id": "019a6eb6-457c-7436-8788-61555f5b2ff0",
+          "opprettet": "2025-11-10T18:00:30.460365",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-06-21",
+          "gyldigTilOgMed": "2018-07-21",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          }
+        },
+        {
+          "id": "019a6eb6-481d-7051-8e48-3e860acf26a4",
+          "opprettet": "2025-11-10T18:00:31.133591",
+          "status": "Arvet",
+          "opprinnelse": "Arvet",
+          "gyldigFraOgMed": "2018-07-22",
+          "gyldigTilOgMed": "2018-08-22",
+          "verdi": {
+            "verdi": false,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "Saksbehandler",
+            "registrert": "2025-11-10T18:00:31.072989",
+            "ident": "NAV123123",
+            "begrunnelse": {
+              "verdi": "Har ikke krav",
+              "sistEndret": "2025-11-10T18:00:31.072984"
+            }
+          }
+        },
+        {
+          "id": "019a6eb6-4eba-783c-adb2-4e09220c25eb",
+          "opprettet": "2025-11-10T18:00:32.826328",
+          "status": "Ny",
+          "opprinnelse": "Ny",
+          "gyldigFraOgMed": "2018-08-23",
+          "verdi": {
+            "verdi": true,
+            "datatype": "boolsk"
+          },
+          "kilde": {
+            "type": "Saksbehandler",
+            "registrert": "2025-11-10T18:00:32.701745",
+            "ident": "NAV123123",
+            "begrunnelse": {
+              "verdi": "Har krav",
+              "sistEndret": "2025-11-10T18:00:32.701741"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rettighetsperioder": [
+    {
+      "fraOgMed": "2018-06-21",
+      "tilOgMed": "2018-07-21",
+      "harRett": true,
+      "opprinnelse": "Arvet"
+    },
+    {
+      "fraOgMed": "2018-07-22",
+      "tilOgMed": "2018-08-22",
+      "harRett": false,
+      "opprinnelse": "Arvet"
+    },
+    {
+      "fraOgMed": "2018-08-23",
+      "harRett": true,
+      "opprinnelse": "Ny"
+    }
+  ],
+  "@id": "575e2228-4307-4309-9405-1fa9deea7da7",
+  "@opprettet": "2025-11-10T18:00:33.865932",
+  "system_read_count": 0,
+  "system_participating_services": [
+    {
+      "id": "575e2228-4307-4309-9405-1fa9deea7da7",
+      "time": "2025-11-10T18:00:33.865932"
+    }
+  ]
+}

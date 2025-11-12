@@ -10,7 +10,7 @@ on:
         type: string
 
 jobs:
-  deploy-views:
+  deploy-innlop:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -18,6 +18,30 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/views/dagpenger-innlop.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml,.nais/views/dagpenger-behandling.yaml,.nais/views/dagpenger-behandling-anonymisert.yaml,.nais/views/vedtak-vilkaar.yaml,.nais/views/vedtak-avslag.yaml,.nais/views/vedtak-innvilget.yaml,.nais/views/vedtak-kvoter.yaml,.nais/views/vedtak-samordning.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml,.nais/views/vedtak-avslag-anonymisert.yaml,.nais/views/vedtak-innvilget-anonymisert.yaml
+          RESOURCE: .nais/views/dagpenger-innlop.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml,.nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml,
+          VAR: project=${{ inputs.project }}
+          PRINT_PAYLOAD: true
+
+  deploy-soknad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: .nais/views/dagpengesoknad-faktum-svar.yaml
+          VAR: project=${{ inputs.project }}
+          PRINT_PAYLOAD: true
+
+  deploy-behandling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: .nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml,
           VAR: project=${{ inputs.project }}
           PRINT_PAYLOAD: true

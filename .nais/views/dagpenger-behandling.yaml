@@ -19,4 +19,4 @@ spec:
     useLegacySql: false
     query: >-
       SELECT b.*
-      FROM `dataprodukt.data_behandling_beta_v2` b
+      FROM `dataprodukt.data_behandling_beta_v3` b

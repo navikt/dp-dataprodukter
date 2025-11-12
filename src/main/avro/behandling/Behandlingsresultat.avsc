@@ -1,0 +1,232 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.behandling",
+  "name": "Behandlingsresultat",
+  "type": "record",
+  "fields": [
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Identifikator som refererer til behandlingen som har ført til vedtaket"
+    },
+    {
+      "name": "fagsakId",
+      "type": "string",
+      "doc": "Identifikator for fagsaken som vedtaket ligger i"
+    },
+    {
+      "name": "soknadId",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "null",
+      "doc": "Identifikator for den siste søknaden i saken"
+    },
+    {
+      "name": "behandletHendelse",
+      "type": {
+        "type": "record",
+        "name": "BehandletHendelseIdentifikasjon",
+        "fields": [
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      },
+      "doc": "Hendelsen som førte til vedtaket. Kan være søknad, meldekort, klage, etc."
+    },
+    {
+      "name": "ident",
+      "type": "string",
+      "doc": "Identifikator for personen som vedtaket gjelder"
+    },
+    {
+      "name": "resultat",
+      "type": "string",
+      "doc": "Resultatet av behandlingen"
+    },
+    {
+      "name": "rettighet",
+      "doc": "Rettighetstyper som er behandlet",
+      "type": {
+        "name": "Rettighetstype",
+        "type": "record",
+        "fields": [
+          {
+            "name": "Ordinaer",
+            "type": "boolean"
+          },
+          {
+            "name": "Permittert",
+            "type": "boolean"
+          },
+          {
+            "name": "Loennsgaranti",
+            "type": "boolean"
+          },
+          {
+            "name": "Fiskeforedling",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "name": "rettighetsperioder",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Rettighetsperiode",
+          "fields": [
+            {
+              "name": "fraOgMedDato",
+              "type": {
+                "type": "int",
+                "logicalType": "date"
+              },
+              "doc": "Fra og med når vedtaket gjelder for"
+            },
+            {
+              "name": "tilOgMedDato",
+              "type": {
+                "type": "int",
+                "logicalType": "date"
+              },
+              "doc": "Til og med når vedtaket gjelder for"
+            },
+            {
+              "name": "harRett",
+              "type": "boolean",
+              "doc": "Om bruker har rett eller ikke i perioden"
+            },
+            {
+              "name": "opprinnelse",
+              "type": "string",
+              "doc": "Om perioden er ny i denne behandlingen, eller arvet fra tidligere behandling"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "automatisk",
+      "type": "boolean",
+      "doc": "Om behandlingen har gått helt automatisk"
+    },
+    {
+      "name": "vilkaar",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Vilkaar",
+          "fields": [
+            {
+              "name": "navn",
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "vurderingstidspunkt",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            },
+            {
+              "name": "hjemmel",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "doc": "Vilkår som er vurdert i behandlingen"
+    },
+    {
+      "name": "kvote",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Kvote",
+          "fields": [
+            {
+              "name": "navn",
+              "type": "string",
+              "doc": "Navn på kvoten"
+            },
+            {
+              "name": "verdi",
+              "type": "string",
+              "doc": "Gjeldene verdi av kvoten"
+            },
+            {
+              "name": "enhet",
+              "type": "string",
+              "doc": "Angir enhet, f.eks. uker/dager"
+            },
+            {
+              "name": "opprettetTid",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            },
+            {
+              "name": "sistEndretTid",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            }
+          ]
+        }
+      },
+      "doc": "Vilkår som er vurdert i behandlingen"
+    },
+    {
+      "name": "opprettetTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "aliases": [
+        "@opprettet"
+      ],
+      "doc": "Tidspunkt for når melding om vedtaket ble opprettet"
+    },
+    {
+      "name": "sistEndretTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunkt for når raden ble sist endret"
+    },
+    {
+      "name": "meldingsreferanseId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "UUID som refererer til meldingen som har blitt behandlet."
+    },
+    {
+      "name": "versjon",
+      "type": "string",
+      "doc": "Hvilken versjon av kode som har produsert resultatet"
+    }
+  ]
+}
