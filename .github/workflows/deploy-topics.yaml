@@ -22,7 +22,7 @@ jobs:
           data-soknad-faktum-v1,
           data-soknad-tilstand-v1,
           data-soknad-dokumentkrav-v1,
-          data-behandling-beta-v2,
+          data-behandling-beta-v3,
           data-vedtak-v1,
           data-behandling-tilstand-v1
         ]
@@ -30,7 +30,6 @@ jobs:
       - uses: actions/checkout@v5
       - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
           VAR: topic=${{ matrix.topic }},kafka=${{ inputs.kafka }},project=${{ inputs.project }}
