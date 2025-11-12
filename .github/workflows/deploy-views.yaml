@@ -16,9 +16,8 @@ jobs:
       - uses: actions/checkout@v5
       - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/views/dagpenger-innlop.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml,.nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml,
+          RESOURCE: .nais/views/dagpenger-innlop.yaml,.nais/views/dagpengesoknad-faktum-svar.yaml,.nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml
           VAR: project=${{ inputs.project }}
           PRINT_PAYLOAD: true
 
@@ -28,7 +27,6 @@ jobs:
       - uses: actions/checkout@v5
       - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/views/dagpengesoknad-faktum-svar.yaml
           VAR: project=${{ inputs.project }}
@@ -40,8 +38,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml,
+          RESOURCE: .nais/views/dagpenger-behandling.yaml,.nais/views/behandling-tilstand.yaml,.nais/views/dagpenger-saksbehandlingstid.yaml
           VAR: project=${{ inputs.project }}
           PRINT_PAYLOAD: true
