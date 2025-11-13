@@ -86,7 +86,6 @@ internal class BehandlingRiverTest {
 
         with(value.captured.value()) {
             this.ident shouldBe "19395850346"
-            this.soknadId.shouldNotBeNull()
             this.resultat shouldBe "Beregning"
             this.kvote.shouldNotBeEmpty()
         }

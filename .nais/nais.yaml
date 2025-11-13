@@ -32,7 +32,7 @@ spec:
     - name: KAFKA_PRODUKT_SOKNAD_DOKUMENTKRAV_TOPIC
       value: teamdagpenger.data-soknad-dokumentkrav-v1
     - name: KAFKA_PRODUKT_BEHANDLING_TOPIC
-      value: teamdagpenger.data-behandling-beta-v3
+      value: teamdagpenger.data-behandling-beta-v4
     - name: KAFKA_PRODUKT_BEHANDLING_TILSTAND_TOPIC
       value: teamdagpenger.data-behandling-tilstand-v1
     - name: PDL_ENDPOINT

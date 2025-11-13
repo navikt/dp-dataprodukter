@@ -2,7 +2,8 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
-import no.nav.dagpenger.dataprodukt.behandling.Rettighetsperiode
+import no.nav.dagpenger.behandling.api.models.OpprinnelseDTO
+import no.nav.dagpenger.behandling.api.models.RettighetsperiodeDTO
 import no.nav.dagpenger.dataprodukter.helpers.juni
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingsresultatParser.Utfall.Gjenopptak
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingsresultatParser.Utfall.Stans
@@ -17,8 +18,8 @@ class BehandlingsresultatParserTest {
         fom: LocalDate,
         tom: LocalDate,
         harRett: Boolean,
-        kilde: String = "Ny",
-    ) = Rettighetsperiode(fom, tom, harRett, kilde)
+        kilde: OpprinnelseDTO = OpprinnelseDTO.NY,
+    ) = RettighetsperiodeDTO(fom, tom, harRett, kilde)
 
     @Nested
     inner class UtfallForEnPeriode {
@@ -41,8 +42,8 @@ class BehandlingsresultatParserTest {
         fun `gir Stans når går fra har rett til ikke har rett`() {
             val perioder =
                 listOf(
-                    periode(1.juni, 2.juni, true, "Arvet"),
-                    periode(3.juni, 6.juni, false, "Ny"),
+                    periode(1.juni, 2.juni, true, OpprinnelseDTO.ARVET),
+                    periode(3.juni, 6.juni, false),
                 )
             parser.utfall(perioder) shouldBe Stans
         }
@@ -51,9 +52,9 @@ class BehandlingsresultatParserTest {
         fun `gir Gjenopptak når går fra ikke har rett til har rett`() {
             val perioder =
                 listOf(
-                    periode(1.juni, 2.juni, true, "Arvet"),
-                    periode(5.juni, 8.juni, false, "Arvet"),
-                    periode(10.juni, 16.juni, true, "Ny"),
+                    periode(1.juni, 2.juni, true, OpprinnelseDTO.ARVET),
+                    periode(5.juni, 8.juni, false, OpprinnelseDTO.ARVET),
+                    periode(10.juni, 16.juni, true),
                 )
             parser.utfall(perioder) shouldBe Gjenopptak
         }

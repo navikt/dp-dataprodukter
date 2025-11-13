@@ -3,23 +3,29 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 import com.fasterxml.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
-import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDate
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
-import com.github.navikt.tbd_libs.rapids_and_rivers.asOptionalLocalDate
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import no.nav.dagpenger.behandling.api.models.BehandlingsresultatDTO
+import no.nav.dagpenger.behandling.api.models.OpplysningsverdiDTO
+import no.nav.dagpenger.behandling.api.models.OpprinnelseDTO
+import no.nav.dagpenger.behandling.api.models.RettighetsperiodeDTO
 import no.nav.dagpenger.dataprodukt.behandling.BehandletHendelseIdentifikasjon
 import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
+import no.nav.dagpenger.dataprodukt.behandling.Kilde
 import no.nav.dagpenger.dataprodukt.behandling.Kvote
+import no.nav.dagpenger.dataprodukt.behandling.Opplysning
+import no.nav.dagpenger.dataprodukt.behandling.OpplysningPeriode
+import no.nav.dagpenger.dataprodukt.behandling.Opprinnelse
 import no.nav.dagpenger.dataprodukt.behandling.Rettighetsperiode
-import no.nav.dagpenger.dataprodukt.behandling.Rettighetstype
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.objectMapper
 
 internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
@@ -49,6 +55,7 @@ internal class BehandlingRiver(
     companion object {
         private val logger = KotlinLogging.logger { }
         private val sikkerlogg = KotlinLogging.logger("tjenestekall.VedtakFattetRiver")
+        private val mapper = objectMapper.readerFor(BehandlingsresultatDTO::class.java)
     }
 
     override fun onPacket(
@@ -61,26 +68,61 @@ internal class BehandlingRiver(
             "behandlingId" to packet["behandlingId"].asText(),
             "dataprodukt" to dataTopic.topic,
         ) {
-            val resultat = BehandlingsresultatParser(packet)
+            val pakke = BehandlingsresultatParser(packet)
+            val behandling = mapper.readValue<BehandlingsresultatDTO>(packet.toJson())
 
             Behandlingsresultat
                 .newBuilder()
                 .apply {
-                    behandlingId = resultat.behandlingId
-                    fagsakId = resultat.saksnummer
-                    soknadId = resultat.søknadId
-                    ident = resultat.ident
-                    behandletHendelse = resultat.behandletHendelse
-                    this.resultat = resultat.utfall().name
-                    rettighet = resultat.rettighetstype
-                    rettighetsperioder = resultat.rettighetsperioder
-                    automatisk = resultat.erAutomatisk
-                    vilkaar = listOf()
-                    kvote = resultat.kvoter
-                    opprettetTid = resultat.opprettetTid
-                    sistEndretTid = resultat.sistEndretTid
-                    meldingsreferanseId = resultat.meldingsreferanseId
-                    versjon = resultat.image
+                    behandlingId = behandling.behandlingId
+                    fagsakId = pakke.saksnummer
+                    ident = behandling.ident
+                    behandletHendelse =
+                        behandling.behandletHendelse.let {
+                            BehandletHendelseIdentifikasjon(
+                                it.type.name,
+                                it.id,
+                            )
+                        }
+                    this.resultat = pakke.utfall(behandling.rettighetsperioder).name
+                    rettighetsperioder =
+                        behandling.rettighetsperioder.map {
+                            Rettighetsperiode(
+                                it.fraOgMed,
+                                it.tilOgMed,
+                                it.harRett,
+                                it.opprinnelse?.name,
+                            )
+                        }
+                    automatisk = behandling.automatisk
+                    opplysninger =
+                        behandling.opplysninger.map { opplysning ->
+                            Opplysning(
+                                opplysning.opplysningTypeId,
+                                opplysning.navn,
+                                "data",
+                                opplysning.perioder?.map { periode ->
+                                    val verdi: OpplysningsverdiDTO = periode.verdi
+                                    OpplysningPeriode(
+                                        periode.opprettet.asTimestamp(),
+                                        periode.opprinnelse!!.let {
+                                            Opprinnelse.valueOf(it.value)
+                                        },
+                                        periode.gyldigFraOgMed,
+                                        periode.gyldigTilOgMed,
+                                        verdi.toString(),
+                                        periode.kilde?.let {
+                                            Kilde.valueOf(it.type.value)
+                                        },
+                                    )
+                                },
+                            )
+                        }
+                    kvote = pakke.kvoter
+                    opprettetTid = pakke.opprettetTid
+                    sistEndretTid = pakke.sistEndretTid
+                    meldingsreferanseId = pakke.meldingsreferanseId
+                    versjon = pakke.image
                 }.build()
                 .also { behandling ->
                     logger.info { "Publiserer rad for ${behandling::class.java.simpleName}" }
@@ -95,54 +137,7 @@ internal class BehandlingRiver(
 class BehandlingsresultatParser(
     private val packet: JsonMessage,
 ) {
-    val behandlingId get() = packet["behandlingId"].asUUID()
     val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
-
-    // Henter alltid ut en søknadsId, selv om behandlingen er basert på en annen hendelse
-    val søknadId: String?
-        get() =
-            packet["opplysninger"]
-                .find { opplysning ->
-                    opplysning["opplysningTypeId"].asText() == søknadTypeId
-                }
-                // Hent ut alle perioder (unike søknader)
-                ?.let { it["perioder"] }
-                // Vi vil alltid bare ha den siste søknaden
-                ?.lastOrNull()
-                ?.let { sistePeriode ->
-                    sistePeriode["verdi"]["verdi"].asText()
-                }
-    val ident: String get() = packet["ident"].asText()
-
-    val behandletHendelse
-        get() =
-            BehandletHendelseIdentifikasjon(
-                packet["behandletHendelse"]["type"].asText(),
-                packet["behandletHendelse"]["id"].asText(),
-            )
-    val rettighetstype: Rettighetstype
-        get() {
-            // TODO: Dette blir ikke riktig
-            return Rettighetstype().apply {
-                ordinaer = rettighet(ordinærTypeId) ?: true
-                permittert = rettighet(permittertTypeId) ?: false
-                loennsgaranti = rettighet(lønnTypeId) ?: false
-                fiskeforedling = rettighet(fiskepermTypeId) ?: false
-            }
-        }
-
-    val harRett get() = packet["rettighetsperioder"]
-
-    val rettighetsperioder
-        get() =
-            packet["rettighetsperioder"].map {
-                Rettighetsperiode(
-                    it["fraOgMed"].asLocalDate(),
-                    it["tilOgMed"]?.asOptionalLocalDate(),
-                    it["harRett"].asBoolean(),
-                    it["opprinnelse"].asText(),
-                )
-            }
 
     val kvoter: List<Kvote>
         get() {
@@ -162,8 +157,6 @@ class BehandlingsresultatParser(
             }
         }
 
-    val erAutomatisk: Boolean get() = true // packet["automatisk"].asBoolean()
-
     val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asText() } ?: "0"
     val image: String get() = packet["system_participating_services"].first()["image"]?.asText() ?: ""
     val opprettetTid get() = packet["@opprettet"].asLocalDateTime().asTimestamp()
@@ -171,10 +164,8 @@ class BehandlingsresultatParser(
     val sistEndretTid get() = packet["@opprettet"].asLocalDateTime().asTimestamp()
     val meldingsreferanseId get() = packet["@id"].asUUID()
 
-    fun utfall() = utfall(rettighetsperioder)
-
-    fun utfall(perioder: List<Rettighetsperiode>): Utfall {
-        val (nye, arvede) = perioder.partition { it.opprinnelse == "Ny" }
+    fun utfall(perioder: List<RettighetsperiodeDTO>): Utfall {
+        val (nye, arvede) = perioder.partition { it.opprinnelse == OpprinnelseDTO.NY }
 
         return when {
             // Ingen endring
@@ -187,9 +178,9 @@ class BehandlingsresultatParser(
         }
     }
 
-    private fun List<Rettighetsperiode>.harRett() = any { it.harRett }
+    private fun List<RettighetsperiodeDTO>.harRett() = any { it.harRett }
 
-    private fun List<Rettighetsperiode>.sisteHarRett() = last().harRett
+    private fun List<RettighetsperiodeDTO>.sisteHarRett() = last().harRett
 
     enum class Utfall {
         Innvilgelse,
@@ -199,17 +190,7 @@ class BehandlingsresultatParser(
         Beregning,
     }
 
-    private fun rettighet(opplysningTypeId: String) =
-        packet.opplysning(opplysningTypeId)?.let {
-            it["perioder"].any { periode -> periode["verdi"]["verdi"].asBoolean() }
-        }
-
     private companion object {
-        private val søknadTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
-        private val ordinærTypeId = "0194881f-9444-7a73-a458-0af81c034d85"
-        private val permittertTypeId = "0194881f-9444-7a73-a458-0af81c034d86"
-        private val lønnTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
-        private val fiskepermTypeId = "0194881f-91d1-7df2-ba1d-4533f37fcc77"
         private val kvoteOpplysninger =
             listOf(
                 // Fobrukt
@@ -217,7 +198,5 @@ class BehandlingsresultatParser(
                 // Gjenstår
                 "01992956-e349-76b1-8f68-c9d481df3a32",
             )
-
-        private fun JsonMessage.opplysning(navn: String) = this["opplysninger"].singleOrNull { it["opplysningTypeId"].asText() == navn }
     }
 }
