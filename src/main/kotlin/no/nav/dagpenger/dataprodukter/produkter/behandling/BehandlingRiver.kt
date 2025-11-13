@@ -104,13 +104,19 @@ internal class BehandlingRiver(
                                 opplysning.perioder?.map { periode ->
                                     val verdi: OpplysningsverdiDTO = periode.verdi
                                     OpplysningPeriode(
+                                        // opprettet =
                                         periode.opprettet.asTimestamp(),
+                                        // opprinnelse =
                                         periode.opprinnelse!!.let {
                                             Opprinnelse.valueOf(it.value)
                                         },
+                                        // gyldigFraOgMed =
                                         periode.gyldigFraOgMed,
+                                        // gyldigTilOgMed =
                                         periode.gyldigTilOgMed,
+                                        // verdi =
                                         verdi.toString(),
+                                        // kilde =
                                         periode.kilde?.let {
                                             Kilde.valueOf(it.type.value)
                                         },

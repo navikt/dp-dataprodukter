@@ -142,17 +142,25 @@
                     },
                     {
                       "name": "gyldigFraOgMed",
-                      "type": {
-                        "type": "int",
-                        "logicalType": "date"
-                      }
+                      "type": [
+                        "null",
+                        {
+                          "type": "int",
+                          "logicalType": "date"
+                        }
+                      ],
+                      "default": null
                     },
                     {
                       "name": "gyldigTilOgMed",
-                      "type": {
-                        "type": "int",
-                        "logicalType": "date"
-                      }
+                      "type": [
+                        "null",
+                        {
+                          "type": "int",
+                          "logicalType": "date"
+                        }
+                      ],
+                      "default": null
                     },
                     {
                       "name": "verdi",
@@ -160,14 +168,17 @@
                     },
                     {
                       "name": "kilde",
-                      "type": ["null",{
-                        "type": "enum",
-                        "name": "Kilde",
-                        "symbols": [
-                          "Saksbehandler",
-                          "System"
-                        ]
-                      }],
+                      "type": [
+                        "null",
+                        {
+                          "type": "enum",
+                          "name": "Kilde",
+                          "symbols": [
+                            "Saksbehandler",
+                            "System"
+                          ]
+                        }
+                      ],
                       "default": null
                     }
                   ]
