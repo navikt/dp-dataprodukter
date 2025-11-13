@@ -10,10 +10,19 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import no.nav.dagpenger.behandling.api.models.BarnelisteDTO
 import no.nav.dagpenger.behandling.api.models.BehandlingsresultatDTO
+import no.nav.dagpenger.behandling.api.models.BoolskVerdiDTO
+import no.nav.dagpenger.behandling.api.models.DatoVerdiDTO
+import no.nav.dagpenger.behandling.api.models.DesimaltallVerdiDTO
+import no.nav.dagpenger.behandling.api.models.HeltallVerdiDTO
 import no.nav.dagpenger.behandling.api.models.OpplysningsverdiDTO
 import no.nav.dagpenger.behandling.api.models.OpprinnelseDTO
+import no.nav.dagpenger.behandling.api.models.PengeVerdiDTO
+import no.nav.dagpenger.behandling.api.models.PeriodeVerdiDTO
 import no.nav.dagpenger.behandling.api.models.RettighetsperiodeDTO
+import no.nav.dagpenger.behandling.api.models.TekstVerdiDTO
+import no.nav.dagpenger.behandling.api.models.UlidVerdiDTO
 import no.nav.dagpenger.dataprodukt.behandling.BehandletHendelseIdentifikasjon
 import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukt.behandling.Kilde
@@ -97,26 +106,25 @@ internal class BehandlingRiver(
                     automatisk = behandling.automatisk
                     opplysninger =
                         behandling.opplysninger.map { opplysning ->
+                            // TODO: Midlertidig løsning for å hente datatype fra perioder
+                            val datatype =
+                                opplysning.perioder
+                                    ?.firstOrNull()
+                                    ?.verdi
+                                    ?.datatype() ?: "Ukjent"
                             Opplysning(
                                 opplysning.opplysningTypeId,
                                 opplysning.navn,
-                                "data",
+                                datatype,
                                 opplysning.perioder?.map { periode ->
-                                    val verdi: OpplysningsverdiDTO = periode.verdi
                                     OpplysningPeriode(
-                                        // opprettet =
                                         periode.opprettet.asTimestamp(),
-                                        // opprinnelse =
                                         periode.opprinnelse!!.let {
                                             Opprinnelse.valueOf(it.value)
                                         },
-                                        // gyldigFraOgMed =
                                         periode.gyldigFraOgMed,
-                                        // gyldigTilOgMed =
                                         periode.gyldigTilOgMed,
-                                        // verdi =
-                                        verdi.toString(),
-                                        // kilde =
+                                        periode.verdi.verdi().toString(),
                                         periode.kilde?.let {
                                             Kilde.valueOf(it.type.value)
                                         },
@@ -139,6 +147,32 @@ internal class BehandlingRiver(
         }
     }
 }
+
+private fun OpplysningsverdiDTO.datatype() =
+    when (this) {
+        is BarnelisteDTO -> datatype.value
+        is BoolskVerdiDTO -> datatype.value
+        is DatoVerdiDTO -> datatype.value
+        is DesimaltallVerdiDTO -> datatype.value
+        is HeltallVerdiDTO -> datatype.value
+        is PengeVerdiDTO -> datatype.value
+        is PeriodeVerdiDTO -> datatype.value
+        is TekstVerdiDTO -> datatype.value
+        is UlidVerdiDTO -> datatype.value
+    }
+
+private fun OpplysningsverdiDTO.verdi() =
+    when (this) {
+        is BarnelisteDTO -> verdi
+        is BoolskVerdiDTO -> verdi
+        is DatoVerdiDTO -> verdi
+        is DesimaltallVerdiDTO -> verdi
+        is HeltallVerdiDTO -> verdi
+        is PengeVerdiDTO -> verdi
+        is PeriodeVerdiDTO -> fom..tom
+        is TekstVerdiDTO -> verdi
+        is UlidVerdiDTO -> verdi
+    }
 
 class BehandlingsresultatParser(
     private val packet: JsonMessage,
