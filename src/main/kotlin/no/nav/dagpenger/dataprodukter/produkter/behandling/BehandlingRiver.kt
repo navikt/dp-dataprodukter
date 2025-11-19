@@ -28,7 +28,6 @@ import no.nav.dagpenger.dataprodukt.behandling.BehandletAv
 import no.nav.dagpenger.dataprodukt.behandling.BehandletHendelseIdentifikasjon
 import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukt.behandling.Kilde
-import no.nav.dagpenger.dataprodukt.behandling.Kvote
 import no.nav.dagpenger.dataprodukt.behandling.Opplysning
 import no.nav.dagpenger.dataprodukt.behandling.OpplysningPeriode
 import no.nav.dagpenger.dataprodukt.behandling.Opprinnelse
@@ -174,24 +173,6 @@ class BehandlingsresultatParser(
 ) {
     val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
 
-    val kvoter: List<Kvote>
-        get() {
-            val kvoter =
-                packet["opplysninger"]
-                    .filter { it["opplysningTypeId"].asText() in kvoteOpplysninger }
-            return kvoter.map {
-                val sistePeriode = it["perioder"].last()
-                val opprettet = sistePeriode["opprettet"].asLocalDateTime().asTimestamp()
-                Kvote(
-                    it["navn"].asText(),
-                    sistePeriode["verdi"]["verdi"].asText(),
-                    "dager",
-                    opprettet,
-                    opprettet,
-                )
-            }
-        }
-
     val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asText() } ?: "0"
     val image: String get() = packet["system_participating_services"].first()["image"]?.asText() ?: ""
     val opprettetTid get() = packet["@opprettet"].asLocalDateTime().asTimestamp()
@@ -223,15 +204,5 @@ class BehandlingsresultatParser(
         Stans,
         Gjenopptak,
         Beregning,
-    }
-
-    private companion object {
-        private val kvoteOpplysninger =
-            listOf(
-                // Fobrukt
-                "01992934-66e4-7606-bdd3-c6c9dd420ffd",
-                // Gjenstår
-                "01992956-e349-76b1-8f68-c9d481df3a32",
-            )
     }
 }
