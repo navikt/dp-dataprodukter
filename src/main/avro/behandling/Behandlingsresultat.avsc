@@ -68,9 +68,9 @@
       "doc": "Identifikator for personen som vedtaket gjelder"
     },
     {
-      "name": "resultat",
+      "name": "foerteTil",
       "type": "string",
-      "doc": "Resultatet av behandlingen"
+      "doc": "Avgjørelsen som ble tatt i behandlingen"
     },
     {
       "name": "rettighetsperioder",

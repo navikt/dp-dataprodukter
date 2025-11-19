@@ -98,7 +98,7 @@ internal class BehandlingRiver(
                                 it.skjedde,
                             )
                         }
-                    this.resultat = pakke.utfall(behandling.rettighetsperioder).name
+                    this.foerteTil = behandling.førteTil.value
                     rettighetsperioder =
                         behandling.rettighetsperioder.map {
                             Rettighetsperiode(

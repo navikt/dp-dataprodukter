@@ -47,7 +47,7 @@ internal class BehandlingRiverTest {
 
         with(value.captured.value()) {
             this.ident shouldBe key
-            this.resultat shouldBe "Avslag"
+            this.foerteTil shouldBe "Avslag"
         }
     }
 
@@ -65,7 +65,7 @@ internal class BehandlingRiverTest {
 
         with(value.captured.value()) {
             this.ident shouldBe key
-            this.resultat shouldBe "Gjenopptak"
+            this.foerteTil shouldBe "Gjenopptak"
         }
     }
 
@@ -83,7 +83,7 @@ internal class BehandlingRiverTest {
 
         with(value.captured.value()) {
             this.ident shouldBe key
-            this.resultat shouldBe "Beregning"
+            this.foerteTil shouldBe "Endring"
         }
     }
 
