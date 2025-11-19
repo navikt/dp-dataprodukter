@@ -1,9 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter.behandling
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
-import io.kotest.matchers.collections.shouldNotBeEmpty
-import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
@@ -46,10 +43,10 @@ internal class BehandlingRiverTest {
         }
 
         value.isCaptured shouldBe true
-        value.captured.key() shouldBe "11620486155"
+        val key = value.captured.key()
 
         with(value.captured.value()) {
-            this.ident shouldBe "11620486155"
+            this.ident shouldBe key
             this.resultat shouldBe "Avslag"
         }
     }
@@ -64,10 +61,10 @@ internal class BehandlingRiverTest {
         }
 
         value.isCaptured shouldBe true
-        value.captured.key() shouldBe "18036404989"
+        val key = value.captured.key()
 
         with(value.captured.value()) {
-            this.ident shouldBe "18036404989"
+            this.ident shouldBe key
             this.resultat shouldBe "Gjenopptak"
         }
     }
@@ -82,12 +79,11 @@ internal class BehandlingRiverTest {
         }
 
         value.isCaptured shouldBe true
-        value.captured.key() shouldBe "19395850346"
+        val key = value.captured.key()
 
         with(value.captured.value()) {
-            this.ident shouldBe "19395850346"
+            this.ident shouldBe key
             this.resultat shouldBe "Beregning"
-            this.kvote.shouldNotBeEmpty()
         }
     }
 

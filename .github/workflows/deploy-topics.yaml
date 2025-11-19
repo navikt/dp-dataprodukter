@@ -22,7 +22,7 @@ jobs:
           data-soknad-faktum-v1,
           data-soknad-tilstand-v1,
           data-soknad-dokumentkrav-v1,
-          data-behandling-beta-v4,
+          data-behandling-beta-v5,
           data-vedtak-v1,
           data-behandling-tilstand-v1
         ]

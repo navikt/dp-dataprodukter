@@ -12,6 +12,26 @@
       "doc": "Identifikator som refererer til behandlingen som har ført til vedtaket"
     },
     {
+      "name": "basertPaa",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "logicalType": "uuid"
+        }
+      ],
+      "default": null,
+      "doc": "Identifikator for behandlingen denne behandlingen er basert på (hvis relevant)"
+    },
+    {
+      "name": "behandlingskjedeId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Identifikator for behandlingskjeden som behandlingen tilhører"
+    },
+    {
       "name": "fagsakId",
       "type": "string",
       "doc": "Identifikator for fagsaken som vedtaket ligger i"
@@ -29,6 +49,14 @@
           {
             "name": "id",
             "type": "string"
+          },
+          {
+            "name": "skjedde",
+            "type": {
+              "type": "int",
+              "logicalType": "date"
+            },
+            "description": "Dato/Tid for når hendelsen skjedde"
           }
         ]
       },
@@ -191,46 +219,66 @@
       "doc": "Opplysninger som er vurdert i behandlingen"
     },
     {
-      "name": "kvote",
+      "name": "utbetalinger",
       "type": {
         "type": "array",
         "items": {
           "type": "record",
-          "name": "Kvote",
+          "name": "Utbetaling",
           "fields": [
             {
-              "name": "navn",
-              "type": "string",
-              "doc": "Navn på kvoten"
+              "name": "meldeperiode",
+              "type": "string"
             },
             {
-              "name": "verdi",
-              "type": "string",
-              "doc": "Gjeldene verdi av kvoten"
-            },
-            {
-              "name": "enhet",
-              "type": "string",
-              "doc": "Angir enhet, f.eks. uker/dager"
-            },
-            {
-              "name": "opprettetTid",
+              "name": "dato",
               "type": {
-                "type": "long",
-                "logicalType": "timestamp-millis"
+                "type": "int",
+                "logicalType": "date"
               }
             },
             {
-              "name": "sistEndretTid",
-              "type": {
-                "type": "long",
-                "logicalType": "timestamp-millis"
-              }
+              "name": "sats",
+              "type": "int",
+              "description": "Gjeldende dagsats"
+            },
+            {
+              "name": "utbetaling",
+              "type": "int",
+              "description": "Utbetaling for dagen"
             }
           ]
         }
-      },
-      "doc": "Vilkår som er vurdert i behandlingen"
+      }
+    },
+    {
+      "name": "behandletAv",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "BehandletAv",
+          "fields": [
+            {
+              "name": "rolle",
+              "type": {
+                "type": "enum",
+                "name": "BehandlerRolle",
+                "symbols": [
+                  "saksbehandler",
+                  "beslutter"
+                ],
+                "doc": "Type av behandler, f.eks. saksbehandler, system"
+              }
+            },
+            {
+              "name": "behandler",
+              "type": "string",
+              "doc": "Identifikator for behandler, f.eks. brukernavn eller systemnavn"
+            }
+          ]
+        }
+      }
     },
     {
       "name": "opprettetTid",

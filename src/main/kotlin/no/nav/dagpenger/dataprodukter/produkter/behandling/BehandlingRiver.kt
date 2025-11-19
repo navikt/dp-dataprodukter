@@ -23,6 +23,8 @@ import no.nav.dagpenger.behandling.api.models.PeriodeVerdiDTO
 import no.nav.dagpenger.behandling.api.models.RettighetsperiodeDTO
 import no.nav.dagpenger.behandling.api.models.TekstVerdiDTO
 import no.nav.dagpenger.behandling.api.models.UlidVerdiDTO
+import no.nav.dagpenger.dataprodukt.behandling.BehandlerRolle
+import no.nav.dagpenger.dataprodukt.behandling.BehandletAv
 import no.nav.dagpenger.dataprodukt.behandling.BehandletHendelseIdentifikasjon
 import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukt.behandling.Kilde
@@ -31,6 +33,7 @@ import no.nav.dagpenger.dataprodukt.behandling.Opplysning
 import no.nav.dagpenger.dataprodukt.behandling.OpplysningPeriode
 import no.nav.dagpenger.dataprodukt.behandling.Opprinnelse
 import no.nav.dagpenger.dataprodukt.behandling.Rettighetsperiode
+import no.nav.dagpenger.dataprodukt.behandling.Utbetaling
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -86,11 +89,14 @@ internal class BehandlingRiver(
                     behandlingId = behandling.behandlingId
                     fagsakId = pakke.saksnummer
                     ident = behandling.ident
+                    basertPaa = behandling.basertPå
+                    behandlingskjedeId = behandling.behandlingskjedeId
                     behandletHendelse =
                         behandling.behandletHendelse.let {
                             BehandletHendelseIdentifikasjon(
                                 it.type.name,
                                 it.id,
+                                it.skjedde,
                             )
                         }
                     this.resultat = pakke.utfall(behandling.rettighetsperioder).name
@@ -106,17 +112,11 @@ internal class BehandlingRiver(
                     automatisk = behandling.automatisk
                     opplysninger =
                         behandling.opplysninger.map { opplysning ->
-                            // TODO: Midlertidig løsning for å hente datatype fra perioder
-                            val datatype =
-                                opplysning.perioder
-                                    ?.firstOrNull()
-                                    ?.verdi
-                                    ?.datatype() ?: "Ukjent"
                             Opplysning(
                                 opplysning.opplysningTypeId,
                                 opplysning.navn,
-                                datatype,
-                                opplysning.perioder?.map { periode ->
+                                opplysning.datatype.name,
+                                opplysning.perioder.map { periode ->
                                     OpplysningPeriode(
                                         periode.opprettet.asTimestamp(),
                                         periode.opprinnelse!!.let {
@@ -132,7 +132,15 @@ internal class BehandlingRiver(
                                 },
                             )
                         }
-                    kvote = pakke.kvoter
+                    utbetalinger =
+                        behandling.utbetalinger.map {
+                            Utbetaling(it.meldeperiode, it.dato, it.sats, it.utbetaling)
+                        }
+                    behandletAv =
+                        behandling.behandletAv.map {
+                            // TODO: Fiks at behandler ikke er nullable i API
+                            BehandletAv(BehandlerRolle.valueOf(it.rolle.value), it.behandler!!.ident)
+                        }
                     opprettetTid = pakke.opprettetTid
                     sistEndretTid = pakke.sistEndretTid
                     meldingsreferanseId = pakke.meldingsreferanseId
@@ -147,19 +155,6 @@ internal class BehandlingRiver(
         }
     }
 }
-
-private fun OpplysningsverdiDTO.datatype() =
-    when (this) {
-        is BarnelisteDTO -> datatype.value
-        is BoolskVerdiDTO -> datatype.value
-        is DatoVerdiDTO -> datatype.value
-        is DesimaltallVerdiDTO -> datatype.value
-        is HeltallVerdiDTO -> datatype.value
-        is PengeVerdiDTO -> datatype.value
-        is PeriodeVerdiDTO -> datatype.value
-        is TekstVerdiDTO -> datatype.value
-        is UlidVerdiDTO -> datatype.value
-    }
 
 private fun OpplysningsverdiDTO.verdi() =
     when (this) {
