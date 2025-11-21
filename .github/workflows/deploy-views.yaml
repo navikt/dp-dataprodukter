@@ -13,7 +13,7 @@ jobs:
   deploy-innlop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
@@ -24,7 +24,7 @@ jobs:
   deploy-soknad:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
@@ -35,7 +35,7 @@ jobs:
   deploy-behandling:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
