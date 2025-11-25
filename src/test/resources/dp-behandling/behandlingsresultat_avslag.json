@@ -1,15 +1,15 @@
 {
   "@event_name": "behandlingsresultat",
-  "behandlingId": "019a9c19-663f-7e0d-9243-6c2dec9e0053",
+  "behandlingId": "019aba18-dd4d-709d-87a5-3e8df17590c5",
   "behandletHendelse": {
     "datatype": "UUID",
-    "id": "dbf18cf0-dddf-4542-8c38-ad3b86f8c9c6",
+    "id": "ddeba4e1-cafd-469e-a81c-0e3f4bc8b5cf",
     "type": "Søknad",
     "skjedde": "2018-06-21"
   },
-  "behandlingskjedeId": "019a9c19-663f-7e0d-9243-6c2dec9e0053",
+  "behandlingskjedeId": "019aba18-dd4d-709d-87a5-3e8df17590c5",
   "automatisk": false,
-  "ident": "14352701185",
+  "ident": "13541515910",
   "rettighetsperioder": [
     {
       "fraOgMed": "2018-06-21",
@@ -17,6 +17,8 @@
       "opprinnelse": "Ny"
     }
   ],
+  "opprettet": "2025-11-25T09:19:44.26942",
+  "sistEndret": "2025-11-25T09:19:44.26942",
   "opplysninger": [
     {
       "opplysningTypeId": "0194881f-9462-78af-8977-46092bb030eb",
@@ -24,18 +26,18 @@
       "datatype": "heltall",
       "perioder": [
         {
-          "id": "019a9c19-663f-7e0d-9243-6c2dec9e0052",
-          "opprettet": "2025-11-19T13:31:41.631261",
+          "id": "019aba18-dd4c-7f51-bd16-d3d314923bf5",
+          "opprettet": "2025-11-25T09:19:43.05222",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
-            "verdi": 1485879064,
+            "verdi": 1055762486,
             "datatype": "heltall"
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.630846",
-            "meldingId": "78aa4dde-1e30-47fd-8fa9-7298058bfb9b"
+            "registrert": "2025-11-25T09:19:43.051653",
+            "meldingId": "9ae796cb-16dc-48ac-a52c-019edc404d18"
           }
         }
       ]
@@ -46,19 +48,19 @@
       "datatype": "tekst",
       "perioder": [
         {
-          "id": "019a9c19-6644-762b-afcf-f447710d2da3",
-          "opprettet": "2025-11-19T13:31:41.636087",
+          "id": "019aba18-dd54-776d-b4d1-ebfc759eb4e9",
+          "opprettet": "2025-11-25T09:19:43.060119",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
           "verdi": {
-            "verdi": "dbf18cf0-dddf-4542-8c38-ad3b86f8c9c6",
+            "verdi": "ddeba4e1-cafd-469e-a81c-0e3f4bc8b5cf",
             "datatype": "tekst"
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.636068",
-            "meldingId": "78aa4dde-1e30-47fd-8fa9-7298058bfb9b"
+            "registrert": "2025-11-25T09:19:43.060098",
+            "meldingId": "9ae796cb-16dc-48ac-a52c-019edc404d18"
           }
         }
       ]
@@ -69,8 +71,8 @@
       "datatype": "tekst",
       "perioder": [
         {
-          "id": "019a9c19-6644-762b-afcf-f447710d2da5",
-          "opprettet": "2025-11-19T13:31:41.636362",
+          "id": "019aba18-dd54-776d-b4d1-ebfc759eb4eb",
+          "opprettet": "2025-11-25T09:19:43.060368",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -81,8 +83,8 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.636357",
-            "meldingId": "78aa4dde-1e30-47fd-8fa9-7298058bfb9b"
+            "registrert": "2025-11-25T09:19:43.060364",
+            "meldingId": "9ae796cb-16dc-48ac-a52c-019edc404d18"
           }
         }
       ]
@@ -93,8 +95,8 @@
       "datatype": "heltall",
       "perioder": [
         {
-          "id": "019a9c19-664e-72aa-92d1-db5640919f4f",
-          "opprettet": "2025-11-19T13:31:41.646463",
+          "id": "019aba18-dd63-7952-aa5e-1efc50b0d6bb",
+          "opprettet": "2025-11-25T09:19:43.075949",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -111,8 +113,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d4-73c6-b2b1-e12bb09b69c7",
-          "opprettet": "2025-11-19T13:31:41.780089",
+          "id": "019aba18-de2b-7924-a694-ccbc618ed901",
+          "opprettet": "2025-11-25T09:19:43.275991",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -121,8 +123,8 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.73918",
-            "meldingId": "718cd291-31fb-4998-aa3c-4cd758e20614"
+            "registrert": "2025-11-25T09:19:43.199793",
+            "meldingId": "151c27c5-0c08-4697-beba-b955c2bef42e"
           }
         }
       ]
@@ -133,8 +135,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d4-73c6-b2b1-e12bb09b69c8",
-          "opprettet": "2025-11-19T13:31:41.780572",
+          "id": "019aba18-de2c-7a71-8948-fa8025fb190b",
+          "opprettet": "2025-11-25T09:19:43.276643",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -144,15 +146,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.741421",
-            "meldingId": "718cd291-31fb-4998-aa3c-4cd758e20614"
+            "registrert": "2025-11-25T09:19:43.200905",
+            "meldingId": "151c27c5-0c08-4697-beba-b955c2bef42e"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -164,8 +166,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d4-73c6-b2b1-e12bb09b69c9",
-          "opprettet": "2025-11-19T13:31:41.780666",
+          "id": "019aba18-de2c-7a71-8948-fa8025fb190c",
+          "opprettet": "2025-11-25T09:19:43.276833",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -175,15 +177,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.741578",
-            "meldingId": "718cd291-31fb-4998-aa3c-4cd758e20614"
+            "registrert": "2025-11-25T09:19:43.201088",
+            "meldingId": "151c27c5-0c08-4697-beba-b955c2bef42e"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -195,8 +197,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d5-7468-9d62-d7a0c548beb3",
-          "opprettet": "2025-11-19T13:31:41.781477",
+          "id": "019aba18-de2d-7988-a6a1-282fd8575b1a",
+          "opprettet": "2025-11-25T09:19:43.277802",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -209,8 +211,8 @@
               "navn": "SisteAv"
             },
             "opplysninger": [
-              "019a9c19-66d4-73c6-b2b1-e12bb09b69c8",
-              "019a9c19-66d4-73c6-b2b1-e12bb09b69c9"
+              "019aba18-de2c-7a71-8948-fa8025fb190b",
+              "019aba18-de2c-7a71-8948-fa8025fb190c"
             ]
           }
         }
@@ -222,8 +224,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d5-7468-9d62-d7a0c548beb4",
-          "opprettet": "2025-11-19T13:31:41.781605",
+          "id": "019aba18-de2d-7988-a6a1-282fd8575b1b",
+          "opprettet": "2025-11-25T09:19:43.277874",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -235,8 +237,8 @@
               "navn": "LeggTilÅr"
             },
             "opplysninger": [
-              "019a9c19-66d4-73c6-b2b1-e12bb09b69c7",
-              "019a9c19-664e-72aa-92d1-db5640919f4f"
+              "019aba18-de2b-7924-a694-ccbc618ed901",
+              "019aba18-dd63-7952-aa5e-1efc50b0d6bb"
             ]
           }
         }
@@ -248,8 +250,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d6-7e5a-a4b9-047d8cbfe810",
-          "opprettet": "2025-11-19T13:31:41.782045",
+          "id": "019aba18-de2e-7dd3-baf7-631f937bebcc",
+          "opprettet": "2025-11-25T09:19:43.278418",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -262,7 +264,7 @@
               "navn": "SisteAv"
             },
             "opplysninger": [
-              "019a9c19-66d5-7468-9d62-d7a0c548beb3"
+              "019aba18-de2d-7988-a6a1-282fd8575b1a"
             ]
           }
         }
@@ -274,8 +276,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d6-7e5a-a4b9-047d8cbfe811",
-          "opprettet": "2025-11-19T13:31:41.782114",
+          "id": "019aba18-de2e-7dd3-baf7-631f937bebcd",
+          "opprettet": "2025-11-25T09:19:43.278493",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -287,7 +289,7 @@
               "navn": "SisteDagIMåned"
             },
             "opplysninger": [
-              "019a9c19-66d5-7468-9d62-d7a0c548beb4"
+              "019aba18-de2d-7988-a6a1-282fd8575b1b"
             ]
           }
         }
@@ -299,8 +301,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-66d6-7e5a-a4b9-047d8cbfe813",
-          "opprettet": "2025-11-19T13:31:41.782452",
+          "id": "019aba18-de2e-7dd3-baf7-631f937bebcf",
+          "opprettet": "2025-11-25T09:19:43.278834",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -313,8 +315,8 @@
               "navn": "FørEllerLik"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810",
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe811"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc",
+              "019aba18-de2e-7dd3-baf7-631f937bebcd"
             ]
           }
         }
@@ -326,8 +328,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66d7-7357-b75e-003bb86583a1",
-          "opprettet": "2025-11-19T13:31:41.783315",
+          "id": "019aba18-de30-704f-afc6-e297724e32fb",
+          "opprettet": "2025-11-25T09:19:43.280285",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -340,7 +342,7 @@
               "navn": "Oppslag"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -352,8 +354,8 @@
       "datatype": "heltall",
       "perioder": [
         {
-          "id": "019a9c19-66d7-7357-b75e-003bb86583a2",
-          "opprettet": "2025-11-19T13:31:41.783394",
+          "id": "019aba18-de30-704f-afc6-e297724e32fc",
+          "opprettet": "2025-11-25T09:19:43.280399",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -367,7 +369,7 @@
               "navn": "Oppslag"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -379,8 +381,8 @@
       "datatype": "penger",
       "perioder": [
         {
-          "id": "019a9c19-66da-7f3e-91ce-b9d3627efd29",
-          "opprettet": "2025-11-19T13:31:41.786368",
+          "id": "019aba18-de33-72b4-892a-755d14814d5e",
+          "opprettet": "2025-11-25T09:19:43.283036",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -393,7 +395,7 @@
               "navn": "Oppslag"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -405,8 +407,8 @@
       "datatype": "desimaltall",
       "perioder": [
         {
-          "id": "019a9c19-66db-70bd-800a-9edada7d0d0b",
-          "opprettet": "2025-11-19T13:31:41.787078",
+          "id": "019aba18-de34-73e1-a2ca-f4095d924a4e",
+          "opprettet": "2025-11-25T09:19:43.284052",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -420,7 +422,7 @@
               "navn": "Oppslag"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -432,8 +434,8 @@
       "datatype": "desimaltall",
       "perioder": [
         {
-          "id": "019a9c19-66db-70bd-800a-9edada7d0d0c",
-          "opprettet": "2025-11-19T13:31:41.787159",
+          "id": "019aba18-de34-73e1-a2ca-f4095d924a4f",
+          "opprettet": "2025-11-25T09:19:43.28414",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -447,7 +449,7 @@
               "navn": "Oppslag"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -459,8 +461,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-66db-70bd-800a-9edada7d0d0d",
-          "opprettet": "2025-11-19T13:31:41.787197",
+          "id": "019aba18-de34-73e1-a2ca-f4095d924a50",
+          "opprettet": "2025-11-25T09:19:43.284177",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -476,8 +478,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66de-74d8-9529-48b7e7f761f1",
-          "opprettet": "2025-11-19T13:31:41.790177",
+          "id": "019aba18-de36-7701-b4d7-4c3e3210b97a",
+          "opprettet": "2025-11-25T09:19:43.286414",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -490,7 +492,7 @@
               "navn": "FørsteArbeidsdag"
             },
             "opplysninger": [
-              "019a9c19-66d7-7357-b75e-003bb86583a1"
+              "019aba18-de30-704f-afc6-e297724e32fb"
             ]
           }
         }
@@ -502,8 +504,8 @@
       "datatype": "penger",
       "perioder": [
         {
-          "id": "019a9c19-66de-74d8-9529-48b7e7f761f2",
-          "opprettet": "2025-11-19T13:31:41.790891",
+          "id": "019aba18-de37-7d00-b801-1703ba884588",
+          "opprettet": "2025-11-25T09:19:43.287103",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -516,8 +518,8 @@
               "navn": "Multiplikasjon"
             },
             "opplysninger": [
-              "019a9c19-66da-7f3e-91ce-b9d3627efd29",
-              "019a9c19-66db-70bd-800a-9edada7d0d0b"
+              "019aba18-de33-72b4-892a-755d14814d5e",
+              "019aba18-de34-73e1-a2ca-f4095d924a4e"
             ]
           }
         }
@@ -529,8 +531,8 @@
       "datatype": "penger",
       "perioder": [
         {
-          "id": "019a9c19-66de-74d8-9529-48b7e7f761f3",
-          "opprettet": "2025-11-19T13:31:41.790976",
+          "id": "019aba18-de37-7d00-b801-1703ba884589",
+          "opprettet": "2025-11-25T09:19:43.287227",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -543,8 +545,8 @@
               "navn": "Multiplikasjon"
             },
             "opplysninger": [
-              "019a9c19-66da-7f3e-91ce-b9d3627efd29",
-              "019a9c19-66db-70bd-800a-9edada7d0d0c"
+              "019aba18-de33-72b4-892a-755d14814d5e",
+              "019aba18-de34-73e1-a2ca-f4095d924a4f"
             ]
           }
         }
@@ -556,8 +558,8 @@
       "datatype": "desimaltall",
       "perioder": [
         {
-          "id": "019a9c19-66df-7fb3-9f3b-46d16f442075",
-          "opprettet": "2025-11-19T13:31:41.791035",
+          "id": "019aba18-de37-7d00-b801-1703ba88458a",
+          "opprettet": "2025-11-25T09:19:43.287298",
           "status": "Ny",
           "opprinnelse": "Ny",
           "verdi": {
@@ -574,8 +576,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66df-7fb3-9f3b-46d16f442077",
-          "opprettet": "2025-11-19T13:31:41.791991",
+          "id": "019aba18-de38-73a9-a229-0631bab9f2cd",
+          "opprettet": "2025-11-25T09:19:43.288341",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -588,8 +590,8 @@
               "navn": "SisteavsluttendeKalenderMåned"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810",
-              "019a9c19-66de-74d8-9529-48b7e7f761f1"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc",
+              "019aba18-de36-7701-b4d7-4c3e3210b97a"
             ]
           }
         }
@@ -601,8 +603,8 @@
       "datatype": "dato",
       "perioder": [
         {
-          "id": "019a9c19-66e0-701b-85ad-eb0eee902217",
-          "opprettet": "2025-11-19T13:31:41.792788",
+          "id": "019aba18-de39-7675-80e9-7cc34fea98a1",
+          "opprettet": "2025-11-25T09:19:43.289149",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -615,8 +617,8 @@
               "navn": "TrekkFraMåned"
             },
             "opplysninger": [
-              "019a9c19-66df-7fb3-9f3b-46d16f442077",
-              "019a9c19-66d7-7357-b75e-003bb86583a2"
+              "019aba18-de38-73a9-a229-0631bab9f2cd",
+              "019aba18-de30-704f-afc6-e297724e32fc"
             ]
           }
         }
@@ -628,8 +630,8 @@
       "datatype": "desimaltall",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab932",
-          "opprettet": "2025-11-19T13:31:41.869129",
+          "id": "019aba18-deec-755b-8ec6-9114af46163c",
+          "opprettet": "2025-11-25T09:19:43.468515",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -639,15 +641,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.841789",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.400426",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -659,8 +661,8 @@
       "datatype": "inntekt",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab933",
-          "opprettet": "2025-11-19T13:31:41.869238",
+          "id": "019aba18-deec-755b-8ec6-9114af46163d",
+          "opprettet": "2025-11-25T09:19:43.468665",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -670,17 +672,17 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.841958",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.400686",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810",
-              "019a9c19-66df-7fb3-9f3b-46d16f442077",
-              "019a9c19-66e0-701b-85ad-eb0eee902217"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc",
+              "019aba18-de38-73a9-a229-0631bab9f2cd",
+              "019aba18-de39-7675-80e9-7cc34fea98a1"
             ]
           }
         }
@@ -692,8 +694,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab934",
-          "opprettet": "2025-11-19T13:31:41.869323",
+          "id": "019aba18-deec-755b-8ec6-9114af46163e",
+          "opprettet": "2025-11-25T09:19:43.468941",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -703,15 +705,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.846425",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406028",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -723,8 +725,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab935",
-          "opprettet": "2025-11-19T13:31:41.869409",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57be",
+          "opprettet": "2025-11-25T09:19:43.469075",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -734,15 +736,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.846574",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406173",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -754,8 +756,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab936",
-          "opprettet": "2025-11-19T13:31:41.869499",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57bf",
+          "opprettet": "2025-11-25T09:19:43.469372",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -765,15 +767,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.846702",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406305",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -785,8 +787,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab937",
-          "opprettet": "2025-11-19T13:31:41.869587",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57c0",
+          "opprettet": "2025-11-25T09:19:43.469524",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -796,15 +798,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.846829",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406429",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -816,8 +818,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab938",
-          "opprettet": "2025-11-19T13:31:41.86968",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57c1",
+          "opprettet": "2025-11-25T09:19:43.469644",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -827,15 +829,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.846957",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406562",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-66d6-7e5a-a4b9-047d8cbfe810"
+              "019aba18-de2e-7dd3-baf7-631f937bebcc"
             ]
           }
         }
@@ -847,8 +849,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab939",
-          "opprettet": "2025-11-19T13:31:41.869762",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57c2",
+          "opprettet": "2025-11-25T09:19:43.469798",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -858,15 +860,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.847099",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406678",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -878,8 +880,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab93a",
-          "opprettet": "2025-11-19T13:31:41.869835",
+          "id": "019aba18-deed-7d2d-bb61-a6b5070b57c3",
+          "opprettet": "2025-11-25T09:19:43.469924",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -889,15 +891,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.847223",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406804",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -909,8 +911,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672d-7ef1-936c-25c3769ab93b",
-          "opprettet": "2025-11-19T13:31:41.869936",
+          "id": "019aba18-deee-72d1-b474-b106fcb942eb",
+          "opprettet": "2025-11-25T09:19:43.470046",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -920,15 +922,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.847348",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.406912",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -940,8 +942,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672e-7ef8-950b-26d8450157b3",
-          "opprettet": "2025-11-19T13:31:41.87003",
+          "id": "019aba18-deee-72d1-b474-b106fcb942ec",
+          "opprettet": "2025-11-25T09:19:43.470242",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -951,15 +953,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.847584",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.407039",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -971,8 +973,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672e-7ef8-950b-26d8450157b4",
-          "opprettet": "2025-11-19T13:31:41.870213",
+          "id": "019aba18-deee-72d1-b474-b106fcb942ed",
+          "opprettet": "2025-11-25T09:19:43.470434",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -982,15 +984,15 @@
           },
           "kilde": {
             "type": "System",
-            "registrert": "2025-11-19T13:31:41.847975",
-            "meldingId": "de2b601d-71e3-40c0-89dd-1ddac67b8e27"
+            "registrert": "2025-11-25T09:19:43.407174",
+            "meldingId": "de03a560-b401-4ca6-8666-5eec5c9ff661"
           },
           "utledetAv": {
             "regel": {
               "navn": "innhentMed"
             },
             "opplysninger": [
-              "019a9c19-6644-762b-afcf-f447710d2da3"
+              "019aba18-dd54-776d-b4d1-ebfc759eb4e9"
             ]
           }
         }
@@ -1002,8 +1004,8 @@
       "datatype": "inntekt",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391e6",
-          "opprettet": "2025-11-19T13:31:41.871553",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda3",
+          "opprettet": "2025-11-25T09:19:43.472163",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1016,7 +1018,7 @@
               "navn": "FiltrerRelevanteInntekter"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab933"
+              "019aba18-deec-755b-8ec6-9114af46163d"
             ]
           }
         }
@@ -1028,8 +1030,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391e7",
-          "opprettet": "2025-11-19T13:31:41.871622",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda4",
+          "opprettet": "2025-11-25T09:19:43.472264",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1042,7 +1044,7 @@
               "navn": "Utgangspunkt"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab934"
+              "019aba18-deec-755b-8ec6-9114af46163e"
             ]
           }
         }
@@ -1054,8 +1056,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391e8",
-          "opprettet": "2025-11-19T13:31:41.871684",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda5",
+          "opprettet": "2025-11-25T09:19:43.472377",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1068,7 +1070,7 @@
               "navn": "Utgangspunkt"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab935"
+              "019aba18-deed-7d2d-bb61-a6b5070b57be"
             ]
           }
         }
@@ -1080,8 +1082,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391e9",
-          "opprettet": "2025-11-19T13:31:41.871745",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda6",
+          "opprettet": "2025-11-25T09:19:43.472461",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1094,7 +1096,7 @@
               "navn": "Utgangspunkt"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab936"
+              "019aba18-deed-7d2d-bb61-a6b5070b57bf"
             ]
           }
         }
@@ -1106,8 +1108,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391ea",
-          "opprettet": "2025-11-19T13:31:41.871816",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda7",
+          "opprettet": "2025-11-25T09:19:43.472558",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1120,7 +1122,7 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab937"
+              "019aba18-deed-7d2d-bb61-a6b5070b57c0"
             ]
           }
         }
@@ -1132,8 +1134,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391eb",
-          "opprettet": "2025-11-19T13:31:41.871896",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda8",
+          "opprettet": "2025-11-25T09:19:43.472659",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1146,8 +1148,8 @@
               "navn": "StørreEnnEllerLik"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab932",
-              "019a9c19-66df-7fb3-9f3b-46d16f442075"
+              "019aba18-deec-755b-8ec6-9114af46163c",
+              "019aba18-de37-7d00-b801-1703ba88458a"
             ]
           }
         }
@@ -1159,8 +1161,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-672f-7d49-939f-eb97134391ec",
-          "opprettet": "2025-11-19T13:31:41.871962",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bda9",
+          "opprettet": "2025-11-25T09:19:43.472731",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1173,7 +1175,7 @@
               "navn": "ErSann"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab938"
+              "019aba18-deed-7d2d-bb61-a6b5070b57c1"
             ]
           }
         }
@@ -1185,8 +1187,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6730-734d-9e47-b68f84833c8c",
-          "opprettet": "2025-11-19T13:31:41.87206",
+          "id": "019aba18-def0-71d8-8afa-e770ee21bdaa",
+          "opprettet": "2025-11-25T09:19:43.472826",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1199,10 +1201,10 @@
               "navn": "IngenAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab939",
-              "019a9c19-672d-7ef1-936c-25c3769ab93a",
-              "019a9c19-672d-7ef1-936c-25c3769ab93b",
-              "019a9c19-672e-7ef8-950b-26d8450157b3"
+              "019aba18-deed-7d2d-bb61-a6b5070b57c2",
+              "019aba18-deed-7d2d-bb61-a6b5070b57c3",
+              "019aba18-deee-72d1-b474-b106fcb942eb",
+              "019aba18-deee-72d1-b474-b106fcb942ec"
             ]
           }
         }
@@ -1214,8 +1216,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6730-734d-9e47-b68f84833c8d",
-          "opprettet": "2025-11-19T13:31:41.872126",
+          "id": "019aba18-def1-768b-bb48-e3c18e59d995",
+          "opprettet": "2025-11-25T09:19:43.473084",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1228,7 +1230,7 @@
               "navn": "ErSann"
             },
             "opplysninger": [
-              "019a9c19-672e-7ef8-950b-26d8450157b4"
+              "019aba18-deee-72d1-b474-b106fcb942ed"
             ]
           }
         }
@@ -1240,8 +1242,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6730-734d-9e47-b68f84833c8e",
-          "opprettet": "2025-11-19T13:31:41.872183",
+          "id": "019aba18-def1-768b-bb48-e3c18e59d996",
+          "opprettet": "2025-11-25T09:19:43.473187",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1254,7 +1256,7 @@
               "navn": "ErSann"
             },
             "opplysninger": [
-              "019a9c19-672e-7ef8-950b-26d8450157b4"
+              "019aba18-deee-72d1-b474-b106fcb942ed"
             ]
           }
         }
@@ -1266,8 +1268,8 @@
       "datatype": "penger",
       "perioder": [
         {
-          "id": "019a9c19-6732-76b6-b340-e6013e7eef1d",
-          "opprettet": "2025-11-19T13:31:41.874667",
+          "id": "019aba18-def4-751e-8632-6565053c4571",
+          "opprettet": "2025-11-25T09:19:43.476271",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1280,7 +1282,7 @@
               "navn": "SummerPeriode"
             },
             "opplysninger": [
-              "019a9c19-672f-7d49-939f-eb97134391e6"
+              "019aba18-def0-71d8-8afa-e770ee21bda3"
             ]
           }
         }
@@ -1292,8 +1294,8 @@
       "datatype": "penger",
       "perioder": [
         {
-          "id": "019a9c19-6733-79c5-adbc-75cafd17c917",
-          "opprettet": "2025-11-19T13:31:41.875065",
+          "id": "019aba18-def4-751e-8632-6565053c4572",
+          "opprettet": "2025-11-25T09:19:43.476876",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1306,7 +1308,7 @@
               "navn": "SummerPeriode"
             },
             "opplysninger": [
-              "019a9c19-672f-7d49-939f-eb97134391e6"
+              "019aba18-def0-71d8-8afa-e770ee21bda3"
             ]
           }
         }
@@ -1318,8 +1320,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6733-79c5-adbc-75cafd17c918",
-          "opprettet": "2025-11-19T13:31:41.87515",
+          "id": "019aba18-def4-751e-8632-6565053c4573",
+          "opprettet": "2025-11-25T09:19:43.47697",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1332,8 +1334,8 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab934",
-              "019a9c19-672f-7d49-939f-eb97134391e7"
+              "019aba18-deec-755b-8ec6-9114af46163e",
+              "019aba18-def0-71d8-8afa-e770ee21bda4"
             ]
           }
         }
@@ -1345,8 +1347,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6733-79c5-adbc-75cafd17c919",
-          "opprettet": "2025-11-19T13:31:41.875225",
+          "id": "019aba18-def5-7bb0-a5f0-d8db2bdc3cb5",
+          "opprettet": "2025-11-25T09:19:43.477047",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1359,8 +1361,8 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab935",
-              "019a9c19-672f-7d49-939f-eb97134391e8"
+              "019aba18-deed-7d2d-bb61-a6b5070b57be",
+              "019aba18-def0-71d8-8afa-e770ee21bda5"
             ]
           }
         }
@@ -1372,8 +1374,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6733-79c5-adbc-75cafd17c91a",
-          "opprettet": "2025-11-19T13:31:41.875301",
+          "id": "019aba18-def5-7bb0-a5f0-d8db2bdc3cb6",
+          "opprettet": "2025-11-25T09:19:43.477133",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1386,8 +1388,8 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab936",
-              "019a9c19-672f-7d49-939f-eb97134391e9"
+              "019aba18-deed-7d2d-bb61-a6b5070b57bf",
+              "019aba18-def0-71d8-8afa-e770ee21bda6"
             ]
           }
         }
@@ -1399,8 +1401,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6733-79c5-adbc-75cafd17c91b",
-          "opprettet": "2025-11-19T13:31:41.875378",
+          "id": "019aba18-def5-7bb0-a5f0-d8db2bdc3cb7",
+          "opprettet": "2025-11-25T09:19:43.477207",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1413,8 +1415,8 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-672d-7ef1-936c-25c3769ab939",
-              "019a9c19-6730-734d-9e47-b68f84833c8c"
+              "019aba18-deed-7d2d-bb61-a6b5070b57c2",
+              "019aba18-def0-71d8-8afa-e770ee21bdaa"
             ]
           }
         }
@@ -1426,8 +1428,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6734-7a72-a024-41acc37b25bc",
-          "opprettet": "2025-11-19T13:31:41.87684",
+          "id": "019aba18-def6-77af-97bb-b68255aa70ca",
+          "opprettet": "2025-11-25T09:19:43.478219",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1440,8 +1442,8 @@
               "navn": "StørreEnnEllerLik"
             },
             "opplysninger": [
-              "019a9c19-6732-76b6-b340-e6013e7eef1d",
-              "019a9c19-66de-74d8-9529-48b7e7f761f2"
+              "019aba18-def4-751e-8632-6565053c4571",
+              "019aba18-de37-7d00-b801-1703ba884588"
             ]
           }
         }
@@ -1453,8 +1455,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6735-77f3-ba87-55fe8d393d71",
-          "opprettet": "2025-11-19T13:31:41.877043",
+          "id": "019aba18-def6-77af-97bb-b68255aa70cb",
+          "opprettet": "2025-11-25T09:19:43.478348",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1467,8 +1469,8 @@
               "navn": "StørreEnnEllerLik"
             },
             "opplysninger": [
-              "019a9c19-6733-79c5-adbc-75cafd17c917",
-              "019a9c19-66de-74d8-9529-48b7e7f761f3"
+              "019aba18-def4-751e-8632-6565053c4572",
+              "019aba18-de37-7d00-b801-1703ba884589"
             ]
           }
         }
@@ -1480,8 +1482,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6735-77f3-ba87-55fe8d393d72",
-          "opprettet": "2025-11-19T13:31:41.877175",
+          "id": "019aba18-def6-77af-97bb-b68255aa70cc",
+          "opprettet": "2025-11-25T09:19:43.478545",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1494,11 +1496,11 @@
               "navn": "Alle"
             },
             "opplysninger": [
-              "019a9c19-672f-7d49-939f-eb97134391eb",
-              "019a9c19-6733-79c5-adbc-75cafd17c918",
-              "019a9c19-6733-79c5-adbc-75cafd17c919",
-              "019a9c19-6733-79c5-adbc-75cafd17c91a",
-              "019a9c19-672f-7d49-939f-eb97134391ea"
+              "019aba18-def0-71d8-8afa-e770ee21bda8",
+              "019aba18-def4-751e-8632-6565053c4573",
+              "019aba18-def5-7bb0-a5f0-d8db2bdc3cb5",
+              "019aba18-def5-7bb0-a5f0-d8db2bdc3cb6",
+              "019aba18-def0-71d8-8afa-e770ee21bda7"
             ]
           }
         }
@@ -1510,8 +1512,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6735-77f3-ba87-55fe8d393d73",
-          "opprettet": "2025-11-19T13:31:41.877274",
+          "id": "019aba18-def6-77af-97bb-b68255aa70cd",
+          "opprettet": "2025-11-25T09:19:43.478678",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1524,10 +1526,10 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-6733-79c5-adbc-75cafd17c91b",
-              "019a9c19-672d-7ef1-936c-25c3769ab93a",
-              "019a9c19-672d-7ef1-936c-25c3769ab93b",
-              "019a9c19-672e-7ef8-950b-26d8450157b3"
+              "019aba18-def5-7bb0-a5f0-d8db2bdc3cb7",
+              "019aba18-deed-7d2d-bb61-a6b5070b57c3",
+              "019aba18-deee-72d1-b474-b106fcb942eb",
+              "019aba18-deee-72d1-b474-b106fcb942ec"
             ]
           }
         }
@@ -1539,8 +1541,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-6736-7ab4-9d0b-63b9d988974f",
-          "opprettet": "2025-11-19T13:31:41.878515",
+          "id": "019aba18-def7-7b16-9a42-1c9cea25fa8a",
+          "opprettet": "2025-11-25T09:19:43.47972",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1553,8 +1555,8 @@
               "navn": "EnAv"
             },
             "opplysninger": [
-              "019a9c19-6734-7a72-a024-41acc37b25bc",
-              "019a9c19-6735-77f3-ba87-55fe8d393d71"
+              "019aba18-def6-77af-97bb-b68255aa70ca",
+              "019aba18-def6-77af-97bb-b68255aa70cb"
             ]
           }
         }
@@ -1566,8 +1568,8 @@
       "datatype": "boolsk",
       "perioder": [
         {
-          "id": "019a9c19-69c3-7552-9e03-55c6c9846284",
-          "opprettet": "2025-11-19T13:31:42.531235",
+          "id": "019aba18-e1ca-7881-a6f6-cad19a537443",
+          "opprettet": "2025-11-25T09:19:44.202464",
           "status": "Ny",
           "opprinnelse": "Ny",
           "gyldigFraOgMed": "2018-06-21",
@@ -1589,13 +1591,13 @@
     }
   ],
   "førteTil": "Avslag",
-  "@id": "d90cf67a-2cc7-425e-9d0a-78deb7a2b5c6",
-  "@opprettet": "2025-11-19T13:31:42.60829",
+  "@id": "80b3211d-47f7-4c0e-98d3-b7bc0304cf73",
+  "@opprettet": "2025-11-25T09:19:44.273299",
   "system_read_count": 0,
   "system_participating_services": [
     {
-      "id": "d90cf67a-2cc7-425e-9d0a-78deb7a2b5c6",
-      "time": "2025-11-19T13:31:42.608290"
+      "id": "80b3211d-47f7-4c0e-98d3-b7bc0304cf73",
+      "time": "2025-11-25T09:19:44.273299"
     }
   ]
 }

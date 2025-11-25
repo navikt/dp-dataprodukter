@@ -3,7 +3,6 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 import com.fasterxml.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
-import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
@@ -17,10 +16,8 @@ import no.nav.dagpenger.behandling.api.models.DatoVerdiDTO
 import no.nav.dagpenger.behandling.api.models.DesimaltallVerdiDTO
 import no.nav.dagpenger.behandling.api.models.HeltallVerdiDTO
 import no.nav.dagpenger.behandling.api.models.OpplysningsverdiDTO
-import no.nav.dagpenger.behandling.api.models.OpprinnelseDTO
 import no.nav.dagpenger.behandling.api.models.PengeVerdiDTO
 import no.nav.dagpenger.behandling.api.models.PeriodeVerdiDTO
-import no.nav.dagpenger.behandling.api.models.RettighetsperiodeDTO
 import no.nav.dagpenger.behandling.api.models.TekstVerdiDTO
 import no.nav.dagpenger.behandling.api.models.UlidVerdiDTO
 import no.nav.dagpenger.dataprodukt.behandling.BehandlerRolle
@@ -140,8 +137,8 @@ internal class BehandlingRiver(
                             // TODO: Fiks at behandler ikke er nullable i API
                             BehandletAv(BehandlerRolle.valueOf(it.rolle.value), it.behandler!!.ident)
                         }
-                    opprettetTid = pakke.opprettetTid
-                    sistEndretTid = pakke.sistEndretTid
+                    opprettetTid = behandling.opprettet.asTimestamp()
+                    sistEndretTid = behandling.sistEndret.asTimestamp()
                     meldingsreferanseId = pakke.meldingsreferanseId
                     versjon = pakke.image
                 }.build()
@@ -175,34 +172,5 @@ class BehandlingsresultatParser(
 
     val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asText() } ?: "0"
     val image: String get() = packet["system_participating_services"].first()["image"]?.asText() ?: ""
-    val opprettetTid get() = packet["@opprettet"].asLocalDateTime().asTimestamp()
-
-    val sistEndretTid get() = packet["@opprettet"].asLocalDateTime().asTimestamp()
     val meldingsreferanseId get() = packet["@id"].asUUID()
-
-    fun utfall(perioder: List<RettighetsperiodeDTO>): Utfall {
-        val (nye, arvede) = perioder.partition { it.opprinnelse == OpprinnelseDTO.NY }
-
-        return when {
-            // Ingen endring
-            nye.isEmpty() -> Utfall.Beregning
-            // Ny kjede
-            arvede.isEmpty() -> if (nye.harRett()) Utfall.Innvilgelse else Utfall.Avslag
-            // Bygger videre på en kjede
-            arvede.sisteHarRett() && !nye.harRett() -> Utfall.Stans
-            else -> Utfall.Gjenopptak
-        }
-    }
-
-    private fun List<RettighetsperiodeDTO>.harRett() = any { it.harRett }
-
-    private fun List<RettighetsperiodeDTO>.sisteHarRett() = last().harRett
-
-    enum class Utfall {
-        Innvilgelse,
-        Avslag,
-        Stans,
-        Gjenopptak,
-        Beregning,
-    }
 }
