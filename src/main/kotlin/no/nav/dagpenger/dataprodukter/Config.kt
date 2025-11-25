@@ -4,6 +4,7 @@ import com.natpryce.konfig.ConfigurationProperties
 import com.natpryce.konfig.EnvironmentVariables
 import com.natpryce.konfig.PropertyGroup
 import com.natpryce.konfig.getValue
+import com.natpryce.konfig.localDateType
 import com.natpryce.konfig.overriding
 import com.natpryce.konfig.stringType
 
@@ -17,6 +18,8 @@ val kafka_produkt_soknad_dokumentkrav_topic by stringType
 val kafka_produkt_behandling_topic by stringType
 val kafka_produkt_vedtak_topic by stringType
 val kafka_produkt_behandling_tilstand_topic by stringType
+
+val avslag_eierskap_dato by localDateType
 
 object pdl : PropertyGroup() {
     val endpoint by stringType

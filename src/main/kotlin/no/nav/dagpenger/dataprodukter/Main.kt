@@ -37,6 +37,9 @@ fun main() {
             scope = config[pdl.scope],
         )
 
+    // TODO: Settes til datoen vi bestemmer at vi eier avslag selv
+    val datoViEierAvslag = config.getOrElse(avslag_eierskap_dato, LocalDate.MAX)
+
     RapidApplication
         .create(env) { _, rapidsConnection ->
             SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop)
@@ -46,8 +49,7 @@ fun main() {
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
 
             // Behandling
-            // TODO: Settes til datoen vi bestemmer at vi eier avslag selv
-            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, LocalDate.MAX)
+            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
             BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTilstandTopic)
         }.start()
 }
