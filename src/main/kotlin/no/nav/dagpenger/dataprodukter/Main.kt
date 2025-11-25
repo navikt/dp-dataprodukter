@@ -17,6 +17,7 @@ import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadTilstandRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
+import java.time.LocalDate
 
 internal object DataTopics {
     val soknadsinnlop = dataTopic<Soknadsinnlop>(config[kafka_produkt_topic])
@@ -45,7 +46,8 @@ fun main() {
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
 
             // Behandling
-            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic)
+            // TODO: Settes til datoen vi bestemmer at vi eier avslag selv
+            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, LocalDate.MAX)
             BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTilstandTopic)
         }.start()
 }

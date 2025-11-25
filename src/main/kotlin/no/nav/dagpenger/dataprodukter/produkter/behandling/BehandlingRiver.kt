@@ -3,6 +3,7 @@ package no.nav.dagpenger.dataprodukter.produkter.behandling
 import com.fasterxml.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
+import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
@@ -34,10 +35,12 @@ import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.objectMapper
+import java.time.LocalDate
 
 internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Behandlingsresultat>,
+    private val datoViEierAvslag: LocalDate,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -52,10 +55,23 @@ internal class BehandlingRiver(
                     it.requireKey(
                         "behandlingId",
                         "ident",
-                        "behandletHendelse",
                         "opplysninger",
-                        "rettighetsperioder",
+                        "førteTil",
                     )
+                    it.require("rettighetsperioder") { perioder ->
+                        // Kast alle behandlinger som mangler rettighetsperioder
+                        // De er for gamle eller ufullstendige uten rettighetsperioder
+                        require(perioder.isArray && perioder.size() > 0) { "Det må være minst en rettighetsperiode" }
+                    }
+                    it.require("opprettet") { dato ->
+                        val førteTil = it["førteTil"].asText()
+                        if (førteTil != "Avslag") return@require "Er ikke avslag"
+
+                        val opprettet = dato.asLocalDateTime().toLocalDate()
+
+                        // Kast alle avslag fram til en bestemt dato når vi også eier avslagene selv
+                        require(opprettet.isAfter(datoViEierAvslag)) { "Avslag før $datoViEierAvslag eies av Arena" }
+                    }
                 }
             }.register(this)
     }
