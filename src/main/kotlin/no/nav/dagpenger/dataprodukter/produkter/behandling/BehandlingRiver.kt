@@ -42,7 +42,7 @@ internal class BehandlingRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("behandlingsresultat")) }
+                precondition { it.requireAny("@event_name", listOf("behandlingsresultat", "behandling_datalast")) }
                 validate {
                     it.requireKey(
                         "@id",
