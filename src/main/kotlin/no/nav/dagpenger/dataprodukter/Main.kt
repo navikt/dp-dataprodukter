@@ -38,7 +38,7 @@ fun main() {
         )
 
     // TODO: Settes til datoen vi bestemmer at vi eier avslag selv
-    val datoViEierAvslag = config.getOrElse(avslag_eierskap_dato, LocalDate.MAX)
+    val datoViEierAvslag = runCatching { config[avslag_eierskap_dato] }.getOrElse { LocalDate.MAX }
 
     RapidApplication
         .create(env) { _, rapidsConnection ->
