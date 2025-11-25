@@ -41,7 +41,7 @@ spec:
       value: "{{pdl.scope}}"
     - name: AVSLAG_EIERSKAP_DATO
       value: "{{avslag.dato}}"
-  ccessPolicy:
+  accessPolicy:
     outbound:
       external:
         - host: "{{pdl.host}}"
