@@ -1,0 +1,127 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.oppgave",
+  "name": "Oppgave",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sakId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Identifikator til saken oppgaven tilhører"
+    },
+    {
+      "name": "behandling",
+      "type": {
+        "type": "record",
+        "name": "Behandling",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            },
+            "doc": "Identifikator til behandlingen oppgaven gjelder"
+          },
+          {
+            "name": "tidspunkt",
+            "type": {
+              "type": "long",
+              "logicalType": "timestamp-millis"
+            },
+            "doc": "Tidspunkt for når behandlingen ble opprettet"
+          },
+          {
+            "name": "basertPaaBehandlingId",
+            "type": [
+              "null",
+              {
+                "type": "int",
+                "logicalType": "date"
+              }
+            ],
+            "default": null,
+            "description": "Identifikator til behandlingen denne behandlingen er basert på (hvis relevant)"
+          },
+          {
+            "name": "utloestAv",
+            "type": {
+              "type": "record",
+              "name": "UtloestAv",
+              "fields": [
+                {
+                  "name": "type",
+                  "type": "string"
+                },
+                {
+                  "name": "tidspunkt",
+                  "type": {
+                    "type": "long",
+                    "logicalType": "timestamp-millis"
+                  }
+                }
+              ]
+            },
+            "doc": "Hendelse som utløste behandlingen"
+          }
+        ]
+      },
+      "doc": "Behandlingen oppgaven gjelder"
+    },
+    {
+      "name": "personIdent",
+      "type": "string",
+      "doc": "Fødselsnummer eller D-nummer til personen oppgaven gjelder"
+    },
+    {
+      "name": "saksbehandlerIdent",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "NAV-ident til saksbehandler som har utført behandlingen"
+    },
+    {
+      "name": "beslutterIdent",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "NAV-ident til beslutter som har utført kontroll av behandlingen"
+    },
+    {
+      "name": "oppgaveTilstander",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "OppgaveTilstand",
+          "fields": [
+            {
+              "name": "tilstand",
+              "type": "string",
+              "doc": "Navn på tilstanden oppgaven har vært i"
+            },
+            {
+              "name": "tidspunkt",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              },
+              "doc": "Tidspunkt for når oppgaven gikk inn i denne tilstanden"
+            }
+          ]
+        }
+      },
+      "doc": "Tilstander oppgaven har vært gjennom"
+    }
+  ]
+}
