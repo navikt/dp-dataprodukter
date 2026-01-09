@@ -18,7 +18,7 @@
         "name": "Behandling",
         "fields": [
           {
-            "name": "id",
+            "name": "behandlingId",
             "type": {
               "type": "string",
               "logicalType": "uuid"
@@ -38,8 +38,8 @@
             "type": [
               "null",
               {
-                "type": "int",
-                "logicalType": "date"
+                "type": "string",
+                "logicalType": "uuid"
               }
             ],
             "default": null,
