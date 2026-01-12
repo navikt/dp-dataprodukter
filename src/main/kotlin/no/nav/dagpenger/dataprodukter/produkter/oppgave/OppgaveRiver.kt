@@ -53,7 +53,7 @@ internal class OppgaveRiver(
     ) {
         val behandlingIdAsText = packet["oppgave"]["behandling"]["id"].asText()
         withLoggingContext("behandlingId" to behandlingIdAsText) {
-            val oppgaveDTO = mapper.readValue<OppgaveDTO>(packet.toJson())
+            val oppgaveDTO = mapper.readValue<OppgaveDTO>(packet["oppgave"].toString())
             Oppgave
                 .newBuilder()
                 .apply {

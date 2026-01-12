@@ -1,0 +1,46 @@
+{
+  "@event_name": "oppgave_til_statistikk",
+  "@id": "123e4567-e89b-12d3-a456-426614174000",
+  "@opprettet": "2026-01-12T08:00:00.000Z",
+  "system_participating_services": [
+    {
+      "service": "dp-saksbehandling",
+      "instance": "dp-saksbehandling-795d57c777-hqztn",
+      "time": "2026-01-12T08:00:00.000Z"
+    }
+  ],
+  "oppgave": {
+    "sakId": "01956789-abcd-7123-8456-123456789abc",
+    "behandling": {
+      "id": "01956789-abcd-7123-8456-987654321abc",
+      "behandlingId": "01956789-abcd-7123-8456-987654321abc",
+      "tidspunkt": "2026-01-10T10:15:30",
+      "basertPåBehandlingId": null,
+      "utløstAv": {
+        "type": "Søknad",
+        "tidspunkt": "2026-01-10T10:00:00"
+      }
+    },
+    "personIdent": "12345678901",
+    "saksbehandlerIdent": "Z123456",
+    "beslutterIdent": "Z987654",
+    "oppgaveTilstander": [
+      {
+        "tilstand": "OPPRETTET",
+        "tidspunkt": "2026-01-10T10:15:30"
+      },
+      {
+        "tilstand": "UNDER_BEHANDLING",
+        "tidspunkt": "2026-01-10T11:00:00"
+      },
+      {
+        "tilstand": "FERDIGBEHANDLET",
+        "tidspunkt": "2026-01-11T14:30:00"
+      },
+      {
+        "tilstand": "FERDIG_BEHANDLET",
+        "tidspunkt": "2026-01-11T15:00:00"
+      }
+    ]
+  }
+}
