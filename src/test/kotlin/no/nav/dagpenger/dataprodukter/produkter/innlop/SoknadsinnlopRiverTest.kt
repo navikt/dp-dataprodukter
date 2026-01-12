@@ -1,11 +1,10 @@
-package no.nav.dagpenger.dataprodukter.produkter
+package no.nav.dagpenger.dataprodukter.produkter.innlop
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.mockk
 import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach

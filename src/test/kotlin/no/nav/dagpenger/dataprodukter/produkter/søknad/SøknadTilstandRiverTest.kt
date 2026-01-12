@@ -1,4 +1,4 @@
-package no.nav.dagpenger.dataprodukter.produkter
+package no.nav.dagpenger.dataprodukter.produkter.søknad
 
 import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.mockk
@@ -6,7 +6,6 @@ import io.mockk.verify
 import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.helpers.tilstandEndretEvent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadTilstandRiver
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

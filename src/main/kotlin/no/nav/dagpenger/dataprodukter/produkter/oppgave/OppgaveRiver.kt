@@ -51,7 +51,7 @@ internal class OppgaveRiver(
         metadata: MessageMetadata,
         meterRegistry: MeterRegistry,
     ) {
-        val behandlingIdAsText = packet["oppgave"]["behandling"]["id"].asText()
+        val behandlingIdAsText = packet["oppgave"]["behandling"]["behandlingId"].asText()
         withLoggingContext("behandlingId" to behandlingIdAsText) {
             val oppgaveDTO = mapper.readValue<OppgaveDTO>(packet["oppgave"].toString())
             Oppgave
