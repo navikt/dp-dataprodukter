@@ -24,7 +24,8 @@ jobs:
           data-soknad-dokumentkrav-v1,
           data-behandling-v1,
           data-vedtak-v1,
-          data-behandling-tilstand-v1
+          data-behandling-tilstand-v1,
+          data-oppgave-v1
         ]
     steps:
       - uses: actions/checkout@v6

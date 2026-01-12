@@ -63,7 +63,10 @@ internal class OppgaveRiver(
                             it.behandlingId,
                             it.tidspunkt.asTimestamp(),
                             it.basertPåBehandlingId,
-                            UtloestAv()
+                            UtloestAv(
+                                it.utløstAv.type,
+                                it.utløstAv.tidspunkt.asTimestamp()
+                            )
                         )
                     }
                     personIdent = oppgaveDTO.personIdent

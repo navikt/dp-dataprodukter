@@ -3,6 +3,7 @@ package no.nav.dagpenger.dataprodukter
 import no.nav.dagpenger.dataprodukt.behandling.BehandlingEndretTilstand
 import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
+import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
 import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
@@ -11,6 +12,7 @@ import no.nav.dagpenger.dataprodukter.person.PdlPersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingEndretTilstandRiver
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingRiver
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
+import no.nav.dagpenger.dataprodukter.produkter.oppgave.OppgaveRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.DokumentkravRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadInnsendtRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadTilstandRiver
@@ -26,6 +28,7 @@ internal object DataTopics {
     val dokumentkrav = dataTopic<Dokumentkrav>(config[kafka_produkt_soknad_dokumentkrav_topic])
     val behandlingTopic = dataTopic<Behandlingsresultat>(config[kafka_produkt_behandling_topic])
     val behandlingTilstandTopic = dataTopic<BehandlingEndretTilstand>(config[kafka_produkt_behandling_tilstand_topic])
+    val oppgaveTopic = dataTopic<Oppgave>(config[kafka_produkt_oppgave_topic])
 }
 
 fun main() {
@@ -51,5 +54,8 @@ fun main() {
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
             BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTilstandTopic)
+            
+            // Oppgave
+            OppgaveRiver(rapidsConnection, DataTopics.oppgaveTopic)
         }.start()
 }
