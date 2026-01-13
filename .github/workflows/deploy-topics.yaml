@@ -25,7 +25,7 @@ jobs:
           data-behandling-v1,
           data-vedtak-v1,
           data-behandling-tilstand-v1,
-          data-oppgave-v1
+          data-oppgave-alfa-v1
         ]
     steps:
       - uses: actions/checkout@v6
