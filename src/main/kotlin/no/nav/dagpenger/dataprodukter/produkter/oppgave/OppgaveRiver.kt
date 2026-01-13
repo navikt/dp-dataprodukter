@@ -58,6 +58,7 @@ internal class OppgaveRiver(
                 .newBuilder()
                 .apply {
                     sakId = oppgaveDTO.sakId
+                    oppgaveId = oppgaveDTO.oppgaveId
                     behandling = oppgaveDTO.behandling.let {
                         Behandling(
                             it.behandlingId,
@@ -78,6 +79,7 @@ internal class OppgaveRiver(
                             oppgaveTilstand.tidspunkt.asTimestamp(),
                         )
                     }
+                    versjon = oppgaveDTO.versjon
                 }.build()
                 .also { oppgave ->
                     logger.info{ "Publiserer oppgave til statistikk for behandlingId $behandlingIdAsText"}
@@ -95,6 +97,9 @@ data class OppgaveDTO(
     @param:JsonProperty("sakId")
     @get:JsonProperty("sakId")
     val sakId: UUID,
+    @param:JsonProperty("oppgaveId")
+    @get:JsonProperty("oppgaveId")
+    val oppgaveId: UUID,
     @param:JsonProperty("behandling")
     @get:JsonProperty("behandling")
     val behandling: BehandlingDTO,
@@ -110,6 +115,9 @@ data class OppgaveDTO(
     @param:JsonProperty("oppgaveTilstander")
     @get:JsonProperty("oppgaveTilstander")
     val oppgaveTilstander: List<OppgaveTilstandDTO>,
+    @param:JsonProperty("versjon")
+    @get:JsonProperty("versjon")
+    val versjon: String,
 )
 
 data class BehandlingDTO(

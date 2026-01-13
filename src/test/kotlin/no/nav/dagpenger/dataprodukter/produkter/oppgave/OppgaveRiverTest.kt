@@ -50,6 +50,7 @@ internal class OppgaveRiverTest {
             this.personIdent shouldBe key
             this.personIdent shouldBe "12345678901"
             this.sakId.toString() shouldBe "01956789-abcd-7123-8456-123456789abc"
+            this.oppgaveId.toString() shouldBe "874bcac5-964d-496e-80ba-23046902f0ea"
             this.behandling.behandlingId.toString() shouldBe "01956789-abcd-7123-8456-987654321abc"
             this.behandling.basertPaaBehandlingId shouldBe null
             this.behandling.utloestAv.type shouldBe "Søknad"
@@ -60,6 +61,8 @@ internal class OppgaveRiverTest {
             this.oppgaveTilstander[1].tilstand shouldBe "UNDER_BEHANDLING"
             this.oppgaveTilstander[2].tilstand shouldBe "FERDIGBEHANDLET"
             this.oppgaveTilstander[3].tilstand shouldBe "FERDIG_BEHANDLET"
+            this.versjon shouldBe "dp-saksbehandling-1.0.0"
+
         }
     }
 
@@ -99,6 +102,7 @@ internal class OppgaveRiverTest {
           ],
           "oppgave": {
             "sakId": "01956789-abcd-7123-8456-123456789abc",
+            "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
             "behandling": {
               "id": "01956789-abcd-7123-8456-987654321abc",
               "behandlingId": "01956789-abcd-7123-8456-987654321abc",
@@ -112,6 +116,7 @@ internal class OppgaveRiverTest {
             "personIdent": "12345678901",
             "saksbehandlerIdent": "Z123456",
             "beslutterIdent": "Z987654",
+            "versjon": "dp-saksbehandling-1.0.0",
             "oppgaveTilstander": [
               {
                 "tilstand": "OPPRETTET",

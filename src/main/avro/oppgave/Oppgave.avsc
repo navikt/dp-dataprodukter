@@ -12,6 +12,14 @@
       "doc": "Identifikator til saken oppgaven tilhører"
     },
     {
+      "name": "oppgaveId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Identifikator oppgaven"
+    },
+    {
       "name": "behandling",
       "type": {
         "type": "record",
@@ -96,6 +104,11 @@
       ],
       "default": null,
       "doc": "NAV-ident til beslutter som har utført kontroll av behandlingen"
+    },
+    {
+      "name": "versjon",
+      "type": "string",
+      "doc": "Hvilken versjon av kode som har produsert resultatet"
     },
     {
       "name": "oppgaveTilstander",
