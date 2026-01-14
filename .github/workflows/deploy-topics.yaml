@@ -17,21 +17,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        topic: [
-          data-innlop-v2,
-          data-soknad-faktum-v1,
-          data-soknad-tilstand-v1,
-          data-soknad-dokumentkrav-v1,
-          data-behandling-v1,
-          data-vedtak-v1,
-          data-behandling-tilstand-v1,
-          data-oppgave-alfa-v1
-        ]
+        include:
+          - topic: data-innlop-v2
+          - topic: data-soknad-faktum-v1
+          - topic: data-soknad-tilstand-v1
+          - topic: data-soknad-dokumentkrav-v1
+          - topic: data-behandling-v1
+          - topic: data-vedtak-v1
+          - topic: data-behandling-tilstand-v1
+          - topic: data-oppgave-alfa-v2
+            connector: .nais/kafka/oppgave-alfa-v2-connector.yaml
     steps:
       - uses: actions/checkout@v6
       - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/kafka/topic.yaml,.nais/kafka/connector.yaml
+          RESOURCE: .nais/kafka/topic.yaml,${{ matrix.connector || '.nais/kafka/connector.yaml' }}
           VAR: topic=${{ matrix.topic }},kafka=${{ inputs.kafka }},project=${{ inputs.project }}
           PRINT_PAYLOAD: true
