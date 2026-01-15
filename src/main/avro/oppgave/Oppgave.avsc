@@ -111,6 +111,14 @@
       "doc": "Hvilken versjon av kode som har produsert resultatet"
     },
     {
+      "name": "avsluttetTidspunkt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunkt for når oppgaven ble avsluttet"
+    },
+    {
       "name": "oppgaveTilstander",
       "type": {
         "type": "array",

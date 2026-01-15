@@ -5,6 +5,10 @@ import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -54,6 +58,8 @@ internal class OppgaveRiverTest {
             this.behandling.behandlingId.toString() shouldBe "01956789-abcd-7123-8456-987654321abc"
             this.behandling.basertPaaBehandlingId shouldBe null
             this.behandling.utloestAv.type shouldBe "Søknad"
+            this.behandling.tidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
+                    LocalDateTime.of(2026, 1, 10, 10, 15, 30)
             this.saksbehandlerIdent shouldBe "Z123456"
             this.beslutterIdent shouldBe "Z987654"
             this.oppgaveTilstander.size shouldBe 4
@@ -62,6 +68,14 @@ internal class OppgaveRiverTest {
             this.oppgaveTilstander[2].tilstand shouldBe "FERDIGBEHANDLET"
             this.oppgaveTilstander[3].tilstand shouldBe "FERDIG_BEHANDLET"
             this.versjon shouldBe "dp-saksbehandling-1.0.0"
+            this.avsluttetTidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
+                LocalDateTime.of(
+                    2026,
+                    1,
+                    11,
+                    15,
+                    0,
+                )
 
         }
     }
@@ -117,6 +131,7 @@ internal class OppgaveRiverTest {
             "saksbehandlerIdent": "Z123456",
             "beslutterIdent": "Z987654",
             "versjon": "dp-saksbehandling-1.0.0",
+            "avsluttetTidspunkt": "2026-01-11T15:00:00",
             "oppgaveTilstander": [
               {
                 "tilstand": "OPPRETTET",

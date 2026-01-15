@@ -1,5 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter.oppgave
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
@@ -80,6 +81,7 @@ internal class OppgaveRiver(
                         )
                     }
                     versjon = oppgaveDTO.versjon
+                    avsluttetTidspunkt = oppgaveDTO.avsluttetTidspunkt.asTimestamp()
                 }.build()
                 .also { oppgave ->
                     logger.info{ "Publiserer oppgave til statistikk for behandlingId $behandlingIdAsText"}
@@ -118,6 +120,9 @@ data class OppgaveDTO(
     @param:JsonProperty("versjon")
     @get:JsonProperty("versjon")
     val versjon: String,
+    @param:JsonProperty("avsluttetTidspunkt")
+    @get:JsonProperty("avsluttetTidspunkt")
+    val avsluttetTidspunkt: LocalDateTime,
 )
 
 data class BehandlingDTO(
