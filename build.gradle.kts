@@ -15,10 +15,10 @@ dependencies {
     implementation(project(":soknad"))
 
     implementation(libs.rapids.and.rivers)
-    implementation("org.apache.avro:avro:1.12.0")
+    implementation("org.apache.avro:avro:1.12.1")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
-    implementation("io.confluent:kafka-avro-serializer:7.9.1")
+    implementation("io.confluent:kafka-avro-serializer:8.1.1")
 
     testImplementation(libs.mockk)
     testImplementation(libs.rapids.and.rivers.test)
