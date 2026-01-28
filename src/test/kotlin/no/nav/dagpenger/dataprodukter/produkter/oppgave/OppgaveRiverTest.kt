@@ -10,11 +10,13 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
+import no.nav.dagpenger.dataprodukt.oppgave.OppgaveTilstand
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import java.time.ZoneOffset
 import java.util.UUID
 
 internal class OppgaveRiverTest {
@@ -53,29 +55,19 @@ internal class OppgaveRiverTest {
         with(value.captured.value()) {
             this.personIdent shouldBe key
             this.personIdent shouldBe "12345678901"
-            this.sakId.toString() shouldBe "01956789-abcd-7123-8456-123456789abc"
+            this.sakId.toString() shouldBe "019c04f3-1f43-7500-b4e9-a44d3f27d187"
             this.oppgaveId.toString() shouldBe "874bcac5-964d-496e-80ba-23046902f0ea"
             this.behandling.behandlingId.toString() shouldBe "01956789-abcd-7123-8456-987654321abc"
             this.behandling.basertPaaBehandlingId shouldBe null
-            this.behandling.utloestAv.type shouldBe "Søknad"
+            this.behandling.utloestAv.type shouldBe "SØKNAD"
             this.behandling.tidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
                     LocalDateTime.of(2026, 1, 10, 10, 15, 30)
             this.saksbehandlerIdent shouldBe "Z123456"
             this.beslutterIdent shouldBe "Z987654"
-            this.oppgaveTilstander.size shouldBe 4
-            this.oppgaveTilstander[0].tilstand shouldBe "OPPRETTET"
-            this.oppgaveTilstander[1].tilstand shouldBe "UNDER_BEHANDLING"
-            this.oppgaveTilstander[2].tilstand shouldBe "FERDIGBEHANDLET"
-            this.oppgaveTilstander[3].tilstand shouldBe "FERDIG_BEHANDLET"
+            this.sisteTilstandsendring.tilstand shouldBe "FERDIG_BEHANDLET"
+            this.sisteTilstandsendring.tidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
+                    LocalDateTime.of(2026, 1, 11, 10, 15, 30)
             this.versjon shouldBe "dp-saksbehandling-1.0.0"
-            this.avsluttetTidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
-                LocalDateTime.of(
-                    2026,
-                    1,
-                    11,
-                    15,
-                    0,
-                )
 
         }
     }
@@ -102,55 +94,39 @@ internal class OppgaveRiverTest {
         }
     }
 
-    private val oppgaveTilStatistikk = """
-        {
-          "@event_name": "oppgave_til_statistikk",
-          "@id": "123e4567-e89b-12d3-a456-426614174000",
-          "@opprettet": "2026-01-12T08:00:00.000Z",
-          "system_participating_services": [
-            {
-              "service": "dp-saksbehandling",
-              "instance": "dp-saksbehandling-795d57c777-hqztn",
-              "time": "2026-01-12T08:00:00.000Z"
-            }
-          ],
-          "oppgave": {
-            "sakId": "01956789-abcd-7123-8456-123456789abc",
-            "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
-            "behandling": {
-              "id": "01956789-abcd-7123-8456-987654321abc",
-              "behandlingId": "01956789-abcd-7123-8456-987654321abc",
-              "tidspunkt": "2026-01-10T10:15:30",
-              "basertPåBehandlingId": null,
-              "utløstAv": {
-                "type": "Søknad",
-                "tidspunkt": "2026-01-10T10:00:00"
-              }
-            },
-            "personIdent": "12345678901",
-            "saksbehandlerIdent": "Z123456",
-            "beslutterIdent": "Z987654",
-            "versjon": "dp-saksbehandling-1.0.0",
-            "avsluttetTidspunkt": "2026-01-11T15:00:00",
-            "oppgaveTilstander": [
-              {
-                "tilstand": "OPPRETTET",
-                "tidspunkt": "2026-01-10T10:15:30"
-              },
-              {
-                "tilstand": "UNDER_BEHANDLING",
-                "tidspunkt": "2026-01-10T11:00:00"
-              },
-              {
-                "tilstand": "FERDIGBEHANDLET",
-                "tidspunkt": "2026-01-11T14:30:00"
-              },
-              {
-                "tilstand": "FERDIG_BEHANDLET",
-                "tidspunkt": "2026-01-11T15:00:00"
-              }
-            ]
-          }
-        }
-    """.trimIndent()
+    //language=JSON
+    private val oppgaveTilStatistikk =
+        """{
+  "@event_name": "oppgave_til_statistikk_v2",
+  "oppgave": {
+    "sakId": "019c04f3-1f43-7500-b4e9-a44d3f27d187",
+    "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
+    "behandling": {
+      "behandlingId": "01956789-abcd-7123-8456-987654321abc",
+      "tidspunkt": "2026-01-10T10:15:30",
+      "basertPåBehandlingId": null,
+      "utløstAv": {
+        "type": "SØKNAD",
+        "tidspunkt": "2026-01-10T10:15:30"
+      }
+    },
+    "personIdent": "12345678901",
+    "saksbehandlerIdent": "Z123456",
+    "beslutterIdent": "Z987654",
+    "sisteTilstandsendring": {
+      "tilstand": "FERDIG_BEHANDLET",
+      "tidspunkt": "2026-01-11T10:15:30"
+    },
+    "versjon": "dp-saksbehandling-1.0.0"
+  },
+  "@id": "7b1d3901-8784-4ab1-8f5c-f90ab80d7918",
+  "@opprettet": "2026-01-28T15:12:58.69031",
+  "system_read_count": 0,
+  "system_participating_services": [
+    {
+      "id": "7b1d3901-8784-4ab1-8f5c-f90ab80d7918",
+      "time": "2026-01-28T15:12:58.690310"
+    }
+  ]
+}""".trimIndent()
 }

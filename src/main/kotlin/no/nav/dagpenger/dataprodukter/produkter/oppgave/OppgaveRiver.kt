@@ -27,7 +27,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v2")) }
                 validate {
                     it.requireKey(
                         "@id",
@@ -74,24 +74,20 @@ internal class OppgaveRiver(
                     personIdent = oppgaveDTO.personIdent
                     saksbehandlerIdent = oppgaveDTO.saksbehandlerIdent
                     beslutterIdent = oppgaveDTO.beslutterIdent
-                    oppgaveTilstander = oppgaveDTO.oppgaveTilstander.map { oppgaveTilstand ->
-                        OppgaveTilstand(
-                            oppgaveTilstand.tilstand,
-                            oppgaveTilstand.tidspunkt.asTimestamp(),
-                        )
-                    }
-                    versjon = oppgaveDTO.versjon
-                    avsluttetTidspunkt = oppgaveDTO.avsluttetTidspunkt.asTimestamp()
-                }.build()
-                .also { oppgave ->
-                    logger.info{ "Publiserer oppgave til statistikk for behandlingId $behandlingIdAsText"}
-                    dataTopic.publiser(
-                        ident = oppgave.personIdent,
-                        innlop = oppgave,
+                    sisteTilstandsendring = OppgaveTilstand(
+                        oppgaveDTO.sisteTilstandsendring.tilstand,
+                        oppgaveDTO.sisteTilstandsendring.tidspunkt.asTimestamp()
                     )
+                    versjon = oppgaveDTO.versjon
                 }
-        }
-
+        }.build()
+            .also { oppgave ->
+                logger.info { "Publiserer oppgave til statistikk for behandlingId $behandlingIdAsText" }
+                dataTopic.publiser(
+                    ident = oppgave.personIdent,
+                    innlop = oppgave,
+                )
+            }
     }
 }
 
@@ -114,15 +110,12 @@ data class OppgaveDTO(
     @param:JsonProperty("beslutterIdent")
     @get:JsonProperty("beslutterIdent")
     val beslutterIdent: String?,
-    @param:JsonProperty("oppgaveTilstander")
-    @get:JsonProperty("oppgaveTilstander")
-    val oppgaveTilstander: List<OppgaveTilstandDTO>,
+    @param:JsonProperty("sisteTilstandsendring")
+    @get:JsonProperty("sisteTilstandsendring")
+    val sisteTilstandsendring: OppgaveTilstandDTO,
     @param:JsonProperty("versjon")
     @get:JsonProperty("versjon")
     val versjon: String,
-    @param:JsonProperty("avsluttetTidspunkt")
-    @get:JsonProperty("avsluttetTidspunkt")
-    val avsluttetTidspunkt: LocalDateTime,
 )
 
 data class BehandlingDTO(

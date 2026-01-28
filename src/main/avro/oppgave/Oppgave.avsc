@@ -111,38 +111,27 @@
       "doc": "Hvilken versjon av kode som har produsert resultatet"
     },
     {
-      "name": "avsluttetTidspunkt",
+      "name": "sisteTilstandsendring",
       "type": {
-        "type": "long",
-        "logicalType": "timestamp-millis"
-      },
-      "doc": "Tidspunkt for når oppgaven ble avsluttet"
-    },
-    {
-      "name": "oppgaveTilstander",
-      "type": {
-        "type": "array",
-        "items": {
-          "type": "record",
-          "name": "OppgaveTilstand",
-          "fields": [
-            {
-              "name": "tilstand",
-              "type": "string",
-              "doc": "Navn på tilstanden oppgaven har vært i"
+        "type": "record",
+        "name": "OppgaveTilstand",
+        "fields": [
+          {
+            "name": "tilstand",
+            "type": "string",
+            "doc": "Navn på tilstanden oppgaven har vært i"
+          },
+          {
+            "name": "tidspunkt",
+            "type": {
+              "type": "long",
+              "logicalType": "timestamp-millis"
             },
-            {
-              "name": "tidspunkt",
-              "type": {
-                "type": "long",
-                "logicalType": "timestamp-millis"
-              },
-              "doc": "Tidspunkt for når oppgaven gikk inn i denne tilstanden"
-            }
-          ]
-        }
+            "doc": "Tidspunkt for når oppgaven gikk inn i denne tilstanden"
+          }
+        ]
       },
-      "doc": "Tilstander oppgaven har vært gjennom"
+      "doc": "Siste tilstandsendring"
     }
   ]
 }
