@@ -20,63 +20,20 @@
       "doc": "Identifikator oppgaven"
     },
     {
-      "name": "behandling",
+      "name": "mottatt",
       "type": {
-        "type": "record",
-        "name": "Behandling",
-        "fields": [
-          {
-            "name": "behandlingId",
-            "type": {
-              "type": "string",
-              "logicalType": "uuid"
-            },
-            "doc": "Identifikator til behandlingen oppgaven gjelder"
-          },
-          {
-            "name": "tidspunkt",
-            "type": {
-              "type": "long",
-              "logicalType": "timestamp-millis"
-            },
-            "doc": "Tidspunkt for når behandlingen ble opprettet"
-          },
-          {
-            "name": "basertPaaBehandlingId",
-            "type": [
-              "null",
-              {
-                "type": "string",
-                "logicalType": "uuid"
-              }
-            ],
-            "default": null,
-            "description": "Identifikator til behandlingen denne behandlingen er basert på (hvis relevant)"
-          },
-          {
-            "name": "utloestAv",
-            "type": {
-              "type": "record",
-              "name": "UtloestAv",
-              "fields": [
-                {
-                  "name": "type",
-                  "type": "string"
-                },
-                {
-                  "name": "tidspunkt",
-                  "type": {
-                    "type": "long",
-                    "logicalType": "timestamp-millis"
-                  }
-                }
-              ]
-            },
-            "doc": "Hendelse som utløste behandlingen"
-          }
-        ]
+        "type": "int",
+        "logicalType": "date"
       },
-      "doc": "Behandlingen oppgaven gjelder"
+      "doc": "Dato utløsende hendelse ble mottatt"
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Identifikator til behandlingen oppgaven gjelder"
     },
     {
       "name": "personIdent",
@@ -106,16 +63,19 @@
       "doc": "NAV-ident til beslutter som har utført kontroll av behandlingen"
     },
     {
-      "name": "versjon",
-      "type": "string",
-      "doc": "Hvilken versjon av kode som har produsert resultatet"
-    },
-    {
-      "name": "sisteTilstandsendring",
+      "name": "tilstandsendring",
       "type": {
         "type": "record",
-        "name": "OppgaveTilstand",
+        "name": "Tilstandsendring",
         "fields": [
+          {
+            "name": "tilstandsendringId",
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            },
+            "doc": "Identifikator til tilstandsendringen"
+          },
           {
             "name": "tilstand",
             "type": "string",
@@ -131,7 +91,17 @@
           }
         ]
       },
-      "doc": "Siste tilstandsendring"
+      "doc": "Tilstandsendring til en oppgave"
+    },
+    {
+      "name": "utlostAv",
+      "type": "string",
+      "doc": "Type hendelse som utløste oppgaven"
+    },
+    {
+      "name": "versjon",
+      "type": "string",
+      "doc": "Hvilken versjon av kode som har produsert resultatet"
     }
   ]
 }

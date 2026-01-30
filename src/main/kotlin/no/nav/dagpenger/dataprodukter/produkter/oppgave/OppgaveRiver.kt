@@ -1,6 +1,5 @@
 package no.nav.dagpenger.dataprodukter.produkter.oppgave
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
@@ -10,12 +9,11 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.UUID
-import no.nav.dagpenger.dataprodukt.oppgave.Behandling
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
-import no.nav.dagpenger.dataprodukt.oppgave.OppgaveTilstand
-import no.nav.dagpenger.dataprodukt.oppgave.UtloestAv
+import no.nav.dagpenger.dataprodukt.oppgave.Tilstandsendring
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.objectMapper
@@ -27,7 +25,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v2")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v3")) }
                 validate {
                     it.requireKey(
                         "@id",
@@ -52,7 +50,7 @@ internal class OppgaveRiver(
         metadata: MessageMetadata,
         meterRegistry: MeterRegistry,
     ) {
-        val behandlingIdAsText = packet["oppgave"]["behandling"]["behandlingId"].asText()
+        val behandlingIdAsText = packet["oppgave"]["behandlingId"].asText()
         withLoggingContext("behandlingId" to behandlingIdAsText) {
             val oppgaveDTO = mapper.readValue<OppgaveDTO>(packet["oppgave"].toString())
             Oppgave
@@ -60,24 +58,17 @@ internal class OppgaveRiver(
                 .apply {
                     sakId = oppgaveDTO.sakId
                     oppgaveId = oppgaveDTO.oppgaveId
-                    behandling = oppgaveDTO.behandling.let {
-                        Behandling(
-                            it.behandlingId,
-                            it.tidspunkt.asTimestamp(),
-                            it.basertPåBehandlingId,
-                            UtloestAv(
-                                it.utløstAv.type,
-                                it.utløstAv.tidspunkt.asTimestamp()
-                            )
-                        )
-                    }
+                    behandlingId = oppgaveDTO.behandlingId
                     personIdent = oppgaveDTO.personIdent
                     saksbehandlerIdent = oppgaveDTO.saksbehandlerIdent
                     beslutterIdent = oppgaveDTO.beslutterIdent
-                    sisteTilstandsendring = OppgaveTilstand(
-                        oppgaveDTO.sisteTilstandsendring.tilstand,
-                        oppgaveDTO.sisteTilstandsendring.tidspunkt.asTimestamp()
+                    tilstandsendring = Tilstandsendring(
+                        oppgaveDTO.tilstandsendringDTO.tilstandsendringId,
+                        oppgaveDTO.tilstandsendringDTO.tilstand,
+                        oppgaveDTO.tilstandsendringDTO.tidspunkt.asTimestamp()
                     )
+                    mottatt = oppgaveDTO.mottatt
+                    utlostAv = oppgaveDTO.utløstAv
                     versjon = oppgaveDTO.versjon
                 }
         }.build()
@@ -91,6 +82,7 @@ internal class OppgaveRiver(
     }
 }
 
+
 data class OppgaveDTO(
     @param:JsonProperty("sakId")
     @get:JsonProperty("sakId")
@@ -98,51 +90,36 @@ data class OppgaveDTO(
     @param:JsonProperty("oppgaveId")
     @get:JsonProperty("oppgaveId")
     val oppgaveId: UUID,
-    @param:JsonProperty("behandling")
-    @get:JsonProperty("behandling")
-    val behandling: BehandlingDTO,
+    @param:JsonProperty("behandlingId")
+    @get:JsonProperty("behandlingId")
+    val behandlingId: UUID,
     @param:JsonProperty("personIdent")
     @get:JsonProperty("personIdent")
     val personIdent: String,
+    @param:JsonProperty("mottatt")
+    @get:JsonProperty("mottatt")
+    val mottatt: LocalDate,
     @param:JsonProperty("saksbehandlerIdent")
     @get:JsonProperty("saksbehandlerIdent")
     val saksbehandlerIdent: String?,
     @param:JsonProperty("beslutterIdent")
     @get:JsonProperty("beslutterIdent")
     val beslutterIdent: String?,
-    @param:JsonProperty("sisteTilstandsendring")
-    @get:JsonProperty("sisteTilstandsendring")
-    val sisteTilstandsendring: OppgaveTilstandDTO,
+    @param:JsonProperty("tilstandsendring")
+    @get:JsonProperty("tilstandsendring")
+    val tilstandsendringDTO: TilstandsendringDTO,
+    @param:JsonProperty("utløstAv")
+    @get:JsonProperty("utløstAv")
+    val utløstAv: String,
     @param:JsonProperty("versjon")
     @get:JsonProperty("versjon")
     val versjon: String,
 )
 
-data class BehandlingDTO(
-    @param:JsonProperty("behandlingId")
-    @get:JsonProperty("behandlingId")
-    val behandlingId: UUID,
-    @param:JsonProperty("tidspunkt")
-    @get:JsonProperty("tidspunkt")
-    val tidspunkt: LocalDateTime,
-    @param:JsonProperty("basertPåBehandlingId")
-    @get:JsonProperty("basertPåBehandlingId")
-    val basertPåBehandlingId: UUID?,
-    @param:JsonProperty("utløstAv")
-    @get:JsonProperty("utløstAv")
-    val utløstAv: UtløstAvDTO,
-)
-
-data class UtløstAvDTO(
-    @param:JsonProperty("type")
-    @get:JsonProperty("type")
-    val type: String,
-    @param:JsonProperty("tidspunkt")
-    @get:JsonProperty("tidspunkt")
-    val tidspunkt: LocalDateTime,
-)
-
-data class OppgaveTilstandDTO(
+data class TilstandsendringDTO(
+    @param:JsonProperty("tilstandsendringId")
+    @get:JsonProperty("tilstandsendringId")
+    val tilstandsendringId: UUID,
     @param:JsonProperty("tilstand")
     @get:JsonProperty("tilstand")
     val tilstand: String,
