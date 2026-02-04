@@ -12,8 +12,6 @@ spec:
   replicas:
     min: 2
     max: 4
-  secureLogs:
-    enabled: true
   env:
     - name: KAFKA_CONSUMER_GROUP_ID
       value: dp-data-innlop-v1
@@ -45,6 +43,9 @@ spec:
       value: "{{avslag.dato}}"
   accessPolicy:
     outbound:
+      rules:
+        - application: logging
+          namespace: nais-system
       external:
         - host: "{{pdl.host}}"
   azure:
