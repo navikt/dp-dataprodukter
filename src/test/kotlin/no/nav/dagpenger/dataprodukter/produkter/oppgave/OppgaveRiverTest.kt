@@ -5,9 +5,9 @@ import io.kotest.matchers.shouldBe
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -26,7 +26,7 @@ internal class OppgaveRiverTest {
             )
         }
     }
-    private val iDag = LocalDate.now()
+    private val mottattTidspunkt = LocalDateTime.of(2026, 1, 11, 9, 11, 30)
 
     init {
         System.setProperty("kafka_produkt_oppgave_topic", "foobar")
@@ -55,14 +55,15 @@ internal class OppgaveRiverTest {
             this.sakId.toString() shouldBe "019c04f3-1f43-7500-b4e9-a44d3f27d187"
             this.oppgaveId.toString() shouldBe "874bcac5-964d-496e-80ba-23046902f0ea"
             this.behandlingId.toString() shouldBe "01956789-abcd-7123-8456-987654321abc"
-            this.utlostAv  shouldBe "SØKNAD"
-            this.mottatt shouldBe iDag
+            this.utlostAv  shouldBe "INNSENDING"
+            this.mottatt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe mottattTidspunkt
             this.saksbehandlerIdent shouldBe "Z123456"
             this.beslutterIdent shouldBe "Z987654"
             this.tilstandsendring.tilstand shouldBe "FERDIG_BEHANDLET"
             this.tilstandsendring.tidspunkt.atZone(ZoneId.of("Europe/Oslo")).toLocalDateTime() shouldBe
                     LocalDateTime.of(2026, 1, 11, 10, 15, 30)
             this.versjon shouldBe "dp-saksbehandling-1.0.0"
+            this.behandlingResultat shouldBe "Klage"
 
         }
     }
@@ -92,7 +93,7 @@ internal class OppgaveRiverTest {
     //language=JSON
     private val oppgaveTilStatistikk =
         """{
-  "@event_name": "oppgave_til_statistikk_v3",
+  "@event_name": "oppgave_til_statistikk",
   "oppgave": {
     "sakId": "019c04f3-1f43-7500-b4e9-a44d3f27d187",
     "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
@@ -105,9 +106,10 @@ internal class OppgaveRiverTest {
       "tilstand": "FERDIG_BEHANDLET",
       "tidspunkt": "2026-01-11T10:15:30"
     },
-    "mottatt": "$iDag",
-    "utløstAv": "SØKNAD",
-    "versjon": "dp-saksbehandling-1.0.0"
+    "mottatt": "2026-01-11T09:11:30",
+    "utløstAv": "INNSENDING",
+    "versjon": "dp-saksbehandling-1.0.0",
+    "behandlingResultat": "Klage"
   },
   "@id": "7b1d3901-8784-4ab1-8f5c-f90ab80d7918",
   "@opprettet": "2026-01-28T15:12:58.69031",

@@ -22,10 +22,10 @@
     {
       "name": "mottatt",
       "type": {
-        "type": "int",
-        "logicalType": "date"
+        "type": "long",
+        "logicalType": "timestamp-millis"
       },
-      "doc": "Dato utløsende hendelse ble mottatt"
+      "doc": "Dato/tidspunkt utløsende hendelse ble mottatt"
     },
     {
       "name": "behandlingId",
@@ -102,6 +102,17 @@
       "name": "versjon",
       "type": "string",
       "doc": "Hvilken versjon av kode som har produsert resultatet"
+    },
+    {
+      "name": "behandlingResultat",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Resultat av behandling. Gjelder foreløpig kun innsendinger."
     }
   ]
 }

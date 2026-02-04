@@ -9,7 +9,6 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.UUID
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
@@ -25,7 +24,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v3")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk")) }
                 validate {
                     it.requireKey(
                         "@id",
@@ -67,9 +66,10 @@ internal class OppgaveRiver(
                         oppgaveDTO.tilstandsendringDTO.tilstand,
                         oppgaveDTO.tilstandsendringDTO.tidspunkt.asTimestamp()
                     )
-                    mottatt = oppgaveDTO.mottatt
+                    mottatt = oppgaveDTO.mottatt.asTimestamp()
                     utlostAv = oppgaveDTO.utløstAv
                     versjon = oppgaveDTO.versjon
+                    behandlingResultat = oppgaveDTO.behandlingResultat
                 }
         }.build()
             .also { oppgave ->
@@ -98,7 +98,7 @@ data class OppgaveDTO(
     val personIdent: String,
     @param:JsonProperty("mottatt")
     @get:JsonProperty("mottatt")
-    val mottatt: LocalDate,
+    val mottatt: LocalDateTime,
     @param:JsonProperty("saksbehandlerIdent")
     @get:JsonProperty("saksbehandlerIdent")
     val saksbehandlerIdent: String?,
@@ -114,6 +114,9 @@ data class OppgaveDTO(
     @param:JsonProperty("versjon")
     @get:JsonProperty("versjon")
     val versjon: String,
+    @param:JsonProperty("behandlingResultat")
+    @get:JsonProperty("behandlingResultat")
+    val behandlingResultat: String?,
 )
 
 data class TilstandsendringDTO(

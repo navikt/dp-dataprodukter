@@ -25,7 +25,7 @@ jobs:
           - topic: data-behandling-v1
           - topic: data-vedtak-v1
           - topic: data-behandling-tilstand-v1
-          - topic: data-oppgave-alfa-v5
+          - topic: data-oppgave-alfa-v6
             connector: .nais/kafka/oppgave-connector.yaml
     steps:
       - uses: actions/checkout@v6
