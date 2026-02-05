@@ -89,6 +89,33 @@ internal class BehandlingRiverTest {
         }
     }
 
+    @Test
+    fun `kan videreformidle avslag på gjennopptak`() {
+        val rapid by lazy {
+            TestRapid().apply {
+                BehandlingRiver(
+                    rapidsConnection = this,
+                    dataTopic = dataTopic,
+                    datoViEierAvslag = LocalDate.MAX,
+                )
+            }
+        }
+        rapid.sendTestMessage(avslagGjenopptak)
+
+        val value = slot<ProducerRecord<String, Behandlingsresultat>>()
+        verify {
+            producer.send(capture(value), any())
+        }
+
+        value.isCaptured shouldBe true
+        val key = value.captured.key()
+
+        with(value.captured.value()) {
+            this.ident shouldBe key
+            this.foerteTil shouldBe "Avslag"
+        }
+    }
+
     private val avslag by lazy {
         // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
         javaClass.getResource("/dp-behandling/behandlingsresultat_avslag.json")!!.readText()
@@ -101,5 +128,10 @@ internal class BehandlingRiverTest {
     private val beregning by lazy {
         // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
         javaClass.getResource("/dp-behandling/behandlingsresultat_beregnet.json")!!.readText()
+    }
+
+    private val avslagGjenopptak by lazy {
+        // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
+        javaClass.getResource("/dp-behandling/behandlingsresultat_gjenopptak_avslag.json")!!.readText()
     }
 }
