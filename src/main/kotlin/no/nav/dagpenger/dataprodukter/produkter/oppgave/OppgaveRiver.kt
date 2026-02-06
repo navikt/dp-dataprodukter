@@ -62,6 +62,7 @@ internal class OppgaveRiver(
                     saksbehandlerIdent = oppgaveDTO.saksbehandlerIdent
                     beslutterIdent = oppgaveDTO.beslutterIdent
                     tilstandsendring = Tilstandsendring(
+                        oppgaveDTO.tilstandsendringDTO.sekvensnummer,
                         oppgaveDTO.tilstandsendringDTO.tilstandsendringId,
                         oppgaveDTO.tilstandsendringDTO.tilstand,
                         oppgaveDTO.tilstandsendringDTO.tidspunkt.asTimestamp()
@@ -120,6 +121,9 @@ data class OppgaveDTO(
 )
 
 data class TilstandsendringDTO(
+    @param:JsonProperty("sekvensnummer")
+    @get:JsonProperty("sekvensnummer")
+    val sekvensnummer: Long,
     @param:JsonProperty("tilstandsendringId")
     @get:JsonProperty("tilstandsendringId")
     val tilstandsendringId: UUID,

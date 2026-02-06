@@ -69,6 +69,11 @@
         "name": "Tilstandsendring",
         "fields": [
           {
+            "name": "sekvensnummer",
+            "type": "long",
+            "doc": "Unikt nummer for hver tilstandsendring som sendes til statistikk"
+          },
+          {
             "name": "tilstandsendringId",
             "type": {
               "type": "string",
