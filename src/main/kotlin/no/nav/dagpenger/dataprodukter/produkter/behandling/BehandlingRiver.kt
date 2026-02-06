@@ -65,7 +65,13 @@ internal class BehandlingRiver(
                     }
                     it.require("opprettet") { dato ->
                         val førteTil = it["førteTil"].asText()
-                        if (førteTil != "Avslag") return@require "Er ikke avslag"
+                        if (førteTil != "Avslag") {
+                            return@require "Er ikke avslag"
+                        }
+                        val perioder = it["rettighetsperioder"]
+                        if (perioder.isArray && perioder.size() > 1) {
+                            return@require "Er avslag på gjenopptakelse"
+                        }
 
                         val opprettet = dato.asLocalDateTime().toLocalDate()
 
@@ -78,7 +84,7 @@ internal class BehandlingRiver(
 
     companion object {
         private val logger = KotlinLogging.logger { }
-        private val sikkerlogg = KotlinLogging.logger("tjenestekall.VedtakFattetRiver")
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.BehandlingRiver")
         private val mapper = objectMapper.readerFor(BehandlingsresultatDTO::class.java)
     }
 

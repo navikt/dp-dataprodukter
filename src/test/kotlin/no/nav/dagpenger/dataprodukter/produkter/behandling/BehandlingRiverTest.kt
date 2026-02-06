@@ -91,15 +91,6 @@ internal class BehandlingRiverTest {
 
     @Test
     fun `kan videreformidle avslag på gjennopptak`() {
-        val rapid by lazy {
-            TestRapid().apply {
-                BehandlingRiver(
-                    rapidsConnection = this,
-                    dataTopic = dataTopic,
-                    datoViEierAvslag = LocalDate.MAX,
-                )
-            }
-        }
         rapid.sendTestMessage(avslagGjenopptak)
 
         val value = slot<ProducerRecord<String, Behandlingsresultat>>()

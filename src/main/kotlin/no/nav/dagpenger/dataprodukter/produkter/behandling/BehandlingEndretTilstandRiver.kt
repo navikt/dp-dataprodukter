@@ -40,7 +40,7 @@ internal class BehandlingEndretTilstandRiver(
 
     companion object {
         private val logger = KotlinLogging.logger { }
-        private val sikkerlogg = KotlinLogging.logger("tjenestekall.VedtakFattetRiver")
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.BehandlingEndretTilstandRiver")
     }
 
     override fun onPacket(
