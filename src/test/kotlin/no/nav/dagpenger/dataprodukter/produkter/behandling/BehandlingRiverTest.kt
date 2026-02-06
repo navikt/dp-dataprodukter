@@ -122,7 +122,7 @@ internal class BehandlingRiverTest {
     }
 
     private val avslagGjenopptak by lazy {
-        // Generert i dp-behandling: https://github.com/navikt/dp-behandling/blob/459cbfe6e41362be45133ff2ca52d4a56ad2d1bb/mediator/src/test/kotlin/no/nav/dagpenger/behandling/PersonMediatorTest.kt#L323
+        // Henter fra sak i testmiljøet, behandlingid 019c2ca9-261f-74c2-92da-02cf743c06ef
         javaClass.getResource("/dp-behandling/behandlingsresultat_gjenopptak_avslag.json")!!.readText()
     }
 }
