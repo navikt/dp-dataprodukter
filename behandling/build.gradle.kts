@@ -3,7 +3,7 @@ plugins {
     id("common")
     `java-library`
     id("ch.acanda.gradle.fabrikt") version "1.24.0"
-    id("de.undercouch.download") version "5.6.0"
+    id("de.undercouch.download") version "5.7.0"
 }
 
 dependencies {
