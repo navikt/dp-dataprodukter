@@ -71,6 +71,9 @@ internal class OppgaveRiver(
                     utlostAv = oppgaveDTO.utløstAv
                     versjon = oppgaveDTO.versjon
                     behandlingResultat = oppgaveDTO.behandlingResultat
+                    behandlingAarsak = oppgaveDTO.behandlingAarsak
+                    fagsystem = oppgaveDTO.fagsystem
+                    arenaSakId = oppgaveDTO.arenaSakId
                 }
         }.build()
             .also { oppgave ->
@@ -118,6 +121,15 @@ data class OppgaveDTO(
     @param:JsonProperty("behandlingResultat")
     @get:JsonProperty("behandlingResultat")
     val behandlingResultat: String?,
+    @param:JsonProperty("behandlingAarsak")
+    @get:JsonProperty("behandlingAarsak")
+    val behandlingAarsak: String?,
+    @param:JsonProperty("fagsystem")
+    @get:JsonProperty("fagsystem")
+    val fagsystem: String?,
+    @param:JsonProperty("arenaSakId")
+    @get:JsonProperty("arenaSakId")
+    val arenaSakId: String?,
 )
 
 data class TilstandsendringDTO(

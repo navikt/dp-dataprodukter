@@ -118,6 +118,39 @@
       ],
       "default": null,
       "doc": "Resultat av behandling. Gjelder foreløpig kun innsendinger."
+    },
+    {
+      "name": "behandlingAarsak",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Årsak til behandling. Gjelder foreløpig kun manuelt avbrutte behandlinger."
+    },
+    {
+      "name": "fagsystem",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Fagsystem som eier behandlingen"
+    },
+    {
+      "name": "arenaSakId",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Sakid i Arena, hvis vedtak er fattet i Arena"
     }
   ]
 }
