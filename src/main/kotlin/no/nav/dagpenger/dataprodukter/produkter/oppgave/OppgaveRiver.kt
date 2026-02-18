@@ -24,7 +24,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v1")) }
                 validate {
                     it.requireKey(
                         "@id",
