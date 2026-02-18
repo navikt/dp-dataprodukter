@@ -132,13 +132,7 @@
     },
     {
       "name": "fagsystem",
-      "type": [
-        "null",
-        {
-          "type": "string"
-        }
-      ],
-      "default": null,
+      "type": "string",
       "doc": "Fagsystem som eier behandlingen"
     },
     {
