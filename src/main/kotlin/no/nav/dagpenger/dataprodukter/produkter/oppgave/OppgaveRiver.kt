@@ -24,7 +24,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v2")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v4")) }
                 validate {
                     it.requireKey(
                         "@id",
@@ -71,7 +71,7 @@ internal class OppgaveRiver(
                     utlostAv = oppgaveDTO.utløstAv
                     versjon = oppgaveDTO.versjon
                     behandlingResultat = oppgaveDTO.behandlingResultat
-                    behandlingAarsak = oppgaveDTO.behandlingAarsak
+                    behandlingAarsak = oppgaveDTO.behandlingÅrsak
                     fagsystem = oppgaveDTO.fagsystem
                     arenaSakId = oppgaveDTO.arenaSakId
                 }
@@ -121,9 +121,9 @@ data class OppgaveDTO(
     @param:JsonProperty("behandlingResultat")
     @get:JsonProperty("behandlingResultat")
     val behandlingResultat: String?,
-    @param:JsonProperty("behandlingAarsak")
-    @get:JsonProperty("behandlingAarsak")
-    val behandlingAarsak: String?,
+    @param:JsonProperty("behandlingÅrsak")
+    @get:JsonProperty("behandlingÅrsak")
+    val behandlingÅrsak: String?,
     @param:JsonProperty("fagsystem")
     @get:JsonProperty("fagsystem")
     val fagsystem: String?,

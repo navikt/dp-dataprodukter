@@ -93,7 +93,7 @@ internal class OppgaveRiverTest {
     //language=JSON
     private val oppgaveTilStatistikk =
         """{
-  "@event_name": "oppgave_til_statistikk_v2",
+  "@event_name": "oppgave_til_statistikk_v4",
   "oppgave": {
     "sakId": "019c04f3-1f43-7500-b4e9-a44d3f27d187",
     "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
