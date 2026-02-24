@@ -24,7 +24,7 @@ internal class OppgaveRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v4")) }
+                precondition { it.requireAny("@event_name", listOf("oppgave_til_statistikk_v5")) }
                 validate {
                     it.requireKey(
                         "@id",
@@ -74,6 +74,7 @@ internal class OppgaveRiver(
                     behandlingAarsak = oppgaveDTO.behandlingÅrsak
                     fagsystem = oppgaveDTO.fagsystem
                     arenaSakId = oppgaveDTO.arenaSakId
+                    resultatBegrunnelse = oppgaveDTO.resultatBegrunnelse
                 }
         }.build()
             .also { oppgave ->
@@ -130,6 +131,9 @@ data class OppgaveDTO(
     @param:JsonProperty("arenaSakId")
     @get:JsonProperty("arenaSakId")
     val arenaSakId: String?,
+    @param:JsonProperty("resultatBegrunnelse")
+    @get:JsonProperty("resultatBegrunnelse")
+    val resultatBegrunnelse: String?,
 )
 
 data class TilstandsendringDTO(

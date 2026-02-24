@@ -64,7 +64,7 @@ internal class OppgaveRiverTest {
                     LocalDateTime.of(2026, 1, 11, 10, 15, 30)
             this.versjon shouldBe "dp-saksbehandling-1.0.0"
             this.behandlingResultat shouldBe "Klage"
-
+            this.resultatBegrunnelse shouldBe "ANNET"
         }
     }
 
@@ -93,7 +93,7 @@ internal class OppgaveRiverTest {
     //language=JSON
     private val oppgaveTilStatistikk =
         """{
-  "@event_name": "oppgave_til_statistikk_v4",
+  "@event_name": "oppgave_til_statistikk_v5",
   "oppgave": {
     "sakId": "019c04f3-1f43-7500-b4e9-a44d3f27d187",
     "oppgaveId": "874bcac5-964d-496e-80ba-23046902f0ea",
@@ -110,7 +110,8 @@ internal class OppgaveRiverTest {
     "utløstAv": "INNSENDING",
     "versjon": "dp-saksbehandling-1.0.0",
     "behandlingResultat": "Klage",
-    "fagsystem": "DAGPENGER"
+    "fagsystem": "DAGPENGER",
+    "resultatBegrunnelse": "ANNET"
   },
   "@id": "7b1d3901-8784-4ab1-8f5c-f90ab80d7918",
   "@opprettet": "2026-01-28T15:12:58.69031",

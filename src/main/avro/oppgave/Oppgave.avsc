@@ -145,6 +145,17 @@
       ],
       "default": null,
       "doc": "Sakid i Arena, hvis vedtak er fattet i Arena"
+    },
+    {
+      "name": "resultatBegrunnelse",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Begrunnelse for tilstandsendringens resultat."
     }
   ]
 }
