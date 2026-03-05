@@ -1,5 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter.søknad
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
@@ -9,9 +10,11 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.objectMapper
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
@@ -83,6 +86,7 @@ internal class SøknadInnsendtRiver(
             .apply {
                 precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
                 precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
+                precondition { it.forbid("kilde")}
                 validate { it.requireKey("søknad_uuid", "@opprettet") }
             }.register(this)
     }
@@ -132,4 +136,64 @@ internal class SøknadInnsendtRiver(
             } ?: logger.warn { "Manglet søknadsdata for innsendt søknad" }
         }
     }
+}
+
+internal class OrkestratorSøknadsdataRiver(
+    rapidsConnection: RapidsConnection,
+    private val dataTopic: DataTopic<OrkestratorSoknad>,
+    ) : River.PacketListener {
+    init {
+        River(rapidsConnection)
+            .apply {
+                precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
+                precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
+                precondition { it.requireValue("kilde", "orkestrator") }
+                validate { it.requireKey("søknad_uuid", "@opprettet", "søknadsdata") }
+            }.register(this)
+    }
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
+
+    override fun onPacket(
+        packet: JsonMessage,
+        context: MessageContext,
+        metadata: MessageMetadata,
+        meterRegistry: MeterRegistry,
+    ) {
+        val søknadId = packet["søknad_uuid"].asUUID()
+        val opprettet = packet["@opprettet"].asLocalDateTime().toLocalDate()
+
+        withLoggingContext(
+            "søknadId" to søknadId.toString(),
+            "dataprodukt" to "orkestrator-søknadsdata",
+        ) {
+            logger.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet" }
+            val søknadsdata = objectMapper.readValue<OrkestratorSoknad>(packet["søknadsdata"].asText())
+            OrkestratorSoknad
+                .newBuilder()
+                .apply {
+                    this.soknadId = søknadId
+                    this.opprettet = søknadsdata.opprettet
+                    this.innsendt = søknadsdata.innsendt
+                    this.personalia = søknadsdata.personalia
+                    this.dinSituasjon = søknadsdata.dinSituasjon
+                    this.arbeidsforhold = søknadsdata.arbeidsforhold
+                    this.annenPengestotte = søknadsdata.annenPengestotte
+                    this.egenNaring = søknadsdata.egenNaring
+                    this.verneplikt = søknadsdata.verneplikt
+                    this.utdanning = søknadsdata.utdanning
+                    this.barnetillegg = søknadsdata.barnetillegg
+                    this.reellArbeidssoker = søknadsdata.reellArbeidssoker
+                    this.tilleggsopplysninger = søknadsdata.tilleggsopplysninger
+                }.build()
+                .also { data ->
+                    dataTopic.publiser(søknadId.toString(), data)
+                }
+
+
+        }
+
+    }
+
 }
