@@ -4,7 +4,7 @@ import com.expediagroup.graphql.plugin.gradle.graphql
 plugins {
     id("common")
     `java-library`
-    id("com.expediagroup.graphql") version "8.8.1"
+    id("com.expediagroup.graphql") version "9.0.0"
     kotlin("plugin.serialization") version "2.3.0"
 }
 
