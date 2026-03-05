@@ -5,6 +5,7 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.helpers.Seksjoner
 import no.nav.dagpenger.dataprodukter.helpers.faktum
@@ -90,6 +91,96 @@ private fun getSøknadData(søknadId: UUID) =
             ),
         )
     }
+
+internal class OrkestratorSøknadsdataRiverTest {
+    private val producer = mockk<KafkaProducer<String, OrkestratorSoknad>>(relaxed = true)
+    private val dataTopic = DataTopic(producer, "orkestrator-søknadsdata")
+    private val rapid =
+        TestRapid().also {
+            OrkestratorSøknadsdataRiver(it, dataTopic)
+        }
+
+    @AfterEach
+    fun cleanUp() {
+        rapid.reset()
+    }
+
+    @Test
+    fun `Mottar søknadsdata fra orkestrator og publiserer til dataTopic`() {
+        val søknadId = UUID.randomUUID()
+        rapid.sendTestMessage(getOrkestratorSøknadEvent(søknadId))
+
+        verify(exactly = 1) {
+            producer.send(any(), any())
+        }
+    }
+
+    @Test
+    fun `Ignorerer søknad_endret_tilstand uten kilde orkestrator`() {
+        val søknadId = UUID.randomUUID()
+        rapid.sendTestMessage(getSøknadEndretTilstandUtenKilde(søknadId))
+
+        verify(exactly = 0) {
+            producer.send(any(), any())
+        }
+    }
+
+    @Test
+    fun `Ignorerer søknad_endret_tilstand med annen tilstand enn Innsendt`() {
+        val søknadId = UUID.randomUUID()
+        rapid.sendTestMessage(getOrkestratorSøknadEvent(søknadId, gjeldendeTilstand = "Påbegynt"))
+
+        verify(exactly = 0) {
+            producer.send(any(), any())
+        }
+    }
+}
+
+
+private fun getOrkestratorSøknadEvent(
+    søknadId: UUID,
+    gjeldendeTilstand: String = "Innsendt",
+): String {
+    val søknadsdata = mapOf(
+        "opprettet" to "2024-01-01T12:00:00",
+        "innsendt" to "2024-01-01T12:30:00",
+        "personalia" to """{"seksjonId":"personalia","seksjonsvar":{"fornavnFraPdl":"FIRKANTET","etternavnFraPdl":"JEGER","alderFraPdl":"54","poststedFraPdl":"Dilling","landkodeFraPdl":"NO","landFraPdl":"NORGE","kontonummerFraKontoregister":"","folkeregistrertAdresseErNorgeStemmerDet":"ja"},"versjon":1}""",
+        "din-situasjon" to """{"seksjonId":"din-situasjon","seksjonsvar":{"harDuMottattDagpengerFraNavILøpetAvDeSiste52Ukene":"vetikke","hvilkenDatoSøkerDuDagpengerFra":"2026-03-03"},"versjon":1}""",
+        "arbeidsforhold" to """{"seksjonId":"arbeidsforhold","seksjonsvar":{"hvordanHarDuJobbet":"harIkkeJobbetDeSiste36Månedene","registrerteArbeidsforhold":[]},"versjon":1}""",
+        "annen-pengestotte" to """{"seksjonId":"annen-pengestotte","seksjonsvar":{"harMottattEllerSøktOmPengestøtteFraAndreEøsLand":"nei","pengestøtteFraAndreEøsLand":[],"mottarDuAndreUtbetalingerEllerØkonomiskeGoderFraTidligereArbeidsgiver":"nei","pengestøtteFraTidligereArbeidsgiver":[],"mottarDuPengestøtteFraAndreEnnNav":"nei","pengestøtteFraNorge":[]},"versjon":1}""",
+        "egen-naring" to """{"seksjonId":"egen-naring","seksjonsvar":{"driverDuEgenNæringsvirksomhet":"nei","næringsvirksomheter":null,"driverDuEgetGårdsbruk":"nei","gårdsbruk":null},"versjon":1}""",
+        "verneplikt" to """{"seksjonId":"verneplikt","seksjonsvar":{"avtjentVerneplikt":"nei","dokumentasjonskrav":"null"},"versjon":1}""",
+        "utdanning" to """{"seksjonId":"utdanning","seksjonsvar":{"tarUtdanningEllerOpplæring":"ja","dokumentasjonskrav":"null"},"versjon":1}""",
+        "barnetillegg" to """{"seksjonId":"barnetillegg","versjon":1,"seksjonsvar":{"barnFraPdl":null,"forsørgerDuBarnSomIkkeVisesHer":"nei","barnLagtManuelt":null}}""",
+        "reell-arbeidssoker" to """{"seksjonId":"reell-arbeidssoker","seksjonsvar":{"kanDuJobbeBådeHeltidOgDeltid":"ja","kanDuJobbeIHeleNorge":"ja","kanDuTaAlleTyperArbeid":"ja","erDuVilligTilÅBytteYrkeEllerGåNedILønn":"ja","dokumentasjonskrav":"null"},"versjon":1}""",
+        "tilleggsopplysninger" to """{"seksjonId":"tilleggsopplysninger","seksjonsvar":{"harTilleggsopplysninger":"nei"},"versjon":1}""",
+    )
+
+    return JsonMessage
+        .newMessage(
+            "søknad_endret_tilstand",
+            mapOf(
+                "søknad_uuid" to søknadId.toString(),
+                "ident" to "12345678901",
+                "forrigeTilstand" to "Påbegynt",
+                "gjeldendeTilstand" to gjeldendeTilstand,
+                "kilde" to "orkestrator",
+                "@opprettet" to "2024-01-01T12:00:00",
+                "søknadsdata" to søknadsdata,
+            ),
+        ).toJson()
+}
+
+private fun getSøknadEndretTilstandUtenKilde(søknadId: UUID) =
+    JsonMessage
+        .newMessage(
+            "søknad_endret_tilstand",
+            mapOf(
+                "søknad_uuid" to søknadId,
+                "@opprettet" to "2024-01-01T12:00:00",
+                "gjeldendeTilstand" to "Innsendt",
+            ),
+        ).toJson()
 
 private fun getDataMessage(
     uuid: UUID,

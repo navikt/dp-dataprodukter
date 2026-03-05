@@ -1,0 +1,125 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.soknad",
+  "name": "OrkestratorSoknad",
+  "type": "record",
+  "fields": [
+    {
+      "name": "soknadId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Intern ID til søknaden"
+    },
+    {
+      "name": "opprettet",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "innsendt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "personalia",
+      "type": {
+        "type": "record",
+        "name": "Seksjonsinfo",
+        "fields": [
+          {
+            "name": "seksjonId",
+            "type": "string",
+            "doc": "Seksjonsidentifikator for seksjonen i søknaden"
+          },
+          {
+            "name": "seksjonsvar",
+            "type": "string",
+            "doc": "Seksjonsvar for seksjonen i søknaden"
+          },
+          {
+            "name": "versjon",
+            "type": "string",
+            "doc": "API versjonen av seksjonsvar for seksjonen i søknaden"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dinSituasjon",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "arbeidsforhold",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "annenPengestotte",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "egenNaring",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "verneplikt",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "utdanning",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "barnetillegg",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "reellArbeidssoker",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    },
+    {
+      "name": "tilleggsopplysninger",
+      "type": [
+        "null",
+        "Seksjonsinfo"
+      ],
+      "default": null
+    }
+  ]
+}
