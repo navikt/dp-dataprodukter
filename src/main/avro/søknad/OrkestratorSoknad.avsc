@@ -9,7 +9,7 @@
         "type": "string",
         "logicalType": "uuid"
       },
-      "doc": "Intern ID til søknaden"
+      "doc": "Intern ID til soknaden"
     },
     {
       "name": "opprettet",
@@ -34,17 +34,20 @@
           {
             "name": "seksjonId",
             "type": "string",
-            "doc": "Seksjonsidentifikator for seksjonen i søknaden"
+            "doc": "Seksjonsidentifikator for seksjonen i soknaden"
           },
           {
             "name": "seksjonsvar",
-            "type": "string",
-            "doc": "Seksjonsvar for seksjonen i søknaden"
+            "type": {
+              "type": "map",
+              "values": "string"
+            },
+            "doc": "Seksjonsvar for seksjonen i soknaden"
           },
           {
             "name": "versjon",
             "type": "string",
-            "doc": "API versjonen av seksjonsvar for seksjonen i søknaden"
+            "doc": "API versjonen av seksjonsvar for seksjonen i soknaden"
           }
         ]
       }

@@ -9,6 +9,7 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import kotlin.math.log
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -199,22 +200,31 @@ internal class OrkestratorSøknadsdataRiver(
                     this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"]?.asText())
                 }.build()
                 .also { data ->
+                    sikkerlogg.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}, på ${dataTopic.topic}" }
+                    logger.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}" }
                     dataTopic.publiser(søknadId.toString(), data)
                 }
         }
     }
 
-    private fun parseSeksjon(jsonString: String?): Seksjonsinfo? {
-        if (jsonString.isNullOrBlank()) return null
+    private fun parseSeksjon(seksjon: String?): Seksjonsinfo? {
+        if (seksjon.isNullOrBlank()) return null
         return try {
-            val node = objectMapper.readTree(jsonString)
+            val seksjonJson = objectMapper.readTree(seksjon)
             Seksjonsinfo.newBuilder()
-                .setSeksjonId(node["seksjonId"].asText())
-                .setSeksjonsvar(node["seksjonsvar"].toString())
-                .setVersjon(node["versjon"].asText())
+                .setSeksjonId(seksjonJson["seksjonId"].asText())
+                .setSeksjonsvar(
+                    seksjonJson["seksjonsvar"]
+                        ?.let { node ->
+                            val map = mutableMapOf<String, String>()
+                            node.properties().forEach { (key, value) -> map[key] = value.asText() }
+                            map
+                        } ?: mutableMapOf(),
+                )
+                .setVersjon(seksjonJson["versjon"].asText())
                 .build()
         } catch (e: Exception) {
-            logger.warn(e) { "Kunne ikke parse seksjon: $jsonString" }
+            logger.warn(e) { "Kunne ikke parse seksjon: $seksjon" }
             null
         }
     }
