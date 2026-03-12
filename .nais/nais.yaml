@@ -7,6 +7,11 @@ metadata:
     team: teamdagpenger
 spec:
   image: "{{image}}"
+  port: 8080
+  liveness:
+    path: /isalive
+  readiness:
+    path: /isready
   kafka:
     pool: "{{kafka.pool}}"
   replicas:
