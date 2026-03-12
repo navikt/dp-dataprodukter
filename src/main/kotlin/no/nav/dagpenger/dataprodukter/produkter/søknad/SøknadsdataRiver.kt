@@ -9,9 +9,12 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
+import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.objectMapper
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
@@ -83,6 +86,7 @@ internal class SøknadInnsendtRiver(
             .apply {
                 precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
                 precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
+                precondition { it.forbid("kilde")}
                 validate { it.requireKey("søknad_uuid", "@opprettet") }
             }.register(this)
     }
@@ -132,4 +136,87 @@ internal class SøknadInnsendtRiver(
             } ?: logger.warn { "Manglet søknadsdata for innsendt søknad" }
         }
     }
+}
+
+internal class OrkestratorSøknadsdataRiver(
+    rapidsConnection: RapidsConnection,
+    private val dataTopic: DataTopic<OrkestratorSoknad>,
+    ) : River.PacketListener {
+    init {
+        River(rapidsConnection)
+            .apply {
+                precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
+                precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
+                precondition { it.requireValue("kilde", "orkestrator") }
+                validate { it.requireKey("søknad_uuid", "@opprettet", "søknadsdata") }
+            }.register(this)
+    }
+    companion object {
+        private val logger = KotlinLogging.logger { }
+        private val sikkerlogg = KotlinLogging.logger("tjenestekall.OrkestratorSøknadsdataRiver")
+    }
+
+    override fun onPacket(
+        packet: JsonMessage,
+        context: MessageContext,
+        metadata: MessageMetadata,
+        meterRegistry: MeterRegistry,
+    ) {
+        val søknadId = packet["søknad_uuid"].asUUID()
+        val opprettet = packet["@opprettet"].asLocalDateTime()
+
+        val søknadsdataPacket = packet["søknadsdata"]
+        withLoggingContext(
+            "søknadId" to søknadId.toString(),
+            "dataprodukt" to "orkestrator-søknadsdata",
+        ) {
+            logger.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet" }
+            sikkerlogg.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet, søknadsdata=${søknadsdataPacket.toPrettyString()}" }
+
+            val opprettetTid = søknadsdataPacket["opprettet"].asText().takeIf { it != "null" }?.let {
+                java.time.LocalDateTime.parse(it)
+            } ?: opprettet
+
+            val innsendtTid = søknadsdataPacket["innsendt"].asText().takeIf { it != "null" }?.let {
+                java.time.LocalDateTime.parse(it)
+            } ?: opprettet
+
+            OrkestratorSoknad
+                .newBuilder()
+                .apply {
+                    this.soknadId = søknadId
+                    this.opprettet = opprettetTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
+                    this.innsendt = innsendtTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
+                    this.personalia = parseSeksjon(søknadsdataPacket["personalia"].asText())
+                    this.dinSituasjon = parseSeksjon(søknadsdataPacket["din-situasjon"]?.asText())
+                    this.arbeidsforhold = parseSeksjon(søknadsdataPacket["arbeidsforhold"]?.asText())
+                    this.annenPengestotte = parseSeksjon(søknadsdataPacket["annen-pengestotte"]?.asText())
+                    this.egenNaring = parseSeksjon(søknadsdataPacket["egen-naring"]?.asText())
+                    this.verneplikt = parseSeksjon(søknadsdataPacket["verneplikt"]?.asText())
+                    this.utdanning = parseSeksjon(søknadsdataPacket["utdanning"]?.asText())
+                    this.barnetillegg = parseSeksjon(søknadsdataPacket["barnetillegg"]?.asText())
+                    this.reellArbeidssoker = parseSeksjon(søknadsdataPacket["reell-arbeidssoker"]?.asText())
+                    this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"]?.asText())
+                }.build()
+                .also { data ->
+                    dataTopic.publiser(søknadId.toString(), data)
+                }
+        }
+    }
+
+    private fun parseSeksjon(jsonString: String?): Seksjonsinfo? {
+        if (jsonString.isNullOrBlank()) return null
+        return try {
+            val node = objectMapper.readTree(jsonString)
+            Seksjonsinfo.newBuilder()
+                .setSeksjonId(node["seksjonId"].asText())
+                .setSeksjonsvar(node["seksjonsvar"].toString())
+                .setVersjon(node["versjon"].asText())
+                .build()
+        } catch (e: Exception) {
+            logger.warn(e) { "Kunne ikke parse seksjon: $jsonString" }
+            null
+        }
+    }
+
 }
