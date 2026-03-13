@@ -134,6 +134,27 @@ internal class OrkestratorSøknadsdataRiverTest {
             producer.send(any(), any())
         }
     }
+
+    @Test
+    fun `Arbeidsforhold i seksjonsvar er serialisert riktig som JSON string`() {
+        val søknadId = UUID.randomUUID()
+        val slot = mutableListOf<org.apache.kafka.clients.producer.ProducerRecord<String, OrkestratorSoknad>>()
+        every { producer.send(capture(slot), any()) } returns mockk()
+
+        rapid.sendTestMessage(getOrkestratorSøknadEventWithNestedArbeidsforhold(søknadId))
+
+        verify(exactly = 1) {
+            producer.send(any(), any())
+        }
+
+        val capturedRecord = slot.first()
+        val arbeidsforhold = capturedRecord.value().arbeidsforhold
+        assert(arbeidsforhold != null) { "Arbeidsforhold should not be null" }
+        val registrerteArbeidsforhold = arbeidsforhold!!.seksjonsvar["registrerteArbeidsforhold"]
+        assert(registrerteArbeidsforhold != null) { "registrerteArbeidsforhold should not be null" }
+        assert(registrerteArbeidsforhold!!.contains("Jobb AS"))
+        assert(registrerteArbeidsforhold.startsWith("["))
+    }
 }
 
 
@@ -181,6 +202,29 @@ private fun getSøknadEndretTilstandUtenKilde(søknadId: UUID) =
                 "gjeldendeTilstand" to "Innsendt",
             ),
         ).toJson()
+
+private fun getOrkestratorSøknadEventWithNestedArbeidsforhold(søknadId: UUID): String {
+    val søknadsdata = mapOf(
+        "opprettet" to "2024-01-01T12:00:00",
+        "innsendt" to "2024-01-01T12:30:00",
+        "personalia" to """{"seksjonId":"personalia","seksjonsvar":{"fornavnFraPdl":"FIRKANTET"},"versjon":"1"}""",
+        "arbeidsforhold" to """{"seksjonId":"arbeidsforhold","seksjonsvar":{"hvordanHarDuJobbet":"fastArbeidstidIMindreEnn6Måneder","harDuJobbetIEtAnnetEøsLandSveitsEllerStorbritanniaILøpetAvDeSiste36Månedene":"nei","registrerteArbeidsforhold":[{"navnetPåBedriften":"Jobb AS","hvilketLandJobbetDuI":"NOR","hvordanHarDetteArbeidsforholdetEndretSeg":"jegErPermitert","id":"d368ee1c-427d-4885-ada7-7aa792e4a52a"}]},"versjon":"1"}""",
+    )
+
+    return JsonMessage
+        .newMessage(
+            "søknad_endret_tilstand",
+            mapOf(
+                "søknad_uuid" to søknadId.toString(),
+                "ident" to "12345678901",
+                "forrigeTilstand" to "Påbegynt",
+                "gjeldendeTilstand" to "Innsendt",
+                "kilde" to "orkestrator",
+                "@opprettet" to "2024-01-01T12:00:00",
+                "søknadsdata" to søknadsdata,
+            ),
+        ).toJson()
+}
 
 private fun getDataMessage(
     uuid: UUID,

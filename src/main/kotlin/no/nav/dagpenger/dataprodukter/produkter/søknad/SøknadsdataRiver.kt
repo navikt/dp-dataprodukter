@@ -217,7 +217,9 @@ internal class OrkestratorSøknadsdataRiver(
                     seksjonJson["seksjonsvar"]
                         ?.let { node ->
                             val map = mutableMapOf<String, String>()
-                            node.properties().forEach { (key, value) -> map[key] = value.asText() }
+                            node.properties().forEach { (key, value) ->
+                                map[key] = if (value.isTextual) value.asText() else value.toString()
+                            }
                             map
                         } ?: mutableMapOf(),
                 )
