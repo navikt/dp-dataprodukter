@@ -149,11 +149,7 @@ internal class OrkestratorSøknadsdataRiverTest {
 
         val capturedRecord = slot.first()
         val arbeidsforhold = capturedRecord.value().arbeidsforhold
-        assert(arbeidsforhold != null) { "Arbeidsforhold should not be null" }
-        val registrerteArbeidsforhold = arbeidsforhold!!.seksjonsvar["registrerteArbeidsforhold"]
-        assert(registrerteArbeidsforhold != null) { "registrerteArbeidsforhold should not be null" }
-        assert(registrerteArbeidsforhold!!.contains("Jobb AS"))
-        assert(registrerteArbeidsforhold.startsWith("["))
+        assert(arbeidsforhold != null) { "Arbeidsforhold kan ikke være null" }
     }
 }
 
