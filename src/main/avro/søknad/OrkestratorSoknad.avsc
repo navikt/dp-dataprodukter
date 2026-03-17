@@ -39,8 +39,8 @@
           {
             "name": "seksjonsvar",
             "type": {
-              "type": "map",
-              "values": "string"
+              "type": "string",
+              "sqlType": "JSON"
             },
             "doc": "Seksjonsvar for seksjonen i soknaden"
           },

@@ -213,16 +213,7 @@ internal class OrkestratorSøknadsdataRiver(
             val seksjonJson = objectMapper.readTree(seksjon)
             Seksjonsinfo.newBuilder()
                 .setSeksjonId(seksjonJson["seksjonId"].asText())
-                .setSeksjonsvar(
-                    seksjonJson["seksjonsvar"]
-                        ?.let { node ->
-                            val map = mutableMapOf<String, String>()
-                            node.properties().forEach { (key, value) ->
-                                map[key] = if (value.isTextual) value.asText() else value.toString()
-                            }
-                            map
-                        } ?: mutableMapOf(),
-                )
+                .setSeksjonsvar(seksjonJson["seksjonsvar"].asText())
                 .setVersjon(seksjonJson["versjon"].asText())
                 .build()
         } catch (e: Exception) {
