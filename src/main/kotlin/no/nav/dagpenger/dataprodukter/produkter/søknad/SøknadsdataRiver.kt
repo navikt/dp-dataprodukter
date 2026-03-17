@@ -213,7 +213,7 @@ internal class OrkestratorSøknadsdataRiver(
             val seksjonJson = objectMapper.readTree(seksjon)
             Seksjonsinfo.newBuilder()
                 .setSeksjonId(seksjonJson["seksjonId"].asText())
-                .setSeksjonsvar(seksjonJson["seksjonsvar"].asText())
+                .setSeksjonsvar("""{"test": 123}""")
                 .setVersjon(seksjonJson["versjon"].asText())
                 .build()
         } catch (e: Exception) {
