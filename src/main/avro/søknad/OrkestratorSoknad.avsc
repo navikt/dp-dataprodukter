@@ -38,11 +38,9 @@
           },
           {
             "name": "seksjonsvar",
-            "type": {
-              "type": "string",
-              "sqlType": "JSON"
-            },
-            "doc": "Seksjonsvar for seksjonen i soknaden"
+            "type": "string",
+            "doc": "Seksjonsvar for seksjonen i soknaden",
+            "bigquery.typeAnnotation": "JSON"
           },
           {
             "name": "versjon",
