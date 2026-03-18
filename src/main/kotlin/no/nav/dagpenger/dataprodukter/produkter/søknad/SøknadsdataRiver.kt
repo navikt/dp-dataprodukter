@@ -1,5 +1,7 @@
 package no.nav.dagpenger.dataprodukter.produkter.søknad
 
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.ObjectNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
@@ -9,12 +11,10 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
-import kotlin.math.log
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
-import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.kafka.JsonDataTopic
 import no.nav.dagpenger.dataprodukter.objectMapper
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
@@ -141,7 +141,7 @@ internal class SøknadInnsendtRiver(
 
 internal class OrkestratorSøknadsdataRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<OrkestratorSoknad>,
+    private val dataTopic: JsonDataTopic,
     ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -182,40 +182,38 @@ internal class OrkestratorSøknadsdataRiver(
                 java.time.LocalDateTime.parse(it)
             } ?: opprettet
 
-            OrkestratorSoknad
-                .newBuilder()
-                .apply {
-                    this.soknadId = søknadId
-                    this.opprettet = opprettetTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
-                    this.innsendt = innsendtTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
-                    this.personalia = parseSeksjon(søknadsdataPacket["personalia"].asText())
-                    this.dinSituasjon = parseSeksjon(søknadsdataPacket["din-situasjon"]?.asText())
-                    this.arbeidsforhold = parseSeksjon(søknadsdataPacket["arbeidsforhold"]?.asText())
-                    this.annenPengestotte = parseSeksjon(søknadsdataPacket["annen-pengestotte"]?.asText())
-                    this.egenNaring = parseSeksjon(søknadsdataPacket["egen-naring"]?.asText())
-                    this.verneplikt = parseSeksjon(søknadsdataPacket["verneplikt"]?.asText())
-                    this.utdanning = parseSeksjon(søknadsdataPacket["utdanning"]?.asText())
-                    this.barnetillegg = parseSeksjon(søknadsdataPacket["barnetillegg"]?.asText())
-                    this.reellArbeidssoker = parseSeksjon(søknadsdataPacket["reell-arbeidssoker"]?.asText())
-                    this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"]?.asText())
-                }.build()
-                .also { data ->
-                    sikkerlogg.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}, på ${dataTopic.topic}" }
-                    logger.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}" }
-                    dataTopic.publiser(søknadId.toString(), data)
-                }
+            val jsonData = objectMapper.createObjectNode().apply {
+                put("soknadId", søknadId.toString())
+                put("opprettet", opprettetTid.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli())
+                put("innsendt", innsendtTid.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli())
+                set<ObjectNode>("personalia", parseSeksjonToJson(søknadsdataPacket["personalia"].asText()))
+                set<ObjectNode>("dinSituasjon", parseSeksjonToJson(søknadsdataPacket["din-situasjon"]?.asText()))
+                set<ObjectNode>("arbeidsforhold", parseSeksjonToJson(søknadsdataPacket["arbeidsforhold"]?.asText()))
+                set<ObjectNode>("annenPengestotte", parseSeksjonToJson(søknadsdataPacket["annen-pengestotte"]?.asText()))
+                set<ObjectNode>("egenNaring", parseSeksjonToJson(søknadsdataPacket["egen-naring"]?.asText()))
+                set<ObjectNode>("verneplikt", parseSeksjonToJson(søknadsdataPacket["verneplikt"]?.asText()))
+                set<ObjectNode>("utdanning", parseSeksjonToJson(søknadsdataPacket["utdanning"]?.asText()))
+                set<ObjectNode>("barnetillegg", parseSeksjonToJson(søknadsdataPacket["barnetillegg"]?.asText()))
+                set<ObjectNode>("reellArbeidssoker", parseSeksjonToJson(søknadsdataPacket["reell-arbeidssoker"]?.asText()))
+                set<ObjectNode>("tilleggsopplysninger", parseSeksjonToJson(søknadsdataPacket["tilleggsopplysninger"]?.asText()))
+            }
+
+            val jsonString = objectMapper.writeValueAsString(jsonData)
+            sikkerlogg.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=$jsonString" }
+            logger.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}" }
+            dataTopic.publiser(søknadId.toString(), jsonString)
         }
     }
 
-    private fun parseSeksjon(seksjon: String?): Seksjonsinfo? {
+    private fun parseSeksjonToJson(seksjon: String?): ObjectNode? {
         if (seksjon.isNullOrBlank()) return null
         return try {
             val seksjonJson = objectMapper.readTree(seksjon)
-            Seksjonsinfo.newBuilder()
-                .setSeksjonId(seksjonJson["seksjonId"].asText())
-                .setSeksjonsvar(seksjonJson["seksjonsvar"].asText())
-                .setVersjon(seksjonJson["versjon"].asText())
-                .build()
+            objectMapper.createObjectNode().apply {
+                put("seksjonId", seksjonJson["seksjonId"].asText())
+                set<JsonNode>("seksjonsvar", seksjonJson["seksjonsvar"])
+                put("versjon", seksjonJson["versjon"].asText())
+            }
         } catch (e: Exception) {
             logger.warn(e) { "Kunne ikke parse seksjon: $seksjon" }
             null
