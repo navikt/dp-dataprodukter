@@ -5,7 +5,6 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.helpers.Seksjoner
 import no.nav.dagpenger.dataprodukter.helpers.faktum
@@ -13,6 +12,7 @@ import no.nav.dagpenger.dataprodukter.helpers.generator
 import no.nav.dagpenger.dataprodukter.helpers.seksjon
 import no.nav.dagpenger.dataprodukter.helpers.tilstandEndretEvent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
+import no.nav.dagpenger.dataprodukter.kafka.JsonDataTopic
 import no.nav.dagpenger.dataprodukter.person.Person
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
@@ -93,8 +93,8 @@ private fun getSøknadData(søknadId: UUID) =
     }
 
 internal class OrkestratorSøknadsdataRiverTest {
-    private val producer = mockk<KafkaProducer<String, OrkestratorSoknad>>(relaxed = true)
-    private val dataTopic = DataTopic(producer, "orkestrator-søknadsdata")
+    private val producer = mockk<KafkaProducer<String, String>>(relaxed = true)
+    private val dataTopic = JsonDataTopic(producer, "orkestrator-søknadsdata")
     private val rapid =
         TestRapid().also {
             OrkestratorSøknadsdataRiver(it, dataTopic)
@@ -138,7 +138,7 @@ internal class OrkestratorSøknadsdataRiverTest {
     @Test
     fun `Arbeidsforhold i seksjonsvar er serialisert riktig som JSON string`() {
         val søknadId = UUID.randomUUID()
-        val slot = mutableListOf<org.apache.kafka.clients.producer.ProducerRecord<String, OrkestratorSoknad>>()
+        val slot = mutableListOf<org.apache.kafka.clients.producer.ProducerRecord<String, String>>()
         every { producer.send(capture(slot), any()) } returns mockk()
 
         rapid.sendTestMessage(getOrkestratorSøknadEventWithNestedArbeidsforhold(søknadId))
@@ -148,8 +148,8 @@ internal class OrkestratorSøknadsdataRiverTest {
         }
 
         val capturedRecord = slot.first()
-        val arbeidsforhold = capturedRecord.value().arbeidsforhold
-        assert(arbeidsforhold != null) { "Arbeidsforhold kan ikke være null" }
+        val jsonValue = capturedRecord.value()
+        assert(jsonValue.contains("arbeidsforhold")) { "JSON should contain arbeidsforhold" }
     }
 }
 

@@ -8,6 +8,7 @@ import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic.Companion.dataTopic
+import no.nav.dagpenger.dataprodukter.kafka.JsonDataTopic.Companion.jsonDataTopic
 import no.nav.dagpenger.dataprodukter.person.PdlPersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingEndretTilstandRiver
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingRiver
@@ -20,7 +21,6 @@ import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
 import java.time.LocalDate
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukter.produkter.søknad.OrkestratorSøknadsdataRiver
 
 internal object DataTopics {
@@ -31,7 +31,7 @@ internal object DataTopics {
     val behandlingTopic = dataTopic<Behandlingsresultat>(config[kafka_produkt_behandling_topic])
     val behandlingTilstandTopic = dataTopic<BehandlingEndretTilstand>(config[kafka_produkt_behandling_tilstand_topic])
     val oppgaveTopic = dataTopic<Oppgave>(config[kafka_produkt_oppgave_topic])
-    val orkestratorSoknad = dataTopic<OrkestratorSoknad>(config[kafka_produkt_orkestrator_soknad_topic])
+    val orkestratorSoknad = jsonDataTopic(config[kafka_produkt_orkestrator_soknad_topic])
 }
 
 fun main() {

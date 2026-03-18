@@ -86,4 +86,11 @@ class AivenConfig(
             put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer::class.java)
             putAll(producerConfig(properties))
         }
+
+    fun jsonProducerConfig(properties: Properties = Properties()) =
+        Properties().apply {
+            put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+            put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
+            putAll(producerConfig(properties))
+        }
 }
