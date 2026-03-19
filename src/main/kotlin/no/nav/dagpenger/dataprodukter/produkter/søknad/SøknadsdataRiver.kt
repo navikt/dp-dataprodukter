@@ -209,6 +209,8 @@ internal class OrkestratorSøknadsdataRiver(
                     }
                 }
             }
+
+
         }
     }
 
