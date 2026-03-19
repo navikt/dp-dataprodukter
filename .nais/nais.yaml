@@ -43,7 +43,7 @@ spec:
     - name: KAFKA_PRODUKT_ORKESTRATOR_SOKNAD_TOPIC
       value: teamdagpenger.data-orkestrator-soknad-v1
     - name: KAFKA_PRODUKT_ORKESTRATOR_SEKSJON_TOPIC
-      value: teamdagpenger.data-orkestrator-seksjon-test-v1
+      value: teamdagpenger.data-orkestrator-seksjon-test-v2
     - name: PDL_ENDPOINT
       value: https://{{pdl.host}}/graphql
     - name: PDL_SCOPE
