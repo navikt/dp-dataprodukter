@@ -9,7 +9,8 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
-import kotlin.math.log
+import java.time.LocalDateTime
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -141,8 +142,21 @@ internal class SøknadInnsendtRiver(
 
 internal class OrkestratorSøknadsdataRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<OrkestratorSoknad>,
+    private val dataTopic: DataTopic<OrkestratorSeksjon>,
     ) : River.PacketListener {
+    private val seksjoner = setOf(
+        "personalia",
+        "din-situasjon",
+        "arbeidsforhold",
+        "annen-pengestotte",
+        "egen-naring",
+        "verneplikt",
+        "utdanning",
+        "barnetillegg",
+        "reell-arbeidssoker",
+        "tilleggsopplysninger",
+    )
+
     init {
         River(rapidsConnection)
             .apply {
@@ -174,52 +188,28 @@ internal class OrkestratorSøknadsdataRiver(
             logger.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet" }
             sikkerlogg.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet, søknadsdata=${søknadsdataPacket.toPrettyString()}" }
 
-            val opprettetTid = søknadsdataPacket["opprettet"].asText().takeIf { it != "null" }?.let {
-                java.time.LocalDateTime.parse(it)
-            } ?: opprettet
-
-            val innsendtTid = søknadsdataPacket["innsendt"].asText().takeIf { it != "null" }?.let {
-                java.time.LocalDateTime.parse(it)
-            } ?: opprettet
-
-            OrkestratorSoknad
-                .newBuilder()
-                .apply {
-                    this.soknadId = søknadId
-                    this.opprettet = opprettetTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
-                    this.innsendt = innsendtTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
-                    this.personalia = parseSeksjon(søknadsdataPacket["personalia"].asText())
-                    this.dinSituasjon = parseSeksjon(søknadsdataPacket["din-situasjon"]?.asText())
-                    this.arbeidsforhold = parseSeksjon(søknadsdataPacket["arbeidsforhold"]?.asText())
-                    this.annenPengestotte = parseSeksjon(søknadsdataPacket["annen-pengestotte"]?.asText())
-                    this.egenNaring = parseSeksjon(søknadsdataPacket["egen-naring"]?.asText())
-                    this.verneplikt = parseSeksjon(søknadsdataPacket["verneplikt"]?.asText())
-                    this.utdanning = parseSeksjon(søknadsdataPacket["utdanning"]?.asText())
-                    this.barnetillegg = parseSeksjon(søknadsdataPacket["barnetillegg"]?.asText())
-                    this.reellArbeidssoker = parseSeksjon(søknadsdataPacket["reell-arbeidssoker"]?.asText())
-                    this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"]?.asText())
-                }.build()
-                .also { data ->
-                    sikkerlogg.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}, på ${dataTopic.topic}" }
-                    logger.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${dataTopic.topic}, data=${data}" }
-                    dataTopic.publiser(søknadId.toString(), data)
+            søknadsdataPacket.properties().forEach { (key, value) ->
+                logger.info { "Seksjon: $key, data: ${value.asText()}" }
+                if(key in seksjoner) {
+                    val seksjonsdata = objectMapper.readTree(value["seksjonsdata"].asText())
+                    OrkestratorSeksjon.newBuilder().apply {
+                        this.soknadId = søknadId
+                        this.seksjonId = key
+                        this.opprettet = value["opprettet"].asText().takeIf { it != "null" }?.let {
+                            LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
+                        }
+                        this.oppdatert = value["oppdatert"].asText().takeIf { it != "null" }?.let {
+                            LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
+                        } ?: this.opprettet
+                        this.seksjonsvar = seksjonsdata["seksjonsvar"].asText()
+                        this.versjon = seksjonsdata["versjon"].asText()
+                     }.build().also { data ->
+                        logger.info { "Publiserer seksjonsdata for søknadId=$søknadId, seksjonId=$key til topic ${dataTopic.topic}" }
+                        sikkerlogg.info { "Publiserer seksjonsdata for søknadId=$søknadId, seksjonId=$key til topic ${dataTopic.topic}, data=${data}" }
+                        dataTopic.publiser(søknadId.toString(), data)
+                    }
                 }
+            }
         }
     }
-
-    private fun parseSeksjon(seksjon: String?): Seksjonsinfo? {
-        if (seksjon.isNullOrBlank()) return null
-        return try {
-            val seksjonJson = objectMapper.readTree(seksjon)
-            Seksjonsinfo.newBuilder()
-                .setSeksjonId(seksjonJson["seksjonId"].asText())
-                .setSeksjonsvar(seksjonJson["seksjonsvar"].asText())
-                .setVersjon(seksjonJson["versjon"].asText())
-                .build()
-        } catch (e: Exception) {
-            logger.warn(e) { "Kunne ikke parse seksjon: $seksjon" }
-            null
-        }
-    }
-
 }
