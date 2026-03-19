@@ -20,7 +20,7 @@ import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
 import java.time.LocalDate
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
 import no.nav.dagpenger.dataprodukter.produkter.søknad.OrkestratorSøknadsdataRiver
 
 internal object DataTopics {
@@ -31,7 +31,7 @@ internal object DataTopics {
     val behandlingTopic = dataTopic<Behandlingsresultat>(config[kafka_produkt_behandling_topic])
     val behandlingTilstandTopic = dataTopic<BehandlingEndretTilstand>(config[kafka_produkt_behandling_tilstand_topic])
     val oppgaveTopic = dataTopic<Oppgave>(config[kafka_produkt_oppgave_topic])
-    val orkestratorSoknad = dataTopic<OrkestratorSoknad>(config[kafka_produkt_orkestrator_soknad_topic])
+    val orkestratorSeksjon = dataTopic<OrkestratorSeksjon>(config[kafka_produkt_orkestrator_seksjon_topic])
 }
 
 fun main() {
@@ -53,7 +53,7 @@ fun main() {
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
             SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
-            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSoknad)
+            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon)
 
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)

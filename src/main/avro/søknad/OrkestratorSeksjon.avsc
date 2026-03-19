@@ -1,0 +1,49 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.soknad",
+  "name": "OrkestratorSeksjon",
+  "type": "record",
+  "fields": [
+    {
+      "name": "soknadId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "Intern ID til soknaden"
+    },
+    {
+      "name": "seksjonId",
+      "type": "string",
+      "doc": "Seksjonsidentifikator for seksjonen i soknaden"
+    },
+    {
+      "name": "opprettet",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "oppdatert",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "default": 0
+    },
+    {
+      "name": "versjon",
+      "type": "string",
+      "doc": "API versjonen av seksjonsvar for seksjonen i soknaden"
+    },
+    {
+      "name": "seksjonsvar",
+      "type": {
+        "type": "string",
+        "sqlType": "JSON"
+      },
+      "doc": "Seksjonsvar for seksjonen i soknaden"
+    }
+
+  ]
+}
