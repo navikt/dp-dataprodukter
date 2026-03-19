@@ -1,5 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter.søknad
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
@@ -11,8 +12,6 @@ import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
 import java.time.LocalDateTime
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
-import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -201,7 +200,7 @@ internal class OrkestratorSøknadsdataRiver(
                         this.oppdatert = value["oppdatert"].asText().takeIf { it != "null" }?.let {
                             LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
                         } ?: this.opprettet
-                        this.seksjonsvar = seksjonsdata["seksjonsvar"].asText()
+                        this.seksjonsvar = mapSeksjonssvar(seksjonsdata["seksjonsvar"])
                         this.versjon = seksjonsdata["versjon"].asText()
                      }.build().also { data ->
                         logger.info { "Publiserer seksjonsdata for søknadId=$søknadId, seksjonId=$key til topic ${dataTopic.topic}" }
@@ -211,5 +210,13 @@ internal class OrkestratorSøknadsdataRiver(
                 }
             }
         }
+    }
+
+    fun mapSeksjonssvar(seksjonsvar: JsonNode): Map<String, String>{
+        val seksjonMap = mutableMapOf<String, String>()
+        seksjonsvar.properties().forEach { (key, value) ->
+            seksjonMap[key] = if (value.isTextual) value.asText() else value.toString()
+        }
+        return seksjonMap
     }
 }
