@@ -28,6 +28,7 @@ jobs:
           - topic: data-oppgave-beta-v7
             connector: .nais/kafka/oppgave-connector.yaml
           - topic: data-orkestrator-soknad-test-v1
+          - topic: data-orkestrator-seksjon-test-v1
     steps:
       - uses: actions/checkout@v6
       - uses: nais/deploy/actions/deploy@v2

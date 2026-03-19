@@ -41,7 +41,9 @@ spec:
     - name: KAFKA_PRODUKT_OPPGAVE_TOPIC
       value: teamdagpenger.data-oppgave-beta-v7
     - name: KAFKA_PRODUKT_ORKESTRATOR_SOKNAD_TOPIC
-      value: teamdagpenger.data-orkestrator-soknad-test-v1
+      value: teamdagpenger.data-orkestrator-soknad-v1
+    - name: KAFKA_PRODUKT_ORKESTRATOR_SEKSJON_TOPIC
+      value: teamdagpenger.data-orkestrator-seksjon-test-v1
     - name: PDL_ENDPOINT
       value: https://{{pdl.host}}/graphql
     - name: PDL_SCOPE
