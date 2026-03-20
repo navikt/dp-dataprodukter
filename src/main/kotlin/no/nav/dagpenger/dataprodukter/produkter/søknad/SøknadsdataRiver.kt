@@ -1,5 +1,6 @@
 package no.nav.dagpenger.dataprodukter.produkter.søknad
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
@@ -9,6 +10,8 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
+import java.time.LocalDateTime
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
@@ -140,8 +143,22 @@ internal class SøknadInnsendtRiver(
 
 internal class OrkestratorSøknadsdataRiver(
     rapidsConnection: RapidsConnection,
-    private val dataTopic: DataTopic<OrkestratorSoknad>,
+    private val seksjonDataTopic: DataTopic<OrkestratorSeksjon>,
+    private val søknadDataTopic: DataTopic<OrkestratorSoknad>,
     ) : River.PacketListener {
+    private val seksjoner = setOf(
+        "personalia",
+        "din-situasjon",
+        "arbeidsforhold",
+        "annen-pengestotte",
+        "egen-naring",
+        "verneplikt",
+        "utdanning",
+        "barnetillegg",
+        "reell-arbeidssoker",
+        "tilleggsopplysninger",
+    )
+
     init {
         River(rapidsConnection)
             .apply {
@@ -171,14 +188,35 @@ internal class OrkestratorSøknadsdataRiver(
             "dataprodukt" to "orkestrator-søknadsdata",
         ) {
             logger.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet" }
-            sikkerlogg.info { "Mottok innsendt søknad fra orkestrator, søknadId=$søknadId opprettet=$opprettet, søknadsdata=${søknadsdataPacket.toPrettyString()}" }
+
+            søknadsdataPacket.properties().forEach { (key, value) ->
+                if(key in seksjoner) {
+                    val seksjonsdata = objectMapper.readTree(value["seksjonsdata"].asText())
+                    OrkestratorSeksjon.newBuilder().apply {
+                        this.soknadId = søknadId
+                        this.seksjonId = key
+                        this.opprettet = value["opprettet"].asText().takeIf { it != "null" }?.let {
+                            LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
+                        }
+                        this.oppdatert = value["oppdatert"].asText().takeIf { it != "null" }?.let {
+                            LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
+                        } ?: this.opprettet
+                        this.seksjonsvar = mapSeksjonssvar(seksjonsdata["seksjonsvar"])
+                        this.versjon = seksjonsdata["versjon"].asText()
+                     }.build().also { data ->
+                        logger.info { "Publiserer seksjonsdata for søknadId=$søknadId, seksjonId=$key til topic ${seksjonDataTopic.topic}" }
+                        sikkerlogg.info { "Publiserer seksjonsdata for søknadId=$søknadId, seksjonId=$key til topic ${seksjonDataTopic.topic}, data=${data}" }
+                        seksjonDataTopic.publiser(søknadId.toString(), data)
+                    }
+                }
+            }
 
             val opprettetTid = søknadsdataPacket["opprettet"].asText().takeIf { it != "null" }?.let {
-                java.time.LocalDateTime.parse(it)
+                LocalDateTime.parse(it)
             } ?: opprettet
 
             val innsendtTid = søknadsdataPacket["innsendt"].asText().takeIf { it != "null" }?.let {
-                java.time.LocalDateTime.parse(it)
+                LocalDateTime.parse(it)
             } ?: opprettet
 
             OrkestratorSoknad
@@ -187,36 +225,53 @@ internal class OrkestratorSøknadsdataRiver(
                     this.soknadId = søknadId
                     this.opprettet = opprettetTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
                     this.innsendt = innsendtTid.atZone(java.time.ZoneId.systemDefault()).toInstant()
-                    this.personalia = parseSeksjon(søknadsdataPacket["personalia"].asText())
-                    this.dinSituasjon = parseSeksjon(søknadsdataPacket["din-situasjon"]?.asText())
-                    this.arbeidsforhold = parseSeksjon(søknadsdataPacket["arbeidsforhold"]?.asText())
-                    this.annenPengestotte = parseSeksjon(søknadsdataPacket["annen-pengestotte"]?.asText())
-                    this.egenNaring = parseSeksjon(søknadsdataPacket["egen-naring"]?.asText())
-                    this.verneplikt = parseSeksjon(søknadsdataPacket["verneplikt"]?.asText())
-                    this.utdanning = parseSeksjon(søknadsdataPacket["utdanning"]?.asText())
-                    this.barnetillegg = parseSeksjon(søknadsdataPacket["barnetillegg"]?.asText())
-                    this.reellArbeidssoker = parseSeksjon(søknadsdataPacket["reell-arbeidssoker"]?.asText())
-                    this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"]?.asText())
+                    this.personalia = parseSeksjon(søknadsdataPacket["personalia"])
+                    this.dinSituasjon = parseSeksjon(søknadsdataPacket["din-situasjon"])
+                    this.arbeidsforhold = parseSeksjon(søknadsdataPacket["arbeidsforhold"])
+                    this.annenPengestotte = parseSeksjon(søknadsdataPacket["annen-pengestotte"])
+                    this.egenNaring = parseSeksjon(søknadsdataPacket["egen-naring"])
+                    this.verneplikt = parseSeksjon(søknadsdataPacket["verneplikt"])
+                    this.utdanning = parseSeksjon(søknadsdataPacket["utdanning"])
+                    this.barnetillegg = parseSeksjon(søknadsdataPacket["barnetillegg"])
+                    this.reellArbeidssoker = parseSeksjon(søknadsdataPacket["reell-arbeidssoker"])
+                    this.tilleggsopplysninger = parseSeksjon(søknadsdataPacket["tilleggsopplysninger"])
                 }.build()
                 .also { data ->
-                    dataTopic.publiser(søknadId.toString(), data)
+                    sikkerlogg.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${seksjonDataTopic.topic}, data=${data}, på ${seksjonDataTopic.topic}" }
+                    logger.info {"Publiserer søknadsdata for søknadId=$søknadId til topic ${seksjonDataTopic.topic}, data=${data}" }
+                    søknadDataTopic.publiser(søknadId.toString(), data)
                 }
+
+
         }
     }
 
-    private fun parseSeksjon(jsonString: String?): Seksjonsinfo? {
-        if (jsonString.isNullOrBlank()) return null
+
+    private fun parseSeksjon(seksjon: JsonNode?): Seksjonsinfo? {
+        if (seksjon == null) return null
         return try {
-            val node = objectMapper.readTree(jsonString)
+            val seksjonsdata = objectMapper.readTree(seksjon["seksjonsdata"].asText())
             Seksjonsinfo.newBuilder()
-                .setSeksjonId(node["seksjonId"].asText())
-                .setSeksjonsvar(node["seksjonsvar"].toString())
-                .setVersjon(node["versjon"].asText())
+                .setSeksjonId(seksjonsdata["seksjonId"].asText())
+                .setSeksjonsvar(
+                    seksjonsdata["seksjonsvar"]
+                        ?.let { node ->
+                            mapSeksjonssvar(node)
+                        } ?: mutableMapOf(),
+                )
+                .setVersjon(seksjonsdata["versjon"].asText())
                 .build()
         } catch (e: Exception) {
-            logger.warn(e) { "Kunne ikke parse seksjon: $jsonString" }
+            logger.warn(e) { "Kunne ikke parse seksjon: $seksjon" }
             null
         }
     }
 
+    fun mapSeksjonssvar(seksjonsvar: JsonNode): Map<String, String>{
+        val seksjonMap = mutableMapOf<String, String>()
+        seksjonsvar.properties().forEach { (key, value) ->
+            seksjonMap[key] = if (value.isTextual) value.asText() else value.toString()
+        }
+        return seksjonMap
+    }
 }
