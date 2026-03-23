@@ -67,6 +67,41 @@ class PdlPersonRepositoryTest {
         )
     }
 
+    @Test
+    fun `Hent person med kode7 som skal være true`(wiremock: WireMockRuntimeInfo) {
+        withPdl(kode7) {
+            assertTrue(hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person med kode6 for hentPersonMedKode6OgKode7Beskyttelse`() {
+        withPdl(kode6) {
+            assertTrue(hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person uten adressebeskyttelse for hentPersonMedKode6OgKode7Beskyttelse`() {
+        withPdl(ugradertPerson) {
+            assertFalse(hentPerson(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person gir feil for hentPersonMedKode6OgKode7Beskyttelse`() {
+        PdlMock.errorResponse()
+        val exception =
+            assertThrows<RuntimeException> {
+                repo.hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse
+            }
+
+        assertEquals(
+            "Kall mot PDL feilet. Feil: KotlinxGraphQLError(message=foo, locations=null, path=null, extensions=null)",
+            exception.message,
+        )
+    }
+
     private fun withPdl(
         person: Person,
         block: PersonRepository.() -> Unit,
