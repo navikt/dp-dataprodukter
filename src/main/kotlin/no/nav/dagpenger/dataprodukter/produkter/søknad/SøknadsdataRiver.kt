@@ -145,6 +145,7 @@ internal class OrkestratorSøknadsdataRiver(
     rapidsConnection: RapidsConnection,
     private val seksjonDataTopic: DataTopic<OrkestratorSeksjon>,
     private val søknadDataTopic: DataTopic<OrkestratorSoknad>,
+    private val personRepository: PersonRepository,
     ) : River.PacketListener {
     private val seksjoner = setOf(
         "personalia",
@@ -165,7 +166,7 @@ internal class OrkestratorSøknadsdataRiver(
                 precondition { it.requireValue("@event_name", "søknad_endret_tilstand") }
                 precondition { it.requireValue("gjeldendeTilstand", "Innsendt") }
                 precondition { it.requireValue("kilde", "orkestrator") }
-                validate { it.requireKey("søknad_uuid", "@opprettet", "søknadsdata") }
+                validate { it.requireKey("søknad_uuid", "@opprettet", "søknadsdata", "ident") }
             }.register(this)
     }
     companion object {
@@ -181,6 +182,11 @@ internal class OrkestratorSøknadsdataRiver(
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime()
+        val ident = packet["ident"].asText()
+
+        val person = personRepository.hentPersonMedKode6OgKode7Beskyttelse(ident)
+
+        if (person.harAdressebeskyttelse) return
 
         val søknadsdataPacket = packet["søknadsdata"]
         withLoggingContext(

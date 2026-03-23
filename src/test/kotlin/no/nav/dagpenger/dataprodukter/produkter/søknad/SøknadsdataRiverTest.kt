@@ -102,9 +102,10 @@ internal class OrkestratorSøknadsdataRiverTest {
     private val søknadProducer = mockk<KafkaProducer<String, OrkestratorSoknad>>(relaxed = true)
     private val seksjonTopic = DataTopic(seksjonProducer, "orkestrator-seksjon")
     private val søknadTopic = DataTopic(søknadProducer, "orkestrator-søknad")
+    private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            OrkestratorSøknadsdataRiver(it, seksjonTopic, søknadTopic)
+            OrkestratorSøknadsdataRiver(it, seksjonTopic, søknadTopic, personRepository)
         }
 
     @AfterEach
@@ -114,9 +115,14 @@ internal class OrkestratorSøknadsdataRiverTest {
 
     @Test
     fun `Mottar søknadsdata fra orkestrator og publiserer til dataTopic`() {
+
         val søknadId = UUID.randomUUID()
         val søknadSlot = mutableListOf<ProducerRecord<String, OrkestratorSoknad>>()
         val seksjonSlot = mutableListOf<ProducerRecord<String, OrkestratorSeksjon>>()
+
+        every {
+            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
+        } returns Person(harAdressebeskyttelse = false)
         every { seksjonProducer.send(capture(seksjonSlot), any()) } returns mockk()
         every { søknadProducer.send(capture(søknadSlot), any()) } returns mockk()
 
@@ -183,7 +189,6 @@ internal class OrkestratorSøknadsdataRiverTest {
         val søknad = capturedRecordForSøknad.value()
         assert(søknad != null)
         assertTrue(søknad.soknadId.toString() == søknadId.toString())
-
     }
 
     @Test
@@ -211,7 +216,30 @@ internal class OrkestratorSøknadsdataRiverTest {
     }
 
     @Test
+    fun `Ikke gjør noe med søknere som har addressebeskyttelse`() {
+        val søknadId = UUID.randomUUID()
+
+        every {
+            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
+        } returns Person(harAdressebeskyttelse = true)
+
+        rapid.sendTestMessage(getOrkestratorSøknadEvent(søknadId))
+
+        verify(exactly = 0) {
+            seksjonProducer.send(any(), any())
+        }
+
+        verify(exactly = 0) {
+            søknadProducer.send(any(), any())
+        }
+    }
+
+    @Test
     fun `Arbeidsforhold i seksjonsvar er serialisert riktig som JSON string`() {
+        every {
+            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
+        } returns Person(harAdressebeskyttelse = false)
+
         val søknadId = UUID.randomUUID()
         val slot = mutableListOf<ProducerRecord<String, OrkestratorSeksjon>>()
         every { seksjonProducer.send(capture(slot), any()) } returns mockk()

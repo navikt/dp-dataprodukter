@@ -56,7 +56,7 @@ fun main() {
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
             SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
-            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon, DataTopics.orkestratorSoknad)
+            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon, DataTopics.orkestratorSoknad, personRepository)
 
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)

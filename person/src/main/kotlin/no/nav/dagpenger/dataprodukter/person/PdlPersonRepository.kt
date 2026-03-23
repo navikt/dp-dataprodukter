@@ -36,9 +36,34 @@ class PdlPersonRepository internal constructor(
                 AdressebeskyttelseGradering.STRENGT_FORTROLIG,
                 AdressebeskyttelseGradering.STRENGT_FORTROLIG_UTLAND,
             )
+
+        private val kode6Ogkode7Beskyttet = listOf(
+            AdressebeskyttelseGradering.STRENGT_FORTROLIG,
+            AdressebeskyttelseGradering.STRENGT_FORTROLIG_UTLAND,
+            AdressebeskyttelseGradering.FORTROLIG,
+        )
+
     }
 
     override fun hentPerson(ident: String): Person {
+        val person =
+            hentPersonFraPdl(ident)
+
+        return Person(
+            harAdressebeskyttelse = person.adressebeskyttelse.any { it.gradering in beskyttet },
+        )
+    }
+
+    override fun hentPersonMedKode6OgKode7Beskyttelse(ident: String): Person {
+        val person =
+            hentPersonFraPdl(ident)
+
+        return Person(
+            harAdressebeskyttelse = person.adressebeskyttelse.any { it.gradering in kode6Ogkode7Beskyttet },
+        )
+    }
+
+    private fun hentPersonFraPdl(ident: String): no.nav.pdl.hentperson.Person {
         val person =
             runBlocking {
                 client
@@ -56,10 +81,7 @@ class PdlPersonRepository internal constructor(
                         }
                     }
             }.data?.hentPerson ?: error("PDL svarte uten data.hentPerson")
-
-        return Person(
-            harAdressebeskyttelse = person.adressebeskyttelse.any { it.gradering in beskyttet },
-        )
+        return person
     }
 }
 
