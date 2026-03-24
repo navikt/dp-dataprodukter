@@ -27,7 +27,7 @@ jobs:
           - topic: data-behandling-tilstand-v1
           - topic: data-oppgave-beta-v7
             connector: .nais/kafka/oppgave-connector.yaml
-          - topic: data-orkestrator-soknad-v3
+          - topic: data-orkestrator-soknad-v4
           - topic: data-orkestrator-seksjon
     steps:
       - uses: actions/checkout@v6
