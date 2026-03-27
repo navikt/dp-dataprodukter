@@ -15,7 +15,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 @WireMockTest
-class PdlPersonRepositoryTest {
+class PdlPersonsBeskyttelseInfoRepositoryTest {
     private companion object {
         private val ugradertPerson = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.UGRADERT)))
         private val kode7 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.FORTROLIG)))
@@ -70,14 +70,14 @@ class PdlPersonRepositoryTest {
     @Test
     fun `Hent person med kode7 som skal være true`(wiremock: WireMockRuntimeInfo) {
         withPdl(kode7) {
-            assertTrue(hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse)
+            assertTrue(hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse)
         }
     }
 
     @Test
     fun `Hent person med kode6 for hentPersonMedKode6OgKode7Beskyttelse`() {
         withPdl(kode6) {
-            assertTrue(hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse)
+            assertTrue(hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse)
         }
     }
 
@@ -93,7 +93,7 @@ class PdlPersonRepositoryTest {
         PdlMock.errorResponse()
         val exception =
             assertThrows<RuntimeException> {
-                repo.hentPersonMedKode6OgKode7Beskyttelse(ident).harAdressebeskyttelse
+                repo.hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse
             }
 
         assertEquals(

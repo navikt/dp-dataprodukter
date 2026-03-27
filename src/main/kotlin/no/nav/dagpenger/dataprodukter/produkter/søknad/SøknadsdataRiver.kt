@@ -184,7 +184,7 @@ internal class OrkestratorSøknadsdataRiver(
         val opprettet = packet["@opprettet"].asLocalDateTime()
         val ident = packet["ident"].asText()
 
-        val person = personRepository.hentPersonMedKode6OgKode7Beskyttelse(ident)
+        val person = personRepository.hentPersonMedKode6Og7BeskyttelseInfo(ident)
 
         if (person.harAdressebeskyttelse) return
 

@@ -1,5 +1,5 @@
 package no.nav.dagpenger.dataprodukter.person
 
-data class Person(
+data class PersonsBeskyttelseInfo(
     val harAdressebeskyttelse: Boolean,
 )

@@ -12,7 +12,7 @@ import no.nav.dagpenger.dataprodukter.helpers.generator
 import no.nav.dagpenger.dataprodukter.helpers.seksjon
 import no.nav.dagpenger.dataprodukter.helpers.tilstandEndretEvent
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import no.nav.dagpenger.dataprodukter.person.Person
+import no.nav.dagpenger.dataprodukter.person.PersonsBeskyttelseInfo
 import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -20,8 +20,6 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.util.UUID
 import kotlin.test.assertTrue
-import kotlin.text.contains
-import kotlin.text.startsWith
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -46,7 +44,7 @@ internal class SøknadsdataRiverTest {
     fun `Søknadfakta blir mellomlagret`() {
         every {
             personRepository.hentPerson(any())
-        } returns Person(harAdressebeskyttelse = false)
+        } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = false)
 
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
@@ -61,7 +59,7 @@ internal class SøknadsdataRiverTest {
     fun `Søknadfakta blir ikke mellomlagret når adressebeskyttelse`() {
         every {
             personRepository.hentPerson(any())
-        } returns Person(harAdressebeskyttelse = true)
+        } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = true)
 
         val søknadId = UUID.randomUUID()
         rapid.sendTestMessage(getSøknadData(søknadId))
@@ -121,8 +119,8 @@ internal class OrkestratorSøknadsdataRiverTest {
         val seksjonSlot = mutableListOf<ProducerRecord<String, OrkestratorSeksjon>>()
 
         every {
-            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
-        } returns Person(harAdressebeskyttelse = false)
+            personRepository.hentPersonMedKode6Og7BeskyttelseInfo(any())
+        } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = false)
         every { seksjonProducer.send(capture(seksjonSlot), any()) } returns mockk()
         every { søknadProducer.send(capture(søknadSlot), any()) } returns mockk()
 
@@ -216,12 +214,12 @@ internal class OrkestratorSøknadsdataRiverTest {
     }
 
     @Test
-    fun `Ikke gjør noe med søknere som har addressebeskyttelse`() {
+    fun `Ikke gjør noe med søkere som har addressebeskyttelse`() {
         val søknadId = UUID.randomUUID()
 
         every {
-            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
-        } returns Person(harAdressebeskyttelse = true)
+            personRepository.hentPersonMedKode6Og7BeskyttelseInfo(any())
+        } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = true)
 
         rapid.sendTestMessage(getOrkestratorSøknadEvent(søknadId))
 
@@ -237,8 +235,8 @@ internal class OrkestratorSøknadsdataRiverTest {
     @Test
     fun `Arbeidsforhold i seksjonsvar er serialisert riktig som JSON string`() {
         every {
-            personRepository.hentPersonMedKode6OgKode7Beskyttelse(any())
-        } returns Person(harAdressebeskyttelse = false)
+            personRepository.hentPersonMedKode6Og7BeskyttelseInfo(any())
+        } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = false)
 
         val søknadId = UUID.randomUUID()
         val slot = mutableListOf<ProducerRecord<String, OrkestratorSeksjon>>()

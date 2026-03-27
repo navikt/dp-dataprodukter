@@ -15,6 +15,7 @@ import no.nav.pdl.enums.AdressebeskyttelseGradering
 import org.slf4j.MDC
 import java.net.URI
 import kotlin.time.Duration.Companion.seconds
+import no.nav.pdl.hentperson.Person
 
 internal typealias TokenProvider = () -> String
 
@@ -45,25 +46,25 @@ class PdlPersonRepository internal constructor(
 
     }
 
-    override fun hentPerson(ident: String): Person {
+    override fun hentPerson(ident: String): PersonsBeskyttelseInfo {
         val person =
             hentPersonFraPdl(ident)
 
-        return Person(
+        return PersonsBeskyttelseInfo(
             harAdressebeskyttelse = person.adressebeskyttelse.any { it.gradering in beskyttet },
         )
     }
 
-    override fun hentPersonMedKode6OgKode7Beskyttelse(ident: String): Person {
+    override fun hentPersonMedKode6Og7BeskyttelseInfo(ident: String): PersonsBeskyttelseInfo {
         val person =
             hentPersonFraPdl(ident)
 
-        return Person(
+        return PersonsBeskyttelseInfo(
             harAdressebeskyttelse = person.adressebeskyttelse.any { it.gradering in kode6Ogkode7Beskyttet },
         )
     }
 
-    private fun hentPersonFraPdl(ident: String): no.nav.pdl.hentperson.Person {
+    private fun hentPersonFraPdl(ident: String): Person {
         val person =
             runBlocking {
                 client
