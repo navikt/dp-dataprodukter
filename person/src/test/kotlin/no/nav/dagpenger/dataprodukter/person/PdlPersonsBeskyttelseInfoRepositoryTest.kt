@@ -15,7 +15,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 @WireMockTest
-class PdlPersonRepositoryTest {
+class PdlPersonsBeskyttelseInfoRepositoryTest {
     private companion object {
         private val ugradertPerson = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.UGRADERT)))
         private val kode7 = Person(listOf(Adressebeskyttelse(AdressebeskyttelseGradering.FORTROLIG)))
@@ -59,6 +59,41 @@ class PdlPersonRepositoryTest {
         val exception =
             assertThrows<RuntimeException> {
                 repo.hentPerson(ident).harAdressebeskyttelse
+            }
+
+        assertEquals(
+            "Kall mot PDL feilet. Feil: KotlinxGraphQLError(message=foo, locations=null, path=null, extensions=null)",
+            exception.message,
+        )
+    }
+
+    @Test
+    fun `Hent person med kode7 som skal være true`(wiremock: WireMockRuntimeInfo) {
+        withPdl(kode7) {
+            assertTrue(hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person med kode6 for hentPersonMedKode6OgKode7Beskyttelse`() {
+        withPdl(kode6) {
+            assertTrue(hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person uten adressebeskyttelse for hentPersonMedKode6OgKode7Beskyttelse`() {
+        withPdl(ugradertPerson) {
+            assertFalse(hentPerson(ident).harAdressebeskyttelse)
+        }
+    }
+
+    @Test
+    fun `Hent person gir feil for hentPersonMedKode6OgKode7Beskyttelse`() {
+        PdlMock.errorResponse()
+        val exception =
+            assertThrows<RuntimeException> {
+                repo.hentPersonMedKode6Og7BeskyttelseInfo(ident).harAdressebeskyttelse
             }
 
         assertEquals(
