@@ -40,8 +40,6 @@ spec:
       value: teamdagpenger.data-behandling-tilstand-v1
     - name: KAFKA_PRODUKT_OPPGAVE_TOPIC
       value: teamdagpenger.data-oppgave-beta-v7
-    - name: KAFKA_PRODUKT_ORKESTRATOR_SOKNAD_TOPIC
-      value: teamdagpenger.data-orkestrator-soknad-v4
     - name: KAFKA_PRODUKT_ORKESTRATOR_SEKSJON_TOPIC
       value: teamdagpenger.data-orkestrator-seksjon
     - name: PDL_ENDPOINT

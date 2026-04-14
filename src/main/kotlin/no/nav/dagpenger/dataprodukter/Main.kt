@@ -33,8 +33,6 @@ internal object DataTopics {
     val behandlingTilstandTopic = dataTopic<BehandlingEndretTilstand>(config[kafka_produkt_behandling_tilstand_topic])
     val oppgaveTopic = dataTopic<Oppgave>(config[kafka_produkt_oppgave_topic])
     val orkestratorSeksjon = dataTopic<OrkestratorSeksjon>(config[kafka_produkt_orkestrator_seksjon_topic])
-    val orkestratorSoknad = dataTopic<OrkestratorSoknad>(config[kafka_produkt_orkestrator_soknad_topic])
-
 }
 
 fun main() {
@@ -56,7 +54,7 @@ fun main() {
             SøknadInnsendtRiver(rapidsConnection, søknadRepository, DataTopics.soknadFaktum)
             SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
-            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon, DataTopics.orkestratorSoknad, personRepository)
+            OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon, personRepository)
 
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
