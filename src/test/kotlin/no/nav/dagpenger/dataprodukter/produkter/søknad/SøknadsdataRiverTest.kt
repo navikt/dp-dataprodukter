@@ -97,13 +97,11 @@ private fun getSøknadData(søknadId: UUID) =
 
 internal class OrkestratorSøknadsdataRiverTest {
     private val seksjonProducer = mockk<KafkaProducer<String, OrkestratorSeksjon>>(relaxed = true)
-    private val søknadProducer = mockk<KafkaProducer<String, OrkestratorSoknad>>(relaxed = true)
     private val seksjonTopic = DataTopic(seksjonProducer, "orkestrator-seksjon")
-    private val søknadTopic = DataTopic(søknadProducer, "orkestrator-søknad")
     private val personRepository = mockk<PersonRepository>()
     private val rapid =
         TestRapid().also {
-            OrkestratorSøknadsdataRiver(it, seksjonTopic, søknadTopic, personRepository)
+            OrkestratorSøknadsdataRiver(it, seksjonTopic, personRepository)
         }
 
     @AfterEach
@@ -122,7 +120,6 @@ internal class OrkestratorSøknadsdataRiverTest {
             personRepository.hentPersonMedKode6Og7BeskyttelseInfo(any())
         } returns PersonsBeskyttelseInfo(harAdressebeskyttelse = false)
         every { seksjonProducer.send(capture(seksjonSlot), any()) } returns mockk()
-        every { søknadProducer.send(capture(søknadSlot), any()) } returns mockk()
 
         rapid.sendTestMessage(getOrkestratorSøknadEvent(søknadId))
 
@@ -179,14 +176,6 @@ internal class OrkestratorSøknadsdataRiverTest {
         assert(tilleggsopplysninger != null)
         assertTrue(tilleggsopplysninger["seksjonId"] == "tilleggsopplysninger")
         assertTrue(tilleggsopplysninger.seksjonsvar["harTilleggsopplysninger"] == "nei")
-
-        verify(exactly = 1) {
-            søknadProducer.send(any(), any())
-        }
-        val capturedRecordForSøknad = søknadSlot.first()
-        val søknad = capturedRecordForSøknad.value()
-        assert(søknad != null)
-        assertTrue(søknad.soknadId.toString() == søknadId.toString())
     }
 
     @Test
@@ -196,10 +185,6 @@ internal class OrkestratorSøknadsdataRiverTest {
 
         verify(exactly = 0) {
             seksjonProducer.send(any(), any())
-        }
-
-        verify(exactly = 0) {
-            søknadProducer.send(any(), any())
         }
     }
 
@@ -225,10 +210,6 @@ internal class OrkestratorSøknadsdataRiverTest {
 
         verify(exactly = 0) {
             seksjonProducer.send(any(), any())
-        }
-
-        verify(exactly = 0) {
-            søknadProducer.send(any(), any())
         }
     }
 
