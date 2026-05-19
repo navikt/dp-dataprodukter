@@ -9,6 +9,7 @@ import no.nav.dagpenger.dataprodukt.utbetaling.Utbetaling
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
+import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.util.UUID
@@ -52,30 +53,33 @@ class UtbetalingRiverTest {
             sakId shouldBe UUID.fromString("123e4567-e89b-12d3-a456-426614174001")
             sakIdBase64 shouldBe "Ej5FZ+ibEtOkVkJmFBdAAQ=="
             behandletHendelseId shouldBe "m1"
-            behandletHendelseType shouldBe "meldekort"
+            behandletHendelseType shouldBe "type_m1"
         }
     }
 
+    @Language("JSON")
     private val utbetalingJSON =
         """
         {
-          "@event_name" : "utbetaling_utført",
-          "ident" : "12345678901",
-          "behandlingId" : "123e4567-e89b-12d3-a456-426614174000",
-          "eksternBehandlingId" : "Ej5FZ+ibEtOkVkJmFBdAAA==",
-          "sakId" : "123e4567-e89b-12d3-a456-426614174001",
-          "eksternSakId" : "Ej5FZ+ibEtOkVkJmFBdAAQ==",
-          "behandletHendelseId" : "m1",
-          "behandletHendelseType" : "meldekort",
-          "meldekortId" : "m1",
-          "status" : "FERDIG",
-          "@id" : "0a013057-3744-4e6c-9d31-edfab53370f9",
-          "@opprettet" : "2026-05-19T11:04:24.469728",
-          "system_read_count" : 0,
-          "system_participating_services" : [ {
-            "id" : "0a013057-3744-4e6c-9d31-edfab53370f9",
-            "time" : "2026-05-19T11:04:24.469728"
-          } ]
+          "@event_name": "utbetaling_utført",
+          "ident": "12345678901",
+          "behandlingId": "123e4567-e89b-12d3-a456-426614174000",
+          "eksternBehandlingId": "Ej5FZ+ibEtOkVkJmFBdAAA==",
+          "sakId": "123e4567-e89b-12d3-a456-426614174001",
+          "eksternSakId": "Ej5FZ+ibEtOkVkJmFBdAAQ==",
+          "behandletHendelseId": "m1",
+          "behandletHendelseType": "type_m1",
+          "meldekortId": "m1",
+          "status": "FERDIG",
+          "@id": "bb17016c-a381-4d49-b086-5ecefbb2c073",
+          "@opprettet": "2026-05-19T12:49:30.559953",
+          "system_read_count": 0,
+          "system_participating_services": [
+            {
+              "id": "bb17016c-a381-4d49-b086-5ecefbb2c073",
+              "time": "2026-05-19T12:49:30.559953"
+            }
+          ]
         }        
         """.trimIndent()
 }

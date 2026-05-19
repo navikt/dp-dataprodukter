@@ -13,7 +13,6 @@ import no.nav.dagpenger.dataprodukt.utbetaling.Utbetaling
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
-import java.time.Duration
 
 internal class UtbetalingRiver(
     rapidsConnection: RapidsConnection,
@@ -67,6 +66,7 @@ internal class UtbetalingRiver(
                     sakIdBase64 = packet["eksternSakId"].asText()
                     behandletHendelseId = packet["behandletHendelseId"].asText()
                     behandletHendelseType = packet["behandletHendelseType"].asText()
+                    opprettetTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
                 }.build()
                 .also { utbetaling ->
                     logger.info { "Publiserer rad for ${utbetaling::class.java.simpleName}" }
