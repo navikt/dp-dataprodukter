@@ -22,6 +22,11 @@
       "doc": "ID som refererer til hendelsen som opprettet behandlingen"
     },
     {
+      "name": "behandletHendelseType",
+      "type": "string",
+      "doc": "Typen til hendelsen som opprettet behandlingen"
+    },
+    {
       "name": "sakId",
       "type": {
         "type": "string",

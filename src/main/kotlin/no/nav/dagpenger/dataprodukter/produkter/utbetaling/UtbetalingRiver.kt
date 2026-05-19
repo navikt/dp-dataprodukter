@@ -32,6 +32,7 @@ internal class UtbetalingRiver(
                         "sakId",
                         "eksternSakId",
                         "behandletHendelseId",
+                        "behandletHendelseType",
                     )
                 }
             }.register(this)
@@ -65,6 +66,7 @@ internal class UtbetalingRiver(
                     sakId = packet["sakId"].asUUID()
                     sakIdBase64 = packet["eksternSakId"].asText()
                     behandletHendelseId = packet["behandletHendelseId"].asText()
+                    behandletHendelseType = packet["behandletHendelseType"].asText()
                 }.build()
                 .also { utbetaling ->
                     logger.info { "Publiserer rad for ${utbetaling::class.java.simpleName}" }

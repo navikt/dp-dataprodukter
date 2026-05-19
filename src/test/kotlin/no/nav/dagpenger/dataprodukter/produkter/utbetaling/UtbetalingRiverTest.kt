@@ -52,6 +52,7 @@ class UtbetalingRiverTest {
             sakId shouldBe UUID.fromString("123e4567-e89b-12d3-a456-426614174001")
             sakIdBase64 shouldBe "Ej5FZ+ibEtOkVkJmFBdAAQ=="
             behandletHendelseId shouldBe "m1"
+            behandletHendelseType shouldBe "meldekort"
         }
     }
 
@@ -65,6 +66,7 @@ class UtbetalingRiverTest {
           "sakId" : "123e4567-e89b-12d3-a456-426614174001",
           "eksternSakId" : "Ej5FZ+ibEtOkVkJmFBdAAQ==",
           "behandletHendelseId" : "m1",
+          "behandletHendelseType" : "meldekort",
           "meldekortId" : "m1",
           "status" : "FERDIG",
           "@id" : "0a013057-3744-4e6c-9d31-edfab53370f9",
