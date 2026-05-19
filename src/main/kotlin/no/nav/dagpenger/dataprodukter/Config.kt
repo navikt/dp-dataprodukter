@@ -18,6 +18,7 @@ val kafka_produkt_soknad_dokumentkrav_topic by stringType
 val kafka_produkt_behandling_topic by stringType
 val kafka_produkt_vedtak_topic by stringType
 val kafka_produkt_behandling_tilstand_topic by stringType
+val kafka_produkt_utbetaling_topic by stringType
 val kafka_produkt_oppgave_topic by stringType
 val kafka_produkt_orkestrator_seksjon_topic by stringType
 

@@ -1,0 +1,63 @@
+{
+  "namespace": "no.nav.dagpenger.dataprodukt.utbetaling",
+  "name": "Utbetaling",
+  "type": "record",
+  "fields": [
+    {
+      "name": "utbetalingId",
+      "type": "string",
+      "doc": "UUID i base64-format for utbetalingen som er utført"
+    },
+    {
+      "name": "behandlingId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "UUID som refererer til behandlingen som opprettet utbetalingen"
+    },
+    {
+      "name": "behandletHendelseId",
+      "type": "string",
+      "doc": "ID som refererer til hendelsen som opprettet behandlingen"
+    },
+    {
+      "name": "sakId",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      },
+      "doc": "UUID for behandlingskjeden behandlingen tilhører"
+    },
+    {
+      "name": "sakIdBase64",
+      "type": "string",
+      "doc": "UUID i base64-format for behandlingskjeden behandlingen tilhører"
+    },
+    {
+      "name": "ident",
+      "type": "string",
+      "doc": "Identifikator for personen"
+    },
+    {
+      "name": "opprettetTid",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når behandlingen ble ferdig"
+    },
+    {
+      "name": "tekniskTid",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Tidspunktet da fagsystemet legger hendelsen på grensesnittet/topicen"
+    }
+  ]
+}

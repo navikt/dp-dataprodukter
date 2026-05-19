@@ -5,8 +5,10 @@ import no.nav.dagpenger.dataprodukt.behandling.Behandlingsresultat
 import no.nav.dagpenger.dataprodukt.innlop.Soknadsinnlop
 import no.nav.dagpenger.dataprodukt.oppgave.Oppgave
 import no.nav.dagpenger.dataprodukt.soknad.Dokumentkrav
+import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukt.soknad.SoknadTilstand
+import no.nav.dagpenger.dataprodukt.utbetaling.Utbetaling
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic.Companion.dataTopic
 import no.nav.dagpenger.dataprodukter.person.PdlPersonRepository
 import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingEndretTilstandRiver
@@ -14,15 +16,14 @@ import no.nav.dagpenger.dataprodukter.produkter.behandling.BehandlingRiver
 import no.nav.dagpenger.dataprodukter.produkter.innlop.SoknadsinnlopRiver
 import no.nav.dagpenger.dataprodukter.produkter.oppgave.OppgaveRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.DokumentkravRiver
+import no.nav.dagpenger.dataprodukter.produkter.søknad.OrkestratorSøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadInnsendtRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadTilstandRiver
 import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
+import no.nav.dagpenger.dataprodukter.produkter.utbetaling.UtbetalingRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
 import java.time.LocalDate
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
-import no.nav.dagpenger.dataprodukter.produkter.søknad.OrkestratorSøknadsdataRiver
 
 internal object DataTopics {
     val soknadsinnlop = dataTopic<Soknadsinnlop>(config[kafka_produkt_topic])
@@ -31,6 +32,7 @@ internal object DataTopics {
     val dokumentkrav = dataTopic<Dokumentkrav>(config[kafka_produkt_soknad_dokumentkrav_topic])
     val behandlingTopic = dataTopic<Behandlingsresultat>(config[kafka_produkt_behandling_topic])
     val behandlingTilstandTopic = dataTopic<BehandlingEndretTilstand>(config[kafka_produkt_behandling_tilstand_topic])
+    val utbetalingTopic = dataTopic<Utbetaling>(config[kafka_produkt_utbetaling_topic])
     val oppgaveTopic = dataTopic<Oppgave>(config[kafka_produkt_oppgave_topic])
     val orkestratorSeksjon = dataTopic<OrkestratorSeksjon>(config[kafka_produkt_orkestrator_seksjon_topic])
 }
@@ -59,7 +61,8 @@ fun main() {
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
             BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTilstandTopic)
-            
+            UtbetalingRiver(rapidsConnection, DataTopics.utbetalingTopic)
+
             // Oppgave
             OppgaveRiver(rapidsConnection, DataTopics.oppgaveTopic)
         }.start()
