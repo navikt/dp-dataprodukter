@@ -21,7 +21,7 @@ internal class UtbetalingRiver(
     init {
         River(rapidsConnection)
             .apply {
-                precondition { it.requireValue("@event_name", "utbetaling_utført") }
+                precondition { it.requireAny("@event_name", listOf("utbetaling_utført", "utbetaling_utført_historisk")) }
                 validate {
                     it.requireKey("@id", "@opprettet")
                     it.requireKey(
