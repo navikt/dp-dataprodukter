@@ -24,6 +24,7 @@ import no.nav.dagpenger.dataprodukter.produkter.utbetaling.UtbetalingRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
 import java.time.LocalDate
+import no.nav.dagpenger.dataprodukter.produkter.søknad.PåbegyntSøknadSeksjon
 
 internal object DataTopics {
     val soknadsinnlop = dataTopic<Soknadsinnlop>(config[kafka_produkt_topic])
@@ -57,6 +58,7 @@ fun main() {
             SøknadTilstandRiver(rapidsConnection, DataTopics.soknadTilstand)
             DokumentkravRiver(rapidsConnection, DataTopics.dokumentkrav)
             OrkestratorSøknadsdataRiver(rapidsConnection, DataTopics.orkestratorSeksjon, personRepository)
+            PåbegyntSøknadSeksjon(rapidsConnection, DataTopics.orkestratorSeksjon, personRepository)
 
             // Behandling
             BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
