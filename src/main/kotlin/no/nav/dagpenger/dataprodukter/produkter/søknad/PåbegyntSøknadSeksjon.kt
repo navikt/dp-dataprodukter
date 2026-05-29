@@ -66,7 +66,8 @@ internal class PåbegyntSøknadSeksjon(
                     søknadId.toString(), data
                 )
                 logger.info { "Publiserte seksjon for påbegynt søknad $søknadId til seksjonDataTopic" }
-                sikkerlogg.info { logger.info { "Publiserte seksjon for påbegynt søknad $søknadId til seksjonDataTopic: $data" } }
+                sikkerlogg.info { "Publiserer rad for ${data::class.java.simpleName}: $data " }
+
             }
         }
 
