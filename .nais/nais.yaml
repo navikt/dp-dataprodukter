@@ -62,7 +62,7 @@ spec:
       enabled: true
   gcp:
     sqlInstances:
-      - type: POSTGRES_16
+      - type: POSTGRES_17
         tier: "{{db.tier}}"
         highAvailability: true
         databases:
