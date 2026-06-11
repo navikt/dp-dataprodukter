@@ -68,6 +68,17 @@
       "doc": "Identifikator for personen som vedtaket gjelder"
     },
     {
+      "name": "regelverk",
+      "type": [
+        "null",
+        {
+          "type": "string"
+        }
+      ],
+      "default": null,
+      "doc": "Hvilket regelverk som er brukt i behandlingen"
+    },
+    {
       "name": "foerteTil",
       "type": "string",
       "doc": "Avgjørelsen som ble tatt i behandlingen"

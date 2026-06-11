@@ -57,6 +57,7 @@ internal class BehandlingRiver(
                         "ident",
                         "opplysninger",
                         "førteTil",
+                        "regelverk",
                     )
                     it.require("rettighetsperioder") { perioder ->
                         // Kast alle behandlinger som mangler rettighetsperioder
@@ -71,6 +72,10 @@ internal class BehandlingRiver(
                         val perioder = it["rettighetsperioder"]
                         if (perioder.isArray && perioder.size() > 1) {
                             return@require "Er avslag på gjenopptakelse"
+                        }
+
+                        if (it["regelverk"].asText() != "Dagpenger") {
+                            return@require "Regelverk er ikke dagpenger"
                         }
 
                         val opprettet = dato.asLocalDateTime().toLocalDate()
@@ -118,6 +123,7 @@ internal class BehandlingRiver(
                             )
                         }
                     this.foerteTil = behandling.førteTil.value
+                    regelverk = behandling.regelverk
                     rettighetsperioder =
                         behandling.rettighetsperioder.map {
                             Rettighetsperiode(
