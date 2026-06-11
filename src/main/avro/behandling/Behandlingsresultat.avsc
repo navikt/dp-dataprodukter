@@ -322,6 +322,18 @@
       "name": "versjon",
       "type": "string",
       "doc": "Hvilken versjon av kode som har produsert resultatet"
+    },
+    {
+      "name": "innlestTid",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Tidspunkt for når raden ble lastet"
     }
   ]
 }

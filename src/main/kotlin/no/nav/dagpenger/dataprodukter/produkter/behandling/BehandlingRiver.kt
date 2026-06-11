@@ -36,6 +36,7 @@ import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.objectMapper
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
@@ -143,7 +144,7 @@ internal class BehandlingRiver(
                                 opplysning.perioder.map { periode ->
                                     OpplysningPeriode(
                                         periode.opprettet.asTimestamp(),
-                                        periode.opprinnelse!!.let {
+                                        periode.opprinnelse.let {
                                             Opprinnelse.valueOf(it.value)
                                         },
                                         periode.gyldigFraOgMed,
@@ -169,6 +170,7 @@ internal class BehandlingRiver(
                     sistEndretTid = behandling.sistEndret.asTimestamp()
                     meldingsreferanseId = pakke.meldingsreferanseId
                     versjon = pakke.image
+                    innlestTid = pakke.opprettet.asTimestamp()
                 }.build()
                 .also { behandling ->
                     logger.info { "Publiserer rad for ${behandling::class.java.simpleName}" }
@@ -197,6 +199,8 @@ class BehandlingsresultatParser(
     private val packet: JsonMessage,
 ) {
     val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
+
+    val opprettet: LocalDateTime get() = packet["@opprettet"].asLocalDateTime()
 
     val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asText() } ?: "0"
     val image: String get() = packet["system_participating_services"].first()["image"]?.asText() ?: ""
