@@ -16,6 +16,7 @@ import no.nav.dagpenger.behandling.api.models.BoolskVerdiDTO
 import no.nav.dagpenger.behandling.api.models.DatoVerdiDTO
 import no.nav.dagpenger.behandling.api.models.DesimaltallVerdiDTO
 import no.nav.dagpenger.behandling.api.models.HeltallVerdiDTO
+import no.nav.dagpenger.behandling.api.models.OpplysningskildeDTOTypeDTO
 import no.nav.dagpenger.behandling.api.models.OpplysningsverdiDTO
 import no.nav.dagpenger.behandling.api.models.PengeVerdiDTO
 import no.nav.dagpenger.behandling.api.models.PeriodeVerdiDTO
@@ -151,7 +152,11 @@ internal class BehandlingRiver(
                                         periode.gyldigTilOgMed,
                                         periode.verdi.verdi().toString(),
                                         periode.kilde?.let {
-                                            Kilde.valueOf(it.type.value)
+                                            when (it.type) {
+                                                OpplysningskildeDTOTypeDTO.SAKSBEHANDLER -> Kilde.Saksbehandler
+                                                OpplysningskildeDTOTypeDTO.SYSTEM -> Kilde.System
+                                                OpplysningskildeDTOTypeDTO.BEHOVSLØSER -> Kilde.Behovsloeser
+                                            }
                                         },
                                     )
                                 },

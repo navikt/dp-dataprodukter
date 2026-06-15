@@ -214,7 +214,8 @@
                           "name": "Kilde",
                           "symbols": [
                             "Saksbehandler",
-                            "System"
+                            "System",
+                            "Behovsloeser"
                           ]
                         }
                       ],
