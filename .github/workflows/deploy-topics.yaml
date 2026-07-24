@@ -30,7 +30,7 @@ jobs:
           - topic: data-orkestrator-seksjon
           - topic: data-utbetaling
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
