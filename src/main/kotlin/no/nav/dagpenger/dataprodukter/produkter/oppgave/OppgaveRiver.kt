@@ -75,6 +75,7 @@ internal class OppgaveRiver(
                     fagsystem = oppgaveDTO.fagsystem
                     arenaSakId = oppgaveDTO.arenaSakId
                     resultatBegrunnelse = oppgaveDTO.resultatBegrunnelse
+                    relatertBehandlingId = oppgaveDTO.relatertBehandlingId
                 }
         }.build()
             .also { oppgave ->
@@ -134,6 +135,9 @@ data class OppgaveDTO(
     @param:JsonProperty("resultatBegrunnelse")
     @get:JsonProperty("resultatBegrunnelse")
     val resultatBegrunnelse: String?,
+    @param:JsonProperty("relatertBehandlingId")
+    @get:JsonProperty("relatertBehandlingId")
+    val relatertBehandlingId: UUID?,
 )
 
 data class TilstandsendringDTO(
