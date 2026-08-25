@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.bundles.ktor.client)
     implementation("io.ktor:ktor-serialization-kotlinx-json:${libs.versions.ktor.get()}")
 
-    implementation("com.expediagroup", "graphql-kotlin-ktor-client", "8.2.1")
+    implementation("com.expediagroup", "graphql-kotlin-ktor-client", "8.9.1")
     implementation("com.nimbusds:oauth2-oidc-sdk:11.38.2")
 
     testImplementation("no.nav.security:mock-oauth2-server:6.0.2")
