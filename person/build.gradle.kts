@@ -16,11 +16,11 @@ dependencies {
     implementation("com.expediagroup", "graphql-kotlin-ktor-client", "8.2.1")
     implementation("com.nimbusds:oauth2-oidc-sdk:11.29.2")
 
-    testImplementation("no.nav.security:mock-oauth2-server:3.0.1")
+    testImplementation("no.nav.security:mock-oauth2-server:3.0.3")
     testImplementation(libs.mockk) {
         exclude(group = "junit", module = "junit")
     }
-    testImplementation("org.wiremock:wiremock:3.13.1")
+    testImplementation("org.wiremock:wiremock:3.13.2")
     testImplementation(libs.bundles.jackson)
 }
 
