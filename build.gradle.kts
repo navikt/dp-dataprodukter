@@ -15,7 +15,7 @@ dependencies {
     implementation(project(":soknad"))
 
     implementation(libs.rapids.and.rivers)
-    implementation("org.apache.avro:avro:1.12.1")
+    implementation("org.apache.avro:avro:1.12.2")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
     implementation("io.confluent:kafka-avro-serializer:8.3.1")
