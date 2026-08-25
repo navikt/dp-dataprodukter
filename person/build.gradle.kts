@@ -20,7 +20,7 @@ dependencies {
     testImplementation(libs.mockk) {
         exclude(group = "junit", module = "junit")
     }
-    testImplementation("org.wiremock:wiremock:3.13.1")
+    testImplementation("org.wiremock:wiremock:3.13.2")
     testImplementation(libs.bundles.jackson)
 }
 
