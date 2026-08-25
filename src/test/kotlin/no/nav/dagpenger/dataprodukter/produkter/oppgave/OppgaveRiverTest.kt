@@ -65,6 +65,7 @@ internal class OppgaveRiverTest {
             this.versjon shouldBe "dp-saksbehandling-1.0.0"
             this.behandlingResultat shouldBe "Klage"
             this.resultatBegrunnelse shouldBe "ANNET"
+            this.relatertBehandlingId.toString() shouldBe "01a013f0-141a-71a2-886f-9fdea301790a"
         }
     }
 
@@ -111,7 +112,8 @@ internal class OppgaveRiverTest {
     "versjon": "dp-saksbehandling-1.0.0",
     "behandlingResultat": "Klage",
     "fagsystem": "DAGPENGER",
-    "resultatBegrunnelse": "ANNET"
+    "resultatBegrunnelse": "ANNET",
+    "relatertBehandlingId": "01a013f0-141a-71a2-886f-9fdea301790a"
   },
   "@id": "7b1d3901-8784-4ab1-8f5c-f90ab80d7918",
   "@opprettet": "2026-01-28T15:12:58.69031",

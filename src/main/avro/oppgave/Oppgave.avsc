@@ -156,6 +156,18 @@
       ],
       "default": null,
       "doc": "Begrunnelse for tilstandsendringens resultat."
+    },
+    {
+      "name": "relatertBehandlingId",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "logicalType": "uuid"
+        }
+      ],
+      "default": null,
+      "doc": "Identifikator for behandlingen oppgaven er relatert til (f.eks. id til påklaget behandling)."
     }
   ]
 }
