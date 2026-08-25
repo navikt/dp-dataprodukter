@@ -28,3 +28,9 @@ dependencies {
 application {
     mainClass.set("no.nav.dagpenger.dataprodukter.MainKt")
 }
+
+// Avro 1.12 nekter å serialisere generert Avro-kode med mindre pakken er eksplisitt tiltrodd.
+// Se Dockerfile for tilsvarende oppsett i prod, og AvroSerializationTest for regresjonstest.
+tasks.test {
+    jvmArgs("-Dorg.apache.avro.SERIALIZABLE_PACKAGES=no.nav.dagpenger.dataprodukt")
+}

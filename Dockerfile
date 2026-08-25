@@ -4,4 +4,4 @@ ENV TZ="Europe/Oslo"
 
 COPY build/install/*/lib /app/lib
 
-ENTRYPOINT ["java", "-cp", "/app/lib/*", "no.nav.dagpenger.dataprodukter.MainKt"]
+ENTRYPOINT ["java", "-Dorg.apache.avro.SERIALIZABLE_PACKAGES=no.nav.dagpenger.dataprodukt", "-cp", "/app/lib/*", "no.nav.dagpenger.dataprodukter.MainKt"]
