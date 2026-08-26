@@ -200,14 +200,14 @@ internal class OrkestratorSøknadsdataRiver(
                     OrkestratorSeksjon.newBuilder().apply {
                         this.soknadId = søknadId
                         this.seksjonId = key
-                        this.opprettet = value["opprettet"].asText().takeIf { it != "null" }?.let {
+                        this.opprettet = value["opprettet"].stringValue()?.let {
                             LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
                         }
-                        this.oppdatert = value["oppdatert"].asText().takeIf { it != "null" }?.let {
+                        this.oppdatert = value["oppdatert"].stringValue()?.let {
                             LocalDateTime.parse(it).atZone(java.time.ZoneId.systemDefault()).toInstant()
                         } ?: this.opprettet
                         this.seksjonsvar = mapSeksjonssvar(seksjonsdata["seksjonsvar"])
-                        this.versjon = seksjonsdata["versjon"].asText()
+                        this.versjon = seksjonsdata["versjon"].asString()
                      }.build().also { data ->
                         seksjonDataTopic.publiser(søknadId.toString(), data)
                     }
@@ -220,7 +220,7 @@ internal class OrkestratorSøknadsdataRiver(
     fun mapSeksjonssvar(seksjonsvar: JsonNode): Map<String, String>{
         val seksjonMap = mutableMapOf<String, String>()
         seksjonsvar.properties().forEach { (key, value) ->
-            seksjonMap[key] = if (value.isTextual) value.asText() else value.toString()
+            seksjonMap[key] = if (value.isString) value.asString() else value.toString()
         }
         return seksjonMap
     }
