@@ -4971,7 +4971,8 @@
             "verdi": [
               {
                 "fødselsdato": "2000-01-01",
-                "kvalifiserer": true
+                "kvalifiserer": true,
+                "forsørgeransvar": false
               }
             ],
             "datatype": "barn"

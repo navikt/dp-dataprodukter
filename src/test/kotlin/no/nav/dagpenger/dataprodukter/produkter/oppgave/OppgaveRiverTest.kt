@@ -103,6 +103,7 @@ internal class OppgaveRiverTest {
     "saksbehandlerIdent": "Z123456",
     "beslutterIdent": "Z987654",
     "tilstandsendring": {
+      "sekvensnummer": 1,
       "tilstandsendringId": "d290f1ee-6c54-4b01-90e6-d701748f0851",
       "tilstand": "FERDIG_BEHANDLET",
       "tidspunkt": "2026-01-11T10:15:30"

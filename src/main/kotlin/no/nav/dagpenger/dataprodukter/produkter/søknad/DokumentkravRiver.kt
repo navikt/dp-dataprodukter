@@ -65,7 +65,7 @@ internal class DokumentkravRiver(
                     hendelseId = packet["hendelseId"].asUUID()
                 }
 
-            packet["dokumentkrav"].map {
+            packet["dokumentkrav"].toList().map {
                 Dokumentkrav
                     .newBuilder(dokumentkrav)
                     .apply {
