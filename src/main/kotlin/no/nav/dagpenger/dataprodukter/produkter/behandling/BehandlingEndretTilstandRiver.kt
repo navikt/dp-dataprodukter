@@ -50,11 +50,11 @@ internal class BehandlingEndretTilstandRiver(
         meterRegistry: MeterRegistry,
     ) {
         withLoggingContext(
-            "behandlingId" to packet["behandlingId"].asText(),
+            "behandlingId" to packet["behandlingId"].asString(),
             "dataprodukt" to dataTopic.topic,
         ) {
-            val ident = packet["ident"].asText()
-            val tidBrukt = Duration.parse(packet["tidBrukt"].asText())
+            val ident = packet["ident"].asString()
+            val tidBrukt = Duration.parse(packet["tidBrukt"].asString())
             val forventetFerdig = packet["forventetFerdig"].asLocalDateTime()
 
             BehandlingEndretTilstand
@@ -65,8 +65,8 @@ internal class BehandlingEndretTilstandRiver(
                     behandlingId = packet["behandlingId"].asUUID()
                     this.tekniskTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
                     this.ident = ident
-                    forrigeTilstand = packet["forrigeTilstand"].asText()
-                    gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
+                    forrigeTilstand = packet["forrigeTilstand"].asString()
+                    gjeldendeTilstand = packet["gjeldendeTilstand"].asString()
                     if (!forventetFerdig.isEqual(LocalDateTime.MAX)) {
                         this.forventetFerdig = forventetFerdig.asTimestamp()
                     }

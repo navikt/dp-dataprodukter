@@ -8,11 +8,11 @@ internal class QuizSøknadData(
     data: JsonNode,
 ) : SøknadData(data) {
     private val bostedsland
-        get() = getFaktum("faktum.hvilket-land-bor-du-i")["svar"].asText()
+        get() = getFaktum("faktum.hvilket-land-bor-du-i")["svar"].asString()
     private val arbeidsforholdLand
         get() =
-            getFakta("faktum.arbeidsforhold.land").map { it["svar"].asText() } +
-                getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asText() }
+            getFakta("faktum.arbeidsforhold.land").map { it["svar"].asString() } +
+                getFakta("faktum.eos-arbeidsforhold.land").map { it["svar"].asString() }
 
     override val utenlandstilsnitt: Utenlandstilsnitt
         get() = Utenlandstilsnitt(bostedsland, arbeidsforholdLand)
@@ -27,16 +27,16 @@ internal class QuizSøknadData(
     ): List<JsonNode> =
         alleFakta(seksjoner)
             .filter {
-                it["beskrivendeId"].asText() == faktumId
+                it["beskrivendeId"].asString() == faktumId
             }
 
     private fun alleFakta(seksjoner: JsonNode) =
         seksjoner
             .flatMap { seksjon -> seksjon["fakta"] }
             .flatMap { fakta ->
-                when (fakta["type"].asText()) {
+                when (fakta["type"].asString()) {
                     "generator" -> {
-                        val navn = fakta["beskrivendeId"].asText()
+                        val navn = fakta["beskrivendeId"].asString()
                         val svar =
                             if (fakta.has("svar")) {
                                 fakta["svar"]
@@ -47,11 +47,11 @@ internal class QuizSøknadData(
                             .flatten()
                             .map { generatorSvar ->
                                 generatorSvar as ObjectNode
-                                val indeks = generatorSvar["id"].asText().let { id -> id.split(".")[1] }
+                                val indeks = generatorSvar["id"].asString().let { id -> id.split(".")[1] }
                                 generatorSvar.put("gruppe", navn)
                                 generatorSvar.put("gruppeId", "$navn.$indeks")
 
-                                when (generatorSvar["type"].asText()) {
+                                when (generatorSvar["type"].asString()) {
                                     "periode" -> {
                                         periode(generatorSvar)
                                     }
@@ -64,7 +64,7 @@ internal class QuizSøknadData(
                     "flervalg" -> {
                         fakta["svar"].toList().map {
                             val flervalg = fakta.deepCopy() as ObjectNode
-                            flervalg.put("svar", it.asText())
+                            flervalg.put("svar", it.asString())
                         }
                     }
 
@@ -87,9 +87,9 @@ internal class QuizSøknadData(
         get() =
             alleFakta(data)
                 .map {
-                    val gruppe = it["gruppe"]?.asText()
-                    val gruppeId = it["gruppeId"]?.asText()
-                    Faktum(it["beskrivendeId"].asText(), it["type"].asText(), it["svar"].asTextOrEmpty(), gruppe, gruppeId)
+                    val gruppe = it["gruppe"]?.asString()
+                    val gruppeId = it["gruppeId"]?.asString()
+                    Faktum(it["beskrivendeId"].asString(), it["type"].asString(), it["svar"].asTextOrEmpty(), gruppe, gruppeId)
                 }.filterNot { it.erFritekst }
 }
 
@@ -97,4 +97,4 @@ internal class QuizSøknadData(
  * Speiler Jackson 2 sin gamle, tolerante `asText()`-oppførsel: returner tom streng for
  * container-noder (array/objekt) i stedet for å kaste [tools.jackson.databind.exc.JsonNodeException].
  */
-private fun JsonNode.asTextOrEmpty(): String = if (isValueNode) asText() else ""
+private fun JsonNode.asTextOrEmpty(): String = if (isValueNode) asString() else ""

@@ -52,16 +52,16 @@ internal class DokumentkravRiver(
         meterRegistry: MeterRegistry,
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
-        val ident = packet["ident"].asText()
+        val ident = packet["ident"].asString()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             val dokumentkrav =
                 Dokumentkrav.newBuilder().apply {
                     soknadId = søknadId
-                    soknadType = packet["søknadType"].asText()
-                    innsendingstype = packet["innsendingsType"].asText()
+                    soknadType = packet["søknadType"].asString()
+                    innsendingstype = packet["innsendingsType"].asString()
                     innsendttidspunkt = packet["innsendttidspunkt"].asLocalDateTime().asTimestamp()
-                    ferdigBesvart = packet["dokumentkrav"].none { it["valg"].asText() == "SEND_SENERE" }
+                    ferdigBesvart = packet["dokumentkrav"].none { it["valg"].asString() == "SEND_SENERE" }
                     hendelseId = packet["hendelseId"].asUUID()
                 }
 
@@ -69,9 +69,9 @@ internal class DokumentkravRiver(
                 Dokumentkrav
                     .newBuilder(dokumentkrav)
                     .apply {
-                        dokumentnavn = it["dokumentnavn"].asText()
-                        skjemakode = it["skjemakode"].asText()
-                        valg = it["valg"].asText()
+                        dokumentnavn = it["dokumentnavn"].asString()
+                        skjemakode = it["skjemakode"].asString()
+                        valg = it["valg"].asString()
                     }.build()
                     .also { data ->
                         logger.info { "Publiserer rad for ${data::class.java.simpleName}" }

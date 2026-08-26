@@ -39,12 +39,12 @@ internal class PåbegyntSøknadSeksjon(
         metadata: MessageMetadata,
         meterRegistry: MeterRegistry
     ) {
-        val ident = packet["ident"].asText()
+        val ident = packet["ident"].asString()
         val person = personRepository.hentPersonMedKode6Og7BeskyttelseInfo(ident)
         if (person.harAdressebeskyttelse) return
 
         val søknadId = packet["søknad_uuid"].asUUID()
-        val seksjonId = packet["seksjon_id"].asText()
+        val seksjonId = packet["seksjon_id"].asString()
         val opprettet = packet["opprettet"].asLocalDateTime().asTimestamp()
         val oppdatert = packet["oppdatert"].asLocalDateTime().asTimestamp()
 

@@ -49,10 +49,10 @@ internal class UtbetalingRiver(
         meterRegistry: MeterRegistry,
     ) {
         withLoggingContext(
-            "behandlingId" to packet["behandlingId"].asText(),
+            "behandlingId" to packet["behandlingId"].asString(),
             "dataprodukt" to dataTopic.topic,
         ) {
-            val ident = packet["ident"].asText()
+            val ident = packet["ident"].asString()
 
             Utbetaling
                 .newBuilder()
@@ -61,11 +61,11 @@ internal class UtbetalingRiver(
                     this.ident = ident
 
                     behandlingId = packet["behandlingId"].asUUID()
-                    utbetalingId = packet["eksternBehandlingId"].asText()
+                    utbetalingId = packet["eksternBehandlingId"].asString()
                     sakId = packet["sakId"].asUUID()
-                    sakIdBase64 = packet["eksternSakId"].asText()
-                    behandletHendelseId = packet["behandletHendelseId"].asText()
-                    behandletHendelseType = packet["behandletHendelseType"].asText()
+                    sakIdBase64 = packet["eksternSakId"].asString()
+                    behandletHendelseId = packet["behandletHendelseId"].asString()
+                    behandletHendelseType = packet["behandletHendelseType"].asString()
                     opprettetTid = packet["@opprettet"].asLocalDateTime().asTimestamp()
                 }.build()
                 .also { utbetaling ->

@@ -1,6 +1,5 @@
 package no.nav.dagpenger.dataprodukter.produkter.søknad
 
-import tools.jackson.databind.JsonNode
 import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
@@ -10,10 +9,7 @@ import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.github.oshai.kotlinlogging.withLoggingContext
 import io.micrometer.core.instrument.MeterRegistry
-import java.time.LocalDateTime
 import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSeksjon
-import no.nav.dagpenger.dataprodukt.soknad.OrkestratorSoknad
-import no.nav.dagpenger.dataprodukt.soknad.Seksjonsinfo
 import no.nav.dagpenger.dataprodukt.soknad.SoknadFaktum
 import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
@@ -22,6 +18,8 @@ import no.nav.dagpenger.dataprodukter.person.PersonRepository
 import no.nav.dagpenger.dataprodukter.søknad.Søknad
 import no.nav.dagpenger.dataprodukter.søknad.SøknadRepository
 import no.nav.dagpenger.dataprodukter.søknad.data.SøknadData
+import tools.jackson.databind.JsonNode
+import java.time.LocalDateTime
 
 internal class SøknadsdataRiver(
     rapidsConnection: RapidsConnection,
@@ -49,14 +47,14 @@ internal class SøknadsdataRiver(
         meterRegistry: MeterRegistry,
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
-        val ident = packet["fødselsnummer"].asText()
+        val ident = packet["fødselsnummer"].asString()
         val person = personRepository.hentPerson(ident)
 
         if (person.harAdressebeskyttelse) return
 
         val søknadData = SøknadData.lagMapper(packet["seksjoner"])
         ferdigeSøknader
-            .lagre(Søknad(søknadId, packet["versjon_navn"].asText(), søknadData))
+            .lagre(Søknad(søknadId, packet["versjon_navn"].asString(), søknadData))
             .also {
                 logger.info { "Mellomlagrer data for søknadId=$søknadId" }
             }
@@ -170,7 +168,6 @@ internal class OrkestratorSøknadsdataRiver(
     }
     companion object {
         private val logger = KotlinLogging.logger { }
-        private val sikkerlogg = KotlinLogging.logger("tjenestekall.OrkestratorSøknadsdataRiver")
     }
 
     override fun onPacket(
@@ -181,7 +178,7 @@ internal class OrkestratorSøknadsdataRiver(
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime()
-        val ident = packet["ident"].asText()
+        val ident = packet["ident"].asString()
 
         val person = personRepository.hentPersonMedKode6Og7BeskyttelseInfo(ident)
 
@@ -196,7 +193,7 @@ internal class OrkestratorSøknadsdataRiver(
 
             søknadsdataPacket.properties().forEach { (key, value) ->
                 if(key in seksjoner) {
-                    val seksjonsdata = objectMapper.readTree(value["seksjonsdata"].asText())
+                    val seksjonsdata = objectMapper.readTree(value["seksjonsdata"].asString())
                     OrkestratorSeksjon.newBuilder().apply {
                         this.soknadId = søknadId
                         this.seksjonId = key

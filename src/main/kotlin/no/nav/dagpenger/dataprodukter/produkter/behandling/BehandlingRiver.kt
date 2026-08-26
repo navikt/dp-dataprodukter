@@ -67,7 +67,7 @@ internal class BehandlingRiver(
                         require(perioder.isArray && perioder.size() > 0) { "Det må være minst en rettighetsperiode" }
                     }
                     it.require("opprettet") { dato ->
-                        val førteTil = it["førteTil"].asText()
+                        val førteTil = it["førteTil"].asString()
                         if (førteTil != "Avslag") {
                             return@require "Er ikke avslag"
                         }
@@ -76,7 +76,7 @@ internal class BehandlingRiver(
                             return@require "Er avslag på gjenopptakelse"
                         }
 
-                        if (it["regelverk"].asText() != "Dagpenger") {
+                        if (it["regelverk"].asString() != "Dagpenger") {
                             return@require "Regelverk er ikke dagpenger"
                         }
 
@@ -102,7 +102,7 @@ internal class BehandlingRiver(
         meterRegistry: MeterRegistry,
     ) {
         withLoggingContext(
-            "behandlingId" to packet["behandlingId"].asText(),
+            "behandlingId" to packet["behandlingId"].asString(),
             "dataprodukt" to dataTopic.topic,
         ) {
             val pakke = BehandlingsresultatParser(packet)
@@ -181,7 +181,7 @@ internal class BehandlingRiver(
                     logger.info { "Publiserer rad for ${behandling::class.java.simpleName}" }
                     sikkerlogg.info { "Publiserer rad for ${behandling::class.java.simpleName}: $behandling " }
 
-                    dataTopic.publiser(packet["ident"].asText(), behandling)
+                    dataTopic.publiser(packet["ident"].asString(), behandling)
                 }
         }
     }
@@ -203,11 +203,11 @@ private fun OpplysningsverdiDTO.verdi() =
 class BehandlingsresultatParser(
     private val packet: JsonMessage,
 ) {
-    val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asText() == "fagsakId" }
+    val fagsakId: JsonNode? get() = packet["opplysninger"].singleOrNull { it["navn"].asString() == "fagsakId" }
 
     val opprettet: LocalDateTime get() = packet["@opprettet"].asLocalDateTime()
 
-    val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asText() } ?: "0"
-    val image: String get() = packet["system_participating_services"].first()["image"]?.asText() ?: ""
+    val saksnummer: String get() = fagsakId?.let { it["perioder"].single()["verdi"]["verdi"].asString() } ?: "0"
+    val image: String get() = packet["system_participating_services"].first()["image"]?.asString() ?: ""
     val meldingsreferanseId get() = packet["@id"].asUUID()
 }

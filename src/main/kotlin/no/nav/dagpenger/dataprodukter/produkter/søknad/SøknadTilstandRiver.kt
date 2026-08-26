@@ -49,9 +49,9 @@ internal class SøknadTilstandRiver(
     ) {
         val søknadId = packet["søknad_uuid"].asUUID()
         val opprettet = packet["@opprettet"].asLocalDateTime()
-        val forrigeTilstand = packet["forrigeTilstand"].asText()
-        val gjeldendeTilstand = packet["gjeldendeTilstand"].asText()
-        val ident = packet["ident"].asText()
+        val forrigeTilstand = packet["forrigeTilstand"].asString()
+        val gjeldendeTilstand = packet["gjeldendeTilstand"].asString()
+        val ident = packet["ident"].asString()
 
         withLoggingContext("søknadId" to søknadId.toString()) {
             SoknadTilstand
