@@ -1,6 +1,6 @@
 package no.nav.dagpenger.dataprodukter.søknad.data
 
-import com.fasterxml.jackson.databind.JsonNode
+import tools.jackson.databind.JsonNode
 
 abstract class SøknadData(
     val data: JsonNode,

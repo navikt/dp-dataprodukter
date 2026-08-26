@@ -1,7 +1,7 @@
 package no.nav.dagpenger.dataprodukter.søknad.data
 
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.node.ObjectNode
+import tools.jackson.databind.JsonNode
+import tools.jackson.databind.node.ObjectNode
 import no.nav.dagpenger.dataprodukter.søknad.objectMapper
 
 internal class QuizSøknadData(
@@ -62,8 +62,8 @@ internal class QuizSøknadData(
                     }
 
                     "flervalg" -> {
-                        fakta["svar"].map {
-                            val flervalg: ObjectNode = fakta.deepCopy()
+                        fakta["svar"].toList().map {
+                            val flervalg = fakta.deepCopy() as ObjectNode
                             flervalg.put("svar", it.asText())
                         }
                     }
@@ -89,6 +89,12 @@ internal class QuizSøknadData(
                 .map {
                     val gruppe = it["gruppe"]?.asText()
                     val gruppeId = it["gruppeId"]?.asText()
-                    Faktum(it["beskrivendeId"].asText(), it["type"].asText(), it["svar"].asText(), gruppe, gruppeId)
+                    Faktum(it["beskrivendeId"].asText(), it["type"].asText(), it["svar"].asTextOrEmpty(), gruppe, gruppeId)
                 }.filterNot { it.erFritekst }
 }
+
+/**
+ * Speiler Jackson 2 sin gamle, tolerante `asText()`-oppførsel: returner tom streng for
+ * container-noder (array/objekt) i stedet for å kaste [tools.jackson.databind.exc.JsonNodeException].
+ */
+private fun JsonNode.asTextOrEmpty(): String = if (isValueNode) asText() else ""

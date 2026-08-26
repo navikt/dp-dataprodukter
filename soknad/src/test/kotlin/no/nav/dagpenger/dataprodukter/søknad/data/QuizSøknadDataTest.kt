@@ -1,6 +1,6 @@
 package no.nav.dagpenger.dataprodukter.søknad.data
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import tools.jackson.module.kotlin.jacksonObjectMapper
 import no.nav.dagpenger.dataprodukter.søknad.objectMapper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
