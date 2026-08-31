@@ -9,3 +9,6 @@ pdl:
   scope: "api://dev-fss.pdl.pdl-api/.default"
 db:
   tier: db-f1-micro
+
+avslag:
+  dato: 2025-11-19 # Når vi la til avgjørelse i behandlingsresultat
