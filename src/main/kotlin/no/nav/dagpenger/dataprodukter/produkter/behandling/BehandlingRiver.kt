@@ -36,13 +36,12 @@ import no.nav.dagpenger.dataprodukter.asUUID
 import no.nav.dagpenger.dataprodukter.avro.asTimestamp
 import no.nav.dagpenger.dataprodukter.kafka.DataTopic
 import no.nav.dagpenger.dataprodukter.objectMapper
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 internal class BehandlingRiver(
     rapidsConnection: RapidsConnection,
     private val dataTopic: DataTopic<Behandlingsresultat>,
-    private val datoViEierAvslag: LocalDate,
+    private val tidspunktViEierAvslag: LocalDateTime,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -66,7 +65,7 @@ internal class BehandlingRiver(
                         // De er for gamle eller ufullstendige uten rettighetsperioder
                         require(perioder.isArray && perioder.size() > 0) { "Det må være minst en rettighetsperiode" }
                     }
-                    it.require("opprettet") { dato ->
+                    it.require("sistEndret") { sistEndretVerdi ->
                         val førteTil = it["førteTil"].asString()
                         if (førteTil != "Avslag") {
                             return@require "Er ikke avslag"
@@ -80,10 +79,10 @@ internal class BehandlingRiver(
                             return@require "Regelverk er ikke dagpenger"
                         }
 
-                        val opprettet = dato.asLocalDateTime().toLocalDate()
+                        val sistEndret = sistEndretVerdi.asLocalDateTime()
 
                         // Kast alle avslag fram til en bestemt dato når vi også eier avslagene selv
-                        require(opprettet.isAfter(datoViEierAvslag)) { "Avslag før $datoViEierAvslag eies av Arena" }
+                        require(sistEndret.isAfter(tidspunktViEierAvslag)) { "Avslag før $tidspunktViEierAvslag eies av Arena" }
                     }
                 }
             }.register(this)
