@@ -11,4 +11,4 @@ db:
   tier: db-f1-micro
 
 avslag:
-  dato: 2025-11-19 # Når vi la til avgjørelse i behandlingsresultat
+  dato: "2025-11-19T00:00:00" # Når vi la til avgjørelse i behandlingsresultat

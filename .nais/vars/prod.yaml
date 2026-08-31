@@ -11,4 +11,4 @@ db:
   tier: db-custom-1-3840
 
 avslag:
-  dato: 2026-08-30 # Avslag fom 31.08.2026 eies av dp-sak
+  dato: "2026-08-31T08:52:00" # Avslag fom 31.08.2026 eies av dp-sak
