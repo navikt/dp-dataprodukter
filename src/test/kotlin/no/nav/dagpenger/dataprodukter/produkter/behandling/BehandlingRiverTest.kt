@@ -11,7 +11,6 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
-import java.time.LocalDate
 
 internal class BehandlingRiverTest {
     private val producer = mockk<KafkaProducer<String, Behandlingsresultat>>(relaxed = true)
@@ -21,7 +20,6 @@ internal class BehandlingRiverTest {
             BehandlingRiver(
                 rapidsConnection = this,
                 dataTopic = dataTopic,
-                datoViEierAvslag = LocalDate.MIN,
             )
         }
     }

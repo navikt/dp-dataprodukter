@@ -23,7 +23,6 @@ import no.nav.dagpenger.dataprodukter.produkter.søknad.SøknadsdataRiver
 import no.nav.dagpenger.dataprodukter.produkter.utbetaling.UtbetalingRiver
 import no.nav.dagpenger.dataprodukter.søknad.InMemorySøknadRepository
 import no.nav.helse.rapids_rivers.RapidApplication
-import java.time.LocalDate
 import no.nav.dagpenger.dataprodukter.produkter.søknad.PåbegyntSøknadSeksjon
 
 internal object DataTopics {
@@ -47,9 +46,6 @@ fun main() {
             scope = config[pdl.scope],
         )
 
-    // TODO: Settes til datoen vi bestemmer at vi eier avslag selv
-    val datoViEierAvslag = runCatching { config[avslag_eierskap_dato] }.getOrElse { LocalDate.MAX }
-
     RapidApplication
         .create(env) { _, rapidsConnection ->
             SoknadsinnlopRiver(rapidsConnection, DataTopics.soknadsinnlop)
@@ -61,7 +57,7 @@ fun main() {
             PåbegyntSøknadSeksjon(rapidsConnection, DataTopics.orkestratorSeksjon, personRepository)
 
             // Behandling
-            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic, datoViEierAvslag)
+            BehandlingRiver(rapidsConnection, DataTopics.behandlingTopic)
             BehandlingEndretTilstandRiver(rapidsConnection, DataTopics.behandlingTilstandTopic)
             UtbetalingRiver(rapidsConnection, DataTopics.utbetalingTopic)
 

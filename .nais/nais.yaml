@@ -48,8 +48,6 @@ spec:
       value: https://{{pdl.host}}/graphql
     - name: PDL_SCOPE
       value: "{{pdl.scope}}"
-    - name: AVSLAG_EIERSKAP_DATO
-      value: "{{avslag.dato}}"
   accessPolicy:
     outbound:
       rules:
