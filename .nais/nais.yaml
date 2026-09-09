@@ -60,14 +60,23 @@ spec:
   azure:
     application:
       enabled: true
-  gcp:
-    sqlInstances:
-      - type: POSTGRES_18
-        tier: "{{db.tier}}"
-        highAvailability: true
-        databases:
-          - name: dataprodukt
-            envVarPrefix: DB
+  # gcp:
+    # sqlInstances:
+      # - type: POSTGRES_18
+        # tier: "{{db.tier}}"
+        # highAvailability: true
+        # databases:
+          # - name: dataprodukt
+            # envVarPrefix: DB
+        # flags:
+        # - name: cloudsql.enable_pgaudit
+          # value: "true"
+        # - name: pgaudit.log
+          # value: "write,ddl,role"
+        # - name: pgaudit.log_parameter
+          # value: "on"
+        # - name: pgaudit.log_relation
+          # value: "on"
   observability:
     logging:
       destinations:
