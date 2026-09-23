@@ -17,4 +17,4 @@ dependencyResolutionManagement {
 include("behandling")
 include("soknad")
 include("person")
-include("behandling")
+include("avro-schemas")

@@ -1,7 +1,6 @@
 plugins {
     id("common")
     application
-    id("io.github.androa.gradle.plugin.avro") version "0.0.12"
 }
 
 repositories {
@@ -13,9 +12,9 @@ dependencies {
     implementation(project(":behandling"))
     implementation(project(":person"))
     implementation(project(":soknad"))
+    implementation(project(":avro-schemas"))
 
     implementation(libs.rapids.and.rivers)
-    implementation("org.apache.avro:avro:1.12.2")
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
     implementation("io.confluent:kafka-avro-serializer:8.3.2")
