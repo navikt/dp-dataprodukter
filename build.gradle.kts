@@ -17,7 +17,7 @@ dependencies {
     implementation(libs.rapids.and.rivers)
     implementation(libs.kotlin.logging)
     implementation(libs.konfig)
-    implementation("io.confluent:kafka-avro-serializer:8.3.2")
+    implementation("io.confluent:kafka-avro-serializer:8.4.0")
 
     testImplementation(libs.mockk)
     testImplementation(libs.rapids.and.rivers.test)
