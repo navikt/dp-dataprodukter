@@ -14,7 +14,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:${libs.versions.ktor.get()}")
 
     implementation("com.expediagroup", "graphql-kotlin-ktor-client", "11.0.0")
-    implementation("com.nimbusds:oauth2-oidc-sdk:11.38.2")
+    implementation("com.nimbusds:oauth2-oidc-sdk:11.39")
 
     testImplementation("no.nav.security:mock-oauth2-server:6.1.4")
     testImplementation(libs.mockk) {
